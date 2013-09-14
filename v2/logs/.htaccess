@@ -1,0 +1,5 @@
+<Files ~ 'ip.log$'>
+Order allow,deny
+Deny from allow
+</Files>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<system>
+  <dialog><item deleteId="mod_last_article_79">
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>mod_last_article_edit</uniqueId>
+			<title>Edit last article</title>
+			<page>modules/mod_last_article/mod_last_article_edit.php</page>
+			<params/>
+			<height>200</height>
+			<width>450</width>
+			<end>
+				
+			</end>
+			<buttons>
+				<button>
+					<title>Save</title>
+					<icon>images/icons/small/disk-black.png</icon>
+					<func>
+						<![CDATA[
+							sumo2.module.lastArt.Edit();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item></dialog>
+  <accordion>    
+  </accordion>
+</system>

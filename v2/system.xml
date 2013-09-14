@@ -1,0 +1,2518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<system>
+	<dialog>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_user_add_user</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_3</title>
+			<page>pages/user.management.add.user.php</page>
+			<params/>
+			<height>510</height>
+			<width>700</width>
+			<end>
+				<![CDATA[
+					if($('input[type=text].sumo2-dcsibfvs').attr('id')) {
+						var max = $('input[type=text].sumo2-dcsibfvs').attr('maxlength');
+						var min = $('input[type=text].sumo2-dcsibfvs').attr('id');
+						var minArray = min.split("#");
+						$('input[type=text].sumo2-dcsibfvs').datetime({
+								userLang	: 'en',
+								americanMode: false,
+								minY:parseInt(minArray[4]),
+								maxY:max,
+								showTime :false
+						});	
+					}
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.SaveUser();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>false</close>
+			<uniqueId>d_favorites</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_FAVORITES</title>
+			<page>pages/favorites.edit.php</page>
+			<params/>
+			<height>300</height>
+			<width>450</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.CANCEL</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-540px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.CloseDialog('d_favorites');
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.favorites.SaveFavorites();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_user_edit_user</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_6</title>
+			<page>pages/user.management.edit.user.php</page>
+			<params/>
+			<height>570</height>
+			<width>700</width>
+			<end>
+				<![CDATA[
+					if($('input[type=text].sumo2-dcsibfvs').attr('id')) {
+						var max = $('input[type=text].sumo2-dcsibfvs').attr('maxlength');
+						var min = $('input[type=text].sumo2-dcsibfvs').attr('id');
+						var minArray = min.split("#");
+						$('input[type=text].sumo2-dcsibfvs').datetime({
+								userLang	: 'en',
+								americanMode: false,
+								minY:parseInt(minArray[4]),
+								maxY:max,
+								showTime :false
+						});
+					}
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.UpdateUser();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_user_add_group</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_5</title>
+			<page>pages/user.management.add.group.php</page>
+			<params/>
+			<height>450</height>
+			<width>550</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.SaveGroup();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_user_edit_group</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_7</title>
+			<page>pages/user.management.edit.group.php</page>
+			<params/>
+			<height>450</height>
+			<width>550</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.UpdateGroup();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_article_new_c</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - Add category'</title>
+			<page>pages/article.new.category.php</page>
+			<params/>
+			<height>350</height>
+			<width>500</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.SaveGroup();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_article_cat</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - Izberite kategorije'</title>
+			<page>pages/article.select.category.php</page>
+			<params/>
+			<height>350</height>
+			<width>500</width>
+			<end>
+				<![CDATA[
+						var type = sumo2.dialog.GetParamFromDialog("d_article_cat","type");
+						var cat="";
+						if(type==="N") {
+							cat= document.getElementById('category_new_article').value;
+						} else if(type==="T") {
+							cat = document.getElementById('category_new_article_translate').value;
+						} else {
+							cat= document[document.d_article_cat.edit_id.value].category_edit_article.value;
+						}
+						var dialog = document.getElementById('d_article_cat_id');
+						var inputs = dialog.getElementsByTagName('input');
+						if(cat.length>3) {
+							var cats=cat.split("#??#");
+							var lg=cats.length-1;
+							for(var i=0,len=inputs.length;i<len;i++) {
+								for(var j=0; j<lg; j++) {
+									if(inputs[i].type == 'checkbox' && inputs[i].value==cats[j]) {
+										inputs[i].checked = true;
+									}
+								}
+							}
+						}
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.SaveCatNewArticle(sumo2.dialog.GetParamFromDialog("d_article_cat","type"));
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_article_edit_c</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - Edit category'</title>
+			<page>pages/article.edit.category.php</page>
+			<params/>
+			<height>350</height>
+			<width>500</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.UpdateGroup();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_ftp_file_rename</uniqueId>
+			<title>sumo2.language.VARIABLES.FILE_1</title>
+			<page>pages/file.manager.rename.php</page>
+			<params/>
+			<height>55</height>
+			<width>300</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.FILE_2</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-556px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.ftp.RenameFile();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_article_image_rename</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_59</title>
+			<page>pages/article.image.rename.php</page>
+			<params/>
+			<height>55</height>
+			<width>300</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_60</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-556px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.RenamePicture();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_ftp_folder_rename</uniqueId>
+			<title>sumo2.language.VARIABLES.FILE_3</title>
+			<page>pages/file.manager.rename.php</page>
+			<params/>
+			<height>55</height>
+			<width>300</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.FILE_2</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-668px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.ftp.RenameFolder();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_ftp_new_folder</uniqueId>
+			<title>sumo2.language.VARIABLES.FILE_4</title>
+			<page>pages/file.manager.new.php</page>
+			<params/>
+			<height>55</height>
+			<width>300</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.FILE_5</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.ftp.CreateFolder();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_ftp_upload</uniqueId>
+			<title>sumo2.language.VARIABLES.FILE_6</title>
+			<page>pages/file.manager.upload.php</page>
+			<params/>
+			<height>300</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+					var file = $("#file-manager-treeview div.sel");
+					var path="";
+					if(file) {
+						path = file.attr('id');
+					} else {
+						path = $(".file-tree").attr('id');	
+					}
+					var fullPath = path;
+					path = path.replace(sumo2.settings.DOC_ROOT+'/','');
+					$("#uploadify").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify.php',
+						'multi'           : true,
+						'queueID'         : 'fileQueue',
+						'fileSizeLimit'   : '10MB',
+						'auto'            : false,
+						'queueSizeLimit'  : 10,
+						'uploadLimit'	  : 10,
+						'method'          : 'post',
+						'formData' 	      : {'folder' : path},
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'onQueueComplete' : function(queueData) {
+							sumo2.accordion.ReloadAccordion('a_ftp','folder='+fullPath);
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}
+					});	
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SETTINGS_12</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-508px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							$('#uploadify').uploadify('upload','*');
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_160</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-540px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							$('#uploadify').uploadify('cancel');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_new_m</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_2</title>
+			<page>pages/menus.new.php</page>
+			<params/>
+			<height>335</height>
+			<width>500</width>
+			<end>
+				<![CDATA[ 
+					if(sumo2.accordion.SELECTED==='a_menus') {
+						document.d_menus_new_m.lang_id.value=document.getElementById('selected_lang_menu_id').value;
+					} else {
+						document.d_menus_new_m.lang_id.value=document.getElementById('a_sitetree-langselect').value;
+					}
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MENU_3</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.menu.NewMenu();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_edit_m</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - Edit'</title>
+			<page>pages/menus.edit.php</page>
+			<params/>
+			<height>335</height>
+			<width>500</width>
+			<end>
+				<![CDATA[  
+					
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.menu.EditMenu();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_edit_h</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - Homepage'</title>
+			<page>pages/menus.homepage.php</page>
+			<params/>
+			<height>635</height>
+			<width>500</width>
+			<end>
+				<![CDATA[  
+					
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.menu.EditHome();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_sitetree</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_5</title>
+			<page>pages/menus.sitetree.php</page>
+			<params/>
+			<height>350</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+					$('#menu-sitetree').quickTree();
+					$('.M_RDNDES').contextMenu('myMenuM_RDNDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});	
+					$('.M_RDNUDES').contextMenu('myMenuM_RDNUDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.M_RDNUES').contextMenu('myMenuM_RDNUES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.M_N').contextMenu('myMenuM_N', {
+					  bindings: {
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						}
+					  }
+					});
+					$('.M_RDUDES').contextMenu('myMenuM_RDUDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.M_RDUES').contextMenu('myMenuM_RDUES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.M_RDDES').contextMenu('myMenuM_RDDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.M_RDNES').contextMenu('myMenuM_RDNES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.M_RDES').contextMenu('myMenuM_RDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+				]]>
+			</end>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_new_i</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_7</title>
+			<page>pages/menus.newitem.php</page>
+			<params/>
+			<height>480</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.menu.NewItem();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_new_s</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_7</title>
+			<page>pages/menus.newitem.special.php</page>
+			<params/>
+			<height>480</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.menu.NewItemSpecial();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_edit_i</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_8</title>
+			<page>pages/menus.edititem.php</page>
+			<params/>
+			<height>480</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.menu.EditItem();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_settings_add_t</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_2</title>
+			<page>pages/settings.addtemplate.php</page>
+			<params/>
+			<height>250</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+					var randomnumber=sumo2.RandomString(30);
+					document.a_settings_add_t.random_number.value=randomnumber;
+					$("#uploadify2").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_s.php',
+						'multi'           : false,
+						'queueID'         : 'fileq',
+						'fileSizeLimit'   : '15MB',
+						'fileTypeDesc'	  : 'WinZip files (.zip)',
+						'fileTypeExts'	  : '*.zip',
+						'auto'            : false,
+						'method'          : 'post',
+						'queueSizeLimit'  : 1,
+						'uploadLimit'	  : 1,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'formData' 	      : {'randnum' : randomnumber},
+						'onQueueComplete' : function(queueData) {
+							sumo2.sumoSettings.SaveTemplate('y');
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}
+					});	
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.SaveTemplate('n');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_settings_add_lf</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_3</title>
+			<page>pages/settings.addlang.front.php</page>
+			<params/>
+			<height>130</height>
+			<width>500</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.SaveLangF();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_settings_add_lb</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_4</title>
+			<page>pages/settings.addlang.back.php</page>
+			<params/>
+			<height>250</height>
+			<width>650</width>
+			<end>
+				<![CDATA[  
+					var randomnumber=sumo2.RandomString(30);
+					document.a_settings_add_lb.random_number.value=randomnumber;
+					$("#uploadify3").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_s.php',
+						'multi'           : false,
+						'queueID'         : 'fileq',
+						'fileSizeLimit'   : '1MB',
+						'fileTypeDesc'	  : 'WinZip files (.zip)',
+						'fileTypeExts'	  : '*.zip',
+						'auto'            : false,
+						'method'          : 'post',
+						'queueSizeLimit'  : 1,
+						'uploadLimit'	  : 1,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'formData' 	      : {'randnum' : randomnumber},
+						'onQueueComplete' : function(queueData) {
+							sumo2.sumoSettings.SaveLangB('y');
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}
+					});
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.SaveLangB('n');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_settings_edit_t</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_5</title>
+			<page>pages/settings.edittemplate.php</page>
+			<params/>
+			<height>70</height>
+			<width>430</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.EditT();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_menues_trans</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_9</title>
+			<page>pages/menus.translate.php</page>
+			<params/>
+			<height>450</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MENU_10</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.menu.Translate();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<close>true</close>
+			<uniqueId>d_menus_sitetree_trans</uniqueId>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_11</title>
+			<page>pages/menus.sitetree.translate.php</page>
+			<params/>
+			<height>350</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+					$('#menu-sitetree-trans2').quickTree();
+					$('#menu-sitetree-trans1').quickTree();
+					sumo2.tooltip.FindTooltips(document.getElementById("sumo2-dialog-content-d_menus_sitetree_trans"));
+					$('.T_RDNDES').contextMenu('myMenuT_RDNDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});	
+					$('.T_RDNUDES').contextMenu('myMenuT_RDNUDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.T_RDNUES').contextMenu('myMenuT_RDNUES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.T_N').contextMenu('myMenuT_N', {
+					  bindings: {
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						}
+					  }
+					});
+					$('.T_RDUDES').contextMenu('myMenuT_RDUDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.T_RDUES').contextMenu('myMenuT_RDUES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'up': function(t) {
+							sumo2.menu.Up(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.T_RDDES').contextMenu('myMenuT_RDDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'down': function(t) {
+							sumo2.menu.Down(t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.T_RDNES').contextMenu('myMenuT_RDNES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+					$('.T_RDES').contextMenu('myMenuT_RDES', {
+					  bindings: {
+						'rename': function(t) {
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						},
+						'enable': function(t) {
+							sumo2.menu.StatusItem(t.id);
+						},
+						'show': function(t) {
+							sumo2.menu.showMenu(t.id);
+						}
+					  }
+					});
+				]]>
+			</end>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>h_GA</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_6</title>
+			<page>pages/help.ga.php</page>
+			<params/>
+			<height>450</height>
+			<width>800</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>a_settings_add_p</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_7</title>
+			<page>pages/settings.prefix.php</page>
+			<params/>
+			<height>90</height>
+			<width>350</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.Prefix();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>a_settings_add_tp</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_8</title>
+			<page>pages/settings.position.php</page>
+			<params/>
+			<height>90</height>
+			<width>350</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.Position();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_logo</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_11</title>
+			<page>pages/settings.logo.php</page>
+			<params/>
+			<height>150</height>
+			<width>450</width>
+			<end>
+				<![CDATA[  
+					$("#uploadify5").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_logo.php',
+						'multi'           : false,
+						'queueID'         : 'fileq',
+						'fileSizeLimit'   : '2MB',
+						'fileTypeDesc'	  : 'Portable Network Graphics (.png)',
+						'fileTypeExts'	  : '*.png',
+						'auto'            : false,
+						'queueSizeLimit'  : 1,
+						'uploadLimit'	  : 1,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'onQueueComplete' : function(queueData) {
+							location.reload(true);
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}
+					});
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SETTINGS_12</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-524px -1661px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
+								$('#uploadify5').uploadify('upload','*');
+							});
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<close>true</close>
+			<uniqueId>d_preview</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_13</title>
+			<page>pages/preview.php</page>
+			<params/>
+			<height>window.innerHeight-100</height>
+			<width>document.body.clientWidth-100</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_layoutmodule</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_177</title>
+			<page>pages/site.tree.module.php</page>
+			<params/>
+			<height>370</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+					var dialog = document.getElementById('sumo2-dialog-d_layoutmodule');
+					var uls = document.getElementsByTagName('ul');
+					var len = uls.length;
+					var secondary = len;
+					var i = null;
+					do {
+						i = len - secondary;
+						if(i == len) { break; }
+						if(uls[i].className == 'the-tree') {
+							$('#'+uls[i].id).quickTree();
+						}
+					} while(--secondary);
+					sumo2.siteTree.SetLang('languageForModule');
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.siteTree.SaveModule('d_layoutmodule');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_module_install</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_14</title>
+			<page>pages/module.install.php</page>
+			<params/>
+			<height>250</height>
+			<width>450</width>
+			<end>
+				<![CDATA[  
+					var randomnumber=sumo2.RandomString(30);
+					document.d_module_install.random_number.value=randomnumber;
+					$("#uploadify_module_install").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_mi.php',
+						'multi'           : false,
+						'queueID'         : 'fileq_mi',
+						'fileSizeLimit'   : '5MB',
+						'fileTypeDesc'	  : 'WinZip files (.zip)',
+						'fileTypeExts'	  : '*.zip',
+						'auto'            : false,
+						'method'          : 'post',
+						'queueSizeLimit'  : 1,
+						'uploadLimit'	  : 1,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'formData' 	      : {'randnum' : randomnumber},
+						'onQueueComplete' : function(queueData) {
+							sumo2.moduleManager.Install('y');
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}	
+					});
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SETTINGS_15</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.moduleManager.Install('n');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<close>true</close>
+			<uniqueId>d_module_edit</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_201</title>
+			<page>pages/module.edit.php</page>
+			<params/>
+			<height>150</height>
+			<width>450</width>
+			<end>
+				<![CDATA[  
+					
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.moduleManager.ChangeDomain();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_article_c_translate</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_16</title>
+			<page>pages/article.category.translate.php</page>
+			<params/>
+			<height>450</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[
+							sumo2.article.Translate_Category();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_site_tree_rename</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_178</title>
+			<page>pages/site.tree.rename.php</page>
+			<params/>
+			<height>300</height>
+			<width>300</width>
+			<end>
+				<![CDATA[  
+						$('#tree-menu-rename').quickTree();
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-572px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.siteTree.Rename();
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_161</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-572px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.siteTree.SaveAll();
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_162</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-604px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.siteTree.ClearCache(sumo2.dialog.GetParamFromDialog('d_site_tree_rename', 'layout'), sumo2.dialog.GetParamFromDialog('d_site_tree_rename', 'panel'));
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_user_add_fields</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_179</title>
+			<page>pages/user.add.field.php</page>
+			<params/>
+			<height>420</height>
+			<width>750</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.AddField();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_user_edit_fields</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_180</title>
+			<page>pages/user.edit.field.php</page>
+			<params/>
+			<height>420</height>
+			<width>700</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.EditField();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_out_of_date</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_181</title>
+
+			<page>pages/out.of.date.php</page>
+			<params/>
+			<height>250</height>
+			<width>730</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<close>false</close>
+			<uniqueId>d_relogin</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_182</title>
+			<page>pages/relogin.php</page>
+			<params/>
+			<height>160</height>
+			<width>350</width>
+			<end>
+				<![CDATA[  
+					$('form[name="d_relogin"] input[name="password"]').keydown(function(e) {
+						if(e.which=="13") {
+							sumo2.login.Check();
+						}
+					});
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_183</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1709px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.login.Check();
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_184</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-556px -1725px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							window.location.reload();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_update_text</uniqueId>
+			<title>sumo2.language.VARIABLES.WARNING</title>
+			<page>pages/update.warning.php</page>
+			<params/>
+			<height>400</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>				
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_seo_redirect_add</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_208</title>
+			<page>pages/seo.urls.add.php</page>
+			<params/>
+			<height>430</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.seo.addRedirect();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_seo_redirect_edit</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_209</title>
+			<page>pages/seo.urls.edit.php</page>
+			<params/>
+			<height>430</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.seo.editRedirect();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+	</dialog>
+	<accordion>
+		<item>
+			<refresh>false</refresh>			
+			<uniqueId>a_welcome</uniqueId>
+			<page>pages/welcome.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+						
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_WELCOME</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_user_view_u</uniqueId>
+			<page>pages/user.management.view.users.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_user_view_u_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_2</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.USER_BUTTON_ADDU</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_user_add_user');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+			<accessId>FAV_USER_2</accessId>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_user_view_g</uniqueId>
+			<page>pages/user.management.view.groups.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_user_view_g_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_4</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.USER_BUTTON_ADDG</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_user_add_group');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_user_view_f</uniqueId>
+			<page>pages/user.view.fields.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_user_view_f_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - View fields'</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_163</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_user_add_fields');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+
+
+		<item>
+			<refresh>false</refresh>
+			<uniqueId>a_article_new_a</uniqueId>
+			<page>pages/article.new.article.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					if(CKEDITOR.instances['editor2']) {
+						CKEDITOR.remove(CKEDITOR.instances['editor2']);
+					}
+					CKEDITOR.replace( 'editor2');
+					$('#date-start-a').datetime({
+							userLang	: 'si',
+							americanMode: false
+					});
+					$('#date-end-a').datetime({
+							userLang	: 'si',
+							americanMode: false
+					});
+					
+					$('#article_newTags').tagit({sortable:true, triggerKeys:['enter']});
+					$('#article_newTags').tagit("reset");
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SET_ARTICLE_2</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.SaveArticle();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<uniqueId>a_mail_new</uniqueId>
+			<page>pages/mail.new.mail.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					if(CKEDITOR.instances['editor1']) {
+			            CKEDITOR.remove(CKEDITOR.instances['editor1']);
+			        }
+					CKEDITOR.replace( 'editor1');
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_1</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SEND</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-540px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.mail.Check();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_mail_inbox</uniqueId>
+			<page>pages/mail.inbox.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_mail_inbox_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_3</title>
+			<minWidth>200</minWidth>
+			<buttons/>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_mail_sent</uniqueId>
+			<page>pages/mail.sent.items.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_mail_sent_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_4</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_user_group_vd</uniqueId>
+			<page>pages/user.management.view.group.details.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+						sumo2.tooltip.FindTooltips(document.getElementById('a_user_group_vd'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_4</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_article_view_c</uniqueId>
+			<page>pages/article.view.categories.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+						sumo2.tooltip.FindTooltips(document.getElementById('a_article_view_c_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - View categories'</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SET_ARTICLE_4</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_article_new_c');
+						]]>
+					</func>				
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.SET_ARTICLE_5</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-588px -1676px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.accordion.NewPanel('a_article_new_a');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_ftp</uniqueId>
+			<page>pages/file.manager.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					$('#file-manager-treeview').quickTree();					
+					$('.conMenu').contextMenu('myMenu1', {
+					  bindings: {
+						'rename': function(t) {
+						  sumo2.ftp.PATH = t.id;
+							sumo2.dialog.NewDialog('d_ftp_folder_rename', 'ID='+t.id);
+						},
+						'delete': function(t) {
+								sumo2.ftp.PATH = t.id;
+							  sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.SETTINGS_17,250,200,function() {
+								  sumo2.ftp.DeleteFolder();
+							  });
+						},
+						'new': function(t) {
+						  sumo2.ftp.PATH = t.id;
+								sumo2.dialog.NewDialog('d_ftp_new_folder');
+						}
+					  }
+					});
+					$('.file-tree').contextMenu('myMenu3', {
+					  bindings: {
+						'new': function(t) {
+								sumo2.ftp.PATH = t.id;
+								sumo2.dialog.NewDialog('d_ftp_new_folder');
+						}
+					  }
+					});
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_18</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_164</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-508px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_ftp_upload');
+						]]>
+					</func>				
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_165</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-668px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[ 
+							if(sumo2.accordion.GetParamFromAccordion("a_ftp", "view")==='image' || sumo2.accordion.GetParamFromAccordion("a_ftp", "view")==false) {
+								sumo2.accordion.SetParamForAccordion("a_ftp","view=data");
+							} else {
+								sumo2.accordion.SetParamForAccordion("a_ftp","view=image");
+							}
+							sumo2.ftp.RefreshFileView(document.getElementById("file_manager_path").value);
+						]]>
+					</func>				
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_166</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.ftp.DeleteSelected();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_article_view_cd</uniqueId>
+			<page>pages/article.view.categories.details.php</page>
+			<params/>
+			<func>
+				<![CDATA[
+						var random=sumo2.RandomString(5);
+						document.getElementById('a_article_view_cd_table_id_search').id='a_article_view_cd_'+random;
+						document.getElementById('viewgroups_detailed').id='viewgroups_detailed'+random;
+						$('#a_article_view_cd_'+random).quicksearch('#viewgroups_detailed'+random+' tbody tr', {
+							noResults: '#noresults'
+						});
+						$('#viewgroups_detailed'+random).tablesorter({         
+							headers: { 
+								0: { 
+									sorter: false 
+								},
+								8: { 
+									sorter: false 
+								},
+								6: { 
+									sorter: 'dateSUMO' 
+								},
+								5: { 
+									sorter: 'dateSUMO' 
+								},
+								4: { 
+									sorter: 'dateSUMO' 
+								}
+							} 
+						});
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SETTINGS_19</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SET_ARTICLE_5</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.accordion.NewPanel('a_article_new_a');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_menus</uniqueId>
+			<page>pages/menus.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_menus_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_20</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MENU_2</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_menus_new_m');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_article_view_a</uniqueId>
+			<page>pages/article.view.articles.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_article_view_a_table'));
+					$('#a_article_view_a_table_id_search').quicksearch('#a_article_view_a_table tbody tr', {
+						noResults: '#noresults'		
+					});
+					$("#a_article_view_a_table").tablesorter({ 
+						headers: { 
+							0: { 
+								sorter: false 
+							},
+							8: { 
+								sorter: false 
+							},
+							6: { 
+								sorter: 'dateSUMO' 
+							},
+							5: { 
+								sorter: 'dateSUMO' 
+							},
+							4: { 
+								sorter: 'dateSUMO' 
+							}
+						} 
+					});  
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SETTINGS_21</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SET_ARTICLE_5</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-588px -1676px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.accordion.NewPanel('a_article_new_a');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_article_edit_a</uniqueId>
+			<changes>true</changes>
+			<page>pages/article.edit.article.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					editor_number=sumo2.RandomString(2);
+					var temp=editor_number;
+					document.a_article_edit_a.testeditor.id=editor_number;					
+					document.a_article_edit_a.uploadify66.id="uploadify_"+editor_number;
+					document.getElementById('uploadify6_div').id="uploadify_div_"+editor_number;
+					document.getElementById('fileq_article').id="file_"+editor_number;
+					document.getElementById('cat_edit_new').id="cat_div_"+editor_number;
+					var test=editor_number;
+					document.getElementById('cat_div_'+editor_number).onclick=function(){ sumo2.dialog.NewDialog('d_article_cat', 'id='+test+''); };
+					document.getElementById('date_start_e').id="date_start_e_"+editor_number;
+					document.getElementById('date_end_e').id="date_end_e_"+editor_number;
+					document.getElementById('date_create_e').id="date_create_e_"+editor_number;
+					document.getElementById('article_editTags').id="article_editTags_"+editor_number;
+					if(CKEDITOR.instances[editor_number]) {
+							CKEDITOR.remove(CKEDITOR.instances[editor_number]);
+					}
+					CKEDITOR.replace( editor_number);
+					$('#date_start_e_'+editor_number).datetime({
+							userLang	: 'si',
+							americanMode: false
+					});
+					$('#date_end_e_'+editor_number).datetime({
+							userLang	: 'si',
+							americanMode: false
+					});
+					$('#date_create_e_'+editor_number).datetime({
+							userLang	: 'si',
+							americanMode: false
+					});
+					$('#article_editTags_'+editor_number).tagit({sortable:true, triggerKeys:['enter']});
+					var idParam = sumo2.accordion.GetParamFromAccordion(data,'id');
+					$('#uploadify_div_'+editor_number).click(function() { sumo2.article.UploadImage('n', ''+editor_number+''); });
+					document.a_article_edit_a.name=editor_number;
+					$("#uploadify_"+editor_number).uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_article.php',
+						'multi'           : true,
+						'queueID'         : 'file_'+editor_number,
+						'fileSizeLimit'   : '2MB',
+						'fileTypeDesc'	  : 'Allowed types: .png, .jpg, .jpeg, .gif',
+						'fileTypeExts'	  : '*.png;*.jpg;*.gif; *.jpeg',
+						'auto'            : false,
+						'method'          : 'post',
+						'queueSizeLimit'  : 10,
+						'uploadLimit'	  : 10,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'formData' 	      : {'id' : idParam, 'domain' : document[editor_number].domainNameEdit.value},
+						'onQueueComplete' : function(queueData) {
+							sumo2.article.UploadImage('y',temp);
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}							 
+					});					
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SETTINGS_22</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.EditArticle(editor_number);
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_settings</uniqueId>
+			<page>pages/settings.php</page>
+			<params/>
+			<func>
+				<![CDATA[
+					if(document.getElementById('editorw')) {
+						if(CKEDITOR.instances['editorw']) {
+								CKEDITOR.remove(CKEDITOR.instances['editorw']);
+						}
+						CKEDITOR.replace('editorw', {height: 500}); 
+					}
+					$(".tab_content").hide(); 
+					var tabVal = sumo2.accordion.GetParamFromAccordion("a_settings","tab_val");
+					var endTab = "";
+					if(tabVal == false) {
+						document.getElementById('settings_current_tab').value="#user1";
+						endTab = "#user1";
+					} else {
+						document.getElementById('settings_current_tab').value="#"+tabVal;
+						endTab = "#"+tabVal;
+					}
+					$(endTab+"tab").addClass("active").show();
+					$(endTab).show();
+					
+					$("ul.tabs li").click(function() {
+						$("ul.tabs li").removeClass("active");
+						$(this).addClass("active"); 
+						$(".tab_content").hide();
+						var activeTab = $(this).find("a").attr("href");
+						var paramVal = activeTab.replace("#","");
+						sumo2.accordion.SetParamForAccordion("a_settings","tab_val="+paramVal);
+						document.getElementById('settings_current_tab').value=activeTab;
+						$(activeTab).fadeIn(); 
+						return false;
+					});
+					sumo2.sumoSettings.Disable();
+					sumo2.tooltip.FindTooltips(document.getElementById('settings_container'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_1</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.Save();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_sitetree</uniqueId>
+			<page>pages/site.tree.php</page>
+			<params/>
+			<func>
+				<![CDATA[ 
+					sumo2.DisableSelection(document.getElementById("sumo2-module-container"));
+					sumo2.DisableSelection(document.getElementById("sumo2-tree-frame"));
+					$('#tree-menu').quickTree();	
+					if(document.getElementById('sumo2-module-container')) {
+						document.getElementById('sumo2-module-container').style.height = (sumo2.client.MAIN_HEIGHT - 35) + 'px';
+					}
+					if(document.getElementById('sumo2-tree-menus')) {
+						document.getElementById('sumo2-tree-menus').style.height = (sumo2.client.MAIN_HEIGHT - 135) + 'px';
+					}
+					if(document.getElementById('sumo2-tree-frame')) {
+						document.getElementById('sumo2-tree-frame').style.height = (sumo2.client.MAIN_HEIGHT - 55) + 'px';
+					}
+					sumo2.tooltip.FindTooltips(document.getElementById('sumo2-sitetree-uppermenu'));
+					sumo2.tooltip.FindTooltips(document.getElementById('tree-menu'));
+					
+					$('.S_RND').contextMenu('myMenuS_RND', {
+					  bindings: {
+						'rename': function(t) {
+							var k =  t.id.split("#");	
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+k[0]+'$!$mode=not');
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id);
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						}
+					  }
+					});
+					$('.S_RN').contextMenu('myMenuS_RN', {
+					  bindings: {
+						'rename': function(t) {
+							var k =  t.id.split("#");	
+							sumo2.dialog.NewDialog('d_menus_edit_m', 'id='+k[1]);
+						},
+						'new': function(t) {
+							var k =  t.id.split("#");
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id=0#'+k[2]);
+						}
+					  }
+					});
+					$('.S_RD').contextMenu('myMenuS_RD', {
+					  bindings: {
+						'rename': function(t) {
+							var k =  t.id.split("#");	
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+k[0]+'$!$mode=not');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						}
+					  }
+					});
+					$('.HS_RN').contextMenu('myMenuHS_RN', {
+					  bindings: {
+						'rename': function(t) {					
+							sumo2.dialog.NewDialog('d_menus_edit_h', 'id='+t.id);
+						},
+						'new': function(t) {
+							sumo2.dialog.NewDialog('d_menus_new_m', 'id='+t.id);
+						}
+					  }
+					});
+					$('.S_R').contextMenu('myMenuS_R', {
+					  bindings: {
+						'rename': function(t) {					
+							sumo2.dialog.NewDialog('d_menus_edit_i', 'id='+t.id+'$!$mode=sp');
+						},
+						'delete': function(t) {
+							sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MENU_6,250,200,function() {
+								  sumo2.menu.DeleteItem(t.id);
+							});
+						}
+					  }
+					});
+					$('.S_N').contextMenu('myMenuS_N', {
+					  bindings: {
+						'new': function(t) {					
+							sumo2.dialog.NewDialog('d_menus_new_i', 'id='+t.id+'$!$mode=sp');
+						}
+					  }
+					});
+					
+					$('.Special_N').contextMenu('myMenuSpecial_N', {
+					  bindings: {
+						'new': function(t) {				
+							sumo2.dialog.NewDialog('d_menus_new_s', 'id='+t.id);
+						}
+					  }
+					});
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_23</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_trash</uniqueId>
+			<page>pages/trash.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					$(".t_tab_content").hide(); 
+					var tabVal = sumo2.accordion.GetParamFromAccordion("a_trash","tab_val");
+					var endTab = "";
+					if(tabVal == false) {
+						document.getElementById('trash_current_tab').value="#article";
+						endTab = "#article";
+					} else {
+						document.getElementById('trash_current_tab').value="#"+tabVal;
+						endTab = "#"+tabVal;
+					}
+					$(endTab+"tab").addClass("active").show();
+					$(endTab).show();
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_article_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_articleG_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_user_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_userG_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_menu_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_menuI_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_mail_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_module_id'));
+					sumo2.tooltip.FindTooltips(document.getElementById('a_trash_template_id'));
+					$("ul.tabs_trash li").click(function() {
+						$("ul.tabs_trash li").removeClass("active");
+						$(this).addClass("active"); 
+						$(".t_tab_content").hide();
+						var activeTab = $(this).find("a").attr("href");
+						var paramVal = activeTab.replace("#","");
+						sumo2.accordion.SetParamForAccordion("a_trash","tab_val="+paramVal);
+						document.getElementById('trash_current_tab').value=activeTab;
+						$(activeTab).fadeIn(); 
+						return false;
+					});
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_24</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_module_view</uniqueId>
+			<page>pages/module.view.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_module_view_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_25</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_article_a_translate</uniqueId>
+			<page>pages/article.article.translate.php</page>
+			<params/>
+			<func>
+				<![CDATA[ 
+					$('#date_start_t').datetime({
+							userLang	: 'en',
+							americanMode: false
+					});
+					$('#date_end_t').datetime({
+							userLang	: 'en',
+							americanMode: false
+					});
+					if(CKEDITOR.instances['editor6']) {
+						CKEDITOR.remove(CKEDITOR.instances['editor6']);
+					}
+					CKEDITOR.replace( 'editor6'); 
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_26</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.Translate_Article();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_domains</uniqueId>
+			<page>pages/domains.php</page>
+			<params/>
+			<func>
+				<![CDATA[ 
+					$(".domain_content").hide(); 
+					var tabVal = sumo2.accordion.GetParamFromAccordion("a_domains","tab_val");
+					var endTab = "";
+					if(tabVal == false) {
+						document.getElementById('domains_current_tab').value="#add";
+						endTab = "#add";
+					} else {
+						document.getElementById('domains_current_tab').value="#"+tabVal;
+						endTab = "#"+tabVal;
+					}
+					$(endTab+"tab").addClass("active").show();
+					$(endTab).show();
+					
+					$("ul.tabsDomain li").click(function() {
+						$("ul.tabsDomain li").removeClass("active");
+						$(this).addClass("active"); 
+						$(".domain_content").hide();
+						var activeTab = $(this).find("a").attr("href");
+						var paramVal = activeTab.replace("#","");
+						sumo2.accordion.SetParamForAccordion("a_domains","tab_val="+paramVal);
+						document.getElementById('domains_current_tab').value=activeTab;
+						$(activeTab).fadeIn(); 
+						return false;
+					});
+					sumo2.sumoSettings.Disable();
+					$('.domain_alias').tagit({sortable:true});
+					$('.whiteIP').tagit({sortable:true});
+					$('.blackIP').tagit({sortable:true});
+					$('.domain_countries').tagit({sortable:true});
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.MOD_192</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.domains.Check();
+						]]>
+					</func>				
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.DELETE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-572px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.domains.Delete();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_seo_redirect_view</uniqueId>
+			<page>pages/seo.urls.view.php</page>
+			<params/>
+			<func>
+				<![CDATA[ 
+					$('#a_seo_redirect_view_table_id_search').quicksearch('#a_seo_redirect_view_table tbody tr', {
+						noResults: '#noresults'		
+					});
+					sumo2.tooltip.FindTooltips(document.getElementById('a_seo_redirect_view_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.MOD_206</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_207</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-509px -1692px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_seo_redirect_add');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+	</accordion>
+</system>

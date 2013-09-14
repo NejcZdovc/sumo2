@@ -1,0 +1,17 @@
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #AAA5A2;
+	height: 100%;
+	margin:0px;
+	padding:0px;
+}
+
+img { border:none; }
+
+.text { font-family: Tahoma,Geneva,Kalimati,sans-serif; color:#636363; text-align:center; font-size:13px; line-height:17px; }
+.text a { color:#636363; text-decoration:underline; }
+.text a:hover { color:#636363; text-decoration:none; }

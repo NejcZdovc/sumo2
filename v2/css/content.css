@@ -1,0 +1,137 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}
+body {line-height:1; /*overflow:hidden;*/}
+ol, ul {list-style:none;}
+blockquote, q {quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';content:none;}
+:focus {outline:0;}
+ins {text-decoration:none;}
+del {text-decoration:line-through;}
+table {border-collapse:collapse;border-spacing:0;}
+body {background-color:#f1f7f9;width:100%;height:100%;}
+.background {background-image: url(../images/css_sprite.png);background-position:0px 166px;background-repeat:repeat-x;width:inherit;height:inherit;}
+.header {background-repeat:repeat-x;}
+.height {height:100%;}
+.top {background-image:url(../images/css_sprite.png);background-position:0px -1250px;background-repeat:repeat-x;height:100px;min-width:870px; width:100%;}
+.menu {background-image:url(../images/css_sprite.png);background-position:0px -1350px;background-repeat:repeat-x;height:39px;}
+.submenu {background-image:url(../images/css_sprite.png);background-position:0px -1389px;background-repeat:repeat-x;height:28px;}
+.left {width:110px;float:left;}
+.main {float:left;margin: 10px 0px 0px 5px;}
+.favorites {width:90px;height:100%;margin-top:10px;margin-left:15px;}
+.fav-top {height: 23px;}
+.fav-content {height:172px;width:95%;margin:0px auto;background-color:#f1f1f1;border:1px solid #dddddd;border-bottom-right-radius:10px;border-bottom-left-radius:10px;-moz-border-radius-bottomright:10px;-moz-border-radius-bottomleft:10px;-webkit-border-bottom-right-radius:10px;-webkit-border-bottom-left-radius:10px;}
+.flt-left {float:left;}
+.flt-right {float:right;}
+.clear {clear:both;}
+.box {background-color:#ffffff;border:1px solid #bdbdbd;-moz-border-radius: 10px;-webkit-border-radius: 10px;-khtml-border-radius: 10px;border-radius: 10px;}
+.boxl {background-color:#ffffff;border:1px solid #bdbdbd;-moz-border-radius-bottomleft: 10px; -moz-border-radius-topleft: 10px; -webkit-border-radius: 10px;-khtml-border-radius: 10px;border-radius-topleft: 10px;border-radius-bottomleft: 10px;}
+.dialog {position:absolute;top:100px;left:100px;}
+.overlay {position:absolute;top:0px;left:0px;width:100%;height:100%;background-image:url(../images/overlay.png);background-repeat:repeat;z-index: 12;}
+.overlay-trsp {position:absolute;top:0px;left:0px;width:100%;height:100%; z-index:13;}
+.dialog-title {background-image:url(../images/css_sprite.png);background-position:0px -1417px;height:33px;width:100%;background-repeat:repeat-x;border-top-right-radius:10px;border-top-left-radius:10px;-moz-border-radius-topright:10px;-moz-border-radius-topleft:10px;-webkit-border-top-right-radius:10px;-webkit-border-top-left-radius:10px; background-color:#4578A8;}
+.accordion-hide {background-image:url(../images/css_sprite.png);background-position:-2000px 0px;width:39px;height:100%;background-repeat:repeat-y;overflow:hidden;cursor:pointer;}
+.accordion-hide:hover {background-image:url(../images/css_sprite.png);background-position:-2039px 0px;}
+.accordion-hide:active {background-image:url(../images/css_sprite.png);background-position:-2078px 0px;}
+.accordion-main {background-color:#ffffff;height:100%;overflow:hidden;}
+.accordion-content {width:99%;margin:0px auto;background-color:#f1f1f1;border:1px solid #dddddd;overflow:auto;}
+.hidden {visibility:hidden;}
+.fade {opacity:0;}
+.tooltip {background-image:url(../images/tt_bck.png);color:#ffffff;font-size:10px;position:absolute;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:5px;}
+.menu-wrapper {background-color:#ffffff;width:220px;margin-left:15px;}
+.left-accordion {padding-top:10px;}
+.menu-hide {background-image:url(../images/css_sprite.png);background-position:0px -1417px;height:22px;width:100%;background-repeat:repeat-x;cursor:pointer;}
+.menu-hide:hover {background-image:url(../images/css_sprite.png);background-position:0px -1461px;}
+.menu-hide:active {background-image:url(../images/css_sprite.png);background-position:0px -1439px;}
+.top-menu {float:right;top:0px;right:0px;margin-right:100px; width:auto; height:30px;min-width:200px;}
+.tpmnu-left {width:3px;height:30px;background-image:url(../images/css_sprite.png);background-position:-1445px -1658px;}
+.tpmnu-main {height:30px;background-image:url(../images/css_sprite.png);background-position:0px -1517px;width:auto;color:#ffffff;line-height:30px;padding:0px 5px;}
+.tpmnu-right {width:3px;height:30px;background-image:url(../images/css_sprite.png);background-position:-1469px -1658px;}
+.font-set {font-family:"Trebuchet MS", Arial, sans-serif; font-size:12px;color:#676767;}
+.logo {height:100px;width:321px; margin-left:10px; cursor:pointer;}
+.hide {display:none;}
+.nav {font-size:22px;color:#ffffff;text-transform:uppercase;}
+.nav li {float:left;margin-left:15px;cursor:pointer;margin-top:3px;height:29px;padding: 7px 5px 0px 5px;}
+.nav li.sel {background-image:url(../images/css_sprite.png);background-position:0px -1547px;background-repeat:repeat-x;}
+.subnav {font-size:13px;color:#ffffff;list-style:none;}
+.subnav li {float:left;margin-left:15px;margin-top:6px;cursor:pointer;}
+.subnav li div {text-decoration:none;color:#ffffff;}
+.subnav li div:hover {text-decoration:underline;}
+.title1 {text-transform:uppercase;line-height:22px;padding-left:5px;}
+.title2 {text-transform:uppercase;line-height:33px;padding-left:5px;font-size:16px;color:#ffffff;}
+.title3 {text-transform:uppercase;line-height:22px;padding-left:5px;font-size:14px;color:#ffffff;}
+.title1-icon {margin-top: 3px;margin-right:3px;}
+.title2-icon {margin-top: 8px;margin-right:4px;}
+.title3-icon {margin-top: 3px;margin-right:3px;}
+.button {background-image:url(../images/css_sprite.png);background-position:0px -1583px;border:1px solid #cccccc;height:16px;font-size:10px;line-height:16px;padding: 0px 4px;margin: 2px 8px 0px 3px;cursor:pointer;}
+.button:active {background-image:url(../images/css_sprite.png);background-position:0px -1601px;}
+.button-icon {margin-right:2px;}
+.fav-item {border:1px solid transparent;width:50px;font-size:10px;cursor:pointer;margin:0px 7px;padding:1px 7px;}
+.fav-item:hover {border:1px solid #676767;}
+.fav-icon {width:47px;height:47px;margin: 0px auto;}
+.fav-text {margin: 1px 3px;text-align:center;}
+.close-button {width:16px;height:16px;background-image:url(../images/css_sprite.png);background-position:-556px -1709px;margin-right:10px;cursor:pointer;}
+.refresh-button {width:16px;height:16px;background-image:url(../images/css_sprite.png);background-position:-572px -1709px;margin-right:7px;cursor:pointer;}
+.dialog-topbttn {margin-top:8px;cursor:pointer;}
+.dialog-content {width:98%;margin:2px auto;font-size:12px;overflow:auto;}
+.dialog-buttons {width:100%;height: 25px;margin:4px 0px;}
+.ajax {width:100%;height:100%;background-image:url(../images/ajax-loader.gif);background-repeat:no-repeat;background-position:center;}
+.accordion-bttn {margin-bottom:5px;margin-top:5px;}
+.accordion-funcbttn {margin-top:5px;}
+.accordion-hidebttn {margin: 6px 11px;}
+.accordion-vertical {margin-left:5px;margin-top:10px;}
+.menu-content {font-size:12px;overflow:auto;}
+.tpmnu-main a {cursor:pointer;text-decoration:none;color:#ffffff;}
+.tpmnu-main a:hover {text-decoration:underline;}
+.language-top {background-repeat:no-repeat;background-position:right center;padding-right:18px;}
+.sumo2-navigation-title{-webkit-user-select: none;-khtml-user-select: none;-moz-user-select: none;-o-user-select: none;user-select: none;}
+
+/*ColorBox*/
+#colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}
+#cboxOverlay{position:fixed; width:100%; height:100%;}
+#cboxMiddleLeft, #cboxBottomLeft{clear:left;}
+#cboxContent{position:relative;}
+#cboxLoadedContent{overflow:auto; -webkit-overflow-scrolling: touch;}
+#cboxTitle{margin:0;}
+#cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%; height:100%;}
+#cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
+.cboxPhoto{float:left; margin:auto; border:0; display:block; max-width:none; -ms-interpolation-mode:bicubic;}
+.cboxIframe{width:100%; height:100%; display:block; border:0;}
+#colorbox, #cboxContent, #cboxLoadedContent{box-sizing:content-box; -moz-box-sizing:content-box; -webkit-box-sizing:content-box;}
+#cboxOverlay{background:#fff;}
+#colorbox{outline:0;}
+    #cboxTopLeft{width:25px; height:25px; background:url(images/border1.png) no-repeat 0 0;}
+    #cboxTopCenter{height:25px; background:url(images/border1.png) repeat-x 0 -50px;}
+    #cboxTopRight{width:25px; height:25px; background:url(images/border1.png) no-repeat -25px 0;}
+    #cboxBottomLeft{width:25px; height:25px; background:url(images/border1.png) no-repeat 0 -25px;}
+    #cboxBottomCenter{height:25px; background:url(images/border1.png) repeat-x 0 -75px;}
+    #cboxBottomRight{width:25px; height:25px; background:url(images/border1.png) no-repeat -25px -25px;}
+    #cboxMiddleLeft{width:25px; background:url(images/border2.png) repeat-y 0 0;}
+    #cboxMiddleRight{width:25px; background:url(images/border2.png) repeat-y -25px 0;}
+    #cboxContent{background:#fff; overflow:hidden;}
+        .cboxIframe{background:#fff;}
+        #cboxError{padding:50px; border:1px solid #ccc;}
+        #cboxLoadedContent{margin-bottom:20px;}
+        #cboxTitle{position:absolute; bottom:0px; left:0; text-align:center; width:100%; color:#999;}
+        #cboxCurrent{position:absolute; bottom:0px; left:100px; color:#999;}
+        #cboxLoadingOverlay{background:#fff url(images/loading.gif) no-repeat 5px 5px;}
+
+        /* these elements are buttons, and may need to have additional styles reset to avoid unwanted base styles */
+        #cboxPrevious, #cboxNext, #cboxSlideshow, #cboxClose {border:0; padding:0; margin:0; overflow:visible; width:auto; background:none; }
+        
+        /* avoid outlines on :active (mouseclick), but preserve outlines on :focus (tabbed navigating) */
+        #cboxPrevious:active, #cboxNext:active, #cboxSlideshow:active, #cboxClose:active {outline:0;}
+
+        #cboxSlideshow{position:absolute; bottom:0px; right:42px; color:#444;}
+        #cboxPrevious{position:absolute; bottom:0px; left:0; color:#444;}
+        #cboxNext{position:absolute; bottom:0px; left:63px; color:#444;}
+        #cboxClose{position:absolute; bottom:0; right:0; display:block; color:#444;}
+
+.cboxIE #cboxTopLeft,
+.cboxIE #cboxTopCenter,
+.cboxIE #cboxTopRight,
+.cboxIE #cboxBottomLeft,
+.cboxIE #cboxBottomCenter,
+.cboxIE #cboxBottomRight,
+.cboxIE #cboxMiddleLeft,
+.cboxIE #cboxMiddleRight {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF);
+}

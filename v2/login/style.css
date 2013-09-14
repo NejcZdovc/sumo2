@@ -1,0 +1,12 @@
+body {background-image:url(back.gif);background-repeat:repeat-x;background-color:#f1f7f9;}
+#logo {width:500px;height:100px;margin: 150px auto 0px auto;}
+.panel {width:275px;min-height:100px;background-color:#ffffff;border:1px solid #bdbdbd;margin:10px auto;padding:10px 0px 10px 25px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;}
+.input {color:#c8c8c8;font-weight:bold;background-image:url(inpt_bck.gif);background-repeat:repeat-x;background-position:top;width:250px;border:1px solid #c8c8c8;height:30px;margin:5px auto;font-size:16px; vertical-align:middle; line-height:30px;}
+.label {text-transform:uppercase;color:#676767;font-weight:bold;font-size:14px;}
+.error {display:none;background-color:#ffebe8;border:1px #ff1515 solid;color: #ff1515;font-size:12px;padding:2px 7px;width:270px;margin:10px auto;text-align:center;}
+.button {background-image:url(bttn_nrml.png);width:89px;height:33px;float:right;cursor:pointer;margin:10px 5px 0px 0px;}
+.button:active {background-image:url(bttn_ovr.png);}
+.clear {clear:both;} 
+#copyright {margin:0px auto; width:275px; padding-left:20px; height:50px; font-size:12px; color:#999999;}
+#copyright a{color:#999999;}
+#copyright a:hover{color:#666666;}

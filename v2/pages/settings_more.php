@@ -1,0 +1,1 @@
+Dodatne nastavitve za uporabnika

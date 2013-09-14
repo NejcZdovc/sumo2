@@ -1,0 +1,117 @@
+body {
+	width:100%; 
+	margin:0px;
+	padding:0px;
+	background-color:#ffffff;
+	background-image:url(../images/bg_body.jpg);
+	background-position:top center;
+	background-repeat:no-repeat;
+}
+img {
+	border:0px;
+}
+
+/* COMMON */
+.clearBoth {
+	clear:both;
+}
+/* END COMMON */
+
+
+/* BASIC */
+
+#topHolder {
+	width:960px;
+	height:40px;
+	margin:auto;
+}
+#logoHolder {
+	width:960px;
+	height:125px;
+	margin:auto;	
+	margin-bottom:0px;
+	overflow:hidden;
+}
+#mainMenuHolder {
+	width:960px;
+	height:70px;
+	margin:auto;
+	margin-bottom:0px;
+	vertical-align:top;
+}
+#homeHolder {
+	width:960px;
+	height:630px;
+	margin:auto;
+}
+#footerHolder {
+	width:960px;
+	height:	175px;
+	margin:auto;
+}
+
+/* LOGO */
+#logoHolder a {
+	display:block;
+	width:275px;
+	margin-top:20px;
+}
+#logoHolder img {
+	border:none;
+}
+
+/* MAIN MENU */
+#mainMenuHolder #mainMenuTop {
+	display:block;
+	width:276px;
+	height:46px;
+	background-image:url(../images/bg_maintop.png);
+	background-position:left top;
+	background-repeat:no-repeat;
+	float:left;
+}
+#mainMenuHolder #mainMenuTop a {
+	display:inline-block;
+	width:276px;
+	height:46px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	font-size:18px;
+	color:white;
+	text-decoration:none;
+	padding-top:12px;
+	padding-left:20px;
+	width:255px;
+	height:34px;
+}
+
+/* HOME */
+
+#homeHolder #homeBanner {
+	float:left;
+	width:620px;
+	height:290px;
+}
+#homeHolder #homeNapovednik {
+	float:right;
+	width:300px;
+	height:290px;	
+}
+#homeHolder #homeNovice {
+	float:left;
+	width:620px;
+	height:210px;
+	overflow:hidden;
+}
+#homeHolder #homeTecaji {
+	float:right;
+	width:300px;
+	height:190px;	
+	overflow:hidden;	
+}
+#homeHolder #homeKnjige {
+	float:left;
+	width:960px;
+	height:130px;	
+	margin-top:0px;
+}
+#homeHolder #homeKnjige img { margin-top:5px; }

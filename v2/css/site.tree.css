@@ -1,0 +1,13 @@
+.modules-template-item {border:1px solid #cccccc;line-height:20px;background:white;overflow:hidden;font-size:12px;padding:3px;margin:0px 6px;}
+.modules-template-item:hover {background:#f3f3f3;cursor:pointer;}
+.modules-template-options {float:right;margin-right:2px;height:20px;width:87px; cursor:pointer;}
+.site-tree-panel {width:100%;height:inherit;min-height:inherit;background:#ffffff;border:1px solid #cccccc;vertical-align:top;}
+.icon-delete {width:16px;height:16px;float:left;margin:2px 2px;background-image:url(../images/css_sprite.png);background-position:-636px -1628px;}
+.icon-edit{width:16px;height:16px;float:left;margin:2px 2px;background-image:url(../images/css_sprite.png);background-position:-668px -1677px;}
+.icon-rename{width:16px;height:16px;float:left;margin:2px 2px;background-image:url(../images/css_sprite.png);background-position:-572px -1645px;}
+.modules-template-item-drag {border:1px solid #cccccc;line-height:15px;background:white;overflow:hidden;font-size:10px;padding:3px;margin:3px 6px;position:absolute;cursor:move;width:100px;}
+.module-wrapper {display:block;padding:3px 0px;}
+.sitetree_td {border:1px solid #cccccc;}
+.tooltip {background-image:url(../images/tt_bck.png);color:#ffffff;font-size:10px;position:absolute;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;padding:5px;}
+.enable {height:16px;width:16px;float:left;background-image:url(../images/css_sprite.png);background-position:-573px -1693px;cursor:pointer;margin:3px 2px;}
+.disable {height:16px;width:16px;float:left;background-image:url(../images/css_sprite.png);background-position:-621px -1629px;cursor:pointer;margin:4px 2px;}

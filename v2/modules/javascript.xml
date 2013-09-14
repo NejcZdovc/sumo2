@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<javascript><item deleteId="mod_last_article_79"><![CDATA[sumo2.module.lastArt = {	
+	Edit: function() {
+		var problem = "";
+		var id=document.mod_last_article_edit.id.value;
+		var number=document.mod_last_article_edit.linkNum.value;
+		var cat = document.mod_last_article_edit.categoryID.value;
+		var animation = document.mod_last_article_edit.animation.value;
+		if(!sumo2.validate.IsNumerical(number,1,3)) {
+			problem += "Number of articles needed to be numerical.";
+		}
+		if(problem.length > 0) {
+				sumo2.dialog.NewNotification("Problem",problem,200,30,3);
+		} else {
+			var params = 'type=edit$!$id='+id+'$!$number='+number+'$!$cat='+cat+'$!$animation='+animation;
+			sumo2.ajax.SendPost('modules/mod_last_article/mod_last_article.php',params,function(data) {
+					sumo2.dialog.CloseDialog('mod_last_article_edit', null);
+					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.SUCCESS,'Module was successfully edited!',200,30,3);
+			});
+		}
+	}
+};]]></item></javascript>

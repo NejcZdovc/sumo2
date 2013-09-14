@@ -1,0 +1,20 @@
+Error log cleaned (22.10.2012 14:10)
+
+[22-Oct-2012 14:33:29] Page not found problem for basic page - /favicon.ico // Path: index.php (243)
+[17-Jan-2013 13:16:56] Page not found problem for basic page - /favicon.ico // Path: index.php (243)
+[17-Jan-2013 13:17:38] Database query failed: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 QUERY: SELECT title, content, views, stub, date, dateStart, changes, author, authorAlias, dateEnd, ID FROM cms_article WHERE category LIKE "%#??##??#%" ORDER BY date asc LIMIT 
+[17-Jan-2013 13:17:38] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /var/www/vhosts/3zsistemi.si/rc/includes/database.class.php on line 67
+[17-Jan-2013 14:27:07] Page not found problem for basic page - /favicon.ico // Path: index.php (243)
+[17-Jan-2013 14:27:08] Page not found problem for basic page - /favicon.ico // Path: index.php (243)
+[17-Jan-2013 14:27:15] Page not found problem for basic page - /favicon.ico // Path: index.php (243)
+[17-Jan-2013 14:27:15] Page not found problem for basic page - /favicon.ico // Path: index.php (243)
+[11-Jul-2013 08:36:57] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/www/vhosts/3zsistemi.si/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[11-Jul-2013 08:36:57] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/www/vhosts/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[11-Jul-2013 08:36:57] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/www/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[11-Jul-2013 08:36:57] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[11-Jul-2013 08:36:58] PHP Fatal error:  SourceGuardian Loader - This protected script requires licence license file to run. Contact the script author to get a license file. Error code [13] in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[25-Jul-2013 13:18:12] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/www/vhosts/3zsistemi.si/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[25-Jul-2013 13:18:12] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/www/vhosts/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[25-Jul-2013 13:18:12] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/www/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[25-Jul-2013 13:18:12] PHP Warning:  sg_load(): open_basedir restriction in effect. File(/var/licence) is not within the allowed path(s): (/var/www/vhosts/3zsistemi.si/rc/:/tmp/) in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
+[25-Jul-2013 13:18:12] PHP Fatal error:  SourceGuardian Loader - This protected script requires licence license file to run. Contact the script author to get a license file. Error code [13] in /var/www/vhosts/3zsistemi.si/rc/includes/smtp.class.php on line 2
