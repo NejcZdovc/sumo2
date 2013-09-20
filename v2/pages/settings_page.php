@@ -78,7 +78,7 @@
         <td class="right_td">
          <select class="input" id="template" style="margin-left:5%; margin-right:5%; width:90%;">
          <?
-		 $query1=$db->query("SELECT ID, name FROM cms_template WHERE enabled=1 AND status='N'");
+		 $query1=$db->query("SELECT ID, name FROM cms_template WHERE enabled=1 AND status='N' AND domain='".$user->domain."'");
 		 while($result1=$db->fetch($query1)) {
 		 ?>
         	<option value="<?=$result1['ID']?>" <? if($result['template']==$result1['ID']) echo 'selected="selected"'; ?>><?=$result1['name']?></option>

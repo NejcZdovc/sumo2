@@ -95,11 +95,9 @@
 					$query = $db->query("SELECT * FROM cms_panel_".$item[$j]." WHERE pageID='".$template->menuID."' AND lang='".$template->langID."' AND domain='".$user->domain."' ORDER BY orderID ASC");
 					if($db->rows($query) > 0) {
 						while($result = $db->fetch($query)) {
-							$query2 = $db->query("SELECT * FROM cms_modules_def WHERE ID='".$result['modulID']."'");
-							$result2 = $db->get($query2);
+							$result2 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result['modulID']."'"));
 							//modul data
-							$query3 = $db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_panel_id='".$result['ID']."'");
-							$result3 = $db->get($query3);						
+							$result3 = $db->get($db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_panel_id='".$result['ID']."' AND cms_layout='".$item[$j]."'"));						
 							$classEnable=$result3['cms_enabled']? "enable":"disable";
 							if($result2['editName'] == '') {
 								$edit_button = '';
@@ -115,7 +113,7 @@
 							} else {
 								$icon = '';
 							}
-							$tr .= '<div class="module-wrapper"><div id="'.$result['ID'].'#'.$item[$j].'" class="modules-template-item" onmouseover="st.ToggleButtons(this,\'S\')" onmouseout="st.ToggleButtons(this,\'H\')">'.$icon.'<span style="display:inline-block;margin-left:5px;">'.$result['title'].'</span><span style="color:#a3a3a3;font-size:12px;"> ['.$result['prefix'].']</span><div class="modules-template-options" style="visibility: hidden;"><div title="'.$lang->ARTICLE_9.'" class="'.$classEnable.' sumo2-tooltip" onclick="parent.sumo2.siteTree.ChangeStatusModule(\''.$result3['ID'].'\', \''.$result2['editTable'].'\')"></div>'.$edit_button.'<div class="icon-rename sumo2-tooltip" title="'.$lang->MOD_206.'" onclick="parent.sumo2.dialog.NewDialog(\'d_site_tree_rename\',\'layout='.$item[$j].'$!$panel='.$result['ID'].'\');"></div><div class="icon-delete sumo2-tooltip" title="'.$lang->MOD_121.'" onclick="parent.sumo2.siteTree.RemoveModule(\''.$item[$j].'\',\''.$result['ID'].'\')"></div></div></div></div>';	
+							$tr .= '<div class="module-wrapper"><div id="'.$result['ID'].'#'.$item[$j].'" class="modules-template-item" onmouseover="st.ToggleButtons(this,\'S\')" onmouseout="st.ToggleButtons(this,\'H\')">'.$icon.'<span style="display:inline-block;margin-left:5px;">'.$result['title'].'</span><span style="color:#a3a3a3;font-size:12px;"> ['.$result['prefix'].']</span><div class="modules-template-options" style="visibility: hidden;"><div title="'.$lang->ARTICLE_9.'" class="'.$classEnable.' sumo2-tooltip" onclick="parent.sumo2.siteTree.ChangeStatusModule(\''.$crypt->encrypt($result3['ID']).'\', \''.$result2['editTable'].'\')"></div>'.$edit_button.'<div class="icon-rename sumo2-tooltip" title="'.$lang->MOD_206.'" onclick="parent.sumo2.dialog.NewDialog(\'d_site_tree_rename\',\'layout='.$item[$j].'$!$panel='.$result['ID'].'\');"></div><div class="icon-delete sumo2-tooltip" title="'.$lang->MOD_121.'" onclick="parent.sumo2.siteTree.RemoveModule(\''.$item[$j].'\',\''.$crypt->encrypt($result['ID']).'\')"></div></div></div></div>';	
 						}
 					}
 					$tr .= '</div>';
@@ -129,11 +127,9 @@
 				$query = $db->query("SELECT * FROM cms_panel_".$item." WHERE pageID='".$template->menuID."' AND lang='".$template->langID."' AND domain='".$user->domain."' ORDER BY orderID ASC");
 				if($db->rows($query) > 0) {
 					while($result = $db->fetch($query)) {
-						$query2 = $db->query("SELECT * FROM cms_modules_def WHERE ID='".$result['modulID']."'");
-						$result2 = $db->get($query2);
+						$result2 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result['modulID']."'"));
 						//modul data
-						$query3 = $db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_panel_id='".$result['ID']."'");
-						$result3 = $db->get($query3);						
+						$result3 = $db->get($db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_panel_id='".$result['ID']."' AND cms_layout='".$item."'"));						
 						$classEnable=$result3['cms_enabled']? "enable":"disable";
 						if($result2['editName'] == '') {
 							$edit_button = '';
@@ -149,7 +145,7 @@
 							} else {
 								$icon = '';
 							}
-						$tr .= '<div class="module-wrapper"><div id="'.$result['ID'].'#'.$item.'" class="modules-template-item" onmouseover="st.ToggleButtons(this,\'S\')" onmouseout="st.ToggleButtons(this,\'H\')">'.$icon.'<span style="margin-left:5px;">'.$result['title'].'</span><span style="color:#a3a3a3;font-size:12px;"> ['.$result['prefix'].']</span><div class="modules-template-options" style="visibility: hidden;"><div title="'.$lang->ARTICLE_9.'" class="'.$classEnable.' sumo2-tooltip" onclick="parent.sumo2.siteTree.ChangeStatusModule(\''.$result3['ID'].'\', \''.$result2['editTable'].'\')"></div>'.$edit_button.'<div class="icon-rename sumo2-tooltip" title="'.$lang->MOD_206.'" onclick="parent.sumo2.dialog.NewDialog(\'d_site_tree_rename\',\'layout='.$item.'$!$panel='.$result['ID'].'\');"></div><div class="icon-delete sumo2-tooltip" title="'.$lang->MOD_121.'" onclick="parent.sumo2.siteTree.RemoveModule(\''.$item.'\',\''.$result['ID'].'\')"></div></div></div></div>';	
+						$tr .= '<div class="module-wrapper"><div id="'.$result['ID'].'#'.$item.'" class="modules-template-item" onmouseover="st.ToggleButtons(this,\'S\')" onmouseout="st.ToggleButtons(this,\'H\')">'.$icon.'<span style="margin-left:5px;">'.$result['title'].'</span><span style="color:#a3a3a3;font-size:12px;"> ['.$result['prefix'].']</span><div class="modules-template-options" style="visibility: hidden;"><div title="'.$lang->ARTICLE_9.'" class="'.$classEnable.' sumo2-tooltip" onclick="parent.sumo2.siteTree.ChangeStatusModule(\''.$crypt->encrypt($result3['ID']).'\', \''.$result2['editTable'].'\')"></div>'.$edit_button.'<div class="icon-rename sumo2-tooltip" title="'.$lang->MOD_206.'" onclick="parent.sumo2.dialog.NewDialog(\'d_site_tree_rename\',\'layout='.$item.'$!$panel='.$result['ID'].'\');"></div><div class="icon-delete sumo2-tooltip" title="'.$lang->MOD_121.'" onclick="parent.sumo2.siteTree.RemoveModule(\''.$item.'\',\''.$crypt->encrypt($result['ID']).'\')"></div></div></div></div>';	
 					}
 				}
 				$tr .= '</div>';

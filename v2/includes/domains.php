@@ -62,51 +62,51 @@ if(isset($_POST['type'])) {
 				$db->query("INSERT INTO cms_domains (name, parentID, alias) VALUES ('".$alia."', '".$id."', '1')");
 		}
 		//template
-		mkdir('../../templates/'.$name.'/', 0777);
-		chmod('../../templates/'.$name.'/', 0777);
-		mkdir('../../templates/'.$name.'/images', 0777);
-		chmod('../../templates/'.$name.'/images', 0777);
+		mkdir('../../templates/'.$name.'/', PER_FOLDER);
+		chmod('../../templates/'.$name.'/', PER_FOLDER);
+		mkdir('../../templates/'.$name.'/images', PER_FOLDER);
+		chmod('../../templates/'.$name.'/images', PER_FOLDER);
 		
 		//module
-		mkdir('../../modules/'.$name, 0777);
-		chmod('../../modules/'.$name, 0777);
-		mkdir('../../modules/'.$name.'/images', 0777);
-		chmod('../../modules/'.$name.'/images', 0777);
+		mkdir('../../modules/'.$name, PER_FOLDER);
+		chmod('../../modules/'.$name, PER_FOLDER);
+		mkdir('../../modules/'.$name.'/images', PER_FOLDER);
+		chmod('../../modules/'.$name.'/images', PER_FOLDER);
 		
 		//off
-		mkdir('../../off/'.$name, 0777);
-		chmod('../../off/'.$name, 0777);
+		mkdir('../../off/'.$name, PER_FOLDER);
+		chmod('../../off/'.$name, PER_FOLDER);
 		copyFiles('../../off/default', '../../off/'.$name);
 		
 		//block
-		mkdir('../../block/'.$name, 0777);
-		chmod('../../block/'.$name, 0777);
+		mkdir('../../block/'.$name, PER_FOLDER);
+		chmod('../../block/'.$name, PER_FOLDER);
 		copyFiles('../../block/default', '../../block/'.$name);
 		
 		//block
-		mkdir('../../404/'.$name, 0777);
-		chmod('../../404/'.$name, 0777);
+		mkdir('../../404/'.$name, PER_FOLDER);
+		chmod('../../404/'.$name, PER_FOLDER);
 		copyFiles('../../404/default', '../../404/'.$name);
 		
 		//images
-		mkdir('../../images/'.$name, 0777);
-		chmod('../../images/'.$name, 0777);
-		mkdir('../../images/'.$name.'/article', 0777);
-		chmod('../../images/'.$name.'/article', 0777);
+		mkdir('../../images/'.$name, PER_FOLDER);
+		chmod('../../images/'.$name, PER_FOLDER);
+		mkdir('../../images/'.$name.'/article', PER_FOLDER);
+		chmod('../../images/'.$name.'/article', PER_FOLDER);
 		
 		//storage
-		mkdir('../../storage/'.$name, 0777);
-		chmod('../../storage/'.$name, 0777);
-		mkdir('../../storage/'.$name.'/Documents', 0777);
-		chmod('../../storage/'.$name.'/Documents', 0777);
-		mkdir('../../storage/'.$name.'/Flash', 0777);
-		chmod('../../storage/'.$name.'/Flash', 0777);
-		mkdir('../../storage/'.$name.'/Images', 0777);
-		chmod('../../storage/'.$name.'/Images', 0777);
-		mkdir('../../storage/'.$name.'/Documents/Pdf', 0777);
-		chmod('../../storage/'.$name.'/Documents/Pdf', 0777);
-		mkdir('../../storage/'.$name.'/Documents/Word', 0777);
-		chmod('../../storage/'.$name.'/Documents/Word', 0777);
+		mkdir('../../storage/'.$name, PER_FOLDER);
+		chmod('../../storage/'.$name, PER_FOLDER);
+		mkdir('../../storage/'.$name.'/Documents', PER_FOLDER);
+		chmod('../../storage/'.$name.'/Documents', PER_FOLDER);
+		mkdir('../../storage/'.$name.'/Flash', PER_FOLDER);
+		chmod('../../storage/'.$name.'/Flash', PER_FOLDER);
+		mkdir('../../storage/'.$name.'/Images', PER_FOLDER);
+		chmod('../../storage/'.$name.'/Images', PER_FOLDER);
+		mkdir('../../storage/'.$name.'/Documents/Pdf', PER_FOLDER);
+		chmod('../../storage/'.$name.'/Documents/Pdf', PER_FOLDER);
+		mkdir('../../storage/'.$name.'/Documents/Word', PER_FOLDER);
+		chmod('../../storage/'.$name.'/Documents/Word', PER_FOLDER);
 		
 		
 		//global settings
@@ -114,6 +114,19 @@ if(isset($_POST['type'])) {
 		
 		//add domain to super admin group
 		$db->query("INSERT INTO cms_domains_ids (type, domainID, elementID) VALUES ('group', '".$id."', '1')");
+		
+		//module prefix
+		$db->query('INSERT INTO cms_modul_prefix (domain, name, enabled, prefix) VALUES ("'.$id.'", "default", "1", "default")');
+		
+		//add error log
+		$fp = fopen("../logs/errorFront_".$name.".si.log","w");
+		if( $fp == false ){
+			error_log("Error while creating front end error log file with name: ");
+		}else{
+			$string="Error log cleaned (".date("d.m.Y H:m", time()).")\r\n\n";
+			fwrite($fp,$string);
+			fclose($fp);
+		}
 		
 		echo 'ok';
 		exit;

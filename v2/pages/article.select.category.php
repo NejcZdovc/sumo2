@@ -19,7 +19,7 @@
 		
 		$query1 = $db->query("SELECT * FROM cms_article_categories WHERE status='N' AND lang='".$results['ID']."'");
 		while($result1=$db->fetch($query1)) {
-			echo '<div style="cursor:pointer; clear:both;"><input type="checkbox" style="float:left;" value="'.$result1['ID'].'" /><div style="float:left; margin-top:5px;">'.$result1['title'].'</div></div>';
+			echo '<div style="cursor:pointer; clear:both;"><input id="cat_'.$result1['ID'].'" type="checkbox" style="float:left;" value="'.$result1['ID'].'" /><label for="cat_'.$result1['ID'].'"><div style="float:left; margin-top:5px;">'.$result1['title'].'</div></label></div>';
 			
 		}
 		echo "</td>";

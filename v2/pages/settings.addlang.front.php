@@ -3,7 +3,7 @@
 		exit;
 	}
  ?>
-<form action="" name="d_settings_add_lf" id="test" method="post" enctype="multipart/form-data" class="form2">
+<form action="" name="d_settings_add_lf" class="form2" onsubmit="return false;">
    	<div class="">
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <tr style="margin-bottom:20px;">

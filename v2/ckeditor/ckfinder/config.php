@@ -296,13 +296,13 @@ If possible, it is recommended to set more restrictive permissions, like 0755.
 Set to 0 to disable this feature.
 Note: not needed on Windows-based servers.
 */
-$config['ChmodFiles'] = 0777 ;
+$config['ChmodFiles'] = PER_FILE;
 
 /*
 See comments above.
 Used when creating folders that does not exist.
 */
-$config['ChmodFolders'] = 0777 ;
+$config['ChmodFolders'] = PER_FOLDER;
 
 /*
 Force ASCII names for files and folders.

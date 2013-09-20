@@ -47,7 +47,7 @@ class Module {
     public function getFilePerms($file) {
         $permission =  substr(decoct( fileperms($file) ), 2);
         $permission *= 1.0;
-        if($permission >= 755) {
+        if($permission >= PER_FILE) {
             return true;
         }
         return false;

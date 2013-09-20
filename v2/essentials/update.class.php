@@ -134,7 +134,7 @@ class Update
 		if(!file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$dst_dir)){
 		  $d = dir($src_dir);
 		  ftp_mkdir($conn_id, $dst_dir); 
-		  ftp_chmod($conn_id, 0755, $dst_dir);
+		  ftp_chmod($conn_id, PER_FOLDER, $dst_dir);
 		   while($file = $d->read()) {
 			  if ($file != "." && $file != "..") {
 				  if (is_dir($src_dir."/".$file)) { 
@@ -247,8 +247,8 @@ class Update
 		$file = $value.'.zip';
 		$fullPath = $path.$file;
 		if(!is_dir($path)) {
-			mkdir($path, 0755);
-			chmod($path, 0755);
+			mkdir($path, PER_FOLDER);
+			chmod($path, PER_FOLDER);
 		}
 		$fp = fopen($fullPath, 'w');
 		$ch = curl_init($url);
@@ -256,7 +256,7 @@ class Update
 		$data = curl_exec($ch);
 		curl_close($ch);
 		fclose($fp);
-		chmod($fullPath, 0755);
+		chmod($fullPath, PER_FILE);
 	}
 	
 	public function UnZip() {
@@ -269,13 +269,13 @@ class Update
 			if(is_dir('../temp/update/'.$_SESSION['valArray'].'/')) {
 				recursive_remove_directory('../temp/update/'.$_SESSION['valArray'].'/');
 			}
-			mkdir('../temp/update/'.$_SESSION['valArray'].'/', 0755);
-			chmod('../temp/update/'.$_SESSION['valArray'].'/', 0755);
+			mkdir('../temp/update/'.$_SESSION['valArray'].'/', PER_FOLDER);
+			chmod('../temp/update/'.$_SESSION['valArray'].'/', PER_FOLDER);
 			$zip->extractTo('../temp/update/'.$_SESSION['valArray'].'/');
 			if(!$zip->close())
 				array_push($error, $lang->MOD_134."<br/>");
 			else
-				chmodAll('../temp/update/'.$_SESSION['valArray'].'/',0775,0755);
+				chmodAll('../temp/update/'.$_SESSION['valArray'].'/');
 		}
 		else
 			array_push($error, $lang->MOD_135." ".$_SESSION['valArray'].".zip<br/>");
@@ -309,12 +309,12 @@ class Update
 				$files = $system->getElementsByTagName('files')->item(0);
 				foreach($files->getElementsByTagName('item') as $item) {
 					if(file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$item->nodeValue.''))
-						ftp_chmod($ftpConn, 0775, $_SESSION['FTPdest'].$item->nodeValue.'') ? '' : array_push($error, $lang->MOD_137.": ".$item->nodeValue."<br/>");
+						ftp_chmod($ftpConn, PER_FILE, $_SESSION['FTPdest'].$item->nodeValue.'') ? '' : array_push($error, $lang->MOD_137.": ".$item->nodeValue."<br/>");
 				}
 				$folder = $system->getElementsByTagName('folder')->item(0);
 				foreach($folder->getElementsByTagName('item') as $item) {
 					if(file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$item->nodeValue.''))
-						ftp_chmod($ftpConn, 0775, $_SESSION['FTPdest'].$item->nodeValue.'') ? '' : array_push($error, $lang->MOD_137.": ".$item->nodeValue."<br/>");
+						ftp_chmod($ftpConn, PER_FILE, $_SESSION['FTPdest'].$item->nodeValue.'') ? '' : array_push($error, $lang->MOD_137.": ".$item->nodeValue."<br/>");
 				}
 			}
 			ftp_close($ftpConn);

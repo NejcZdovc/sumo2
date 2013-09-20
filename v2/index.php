@@ -1,5 +1,6 @@
 <?php 
-include_once('initialize.php'); 
+$isNoUpdateFile=1;
+include_once('initialize.php');
 if(!$session->isLogedIn()) {
 	redirect_to('login/');
 } else {
@@ -15,9 +16,9 @@ $langDomainAuth = $user->checkLang();
 <meta name="author" content="3Z Sistemi"/>
 <meta name="copyright" content="3Z Sistemi" />
 <? if($user->developer=="1") { ?>
-	<link type="text/css" rel="stylesheet" href="min/?g=css&amp;debug=1&amp;b=a181a603769c1f98ad927e7367c7aa51" />
+	<link type="text/css" rel="stylesheet" href="min/?g=css&amp;debug=1&amp;a=css" />
 <? } else { ?>
-	<link type="text/css" rel="stylesheet" href="min/?g=css&amp;b=a181a603769c1f98ad927e7367c7aa51&amp;<?=$globals->cacheNumber?>" />
+	<link type="text/css" rel="stylesheet" href="min/?g=css&amp;a=css&amp;<?=$globals->cacheNumber?>" />
 <? } ?>
 <!--[if IE 7]>
 <link type="text/css" rel="stylesheet" href="css/ie7.css" />
@@ -28,11 +29,6 @@ $langDomainAuth = $user->checkLang();
 <!--[if IE 9]>
 <link type="text/css" rel="stylesheet" href="css/ie9.css" />
 <![endif]-->
-<? if($user->developer=="1") { ?>
-	<link type="text/css" rel="stylesheet" href="min/?g=css&amp;debug=1&amp;a=6647179d74b592b8bc4e3058fc7e8947" />
-<? } else { ?>
-	<link type="text/css" rel="stylesheet" href="min/?g=css&amp;a=6647179d74b592b8bc4e3058fc7e8947&amp;<?=$globals->cacheNumber?>" />
-<? } ?>
 <link type="image/png" rel="icon" href="images/favicon.png" />
 </head>
 
@@ -71,23 +67,18 @@ $langDomainAuth = $user->checkLang();
                         </div>
                         <div class="lang-bottom"></div>
                     </div>
-             	</div>&nbsp;|                
-
-
-
-
-
+             	</div>&nbsp;| 
              </div>
              <div class="tpmnu-main flt-left">
              	<div onmouseout="sumo2.domains.Hide()" onmouseover="sumo2.domains.Show()" id="tpmenuDomain">
                     <div class="domain-hover hide" id="sumo2-domain-wrapper">
                         <div class="lang-top"></div>
                         <div class="lang-middle" id="sumo2-domain-text">
-                        	<? $query = $db->query("SELECT ID, name FROM cms_domains WHERE alias='0'");
+                        	<? $query = $db->query("SELECT domain.ID, domain.name FROM cms_domains as domain, cms_domains_ids as ids WHERE domain.alias='0' AND domain.ID=ids.domainID AND ids.type='group' AND ids.elementID='".$user->groupID."'");
 							while($result = $db->fetch($query)) {
 								($user->domain==$result['ID'])?$temp='itemb':$temp='item';
 								if(strlen($result['name'])>15) {
-									$name=substr($result['name'], 0, 13).'...';
+									$name=substr($result['name'], 0, 11).'...';
 								} else {
 									$name=$result['name'];
 								}				
@@ -243,11 +234,9 @@ $langDomainAuth = $user->checkLang();
 	var CKEDITOR_BASEPATH = '/v2/ckeditor/';
 </script>
 <? if($user->developer=="1") { ?>
-	<script type="text/javascript" src="min/?g=js&amp;debug=1&amp;b=a181a603769c1f98ad927e7367c7aa51"></script>
-	<script type="text/javascript" src="min/?g=js&amp;debug=1&amp;c=2fc688512357e48d6d01460dd9867f28"></script>
+	<script type="text/javascript" src="min/?g=js&amp;debug=1&amp;a=js"></script>
 <? } else { ?>
-	<script type="text/javascript" src="min/?g=js&amp;b=a181a603769c1f98ad927e7367c7aa51&amp;<?=$globals->cacheNumber?>"></script>
-	<script type="text/javascript" src="min/?g=js&amp;c=2fc688512357e48d6d01460dd9867f28&amp;<?=$globals->cacheNumber?>"></script>
+	<script type="text/javascript" src="min/?g=js&amp;a=js&amp;<?=$globals->cacheNumber?>"></script>
 <? } ?>
 <script type="text/javascript" src="includes/javascript.settings.php?<?=$globals->cacheNumber?>"></script>
 <script type="text/javascript">

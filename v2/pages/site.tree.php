@@ -41,14 +41,14 @@
 <div class="contextMenu" id="myMenuS_RND" style="display:none;">
       <ul style="font-size:12px;">
         <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
         <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuS_RN" style="display:none;">
       <ul style="font-size:12px;">
         <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuS_RD" style="display:none;">
@@ -71,12 +71,12 @@
 </div>
 <div class="contextMenu" id="myMenuS_N" style="display:none;">
       <ul style="font-size:12px;">
-       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuSpecial_N" style="display:none;">
       <ul style="font-size:12px;">
-       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
       </ul>
 </div>
 <table cellspacing="0" height="100%" width="100%">

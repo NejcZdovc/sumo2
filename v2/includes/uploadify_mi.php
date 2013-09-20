@@ -31,7 +31,7 @@ if (!empty($_FILES)) {
 	$targetFile =  str_replace('//','/',$targetPath) . $_REQUEST["randnum"].".zip";
 		
 	move_uploaded_file($tempFile,$targetFile);
-	chmod($targetFile, 0755);
+	chmod($targetFile, PER_FILE);
 	echo "1";
 }
 ?>

@@ -19,7 +19,7 @@
     	<th><?=$lang->MOD_233?></th>
 		<th><?=$lang->MOD_235?></th>
 		<th><?=$lang->MOD_237?></th>
-		<? if($user->getAuth('FAV_ARTICLES') == 2 || $user->getAuth('FAV_ARTICLES') == 4 || $user->getAuth('FAV_ARTICLES') == 5)
+		<? if($user->getAuth('FAV_SITE_8') == 2 || $user->getAuth('FAV_SITE_8') == 4 || $user->getAuth('FAV_SITE_8') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
 	</tr>

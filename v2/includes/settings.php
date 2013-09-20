@@ -36,16 +36,6 @@
 			$old_description=$query['description'];
 			$old_keywords=$query['keywords'];
 			$db->query('UPDATE cms_global_settings SET title="'.$title.'", display_title="'.$display_title.'", email="'.$email.'", keywords="'.$keyword.'", description="'.$description.'", template="'.$template.'", offline="'.$offline.'", front_lang="'.$language.'" WHERE domain="'.$user->domain.'"');
-			$query=$db->query('SELECT ID, keyword, description FROM cms_menus_items WHERE keyword="'.$old_keywords.'" OR description="'.$old_description.'"');
-			while($result=$db->fetch($query)) {
-				if($result['keyword'] == $old_keywords && $result['description'] == $old_description)
-					$db->query('UPDATE cms_menus_items SET keyword="'.$keyword.'", description="'.$description.'" WHERE ID='.$result['ID'].'');
-				else if($result['keyword'] == $old_keywords)
-					$db->query('UPDATE cms_menus_items SET keyword="'.$keyword.'" WHERE ID='.$result['ID'].'');
-				else if($result['description'] == $old_description)
-					$db->query('UPDATE cms_menus_items SET description="'.$description.'" WHERE ID='.$result['ID'].'');
-									
-			}
 			echo "ok";
 			exit;
 		}
@@ -68,8 +58,8 @@
 			$number=$db->filter('number');
 			$newname=strtolower(str_replace(' ', '_', $name));
 			if(!file_exists('../../templates/'.$user->domainName.'/'.$newname)) {
-				mkdir('../../templates/'.$user->domainName.'/'.$newname, 0777);
-				chmod('../../templates/'.$user->domainName.'/'.$newname, 0777);
+				mkdir('../../templates/'.$user->domainName.'/'.$newname, PER_FOLDER);
+				chmod('../../templates/'.$user->domainName.'/'.$newname, PER_FOLDER);
 			}
 			$zip = new ZipArchive;
 			if ($zip->open('../temp/'.$number.'.zip') === TRUE) {
@@ -77,7 +67,7 @@
 				if($zip->close()) {
 					unlink('../temp/'.$number.'.zip');
 					$files = scandir('../../templates/'.$user->domainName.'/'.$newname.'/');
-					chmodAll('../../templates/'.$user->domainName.'/'.$newname.'/',0777,0777);
+					chmodAll('../../templates/'.$user->domainName.'/'.$newname.'/');
 					foreach ($files as &$value) {
 						if(is_dir('../../templates/'.$user->domainName.'/'.$newname.'/'.$value) && ($value == "images" || $value == "img")) {
 								setImages('../../templates/'.$user->domainName.'/'.$newname.'/'.$value.'/',$number);
@@ -94,9 +84,9 @@
 			$name=$db->filter('name');
 			$number=$db->filter('number');
 			$short=$db->filter('short');
-			if(!file_exists('../language/'.$short, 0777)) {
-				mkdir('../language/'.$short, 0777, true);
-				chmod('../language/'.$short, 0777);
+			if(!file_exists('../language/'.$short)) {
+				mkdir('../language/'.$short, PER_FOLDER, true);
+				chmod('../language/'.$short, PER_FOLDER);
 			}
 			$zip = new ZipArchive;
 			if ($zip->open('../temp/'.$number.'.zip') === TRUE) {
@@ -105,7 +95,7 @@
 					unlink('../temp/'.$number.'.zip');
 					$files = scandir('../language/'.$short.'/');
 					foreach ($files as &$value) {
-						chmod('../language/'.$short.'/'.$value, 0777);
+						chmod('../language/'.$short.'/'.$value, PER_FILE);
 					}
 					$db->query('INSERT INTO cms_language (name,short) VALUES ("'.$name.'", "'.$short.'")');
 					echo 'ok';
@@ -243,7 +233,7 @@
 			fclose($fh);
 		}
 		else if($_POST['type'] == 'errorFront') {
-			$file = "../logs/errorFront.log";
+			$file = "../logs/errorFront_".$user->domainName.".log";
 			$fh = fopen($file, 'w');
 			$string="Error log cleaned (".date("d.m.Y H:m", time()).")\r\n\n";
 			fwrite($fh, $string);

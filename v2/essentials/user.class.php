@@ -17,16 +17,15 @@ class User
 		global $database;
 		$id=mysql_escape_string($id);
 		$this->id = $id;
-		$query = $database->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$this->id."'");
-		$results = $database->get($query);
+		$results = $database->get($database->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$this->id."'"));
 		$this->username = $results['username'];
 		$this->email = $results['email'];
 		$this->permission = $results['GroupID'];
-		$permQuery = $database->query("SELECT access FROM cms_user_groups WHERE ID='".$this->permission."'");
-		$permResult = $database->get($permQuery);
+		$permResult = $database->get($database->query("SELECT access FROM cms_user_groups WHERE ID='".$this->permission."'"));
 		$this->access = unserialize(urldecode($permResult['access']));
 		$this->name = $results['name'];
-		$query = $database->query("SELECT *  FROM cms_user_settings WHERE cms_user_settings.UserID='".$this->id."'");
+		$this->groupID = $results['GroupID'];
+		$query = $database->query("SELECT * FROM cms_user_settings WHERE cms_user_settings.UserID='".$this->id."'");
 		if($database->rows($query) > 0) {
 			$results = $database->get($query);
 			$i = 0;

@@ -132,7 +132,7 @@
       <ul style="font-size:12px;">
         <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
         <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
         <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?=$lang->MENU_8?></li>
         <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
         <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
@@ -141,7 +141,7 @@
 <!-- New -->
 <div class="contextMenu" id="myMenuM_N" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
       </ul>
 </div>
 <!-- Rename, delete, down, enable, show -->
@@ -159,7 +159,7 @@
       <ul style="font-size:12px;">
         <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
         <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
         <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?=$lang->MENU_9?></li>
         <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?=$lang->MENU_8?></li>
         <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
@@ -171,7 +171,7 @@
       <ul style="font-size:12px;">
         <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
         <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
         <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?=$lang->MENU_9?></li>
         <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
         <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
@@ -215,7 +215,7 @@
       <ul style="font-size:12px;">
         <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
         <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
         <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
         <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
       </ul>

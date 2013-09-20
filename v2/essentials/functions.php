@@ -277,15 +277,15 @@ function setImages($path,$id) {
 			if(is_file('../../templates/'.$user->domainName.'/images/'.$file)) {
 				$newname = addToName($file,'_'.$id);
 				copy($path.$file,'../../templates/'.$user->domainName.'/images/'.$newname);
-				chmod('../../templates/images/'.$user->domainName.'/'.$newname,0777);
+				chmod('../../templates/images/'.$user->domainName.'/'.$newname,PER_FILE);
 			} else {
 				copy($path.$file,'../../templates/'.$user->domainName.'/images/'.$file);
-				chmod('../../templates/images/'.$user->domainName.'/'.$file,0777);
+				chmod('../../templates/images/'.$user->domainName.'/'.$file,PER_FILE);
 			}
 		}
 	}
 }
-function chmodAll($path, $filePerm=0777, $dirPerm=0777) {
+function chmodAll($path, $filePerm=PER_FILE, $dirPerm=PER_FOLDER) {
 	if(!file_exists($path)) {
 		return false;
 	}
@@ -305,18 +305,18 @@ function chmodAll($path, $filePerm=0777, $dirPerm=0777) {
 function copyFiles($src, $dst) {
 	$dir = opendir($src);
 	if(!is_dir($dst)) {
-		mkdir($dst, 0777);
+		mkdir($dst, PER_FOLDER);
 	}
-	chmodAll($src, 0777);
+	chmodAll($src);
 	while(false !== ( $file = readdir($dir)) ) {
 		if (( $file != '.' ) && ( $file != '..' )) {
 			if ( is_dir($src . '/' . $file) ) {
 				copyFiles($src . '/' . $file,$dst . '/' . $file);
-				chmodAll($dst . '/' . $file, 0777);					
+				chmodAll($dst . '/' . $file);					
 			}
 			else {
 				copy($src . '/' . $file,$dst . '/' . $file);
-				chmodAll($dst . '/' . $file, 0777);					
+				chmodAll($dst . '/' . $file);					
 			}
 		}
 	}
@@ -334,7 +334,7 @@ function Clear ($folder, $domain=null) {
 			while (($sub = readdir($handler)) !== FALSE) {
 				if ($sub != "." && $sub != "..") {
 					if(is_file($dir."/".$sub)) {
-						chmod($dir."/".$sub, 0777);
+						chmod($dir."/".$sub, PER_FILE);
 						unlink($dir."/".$sub);
 					}
 				}
@@ -349,7 +349,7 @@ function Clear ($folder, $domain=null) {
 			while (($sub = readdir($handler)) !== FALSE) {
 				if ($sub != "." && $sub != "..") {
 					if(is_file($dir."/".$sub)) {
-						chmod($dir."/".$sub, 0777);
+						chmod($dir."/".$sub, PER_FILE);
 						unlink($dir."/".$sub);
 					}
 				}

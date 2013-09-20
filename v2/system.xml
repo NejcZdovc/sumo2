@@ -1199,8 +1199,9 @@
 			<height>90</height>
 			<width>350</width>
 			<end>
-				<![CDATA[  
-						
+				<![CDATA[ 
+					console.log("ok");
+					$('#nameKKK').tagit({sortable:true});
 				]]>
 			</end>
 			<buttons>
@@ -1226,7 +1227,7 @@
 			<width>350</width>
 			<end>
 				<![CDATA[  
-						
+					$('form[name="a_settings_add_tp"] #name').tagit({triggerKeys:['enter']});
 				]]>
 			</end>
 			<buttons>

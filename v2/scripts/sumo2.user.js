@@ -2141,7 +2141,7 @@ sumo2.sumoSettings = {
 	},
 	Prefix : function() {
 		var problem="";
-		var name = document.a_settings_add_tp.name.value;
+		var name = document.a_settings_add_mp.name.value;
 		if(!sumo2.validate.IsFile(name, 3, 200)) 
 			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_8,250,250,1);
 		else {
@@ -2809,6 +2809,31 @@ sumo2.moduleManager = {
 				} else {
 					alert(data);	
 				}
+				//destroy and recreate upload
+				$('#uploadify_module_install').uploadify('destroy');
+				var randomnumber=sumo2.RandomString(30);
+				document.d_module_install.random_number.value=randomnumber;
+				$("#uploadify_module_install").uploadify({
+					'swf'             : 'swf/uploadify.swf',
+					'uploader'        : 'includes/uploadify_mi.php',
+					'multi'           : false,
+					'queueID'         : 'fileq_mi',
+					'fileSizeLimit'   : '5MB',
+					'fileTypeDesc'	  : 'WinZip files (.zip)',
+					'fileTypeExts'	  : '*.zip',
+					'auto'            : false,
+					'method'          : 'post',
+					'queueSizeLimit'  : 1,
+					'uploadLimit'	  : 1,
+					'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+					'formData' 	      : {'randnum' : randomnumber},
+					'onQueueComplete' : function(queueData) {
+						sumo2.moduleManager.Install('y');
+					},
+					'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+						sumo2.message.NewMessage(file.name+": "+errorString,3);
+					}	
+				});
 			});
 		}	
 	},

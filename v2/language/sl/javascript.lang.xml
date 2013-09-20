@@ -130,8 +130,8 @@
 		<item constant="MENU_4">Uredi meni</item>
 		<item constant="MENU_5">Drevesna struktura</item>
 		<item constant="MENU_6">Ali ste prepričani, da želite izbrisati ta meni?</item>
-		<item constant="MENU_7">Nov meni</item>
-		<item constant="MENU_8">Uredi meni</item>
+		<item constant="MENU_7">Nova stran</item>
+		<item constant="MENU_8">Uredi stran</item>
 		<item constant="MENU_9">Prevedi</item>
 		<item constant="MENU_10">Dodaj prevod</item>
 		<item constant="MENU_11">Prevod drevesne strukture</item>

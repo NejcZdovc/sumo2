@@ -30,11 +30,9 @@ class Template {
 						$result1=$db->get($queryModul);
 					}
 				}
-				$query2 = $db->query("SELECT * FROM cms_modules_def WHERE ID='".$result1['modulID']."' AND enabled='1' AND status='N'");
-				$result2 = $db->get($query2);
-				$query3 = $db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_layout='".$className."' AND cms_panel_id='".$result1['ID']."'");
-				$result3 = $db->get($query3);
-				if($result3['cms_enabled']=='1') {
+				$result2 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result1['modulID']."' AND enabled='1' AND status='N'"));
+				$result3 = $db->get($db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_layout='".$className."' AND cms_panel_id='".$result1['ID']."' AND cms_enabled='1'"));
+				if(isset($result3['ID'])) {
 					$this->id = $result3['ID'];
 					$this->tableName = $result2['editTable'];
 					$this->folderName = $result2['moduleName'];
@@ -108,8 +106,7 @@ class Template {
 			array_push($titleArray,$begin);
 			$title = '';
 			$page = $this->pageID;
-				$query = $db->query("SELECT * FROM cms_menus_items WHERE ID='".$page."'");
-				$result = $db->get($query);
+				$result = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$page."'"));
 				$curTitle = $result['title'];
 				array_push($titleArray,$curTitle); 
 			for($i = count($titleArray)-1;$i>=0;$i--) {
@@ -126,13 +123,11 @@ class Template {
 		global $db, $user, $globals;
 		$modArray = array();
 		$query1 = $db->query("SELECT * FROM cms_template_position WHERE domain='".$globals->domainID."'");
-		$query_glob = $db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'");
-		$result_glob= $db->get($query_glob);
+		$result_glob = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'"));
 		while($result1 = $db->fetch($query1)) {
 			$query2 = $db->query("SELECT DISTINCT modulID FROM cms_panel_".$result1['prefix']." WHERE pageID='".$this->pageID."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'");
 			while($result2 = $db->fetch($query2)) {
-				$query3 = $db->query("SELECT * FROM cms_modules_def WHERE ID='".$result2['modulID']."' AND enabled='1' AND status='N'");
-				$result3 = $db->get($query3);
+				$result3 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result2['modulID']."' AND enabled='1' AND status='N'"));
 				$modArray[$result3['moduleName']]= $result2['modulID'];
 			}
 		}
@@ -184,12 +179,11 @@ class Template {
 	
 	public function head() {
 		global $db, $user, $globals, $crypt;
-		$query_lang = $db->query("SELECT * FROM cms_language_front WHERE ID='".$this->langID."'");
-		$result_lang = $db->get($query_lang);
-		$query_page = $db->query("SELECT * FROM cms_menus_items WHERE ID='".$this->pageID."'");
-		$result_page = $db->get($query_page);
-		$query_glob = $db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'");
-		$result_glob= $db->get($query_glob);
+		$result_lang = $db->get($db->query("SELECT * FROM cms_language_front WHERE ID='".$this->langID."'"));
+		$result_page = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$this->pageID."'"));
+		$description = $result_page['description'];
+		$keywords = $result_page['keyword'];
+		$result_glob = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'"));
 		$keywords="";
 		$description="";
 		if($db->is('spPage')) {
@@ -201,30 +195,31 @@ class Template {
 				else
 					$param="";
 				$function='GetKeywords';
-				if(function_exists($function)) {		
-					$keywords=$function($param, $db->filter('spID'));
+				if(function_exists($function)) {
+					$k=$function($param, $db->filter('spID'));
+					if(strlen($k)>0) {		
+						$keywords=$k;
+					}
 				}
 				$function='GetDescription';
-				if(function_exists($function)) {		
-					$description=$function($param, $db->filter('spID'));
+				if(function_exists($function)) {
+					$d=$function($param, $db->filter('spID'));
+					if(strlen($d)>0) {	
+						$description=$d;
+					}
 				}
 			}
-			if(strlen($keywords)==0)
-				$keywords=$result_page['keyword'];
-			if(strlen($description)==0)
-				$description=$result_page['description'];
-		} else {
-			$description = $result_page['description'];
-			$keywords = $result_page['keyword'];
-		}
-		$homepageTitle = $db->get($db->query("SELECT altTitle, title FROM cms_homepage WHERE lang='".$this->langID."' AND domain='".$globals->domainID."'"));
+		} 
+		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE lang='".$this->langID."' AND domain='".$globals->domainID."'"));
+		$keywords=$homepageTitle['keywords'];
+		$description=$homepageTitle['description'];
 		$title=$homepageTitle['altTitle'];
 		if(strlen($title)<2)
 			$title = $result_glob['title'];
 		if(strlen($keywords)<2) 
 			$keywords=$result_glob['keywords'];
 		if(strlen($description)<2)
-			$description=$result_glob['description']; 
+			$description=$result_glob['description'];
 		echo "<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n";
 		if($result_glob['WM_enabled'] == 1) {
 			echo "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";

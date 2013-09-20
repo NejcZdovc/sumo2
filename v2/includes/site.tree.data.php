@@ -122,7 +122,7 @@
 			echo "done";
 		} else if($db->filter('type') == "remove") {
 			$layout = $db->filter('layout');
-			$id = $db->filter('id');
+			$id = $crypt->decrypt($db->filter('id'));
 			$all = $db->filter('all');
 			$objResult = $db->get($db->query("SELECT * FROM cms_panel_".$layout." WHERE ID='".$id."'"));
 			if($all=="yes") {
@@ -257,9 +257,9 @@
 			$modul = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$query['modulID']."'"));
 			echo $modul['moduleName'];
 		} else if($db->filter('type') == "changeStatus") {
-			$id = $db->filter('id');
+			$id = $crypt->decrypt($db->filter('id'));
 			$table = $db->filter('table');
-			$result = $db->get($db->query("SELECT cms_enabled, cms_group_id FROM ".$table." WHERE ID='".$id."'"));
+			$result = $db->get($db->query("SELECT cms_enabled, cms_group_id, cms_layout FROM ".$table." WHERE ID='".$id."'"));
 			if($result) {
 				if($result['cms_enabled'] == 0) {
 					$new = 1;
@@ -267,9 +267,9 @@
 					$new = 0;
 				}
 				if($result['cms_group_id']!=0) {
-					$db->query("UPDATE ".$table." SET cms_enabled='".$new."' WHERE cms_group_id='".$result['cms_group_id']."'");
+					$db->query("UPDATE ".$table." SET cms_enabled='".$new."' WHERE cms_group_id='".$result['cms_group_id']."' AND cms_layout='".$result['cms_layout']."'");
 				}else {
-					$db->query("UPDATE ".$table." SET cms_enabled='".$new."' WHERE ID='".$id."'");
+					$db->query("UPDATE ".$table." SET cms_enabled='".$new."' WHERE ID='".$id."' AND cms_layout='".$result['cms_layout']."'");
 				}
 				echo 'ok';
 				exit;			

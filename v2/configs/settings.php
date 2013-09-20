@@ -10,6 +10,10 @@
     define('DB_PASSWORD','48uH_spu');
     define('DB_DATABASE','3zsistemi_rc');
 	
+	//FTP permissions
+	define('PER_FILE', 0644);
+	define('PER_FOLDER', 0755);
+	
 	//Site tree
 	define('ADMIN_ADDR','v2');
 	$folder=__FILE__;

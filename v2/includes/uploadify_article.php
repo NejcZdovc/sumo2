@@ -51,7 +51,7 @@ if (!empty($_FILES)) {
 	}
 	
 	move_uploaded_file($tempFile,$targetFile);
-	chmod($targetFile, 0777);
+	chmod($targetFile, PER_FILE);
 	//vpis v bazo
 	$id=$crypt->decrypt($db->filter('id'));
 	$db->query('INSERT INTO cms_article_images (name, file, articleID) VALUES ("'.$newname.'", "'.$newfile.'", '.$id.')');

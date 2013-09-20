@@ -246,14 +246,15 @@
 		<item constant="MENU_17">Izberi</item>
 		<item constant="MENU_18">Jezik menija</item>
 		<item constant="MENU_19">Izberite jezik iz katerega boste prevajali</item>
-		<item constant="MENU_20">Ime menija</item>
-		<item constant="MENU_21">Prosim vpišite ime menija, da ga opredelite</item>
+		<item constant="MENU_20">Ime strani</item>
+		<item constant="MENU_21">Prosim vpišite ime strani, da jo opredelite</item>
 		<item constant="MENU_22">Predloga</item>
-		<item constant="MENU_23">Izberite predlogo za ta meni</item>
+		<item constant="MENU_23">Izberite predlogo za stran</item>
 		<item constant="MENU_24">Ključne besede</item>
-		<item constant="MENU_25">Prosim vnesite klučne besede za ta meni. Če pustite to polje <b>prazno</b>, bo meni uporabil <b>privzete ključne besede</b></item>
+		<item constant="MENU_25">Prosim vnesite klučne besede za stran. Če pustite to polje <b>prazno</b>, bo stran uporabila <b>privzete ključne besede</b></item>
 		<item constant="MENU_26">Opis</item>
-		<item constant="MENU_27">Prosim vnesite opis za ta meni. Če pustite to polje <b>prazno</b>, bo meni uporabil <b>privzet opis</b></item>
+		<item constant="MENU_27">Prosim vnesite opis za stran. Če pustite to polje <b>prazno</b>, bo stran uporabila <b>privzet opis</b></item>
+		<item constant="MENU_28">Nova stran</item>
 	</parent>
 	<parent id="File Manager">
 		<item constant="FILE_1">Dodaj ime</item>
@@ -302,8 +303,8 @@
 		<item constant="MOD_9">Ni kategorij</item>
 		<item constant="MOD_10">Ni člankov</item>
 		<item constant="MOD_11">Tip</item>
-		<item constant="MOD_12">Definiraj tip menija</item>
-		<item constant="MOD_13">Normalen meni</item>
+		<item constant="MOD_12">Definiraj tip strani</item>
+		<item constant="MOD_13">Normalna stran</item>
 		<item constant="MOD_14">Bližnjica</item>
 		<item constant="MOD_15">Zunanja povezava</item>
 		<item constant="MOD_16">Bližnjica</item>
@@ -492,7 +493,7 @@
 		<item constant="MOD_199">Kopija</item>
 		<item constant="MOD_200">Če je izbrano, potem bodo vsi vtičniki v tej skupini imeli nastavitve in ID od tega vtičnika (očeta).</item>
 		<item constant="MOD_201">Prefiks</item>
-		<item constant="MOD_202">Prefiks uporablja SEO pri generiranju URL-jev. Če pustite polje prazno, se bo prefiks generiral sam glede na ime menija.</item>
+		<item constant="MOD_202">Prefiks uporablja SEO pri generiranju URL-jev. Če pustite polje prazno, se bo prefiks generiral sam, glede na ime strani.</item>
 		<item constant="MOD_203">Sekundarni naslov</item>
 		<item constant="MOD_204">Naslov se prikazuje na drugih straneh na koncu naslova strani ločen z -.</item>
 		<item constant="MOD_205">Uredi podatke vtičnika</item>
@@ -531,6 +532,10 @@
 		<item constant="MOD_238">Prosim izberite tip preusmeritve. Če niste prepričani katero izbrati si lahko vče prebere na: http://www.w3.org/Protocols/HTTP/HTRESP.html#z10.</item>
 		<item constant="MOD_239">Ni preusmeritev.</item>
 		<item constant="MOD_240">Uredi preusmeritev</item>
-		<item constant="MOD_241">Izbriši preusmeritev</item>
+		<item constant="MOD_241">Izbriši preusmeritev</item>		
+		<item constant="MOD_242">Pravice datotek</item>
+		<item constant="MOD_243">Izberite kakšne pravice bodo imele datoteke na steržniku.</item>
+		<item constant="MOD_244">Pravice map</item>
+		<item constant="MOD_245">Izberite kakšne pravice bodo imele mape na steržniku.</item>
 	</parent>
 </language>

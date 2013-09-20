@@ -22,15 +22,14 @@
 	
 	//attack attemp
 	if(strpos($function->getUrl(), '<script')) {
-		error_log("Attack attemp. User IP: ".$user->IP." / Path: index.php (123)");
+		error_log("Attack attemp. User IP: ".$user->IP." / Path: index.php (25)");
 		header('Location: '.$f404_link);
 		exit();
 	}
 	
 	function getNewPage($page) {
 		global $db;
-		$query6 = $db->query("SELECT * FROM cms_menus_items WHERE NOT status='D' AND enabled='1' AND ID='".$page."'");
-		$result6 = $db->get($query6);
+		$result6 = $db->get($db->query("SELECT * FROM cms_menus_items WHERE NOT status='D' AND enabled='1' AND ID='".$page."'"));
 		if($result6['template'] == '-1') {
 			$newResult = $db->get($db->query("SELECT selection, link FROM cms_homepage WHERE ID='".$result6['link']."'"));
 			if($newResult['selection'] == '2') {
@@ -132,7 +131,7 @@
 	$isLang=$function->priLang;
 	
 	if($lang==0) {
-		error_log("Language is not set / Path: index.php (131)");
+		error_log("Language is not set / Path: index.php (135)");
 		header('Location: '.$f404_link);
 		exit();	
 	}	
@@ -174,8 +173,7 @@
 		$selection=0;
 		$moduleID=0;
 		foreach($urlArray as $pageName) {
-			$query3n = $db->query("SELECT cms_menus_items.ID, cms_menus_items.selection, cms_menus_items.menuID  FROM cms_menus_items WHERE cms_menus_items.status='N' AND cms_menus_items.enabled='1' AND cms_menus_items.altPrefix='".$db->filter($pageName)."' AND cms_menus_items.parentID='".$db->filter($parentID)."' AND cms_menus_items.domain='".$globals->domainID."' LIMIT 1");
-			$result3n = $db->get($query3n);
+			$result3n = $db->get($db->query("SELECT cms_menus_items.ID, cms_menus_items.selection, cms_menus_items.menuID  FROM cms_menus_items WHERE cms_menus_items.status='N' AND cms_menus_items.enabled='1' AND cms_menus_items.altPrefix='".$db->filter($pageName)."' AND cms_menus_items.parentID='".$db->filter($parentID)."' AND cms_menus_items.domain='".$globals->domainID."' LIMIT 1"));
 			if($result3n) {
 				$parentID = $result3n['ID'];
 				$currentURL=$tempArray[0]."/";
@@ -194,7 +192,7 @@
 		}
 		
 		if(!$done) {		
-			error_log("Page not found problem for basic page - ".$_SERVER["REQUEST_URI"]." // Path: index.php (243)");
+			error_log("Page not found problem for basic page - ".$_SERVER["REQUEST_URI"]." // Path: index.php (197)");
 			header('Location: '.$f404_link);
 			exit();
 		} else {
@@ -218,7 +216,7 @@
 		$templateID=$result4['template'];
 	}
 	if($templateID=="0" || $templateID=="") {
-		error_log("Template for this page is not set. / Path: index.php (264)");	
+		error_log("Template for this page is not set. / Path: index.php (221)");	
 		header('Location: '.$f404_link);		
 		exit();
 	}
@@ -275,7 +273,7 @@
 	if(is_file('templates/'.$globals->domainName.'/'.$template->tempName.'/template.php')) {
 		require_once('templates/'.$globals->domainName.'/'.$template->tempName.'/template.php');
 	} else {
-		error_log("Template file was not loaded properly. / Path: index.php (329)");
+		error_log("Template file was not loaded properly. / Path: index.php (278)");
 		header('Location: '.$f404_link);
 		exit();
 	}

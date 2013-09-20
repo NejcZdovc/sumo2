@@ -157,6 +157,22 @@
                     </select>
                 </td>
             </tr>
+            <tr style="margin-bottom:20px;">
+                <td class="left_td" valign="top">
+                <div class="title_form_big"><?=$lang->MOD_242?>:</div><div class="title_form_small"><?=$lang->MOD_243?></div>
+                </td>
+                <td class="right_td">
+                    <input value="<?= PER_FILE?>" disabled="disabled" class="input" style="margin-left:5%; margin-right:5%; width:90%;" />
+                </td>
+            </tr>
+            <tr style="margin-bottom:20px;">
+                <td class="left_td" valign="top">
+                <div class="title_form_big"><?=$lang->MOD_244?>:</div><div class="title_form_small"><?=$lang->MOD_245?></div>
+                </td>
+                <td class="right_td">
+                   <input value="<?= PER_FOLDER?>" disabled="disabled" class="input" style="margin-left:5%; margin-right:5%; width:90%;" />
+                </td>
+            </tr>
         <? } else { ?>
 			<input value="OFF" id="update" type="hidden" />	
             <input value="0" id="beta" type="hidden" />	

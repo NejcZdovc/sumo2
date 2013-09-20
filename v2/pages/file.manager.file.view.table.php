@@ -16,7 +16,7 @@
 		<th><?=$lang->MOD_11?></th>
 		<th width="130"><?=$lang->MOD_52?></th>
         <th width="100"><?=$lang->MOD_53?></th>
-		<? if($user->getAuth('FAV_ARTICLES') == 2 || $user->getAuth('FAV_ARTICLES') == 4 || $user->getAuth('FAV_ARTICLES') == 5)
+		<? if($user->getAuth('FAV_SITE_2') == 2 || $user->getAuth('FAV_SITE_2') == 4 || $user->getAuth('FAV_SITE_2') == 5)
 			echo '<th width="123">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>

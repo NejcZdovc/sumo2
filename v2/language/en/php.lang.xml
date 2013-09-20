@@ -246,14 +246,15 @@
 		<item constant="MENU_17">Select</item>
 		<item constant="MENU_18">Menu language</item>
 		<item constant="MENU_19">Choose language from which you will translate</item>
-		<item constant="MENU_20">Menu name</item>
-		<item constant="MENU_21">Please enter the menu name to identify it</item>
+		<item constant="MENU_20">Page name</item>
+		<item constant="MENU_21">Please enter the page name to identify it</item>
 		<item constant="MENU_22">Template</item>
-		<item constant="MENU_23">Select template for this menu</item>
+		<item constant="MENU_23">Select template for this page</item>
 		<item constant="MENU_24">Keywords</item>
-		<item constant="MENU_25">Please enter keywords for this menu. If you leave this field <b>empty</b>, the menu will use <b>default keywords</b></item>
+		<item constant="MENU_25">Please enter keywords for this page. If you leave this field <b>empty</b>, the page will use <b>default keywords</b></item>
 		<item constant="MENU_26">Description</item>
-		<item constant="MENU_27">Please enter decription for these menu. If you leave this field <b>empty</b>, the menu will use <b>default description</b></item>
+		<item constant="MENU_27">Please enter decription for these page. If you leave this field <b>empty</b>, the page will use <b>default description</b></item>
+		<item constant="MENU_28">New page</item>
 	</parent>
 	<parent id="File Manager">
 		<item constant="FILE_1">New name</item>
@@ -302,8 +303,8 @@
 		<item constant="MOD_9">No categories</item>
 		<item constant="MOD_10">No articles</item>
 		<item constant="MOD_11">Type</item>
-		<item constant="MOD_12">Define type of the menu</item>
-		<item constant="MOD_13">Normal menu</item>
+		<item constant="MOD_12">Define type of the page</item>
+		<item constant="MOD_13">Normal page</item>
 		<item constant="MOD_14">Shortcut</item>
 		<item constant="MOD_15">External link</item>
 		<item constant="MOD_16">Shortcut</item>
@@ -388,7 +389,7 @@
 		<item constant="MOD_95">Menu - Items</item>
 		<item constant="MOD_96">Shortcut to </item>
 		<item constant="MOD_97">Redirect to </item>
-		<item constant="MOD_98">Specail sites</item>
+		<item constant="MOD_98">Specail pages</item>
 		<item constant="MOD_99">Legend</item>
 		<item constant="MOD_100">Normal site</item>
 		<item constant="MOD_101">Disabled site</item>
@@ -492,7 +493,7 @@
 		<item constant="MOD_199">Copy</item>
 		<item constant="MOD_200">If selected, all modules in this group will have this modul settings and ID. This modul is acting like parent.</item>
 		<item constant="MOD_201">Prefix</item>
-		<item constant="MOD_202">SEO prefix for URL for specific menu item. If you leave box empty, prefix will be automaticlly generated form menu item name.</item>
+		<item constant="MOD_202">SEO prefix for URL for specific page. If you leave box empty, prefix will be automaticlly generated from pagename.</item>
 		<item constant="MOD_203">Alternative title</item>
 		<item constant="MOD_204">Title which is visable on other pages at the end of page title separate with -.</item>
 		<item constant="MOD_205">Edit module data</item>
@@ -532,5 +533,9 @@
 		<item constant="MOD_239">No redirections.</item>
 		<item constant="MOD_240">Edit redirect</item>
 		<item constant="MOD_241">Delete redirect</item>
+		<item constant="MOD_242">File permissions</item>
+		<item constant="MOD_243">Choose which persmission should be used for files on server.</item>
+		<item constant="MOD_244">Folder permissions</item>
+		<item constant="MOD_245">Choose which persmission should be used for folder on server.</item>
 	</parent>
 </language>

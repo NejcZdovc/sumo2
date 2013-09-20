@@ -7,10 +7,10 @@
 	if($user->preview != 2) {
 		if($globals->offline=="Y") {
 			$off=$shield->protect('offline=true&user='.$user->id.'&username='.$user->username.'&date='.time().'');
-			$preview_url='href="http://'.$_SERVER['SERVER_NAME'].'/index.php?'.$off.'"';
+			$preview_url='href="http://'.$user->domainName.'/index.php?'.$off.'"';
 		}
 		else
-			$preview_url='href="http://'.$_SERVER['SERVER_NAME'].'/index.php"';
+			$preview_url='href="http://'.$user->domainName.'/index.php"';
 		if($user->preview == 1)
 			$preview_url.=' target="_blank"';
 		if($user->preview == 3)

@@ -1,5 +1,5 @@
 <? require_once('../initialize.php'); ?>
-<form action="" name="a_settings_add_t" id="test" method="post" enctype="multipart/form-data" class="form2">
+<form action="" name="a_settings_add_t" class="form2">
 	<input type="hidden" id="random_number" value="" />
    	<div class="">
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >

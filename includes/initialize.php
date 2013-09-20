@@ -3,7 +3,7 @@
 	define( '_VALID_ETT', 1 );
 	require_once(__DIR__.'/../v2/configs/settings.php');
 	ini_set('log_errors',1);
-	ini_set('error_log',__DIR__.'/../v2/logs/errorFront.log');
+	ini_set('error_log',__DIR__.'/../v2/logs/errorFront_'.str_replace("www.", "", $_SERVER['HTTP_HOST']).'.log');
 	require_once(__DIR__.'/aes.chris.veness.class.php');	
 	require_once(__DIR__.'/xml.class.php');
 	require_once(__DIR__.'/database.class.php');

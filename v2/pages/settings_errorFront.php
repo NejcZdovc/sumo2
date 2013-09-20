@@ -2,7 +2,7 @@
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
 	}
-	$file = "../logs/errorFront.log";
+	$file = "../logs/errorFront_".$user->domainName.".log";
 	$fh = fopen($file, 'r');
 	$data = fread($fh, filesize($file));
 	fclose($fh);

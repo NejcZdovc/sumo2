@@ -10,10 +10,10 @@ if($_POST['type'] == 'install') {
 		$module->number = $db->filter('number');
 		$zip = new ZipArchive();
 		if($zip->open('../temp/'.$module->number.'.zip') === TRUE) {
-			mkdir('../temp/'.$module->number, 0777);
-			chmod('../temp/'.$module->number, 0777);
+			mkdir('../temp/'.$module->number, PER_FOLDER);
+			chmod('../temp/'.$module->number, PER_FOLDER);
 			$zip->extractTo('../temp/'.$module->number.'/');
-			chmodAll('../temp/'.$module->number,0777,0777);
+			chmodAll('../temp/'.$module->number);
 			if($zip->close()) {
 			       unlink('../temp/'.$module->number.'.zip');
 			       if(is_file('../temp/'.$module->number.'/sqlmagic.php')) {
@@ -75,7 +75,7 @@ if($_POST['type'] == 'install') {
 						 $css->save('../modules/css.xml');
 						 if(is_dir('../temp/'.$module->number.'/files-b')) {
 						     copyFiles('../temp/'.$module->number.'/files-b/','../modules/'.$module->getUnique().'/');
-						     chmodAll('../modules/'.$module->getUnique().'/',0777,0777);
+						     chmodAll('../modules/'.$module->getUnique().'/');
 						 } else {
 						     recursive_remove_directory('../temp/'.$module->number);
 						     $module->reverseActions();
@@ -87,11 +87,11 @@ if($_POST['type'] == 'install') {
 						 }						 
 						 if(is_dir('../temp/'.$module->number.'/files-f')) {							 
 							 copyFiles('../temp/'.$module->number.'/files-f/','../../modules/default/'.$module->getUnique().'/');
-							 chmodAll('../../modules/default/'.$module->getUnique().'/',0777,0777);
+							 chmodAll('../../modules/default/'.$module->getUnique().'/');
 							 foreach($domains as $domain) {
 								 $nameD=$db->get($db->query('SELECT name FROM cms_domains WHERE ID="'.$domain.'"'));
 								 copyFiles('../temp/'.$module->number.'/files-f/','../../modules/'.$nameD['name'].'/'.$module->getUnique().'/');	
-								 chmodAll('../../modules/'.$nameD['name'].'/'.$module->getUnique().'/',0777,0777);		
+								 chmodAll('../../modules/'.$nameD['name'].'/'.$module->getUnique().'/');		
 							 }						     
 						 } else {
 						     recursive_remove_directory('../temp/'.$module->number);
@@ -109,19 +109,19 @@ if($_POST['type'] == 'install') {
 									if(is_file('../../modules/default/images/'.$file)) {
 										 $newFilename = $module->addToFilename($file,'_'.$module->getUnique());
 										 copy('../temp/'.$module->number.'/front_images/'.$file,'../../modules/default/images/'.$newFilename);
-										 chmod('../../modules/default/images/'.$newFilename,0777);
+										 chmod('../../modules/default/images/'.$newFilename,PER_FILE);
 										 foreach($domains as $domain) {
 											 $nameD=$db->get($db->query('SELECT name FROM cms_domains WHERE ID="'.$domain.'"'));
 											 copy('../temp/'.$module->number.'/front_images/'.$file,'../../modules/'.$nameD['name'].'/images/'.$newFilename);
-											 chmod('../../modules/images/'.$newFilename,0777);
+											 chmod('../../modules/images/'.$newFilename,PER_FILE);
 										 }
 									 } else {
 										 copy('../temp/'.$module->number.'/front_images/'.$file,'../../modules/default/images/'.$file);
-										 chmod('../../modules/default/images/'.$file,0777);
+										 chmod('../../modules/default/images/'.$file,PER_FILE);
 										  foreach($domains as $domain) {
 											 $nameD=$db->get($db->query('SELECT name FROM cms_domains WHERE ID="'.$domain.'"'));
 											 copy('../temp/'.$module->number.'/front_images/'.$file,'../../modules/'.$nameD['name'].'/images/'.$file);
-										 	 chmod('../../modules/'.$nameD['name'].'/images/'.$file,0777);
+										 	 chmod('../../modules/'.$nameD['name'].'/images/'.$file,PER_FILE);
 										  }
 									 }
 								}
@@ -286,14 +286,14 @@ if($_POST['type'] == 'install') {
 			$nameD=$db->get($db->query('SELECT name FROM cms_domains WHERE ID="'.$domain.'"'));
 			 if(!is_dir('../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'')) {							 
 				 copyFiles('../../modules/default/'.$moduleData['moduleName'].'/','../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'/');
-				 chmodAll('../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'/',0644,0755);				     
+				 chmodAll('../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'/');				     
 			 }		
 			$files = scandir('../../modules/default/images/');
 			foreach($files as $file) {
 				if(strlen($file)>2) {
 					if(!is_file('../../modules/'.$nameD['name'].'/images/'.$file)) {
 						 copy('../../modules/default/images/'.$file, '../../modules/'.$nameD['name'].'/images/'.$file);
-						 chmod('../../modules/'.$nameD['name'].'/images/'.$file,0644);
+						 chmod('../../modules/'.$nameD['name'].'/images/'.$file,PER_FILE);
 					 } 
 				}
 			}

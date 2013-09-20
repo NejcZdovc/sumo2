@@ -76,7 +76,7 @@ class Modules extends Shield {
 		}
 		$this->smarty->cache_dir = $path.'cache/';
 	
-		$this->smarty->_file_perms = 0777;
+		$this->smarty->_file_perms = PER_FILE;
 		
 		$this->smarty->assign("moduleLang", $this->lang);
 		$this->smarty->assign("moduleImagePath", '/modules/'.$globals->domainName.'/images');

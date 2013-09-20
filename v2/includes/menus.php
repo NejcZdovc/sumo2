@@ -31,10 +31,6 @@
 			$name=htmlspecialchars($db->filter('menu'));
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');
-			if(strlen($keywords)<3)
-				$keywords=$globals->keywords;
-			if(strlen($description)<3)
-				$description=$globals->description;
 			$template=$db->filter('template');
 			$id=$db->filter('id');
 			$id=explode("#", $id);
@@ -74,10 +70,6 @@
 			$template=$db->filter('template');
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');
-			if(strlen($keywords)<3)
-				$keywords=$globals->keywords;
-			if(strlen($description)<3)
-				$description=$globals->description;
 			$selected=$db->filter('selected');
 			$short_link=$db->filter('short_link');
 			$elink=$db->filter('elink');
@@ -108,10 +100,6 @@
 			$template=$db->filter('template');
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');
-			if(strlen($keywords)<3)
-				$keywords=$globals->keywords;
-			if(strlen($description)<3)
-				$description=$globals->description;
 			$selected=$db->filter('selected');
 			$short_link=$db->filter('short_link');
 			$prefix=getPrefixTitle($name, 'cms_menus_items', 'altPrefix', $id, "", 'AND domain="'.$user->domain.'"');
@@ -222,10 +210,6 @@
 			$name=htmlspecialchars($db->filter('menu'));
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');
-			if(strlen($keywords)<3)
-				$keywords=$globals->keywords;
-			if(strlen($description)<3)
-				$description=$globals->description;
 			$template=$db->filter('template');
 			$selected=$db->filter('selected');
 			$elink=$db->filter('elink');
