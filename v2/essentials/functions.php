@@ -51,13 +51,13 @@ function pagging ($number_acc, $pagging)
 function check_pagging($sql, $page) {
 	global $db;
 	$int_rows =$db->rows($db->query($sql));
-	if(isset($_POST['size']))
-		$page_size=$_POST['size'];
+	if($db->is('size'))
+		$page_size=$db->filter('size');
 	else
 		$page_size=$page;
 		
-	if(isset($_POST['pag_id']))
-		$pag_id=$_POST['pag_id'];
+	if($db->is('pag_id'))
+		$pag_id=$$db->filter('pag_id');
 	else
 		$pag_id=0;
 		

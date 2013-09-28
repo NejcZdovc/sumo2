@@ -3,7 +3,7 @@
 	 exit;
 	}
 if(ob_get_length()>0) {ob_end_clean(); }
-if(isset($_POST['type'])) {
+if($db->is('type')) {
 	if($db->filter('type') == 'addRedirect') {
 		$source = $db->filter('source');
 		$destination = $db->filter('destination');

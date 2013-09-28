@@ -3,8 +3,8 @@
 	 exit;
 	}
 	if(ob_get_length()>0) {ob_end_clean(); }
-	if(isset($_POST['type'])) {
-		if($_POST['type'] == 'new') {
+	if($db->is('type')) {
+		if($db->filter('type') == 'new') {
 			$name=htmlspecialchars($db->filter('menu'));
 			$content=htmlspecialchars($db->filter('content'));
 			$lang=$db->filter('lang');
@@ -20,14 +20,14 @@
 			$db->query('INSERT INTO cms_menus (title, description, lang, s_default, domain) VALUES ("'.$name.'", "'.$content.'", "'.$lang.'", '.$default.', "'.$user->domain.'")');		
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'edit') {
+		} else if($db->filter('type') == 'edit') {
 			$name=htmlspecialchars($db->filter('menu'));
 			$content=htmlspecialchars($db->filter('content'));
 			$id=$crypt->decrypt($db->filter('id'));
 			$db->query('UPDATE cms_menus SET title="'.$name.'", description="'.$content.'" WHERE ID='.$id.'');
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'newitem') {
+		} else if($db->filter('type') == 'newitem') {
 			$name=htmlspecialchars($db->filter('menu'));
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');
@@ -63,7 +63,7 @@
 			}
 			echo "ok";
 			exit;
-		}else if($_POST['type'] == 'edititem') {
+		}else if($db->filter('type') == 'edititem') {
 			$id=explode("#", $db->filter('id'));
 			$id=$id[0];
 			$name=htmlspecialchars($db->filter('menu'));
@@ -93,7 +93,7 @@
 				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="4", parentID="'.$parentID.'", altPrefix="'.$prefix.'" WHERE ID='.$id.'');
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'edithome') {
+		} else if($db->filter('type') == 'edithome') {
 			$id=$db->filter('id');
 			$name=htmlspecialchars($db->filter('menu'));
 			$altTitle=$db->filter('altTitle');
@@ -108,13 +108,13 @@
 			$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", altPrefix="'.$prefix.'" WHERE link='.$id.' AND parentID="-1" AND orderID="-1"');			
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'deleteitem') {
+		} else if($db->filter('type') == 'deleteitem') {
 			$id=explode("#", $db->filter('id'));
 			$id=$id[0];
 			$db->query('UPDATE cms_menus_items SET status="D" WHERE ID='.$id.'');
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'statusitem') {
+		} else if($db->filter('type') == 'statusitem') {
 			$id = $db->filter('id');
 			$result = $db->get($db->query("SELECT enabled FROM cms_menus_items WHERE ID='".$id."'"));
 			if($result) {
@@ -126,7 +126,7 @@
 			$db->query("UPDATE cms_menus_items SET enabled='".$new."' WHERE ID='".$id."'");
 			echo 'Finished';
 			exit;
-		}else if($_POST['type'] == 'status') {
+		}else if($db->filter('type') == 'status') {
 			$id = $crypt->decrypt($db->filter('id'));
 			$result = $db->get($db->query("SELECT enabled FROM cms_menus WHERE ID='".$id."'"));
 			if($result) {
@@ -138,7 +138,7 @@
 			$db->query("UPDATE cms_menus SET enabled='".$new."' WHERE ID='".$id."'");
 			echo 'Finished';
 			exit;
-		} else if($_POST['type'] == 'delete') {
+		} else if($db->filter('type') == 'delete') {
 			$id=$crypt->decrypt($db->filter('id'));
 			$db->query('UPDATE cms_menus SET status="D" WHERE ID="'.$id.'"');
 			$articleq = $db->query('SELECT ID FROM cms_menus_items WHERE menuID='.$id.'');
@@ -147,7 +147,7 @@
 			}
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'translate') {
+		} else if($db->filter('type') == 'translate') {
 			$menu=htmlspecialchars($db->filter('menu'));
 			$content=htmlspecialchars($db->filter('content'));
 			$lang=$crypt->decrypt($db->filter('lang'));
@@ -164,7 +164,7 @@
 			$db->query('INSERT INTO cms_menus (title, description, lang, parent, s_default, domain) VALUES ("'.$menu.'", "'.$content.'", "'.$lang.'", "'.$parent.'", "'.$default.'", "'.$user->domain.'")');
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'up') {
+		} else if($db->filter('type') == 'up') {
 			$id=explode("#", $db->filter('id'));
 			$id=$id[0];
 			$firstorder=$db->get($db->query('SELECT orderID, parentID, menuID, ID FROM cms_menus_items WHERE ID='.$id.''));
@@ -173,7 +173,7 @@
 			$db->query('UPDATE cms_menus_items SET orderID="'.$firstorder['orderID'].'" WHERE ID="'.$secondorder['ID'].'"');
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'down') {
+		} else if($db->filter('type') == 'down') {
 			$id=explode("#", $db->filter('id'));
 			$id=$id[0];
 			$firstorder=$db->get($db->query('SELECT orderID, parentID, menuID, ID FROM cms_menus_items WHERE ID='.$id.''));
@@ -182,7 +182,7 @@
 			$db->query('UPDATE cms_menus_items SET orderID="'.$firstorder['orderID'].'" WHERE ID="'.$secondorder['ID'].'"');
 			echo "ok";
 			exit;
-		} else if ($_POST['type']== 'default_m') {
+		} else if ($db->filter('type') == 'default_m') {
 			$id=$crypt->decrypt($db->filter('id'));
 			$lang=$db->filter('lang');
 			$selected_q=$db->query('SELECT ID FROM cms_menus WHERE s_default=1 AND lang='.$lang.'');
@@ -195,7 +195,7 @@
 				$db->query('UPDATE cms_menus SET s_default="1" WHERE ID="'.$id.'"');
 			echo "ok";
 			exit;	
-		}  else if($_POST['type'] == 'showMenu') {
+		}  else if($db->filter('type') == 'showMenu') {
 			$id=explode("#", $db->filter('id'));
 			$id=$id[0];
 			$current=$db->get($db->query('SELECT showM FROM cms_menus_items WHERE ID="'.$id.'"'));
@@ -206,7 +206,7 @@
 			$db->query('UPDATE cms_menus_items SET showM="'.$show.'" WHERE ID="'.$id.'"');
 			echo "ok";
 			exit;
-		} else if($_POST['type'] == 'newitemspecial') {
+		} else if($db->filter('type') == 'newitemspecial') {
 			$name=htmlspecialchars($db->filter('menu'));
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');

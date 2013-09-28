@@ -10,8 +10,8 @@
     <input id="id_ad" name="id_ad" type="hidden" value="<?=$id?>" />
     <input id="domainNameEdit" name="domainNameEdit" type="hidden" value="<?=$user->domainName?>" />
 	 <?php
-		if(isset($_POST['accId'])) {
-			echo '<input type="hidden" name="accid" value="'.$_POST['accId'].'" />';	
+		if($db->is('accId')) {
+			echo '<input type="hidden" name="accid" value="'.$db->filter('accId').'" />';	
 		} else {
 			echo '<input type="hidden" name="accid" value="" />';
 		}

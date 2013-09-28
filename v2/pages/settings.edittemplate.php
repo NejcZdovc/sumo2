@@ -8,7 +8,7 @@ $new_query = $db->get($db->query("SELECT name FROM cms_template WHERE ID='".$id.
 ?>
 <form action="" name="a_settings_edit_t" id="test" method="post" enctype="multipart/form-data" class="form2">
    	<div class="">
-    <input type="hidden" id="id" value="<?=$_POST['ID']?>" />
+    <input type="hidden" id="id" value="<?=$db->filter('ID')?>" />
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <tr style="margin-bottom:20px;">
         <td style="width:250px;" class="left_td" valign="top">

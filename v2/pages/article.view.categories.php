@@ -4,7 +4,7 @@
 	}
 	$accordion_id='a_article_view_c';
 	$selected_lang_cat=1;
-	if(isset($_POST['lang_cat']))
+	if($db->is('lang_cat'))
 		$selected_lang_cat=$db->filter('lang_cat');
 	else
 		$selected_lang_cat=$user->translate_lang;

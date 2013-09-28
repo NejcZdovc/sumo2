@@ -12,7 +12,7 @@
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <input type="hidden" name="verify" value="<?php echo $db->filter('id'); ?>" />
     <?php
-		if(isset($_POST['accId'])) {
+		if($db->is('accId')) {
 			echo '<input type="hidden" name="accid" value="'.$db->filter('accId').'" />';	
 		} else {
 			echo '<input type="hidden" name="accid" value="" />';

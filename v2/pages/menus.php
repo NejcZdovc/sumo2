@@ -5,7 +5,7 @@
 	}
 	$accordion_id='a_menus';
 	$selected_lang_menus=1;
-	if(isset($_POST['lang_menus']))
+	if($db->is('lang_menus'))
 		$selected_lang_menus=$db->filter('lang_menus');
 	else
 		$selected_lang_menus=$user->translate_lang;

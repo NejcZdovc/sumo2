@@ -5,9 +5,9 @@
 	 exit;
 	} 
 	if(ob_get_length()>0) {ob_end_clean(); }
-	if(isset($_POST['type'])) {
+	if($db->is('type')) {
 		$id=$user->id;
-		if($_POST['type'] == 'send') {
+		if($db->filter('type') == 'send') {
 			$recipients=$db->filter('recipient');
 			$array=preg_split("/!/", $recipients);
 			$subject=$db->filter('subject');
@@ -24,25 +24,25 @@
 			exit;
 		}
 		
-		if($_POST['type'] == 'remi') {
-			$idmail=$crypt->decrypt($_POST['idmail']);
+		if($db->filter('type') == 'remi') {
+			$idmail=$crypt->decrypt($db->filter('idmail'));
 			$db->query("UPDATE cms_mail_sent SET status='D' WHERE ID='".$idmail."'");
 			echo "Ok";
 			exit;
 		}
-		if($_POST['type'] == 'rems') {
-			$idmail=$crypt->decrypt($_POST['idmail']);
+		if($db->filter('type') == 'rems') {
+			$idmail=$crypt->decrypt($db->filter('idmail'));
 			$db->query("UPDATE cms_mail_main SET status='D' WHERE ID='".$idmail."'");
 			echo "Ok";
 			exit;
 		}
-		if($_POST['type'] == 'open') {
-			$idmail=$crypt->decrypt($_POST['idmail']);
+		if($db->filter('type') == 'open') {
+			$idmail=$crypt->decrypt($db->filter('idmail'));
 			$db->query("UPDATE cms_mail_sent SET status='O' WHERE ID='".$idmail."'");
 			echo $id;
 			exit;
 		}
-		if($_POST['type'] == 'checkmain') {
+		if($db->filter('type') == 'checkmain') {
 			$id1=$user->id;
 			$result=$db->query("SELECT ID FROM cms_mail_sent WHERE status='C' AND recipientID='".$id1."'");
 			$int=$db->rows($result);

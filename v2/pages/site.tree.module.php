@@ -16,9 +16,9 @@
         <td class="right_td">
         <input class="input" id="nameOfModule" value="" type="text" maxlength="50" />
         <input type="text" name="enterfix" style="display:none;" />
-        <input type="hidden" id="idOfModule" value="<?=$_POST['modid']?>" />
-        <input type="hidden" id="layoutOfModule" value="<?=$_POST['layout']?>" />
-        <input type="hidden" id="tpageOfModule" value="<?=$_POST['tpage']?>" />
+        <input type="hidden" id="idOfModule" value="<?=$db->filter('modid')?>" />
+        <input type="hidden" id="layoutOfModule" value="<?=$db->filter('layout')?>" />
+        <input type="hidden" id="tpageOfModule" value="<?=$db->filter('tpage')?>" />
         </td>
     </tr>
     <tr>

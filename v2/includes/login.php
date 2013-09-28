@@ -10,9 +10,9 @@ if($allow>0) {
 }
 if((time()-$time)<120)
 {
-	$password = $_POST['password'];
-	$username = $_POST['username'];
-	$hold = $_POST['remember'];
+	$password = $db->filter('password');
+	$username = $db->filter('username');
+	$hold = $db->filter('remember');
 	if(ob_get_length()>0) {ob_end_clean();}
 	if($valid->isUsername($username,1,20) && $valid->isLength($password,6,20))
 	{

@@ -1,1 +1,30 @@
-Error log cleaned (17.09.2013 18:09)
+Error log cleaned (29.09.2013 00:09)
+
+[29-Sep-2013 00:32:55] PHP Notice:  Undefined property: Globals::$WM_enabled in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_global.php on line 3
+[29-Sep-2013 00:32:55] PHP Notice:  Undefined property: Globals::$GA_type in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_global.php on line 116
+[29-Sep-2013 00:32:55] PHP Notice:  Undefined property: Globals::$GA_type in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_global.php on line 117
+[29-Sep-2013 00:32:55] PHP Notice:  Undefined property: Globals::$WM_enabled in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_global.php on line 123
+[29-Sep-2013 00:32:55] PHP Notice:  Undefined property: Globals::$FTP_port in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_global.php on line 183
+[29-Sep-2013 00:32:55] PHP Warning:  fopen(../logs/errorFront_rc.3zsistemi.si.log): failed to open stream: No such file or directory in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_errorFront.php on line 6
+[29-Sep-2013 00:32:55] PHP Warning:  filesize(): stat failed for ../logs/errorFront_rc.3zsistemi.si.log in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_errorFront.php on line 7
+[29-Sep-2013 00:32:55] PHP Warning:  fread() expects parameter 1 to be resource, boolean given in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_errorFront.php on line 7
+[29-Sep-2013 00:32:55] PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in /var/www/vhosts/3zsistemi.si/rc/v2/pages/settings_errorFront.php on line 8
+[29-Sep-2013 00:33:58] Database query failed: Unknown column 'domain1' in 'field list' QUERY: SELECT domain1 FROM cms_user_settings
+[29-Sep-2013 00:41:03] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:03] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:03] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:03] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:07] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:07] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:08] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:08] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:15] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:15] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:15] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:15] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:17] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:17] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:18] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:18] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:18] PHP Notice:  Undefined variable: db in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10
+[29-Sep-2013 00:41:18] PHP Fatal error:  Call to a member function is() on a non-object in /var/www/vhosts/3zsistemi.si/rc/v2/essentials/shield.class.php on line 10

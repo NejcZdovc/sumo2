@@ -94,21 +94,19 @@ class Database
 		return $this->connection->real_escape_string($variable);
 	}
 	
-	#TODO
 	public function checkField($tableName,$columnName)
 	{
-		if($query = $this->query("SELECT ".$db->filterVar($columnName)." FROM ".$db->filterVar($table))) {
-			return 1;
+		if($query = $this->query("SELECT ".$this->filterVar($columnName)." FROM ".$this->filterVar($tableName))) {
+			return true;
 		}
-		return 0;
+		return false;
 	}
 	
-	#TODO
-	public function getColumnNames($table) {
-		$query = $this->query("SHOW COLUMNS FROM ".$db->filterVar($tableName)."");
+	public function getColumnNames($tableName) {
+		$query = $this->query("SHOW COLUMNS FROM ".$this->filterVar($tableName)."");
 		$columnNames = array();
 		while ($field = $this->fetch($query)) { 
-            $columnNames[]=$field["Field"]; //prints out all columns 
+            $columnNames[]=$field["Field"];
         } 
 		return $columnNames;
 	}

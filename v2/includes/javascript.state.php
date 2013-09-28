@@ -5,7 +5,7 @@ if(!$session->isLogedIn() || !$security->checkURL()) {
  exit;
 }
 if(ob_get_length()>0) {ob_end_clean();}
-if(isset($_POST['get'])) {
+if($db->is('get')) {
     $query = $db->query("SELECT state FROM cms_state WHERE userID='".$user->id."' LIMIT 1");
     $num_rows = $db->rows($query);
 	if($num_rows > 0) {
@@ -33,7 +33,7 @@ if(isset($_POST['get'])) {
 	} else {
 		echo 'default';
 	}
-} else if(isset($_POST['update'])) {
+} else if($db->is('update')) {
     $state = $db->filter('state');
 	$state = str_replace('##$##','+',$state);
     $query = $db->query("SELECT ID FROM cms_state WHERE userID='".$user->id."' LIMIT 1");
