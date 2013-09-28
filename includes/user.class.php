@@ -12,7 +12,7 @@ class User
 	function __construct($id) {
 		global $db;
 		$this->{"developer"}="0";
-		$this->IP=$_SERVER["REMOTE_ADDR"];
+		$this->IP=$this->getRealIP();
 		if($id=="-1") {
 			return;
 		}
@@ -41,6 +41,31 @@ class User
 			}
 		}
 	}
+	
+	 public function getRealIP() {
+        $ipaddress = '';
+        if(isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            $ipaddress =  $_SERVER['HTTP_CF_CONNECTING_IP'];
+        } else if (isset($_SERVER['HTTP_X_REAL_IP'])) {
+            $ipaddress = $_SERVER['HTTP_X_REAL_IP'];
+        }
+        else if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+
+        return $ipaddress;
+    }
 	
 	public function authenticate($username = '', $password = '')
 	{
