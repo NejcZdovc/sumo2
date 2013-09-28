@@ -35,12 +35,12 @@ if(isset($_POST['type'])) {
 			echo 'group';
 			exit;
 		}
-		$filName = mysql_escape_string($name);
-		$filUsername = mysql_escape_string($username);
+		$filName = $db->filterVar($name);
+		$filUsername = $db->filterVar($username);
 		$filPass = $crypt->passwordHash($password,$username);
-		$filEmail = mysql_escape_string($email);
+		$filEmail = $db->filterVar($email);
 		$db->query("INSERT INTO cms_user (username,pass,email,GroupID,name) VALUES ('".$filUsername."','".$filPass."','".$filEmail."','".$group."','".$filName."')");
-		$last_insert=mysql_insert_id();
+		$last_insert=$db->getLastId();
 		$db->query("INSERT INTO cms_favorites (UserID,option1,option2,option3) VALUES ('".$last_insert."','3','8','11')");
 		$db->query("INSERT INTO cms_state (userID, state) VALUES ('".$last_insert."', 'empty')");
 		$db->query("INSERT INTO cms_user_settings (userID,lang) VALUES ('".$last_insert."','1')");		
@@ -51,11 +51,11 @@ if(isset($_POST['type'])) {
 			if(strpos($key,"_e_x_t_r_a") > -1) {
 				if($first) {
 					$extraInfoValues .= str_replace("_e_x_t_r_a","",$key);
-					$extraInfo .= "'".mysql_escape_string($value)."'";
+					$extraInfo .= "'".$db->filterVar($value)."'";
 					$first = false;
 				} else {
 					$extraInfoValues .= ','.str_replace("_e_x_t_r_a","",$key);
-					$extraInfo .= ",'".mysql_escape_string($value)."'";
+					$extraInfo .= ",'".$db->filterVar($value)."'";
 				}
 			}
 		}
@@ -159,8 +159,8 @@ if(isset($_POST['type'])) {
 					echo 'group';
 					exit;
 				}
-				$filName = mysql_escape_string($name);
-				$filEmail = mysql_escape_string($email);
+				$filName = $db->filterVar($name);
+				$filEmail = $db->filterVar($email);
 				$filPass = $crypt->passwordHash($newpassword,$result['username']);
 				$db->query("UPDATE cms_user SET pass='".$filPass."',email='".$filEmail."',GroupID='".$group."',name='".$filName."' WHERE ID='".$id."'");
 			} else {
@@ -168,16 +168,15 @@ if(isset($_POST['type'])) {
 				exit;
 			}
 		} else {
-			$name = $_POST['name'];
-			$email = $_POST['email'];
 			$group = $_POST['group'];
 			$id = $crypt->decrypt($db->filter('id'));
 			if(!$valid->isNumber($group)) {
 				echo 'group';
 				exit;
 			}
-			$filName = mysql_escape_string($name);
-			$filEmail = mysql_escape_string($email);
+			
+			$filName = $db->filter('name');
+			$filEmail = $db->filter('email');
 			$db->query("UPDATE cms_user SET email='".$filEmail."',GroupID='".$group."',name='".$filName."' WHERE ID='".$id."'");
 		}
 		
@@ -190,10 +189,10 @@ if(isset($_POST['type'])) {
 			foreach($_POST as $key => $value) {
 				if(strpos($key,"_e_x_t_r_a") > -1) {
 					if($first) {
-						$extraInfo .= str_replace("_e_x_t_r_a","",$key)."='".mysql_escape_string($value)."'";
+						$extraInfo .= str_replace("_e_x_t_r_a","",$key)."='".$db->filterVar($value)."'";
 						$first = false;
 					} else {
-						$extraInfo .= ",".str_replace("_e_x_t_r_a","",$key)."='".mysql_escape_string($value)."'";
+						$extraInfo .= ",".str_replace("_e_x_t_r_a","",$key)."='".$db->filterVar($value)."'";
 					}
 				}
 			}
@@ -208,11 +207,11 @@ if(isset($_POST['type'])) {
 				if(strpos($key,"_e_x_t_r_a") > -1) {
 					if($first) {
 						$extraInfoValues .= str_replace("_e_x_t_r_a","",$key);
-						$extraInfo .= "'".mysql_escape_string($value)."'";
+						$extraInfo .= "'".$db->filterVar($value)."'";
 						$first = false;
 					} else {
 						$extraInfoValues .= ','.str_replace("_e_x_t_r_a","",$key);
-						$extraInfo .= ",'".mysql_escape_string($value)."'";
+						$extraInfo .= ",'".$db->filterVar($value)."'";
 					}
 				}
 			}

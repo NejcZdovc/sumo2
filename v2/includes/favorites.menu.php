@@ -8,12 +8,12 @@ redirect_to('../login/');
 $langDomainAuth = $user->checkLang();
 
 $id = $user->id;
-$query = $database->query("SELECT option1, option2, option3, option4, option5, option6, option7, option8, option9, option10 FROM cms_favorites WHERE UserID='".$id."' LIMIT 1");
-$result = $database->get($query);
+$query = $db->query("SELECT option1, option2, option3, option4, option5, option6, option7, option8, option9, option10 FROM cms_favorites WHERE UserID='".$id."' LIMIT 1");
+$result = $db->get($query);
 if($result) { 
 	for($i=1; $i<=10; $i++) {
 		if($result['option'.$i] != 0) {
-			$result1 = $database->get($database->query("SELECT click, img, subtitle FROM cms_favorites_def WHERE ID='".$result['option'.$i]."' LIMIT 1")); 
+			$result1 = $db->get($db->query("SELECT click, img, subtitle FROM cms_favorites_def WHERE ID='".$result['option'.$i]."' LIMIT 1")); 
 			if($langDomainAuth=="ok") {
 				$alert = $result1['click'];
 			} else if($langDomainAuth=="lang") {

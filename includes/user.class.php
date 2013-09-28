@@ -17,7 +17,7 @@ class User
 			return;
 		}
 		
-		$id=$db->filter($id);
+		$id=$db->filterVar($id);
 		$query=$db->get($db->query('SELECT name, email, ID, visit FROM cms_user WHERE ID="'.$id.'"'));
 		$this->{'name'}=$query['name'];
 		$this->{'email'}=$query['email'];
@@ -72,7 +72,7 @@ class User
 		global $db,$crypt, $session;
 		
 		$password = $crypt->passwordHash($password,$username);
-		$username = $db->filter($username);
+		$username = $db->filterVar($username);
 		
 		$results = $db->get($db->query("SELECT ID,GroupID FROM cms_user WHERE email='".$username."' AND pass ='".$password."' AND status='N' AND enabled='1' AND GroupID='3'"));
 		if($results)
@@ -111,7 +111,7 @@ class User
 	
 	private function updateVisit($id) {
 		global $db;
-		$id = $db->filter($id);
+		$id = $db->filterVar($id);
 		$query = $db->query("UPDATE cms_user SET visit='".date("Y-m-d H:i:s")."' WHERE ID='".$id."'");
 	}
 	

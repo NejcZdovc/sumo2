@@ -15,7 +15,7 @@
 			$content=AESEncryptCtr($content,code_hidden_full,256);
 			$subject=AESEncryptCtr($subject,code_hidden_full,256);
 			$query = $db->query('INSERT INTO cms_mail_main (senderID, subject, content) VALUES ('.$id.', "'.$subject.'", "'.$content.'")');
-			$last_insert=mysql_insert_id();
+			$last_insert=$db->getLastId();
 			foreach($array as $value) {
 				if($valid->isNumber($value)) 
 					$db->query('INSERT INTO cms_mail_sent (recipientID, mainID, status) VALUES ('.$value.', '.$last_insert.', "C")');

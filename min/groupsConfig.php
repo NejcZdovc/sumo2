@@ -26,7 +26,7 @@ function getJs() {
 	$files[] = '//includes/converter.js';
 	
 	//template
-	if(isset($_GET['a'])) {
+	if($db->is('a')) {
 		$name=$db->filter('a');
 		$xmlParse = $xml->getSpecialArray(SITE_ROOT.SITE_FOLDER.DS.'templates/'.$globals->domainName.'/'.$name.'/settings.xml');
 		foreach($xmlParse as $element) {
@@ -85,7 +85,7 @@ function getCss() {
 	global $db,$globals,$xml;
 	$files = array();
 	//template
-	if(isset($_GET['a'])) {
+	if($db->is('a')) {
 		$name=$db->filter('a');
 		$xmlParse = $xml->getSpecialArray(SITE_ROOT.SITE_FOLDER.DS.'templates/'.$globals->domainName.'/'.$name.'/settings.xml');
 		foreach($xmlParse as $element) {

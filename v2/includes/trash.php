@@ -152,7 +152,7 @@
 			$main = $db->fetch($db->query('SELECT mainID FROM cms_mail_sent WHERE ID='.$id.''));
 			$db->query('DELETE FROM cms_mail_sent WHERE ID='.$id.'');
 			$left=$db->query('SELECT ID FROM cms_mail_sent WHERE mainID='.$main['mainID'].'');
-			if(mysql_num_rows($left)==0) {
+			if($db->rows($left)==0) {
 				$mainT = $db->fetch($db->query('SELECT status FROM cms_mail_main WHERE ID='.$main['mainID'].''));
 				if($mainT['status']=="D")
 					$db->query('DELETE FROM cms_mail_main WHERE ID='.$main['mainID'].'');
@@ -366,7 +366,7 @@
 			$tabele=explode('!', $query['tables']);
 			foreach($tabele as $tabela) {
 				$query1=$db->query("SHOW TABLES LIKE '".$tabela."'");
-				if (mysql_num_rows($query1)) {
+				if ($db->rows($query1)>0) {
 					$db->query('DROP TABLE `'.$tabela.'`');
 				}
 			}
@@ -520,7 +520,7 @@
 					$main = $db->fetch($db->query('SELECT mainID FROM cms_mail_sent WHERE ID='.$id.''));
 					$db->query('DELETE FROM cms_mail_sent WHERE ID='.$id.'');
 					$left=$db->query('SELECT ID FROM cms_mail_sent WHERE mainID='.$main['mainID'].'');
-					if(mysql_num_rows($left)==0) {
+					if($db->rows($left)==0) {
 						$mainT = $db->fetch($db->query('SELECT status FROM cms_mail_main WHERE ID='.$main['mainID'].''));
 						if($mainT['status']=="D")
 							$db->query('DELETE FROM cms_mail_main WHERE ID='.$main['mainID'].'');
@@ -732,7 +732,7 @@
 			$tabele=explode('!', $query['tables']);
 			foreach($tabele as $tabela) {
 				$query1=$db->query("SHOW TABLES LIKE '".$tabela."'");
-				if (mysql_num_rows($query1)) {
+				if ($db->rows($query1)>0) {
 					$db->query('DROP TABLE `'.$tabela.'`');
 				}
 			}

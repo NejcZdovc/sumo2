@@ -50,7 +50,7 @@ function pagging ($number_acc, $pagging)
 
 function check_pagging($sql, $page) {
 	global $db;
-	$int_rows =mysql_num_rows($db->query($sql));
+	$int_rows =$db->rows($db->query($sql));
 	if(isset($_POST['size']))
 		$page_size=$_POST['size'];
 	else

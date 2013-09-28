@@ -139,7 +139,7 @@
 	//Redirect url
 	$uriArray=explode("?", $_SERVER['REQUEST_URI']);
 	$uri=$uriArray[0];
-	$redirect=$db->get($db->query('SELECT destination, type FROM cms_seo_redirects WHERE source="'.mysql_escape_string($uri).'" AND domainID="'.$globals->domainID.'" AND lang="'.$lang.'"'));
+	$redirect=$db->get($db->query('SELECT destination, type FROM cms_seo_redirects WHERE source="'.$db->filterVar($uri).'" AND domainID="'.$globals->domainID.'" AND lang="'.$lang.'"'));
 	if(isset($redirect['destination'])) {
 		header("HTTP/1.1 ".$redirect['type']."");
 		if(count($uriArray)>1) 
@@ -173,7 +173,7 @@
 		$selection=0;
 		$moduleID=0;
 		foreach($urlArray as $pageName) {
-			$result3n = $db->get($db->query("SELECT cms_menus_items.ID, cms_menus_items.selection, cms_menus_items.menuID  FROM cms_menus_items WHERE cms_menus_items.status='N' AND cms_menus_items.enabled='1' AND cms_menus_items.altPrefix='".$db->filter($pageName)."' AND cms_menus_items.parentID='".$db->filter($parentID)."' AND cms_menus_items.domain='".$globals->domainID."' LIMIT 1"));
+			$result3n = $db->get($db->query("SELECT cms_menus_items.ID, cms_menus_items.selection, cms_menus_items.menuID  FROM cms_menus_items WHERE cms_menus_items.status='N' AND cms_menus_items.enabled='1' AND cms_menus_items.altPrefix='".$db->filterVar($pageName)."' AND cms_menus_items.parentID='".$parentID."' AND cms_menus_items.domain='".$globals->domainID."' LIMIT 1"));
 			if($result3n) {
 				$parentID = $result3n['ID'];
 				$currentURL=$tempArray[0]."/";
@@ -203,9 +203,9 @@
 		}		
 	}
 	if(!$firstPage) {			
-		$query4 = $db->query("SELECT link, template, selection FROM cms_menus_items WHERE enabled='1' AND ID='".$db->filter($page)."'");
+		$query4 = $db->query("SELECT link, template, selection FROM cms_menus_items WHERE enabled='1' AND ID='".$db->filterVar($page)."'");
 	} else {			
-		$query4 = $db->query("SELECT cms_menus_items.selection, cms_homepage.lang, cms_menus_items.link, cms_homepage.template  FROM cms_menus_items, cms_homepage WHERE cms_menus_items.ID='".$db->filter($page)."' AND cms_homepage.ID=cms_menus_items.link");
+		$query4 = $db->query("SELECT cms_menus_items.selection, cms_homepage.lang, cms_menus_items.link, cms_homepage.template  FROM cms_menus_items, cms_homepage WHERE cms_menus_items.ID='".$db->filterVar($page)."' AND cms_homepage.ID=cms_menus_items.link");
 	}
 	
 	$result4 = $db->get($query4);

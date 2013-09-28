@@ -7,11 +7,11 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 class Globals
 {	
 	function __construct() {
-		global $database, $user;
+		global $db, $user;
 		if(isset($user->domain)) {
-			$query = $database->query("SELECT * FROM cms_global_settings WHERE domain='".$user->domain."'");
-			if($database->rows($query) > 0) {
-				$results = $database->get($query);
+			$query = $db->query("SELECT * FROM cms_global_settings WHERE domain='".$user->domain."'");
+			if($db->rows($query) > 0) {
+				$results = $db->get($query);
 				$i = 0;
 				foreach($results as $key => $value) {
 					$i++;
@@ -21,9 +21,9 @@ class Globals
 				}
 			}
 		}
-		$query = $database->query("SELECT version, FTP_user, FTP_pass, FTP_url, FTP_port, welcome FROM cms_sumo_settings WHERE ID='1'");
-		if($database->rows($query) > 0) {
-			$results = $database->get($query);
+		$query = $db->query("SELECT version, FTP_user, FTP_pass, FTP_url, FTP_port, welcome FROM cms_sumo_settings WHERE ID='1'");
+		if($db->rows($query) > 0) {
+			$results = $db->get($query);
 			$i = 0;
 			foreach($results as $key => $value) {
 				$i++;
