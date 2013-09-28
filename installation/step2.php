@@ -42,6 +42,7 @@
 
 	if($_REQUEST['show']=="ok") {
 		$link = new mysqli($_REQUEST['tip'], $_REQUEST['user'], $_REQUEST['pass'], $_REQUEST['name']);
+		$link->set_charset("utf8");
 		if ($link->connect_errno) {
 			printf("Connect failed: %s", $link->mysqli_error);
     		exit();

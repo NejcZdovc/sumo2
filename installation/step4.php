@@ -39,6 +39,7 @@
 	
 	include('../v2/configs/settings.php');
 	$link = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
+	$link->set_charset("utf8");
 	if ($link->connect_errno) {
 		printf("Connect failed: %s", $link->mysqli_error);
 		exit();
