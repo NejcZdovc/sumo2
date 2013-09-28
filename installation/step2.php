@@ -1,4 +1,9 @@
 <?php
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+	ini_set('log_errors', 1);
+	ini_set('error_log','../v2/logs/error.log');
+	
 	$stanje=0;
 		echo '<form action="" name="forma" method="post" class="form2">
 		<table cellpadding="0" cellspacing="0" border="0" width="100%" >
@@ -50,12 +55,12 @@
 			$fp = fopen('../v2/configs/settings.php', 'ab');
 			$besedilo="
 				
-			//Database
-			define('DB_SERVER','".$_REQUEST['tip']."');
-			define('DB_USER','".$_REQUEST['user']."');
-			define('DB_PASSWORD','".$_REQUEST['pass']."');
-			define('DB_DATABASE','".$_REQUEST['name']."');
-		?>";
+	//Database
+	define('DB_SERVER','".$_REQUEST['tip']."');
+	define('DB_USER','".$_REQUEST['user']."');
+	define('DB_PASSWORD','".$_REQUEST['pass']."');
+	define('DB_DATABASE','".$_REQUEST['name']."');
+?>";
 		
 			$besedilo=str_replace("/*/", "", $besedilo);
 			fwrite($fp, $besedilo);

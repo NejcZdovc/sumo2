@@ -1,4 +1,9 @@
 <?php
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+	ini_set('log_errors', 1);
+	ini_set('error_log','../v2/logs/error.log');
+	
 	include('../v2/configs/settings.php');
 	include('sql.class.php');
 	$link = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD,DB_DATABASE);

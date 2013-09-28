@@ -1,51 +1,25 @@
 <?xml version="1.0"?>
-
 <permission>
-
 	<files>
-
 	  <item>v2/modules/css.xml</item>
-
 	  <item>v2/modules/javascript.xml</item>
-
 	  <item>v2/modules/system.xml</item>
-
 	  <item>v2/logs/error.log</item>
-
-	  <item>v2/logs/errorFront.log</item>
-
-	  <item>v2/configs/settings.php</item>
-
+	  <item perm="777">v2/configs/settings.php</item>
 	</files>
 
 	<folders>
-
 	  <item>404</item>
-
 	  <item>block</item>
-
 	  <item>ip</item>
-
 	  <item>images</item>
-
-	  <item>installation</item>
-
 	  <item>modules</item>
-
 	  <item>modules/default</item>
-
 	  <item>modules/default/images</item>
-
 	  <item>off</item>
-
-	  <item>storage</item>
-	  
-	  <item>templates</item>
-	  
+	  <item>storage</item>	  
+	  <item>templates</item>	  
 	  <item>v2/modules</item>
-
 	  <item>v2/temp</item>
-
 	</folders>	
-
 </permission>

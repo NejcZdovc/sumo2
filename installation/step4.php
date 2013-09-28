@@ -1,4 +1,9 @@
 <?php
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+	ini_set('log_errors', 1);
+	ini_set('error_log','../v2/logs/error.log');
+	
 	function chmodAll($path, $filePerm=0644, $dirPerm=0755) {
 		if(!file_exists($path)) {
 			return false;
