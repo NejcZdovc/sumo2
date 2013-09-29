@@ -10,13 +10,17 @@ class Globals
 		global $db, $user;
 		if(isset($user->domain)) {
 			$results = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$user->domain."'"));
-			foreach($results as $key => $value) {
-				$this->{$key} = $value;
+			if($results) {
+				foreach($results as $key => $value) {
+					$this->{$key} = $value;
+				}
 			}
 		}
 		$results = $db->get($db->query("SELECT version, FTP_user, FTP_pass, FTP_url, FTP_port, welcome FROM cms_sumo_settings WHERE ID='1'"));
-		foreach($results as $key => $value) {
-			$this->{$key} = $value;
+		if($results) {
+			foreach($results as $key => $value) {
+				$this->{$key} = $value;
+			}
 		}
 	}
 }

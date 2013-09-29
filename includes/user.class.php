@@ -29,9 +29,11 @@ class User
 		}
 		
 		$results = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE UserID='".$id."'"));
-		foreach($results as $key => $value) {
-			if($key!="ID" && $key!="userID" && $key!="email" && $key!="name" && $key!="visit") {
-				$this->{$key} = $value;
+		if($results) {
+			foreach($results as $key => $value) {
+				if($key!="ID" && $key!="userID" && $key!="email" && $key!="name" && $key!="visit") {
+					$this->{$key} = $value;
+				}
 			}
 		}
 	}

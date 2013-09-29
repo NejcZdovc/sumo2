@@ -8,19 +8,21 @@ class Database
 {
 	private $connection;
 	
-	function __construct()
+	function __construct($default=true)
 	{
-		$this->open_connection();
+		if($default) {
+			$this->open_connection(__DB_SERVER__, __DB_USER__, __DB_PASSWORD__, __DB_DATABASE__);
+		}
 	}
 	
-	public function open_connection()
+	public function open_connection($server, $user, $pass, $database)
 	{
-		$this->connection = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
+		$this->connection = new mysqli($server, $user, $pass, $database);
 		if($this->connection->connect_errno)
 		{
 			error_log(ERR_DB_CON.': '.$this->connection->error);
 		}		
-		$this->connection->set_charset('utf8');
+		$this->connection->set_charset(__ENCODING__);
 	}
 	
 	public function close_connection()
@@ -53,23 +55,35 @@ class Database
 	
 	public function fetch($result_set)
 	{
-		return $result_set->fetch_assoc();;
+		if(is_object($result_set)) {
+			return $result_set->fetch_assoc();	
+		} else {
+			return false;
+		}
 	}
 	
 	public function rows($result_set)
 	{
-		return $result_set->num_rows;
+		if(is_object($result_set)) {
+			return $result_set->num_rows;
+		} else {
+			return false;
+		}
 	}
 	
 	public function get($result_set)
 	{
-		if($result_set->num_rows > 0)
-		{
-			return $result_set->fetch_assoc();
-		}
-		else
-		{
-			return false;	
+		if(is_object($result_set)) {
+			if($result_set->num_rows > 0)
+			{
+				return $result_set->fetch_assoc();	
+			}
+			else
+			{
+				return false;	
+			}
+		} else {
+			return false;
 		}
 	}
 	
