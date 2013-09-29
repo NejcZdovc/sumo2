@@ -13,8 +13,12 @@ class FTP
 	
 	function __construct() {
 		global $globals, $crypt;
-		$this->pass=$crypt->decrypt($globals->FTP_pass);
-		$this->username=$crypt->decrypt($globals->FTP_user);
+		if(isset($globals->FTP_pass)) {
+			$this->pass=$crypt->decrypt($globals->FTP_pass);
+		}
+		if(isset($globals->username)) {
+			$this->username=$crypt->decrypt($globals->FTP_user);
+		}
 		$this->url=$globals->FTP_url;
 	}
 

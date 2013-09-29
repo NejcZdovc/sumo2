@@ -3,7 +3,7 @@
 	 exit;
 	}
 if(ob_get_length()>0) { ob_end_clean(); }
-if(isset($_POST['type'])) {
+if($db->is('type')) {
 	if($db->filter('type') == 'add') {
 		$name = $db->filter('name');
 		$exist=$db->rows($db->query('SELECT ID FROM cms_domains WHERE name="'.$name.'"'));

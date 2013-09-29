@@ -3,16 +3,16 @@
 	 exit;
 	}
 if(ob_get_length()>0) {ob_end_clean(); }
-if(isset($_POST['type'])) {
-	if($_POST['type'] == 'addgroup') {
+if($db->is('type')) {
+	if($db->filter('type') == 'addgroup') {
 		$name = htmlspecialchars($db->filter('name'));
 		$description = $db->filter(htmlspecialchars('description'));
 		$prefix=getPrefixTitle($name, 'cms_article_categories', 'altPrefix');
 		$db->query("INSERT INTO cms_article_categories (title, altPrefix, description, lang, domain) VALUES ('".$name."', '".$prefix."', '".$description."', '".$user->translate_lang."', '".$user->domain."')");
 		echo 'ok';
 		exit;
-	} else if($_POST['type'] == 'statusgroup') {
-		$id = $crypt->decrypt($_POST['id']);
+	} else if($db->filter('type') == 'statusgroup') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$result = $db->get($db->query("SELECT enabled FROM cms_article_categories WHERE ID='".$id."'"));
 		if($result) {
 			if($result['enabled'] == 0) {
@@ -24,16 +24,16 @@ if(isset($_POST['type'])) {
 			echo 'Finished';
 			exit;
 		}
-	} else if($_POST['type'] == 'editgroup') {
+	} else if($db->filter('type') == 'editgroup') {
 		$name = htmlspecialchars($db->filter('name'));
 		$description = $db->filter(htmlspecialchars('description'));
-		$id = $crypt->decrypt($_POST['id']);
+		$id = $crypt->decrypt($db->filter('id'));
 		$prefix=getPrefixTitle($name, 'cms_article_categories', 'altPrefix');
 		$db->query("UPDATE cms_article_categories SET title='".$name."', altPrefix='".$prefix."', description='".$description."' WHERE ID='".$id."'");
 		echo 'ok';
 		exit;
-	} else if($_POST['type'] == 'deletegroup') {
-		$id = $crypt->decrypt($_POST['id']);
+	} else if($db->filter('type') == 'deletegroup') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$db->query("UPDATE cms_article_categories SET status='D' WHERE ID='".$id."'");
 		$articleq = $db->query('SELECT ID,category FROM cms_article WHERE category='.$id.'');
 		while($articleF=$db->fetch($articleq)) {
@@ -41,7 +41,7 @@ if(isset($_POST['type'])) {
 		}
 		echo 'Finished';
 		exit;
-	} else if($_POST['type'] == 'newarticle') {
+	} else if($db->filter('type') == 'newarticle') {
 		$title = htmlspecialchars($db->filter('title'));
 		$category = $db->filter('category');
 		$datestart = $db->filter('datestart');
@@ -71,8 +71,8 @@ if(isset($_POST['type'])) {
 		
 		echo 'Finished';
 		exit;
-	} else if($_POST['type'] == 'statusarticle') {
-		$id = $crypt->decrypt($_POST['id']);
+	} else if($db->filter('type') == 'statusarticle') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$result = $db->get($db->query("SELECT published FROM cms_article WHERE ID='".$id."'"));
 		if($result) {
 			if($result['published'] == 0) {
@@ -84,12 +84,12 @@ if(isset($_POST['type'])) {
 			echo 'Finished';
 			exit;
 		}
-	} else if($_POST['type'] == 'deletearticle') {
-		$id = $crypt->decrypt($_POST['id']);
+	} else if($db->filter('type') == 'deletearticle') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$db->query("UPDATE cms_article SET status='D' WHERE ID='".$id."'");
 		echo 'Finished';
 		exit;
-	} else if($_POST['type'] == 'editarticle') {		
+	} else if($db->filter('type') == 'editarticle') {		
 		$title = htmlspecialchars($db->filter('title'));
 		$category = $db->filter('category');
 		$datestart=strtotime($db->filter('datestart'));
@@ -124,7 +124,7 @@ if(isset($_POST['type'])) {
 		}
 		echo 'Finished';
 		exit;
-	} else if ($_POST['type']=='translate_c') {
+	} else if ($db->filter('type')=='translate_c') {
 		$lang=$db->filter('lang');
 		$name=$db->filter('name');
 		$description=$db->filter('description');
@@ -132,7 +132,7 @@ if(isset($_POST['type'])) {
 		$db->query("INSERT INTO cms_article_categories (title,description,lang,parent) VALUES ('".$name."','".$description."','".$lang."','".$parent."')");
 		echo 'Finished';
 		exit;
-	} else if($_POST['type'] == 'translate_a') {
+	} else if($db->filter('type') == 'translate_a') {
 		$title = htmlspecialchars($db->filter('title'));
 		$category = htmlspecialchars($db->filter('category'));
 		$datestart = htmlspecialchars($db->filter('datestart'));
@@ -150,7 +150,7 @@ if(isset($_POST['type'])) {
 		$db->query("INSERT INTO cms_article (title,content,category,dateStart,dateEnd,author,authorAlias,date,published,stub,lang,parent,altPrefix) VALUES ('".$title."','".$content."','".$category."','".$datestart."','".$dateend."','".$author."','".$alias."', '".time()."','".$published."', '".$stub."','".$lang."', '".$parent."', '".$prefix."')");
 		echo 'Finished';
 		exit;
-	} else if($_POST['type'] == 'deleteimage') {
+	} else if($db->filter('type') == 'deleteimage') {
 		$id = $crypt->decrypt($db->filter('id'));
 		$article=$db->query('SELECT ID FROM cms_article WHERE image="'.$id.'"');
 		if($db->rows($article)>0) {
@@ -161,18 +161,18 @@ if(isset($_POST['type'])) {
 		$db->query("DELETE FROM cms_article_images WHERE ID='".$id."'");
 		echo 'ok';
 		exit;
-	} else if($_POST['type'] == 'renameimage') {
+	} else if($db->filter('type') == 'renameimage') {
 		$id = $crypt->decrypt($db->filter('id'));
 		$name = $db->filter('name');
 		$db->query("UPDATE cms_article_images SET name='".$name."' WHERE ID='".$id."'");
 		echo 'ok';
 		exit;
-	} else if($_POST['type']=='counter') {
+	} else if($db->filter('type')=='counter') {
 		$id = $crypt->decrypt($db->filter('id'));
 		$db->query("UPDATE cms_article SET views='0' WHERE ID='".$id."'");
 		echo 'ok';
 		exit;
-	} else if($_POST['type']=='counterall') {
+	} else if($db->filter('type')=='counterall') {
 		$query = $db->query("SELECT ID FROM cms_article");
 		while($result=$db->fetch($query)) {
 			$db->query("UPDATE cms_article SET views='0' WHERE ID='".$result['ID']."'");

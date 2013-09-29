@@ -3,12 +3,13 @@
 	//Global
 	define('DS',DIRECTORY_SEPARATOR);
 	define('SITE_ROOT',$_SERVER['DOCUMENT_ROOT']);
+	define('__ENCODING__', 'latin');
 
 	//Database
-    define('DB_SERVER','localhost');
-    define('DB_USER','rcuser');
-    define('DB_PASSWORD','48uH_spu');
-    define('DB_DATABASE','3zsistemi_rc');
+    define('__DB_SERVER__','localhost');
+    define('__DB_USER__','rcuser');
+    define('__DB_PASSWORD__','48uH_spu');
+    define('__DB_DATABASE__','3zsistemi_rc');
 	
 	//FTP permissions
 	define('PER_FILE', 0644);

@@ -1,6 +1,5 @@
 <?php 
-	$query = $db->query("SELECT title,email,keywords,description,template,SEO,display_title,offline,front_lang FROM cms_global_settings WHERE domain='".$user->domain."'");
-	$result = $db->get($query);
+	$result = $db->get($db->query("SELECT title,email,keywords,description,template,SEO,display_title,offline,front_lang FROM cms_global_settings WHERE domain='".$user->domain."'"));
 ?>
 <form action="" name="a_settings_page" method="post" class="form2">
 	<div class="">

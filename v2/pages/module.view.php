@@ -7,7 +7,7 @@
 <div class="flt-right display"><span style="margin:6px 2px;display:inline-block;cursor:pointer;" onclick="sumo2.moduleManager.Reload('mod')"><?=$lang->MOD_116?></span></div>
 <div id="a_module_view_table" style="clear:both;">
 	<?php
-		if(isset($_POST['type']) && $_POST['type'] == 'com') {
+		if($db->is('type') && $db->filter('type') == 'com') {
 			$query = $db->query("SELECT * FROM cms_components_def WHERE status='N'");
 			$counter = 1;
 			while($result = $db->fetch($query)) {

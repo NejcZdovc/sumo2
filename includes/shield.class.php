@@ -44,14 +44,12 @@ class Shield {
 			
 		$file = "./ip/".$user->IP;
 		if(!file_exists($file)) {
-			 $ch = curl_init(); 
-			curl_setopt($ch, CURLOPT_URL, "http://api.easyjquery.com/ips/?ip=".$user->IP."&full=true"); 
-			curl_setopt($ch, CURLOPT_FAILONERROR,1);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 2);
-			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.7.5) Gecko/20041107 Firefox/1.0');
-			$json = curl_exec($ch); 
-			curl_close($ch); 
+			if(!file_exists($file)) {
+				$json = file_get_contents("http://api.codehelper.io/ips/?php&ip=".$user->IP);
+				$data = json_decode($json);
+			} else {
+				$json = file_get_contents($file);
+			}
 			$f = fopen($file,"w+");
 			fwrite($f,$json);
 			fclose($f);

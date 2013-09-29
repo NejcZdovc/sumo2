@@ -23,7 +23,7 @@ class Func
 		if(strlen($this->url)>4)
 			return $this->url;
 		else {		
-			$this->url=rawurldecode($db->filter($_SERVER['REQUEST_URI']));
+			$this->url=rawurldecode($db->filterVar($_SERVER['REQUEST_URI']));
 			return $this->url;
 		}
 	}
@@ -41,7 +41,7 @@ class Func
 		 } else {
 		  $pageURL .= $_SERVER["SERVER_NAME"].$uri;
 		 }
-		 header('Location: '.rawurldecode($db->filter($pageURL).''));
+		 header('Location: '.rawurldecode($db->filterVar($pageURL).''));
 	}
 	
 	public function getUrlArray() {
@@ -66,7 +66,7 @@ class Func
 		
 		$this->lang=0;
 		$this->getUrlArray();
-		$langResult = $db->get($db->query("SELECT ID, short FROM cms_language_front WHERE short='".$db->filter($this->urlArray[0])."'"));
+		$langResult = $db->get($db->query("SELECT ID, short FROM cms_language_front WHERE short='".$db->filterVar($this->urlArray[0])."'"));
 		if($langResult['ID'] > 0) {
 			$this->priLang=true;
 			$this->lang=$langResult['ID'];

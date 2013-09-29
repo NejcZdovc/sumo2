@@ -2,9 +2,9 @@
 	if(!$session->isLogedIn() || !$security->checkURL()) {
 	 exit;
 	}
-	if(ob_get_length()>0) {ob_end_clean();}
-	if(isset($_POST['type'])) {
-		if($_POST['type'] == 'sumo') {
+if(ob_get_length()>0) {ob_end_clean();}
+if($db->is('type')) {
+		if($db->filter('type') == 'sumo') {
 			$lang=$db->filter('lang');
 			$items=$db->filter('items');
 			$accordion=$db->filter('panels');
@@ -23,7 +23,7 @@
 			echo "ok";
 			exit;
 		}
-		else if($_POST['type'] == 'page') {
+		else if($db->filter('type') == 'page') {
 			$title=$db->filter('title');
 			$keyword=$db->filter('keyword');
 			$description=$db->filter('description');
@@ -39,7 +39,7 @@
 			echo "ok";
 			exit;
 		}
-		else if($_POST['type'] == 'global') {
+		else if($db->filter('type') == 'global') {
 			$GA_ID=$db->filter('GA_ID');
 			$GA_type=$db->filter('GA_type');
 			$WM_ID=$db->filter('WM_ID');
@@ -47,13 +47,13 @@
 			echo "ok";
 			exit;
 		}
-		else if($_POST['type'] == 'welcome') {
+		else if($db->filter('type') == 'welcome') {
 			$content=$db->filter('content');
-			$db->query('UPDATE cms_sumo_settings SET welcome="'.$content.'" WHERE ID="'.$user->domain.'"');
+			$db->query('UPDATE cms_sumo_settings SET welcome="'.$content.'" WHERE ID="1"');
 			echo "ok";
 			exit;
 		}
-		else if($_POST['type'] == 'addt') {
+		else if($db->filter('type') == 'addt') {
 			$name=$db->filter('name');
 			$number=$db->filter('number');
 			$newname=strtolower(str_replace(' ', '_', $name));
@@ -80,7 +80,7 @@
 			}
 			exit;
 		}
-		else if($_POST['type'] == 'addlb') {
+		else if($db->filter('type') == 'addlb') {
 			$name=$db->filter('name');
 			$number=$db->filter('number');
 			$short=$db->filter('short');
@@ -103,17 +103,16 @@
 			}
 			exit;
 		}
-		else if($_POST['type'] == 'addlf') {
+		else if($db->filter('type') == 'addlf') {
 			$name= $db->filter('name');
 			$short= $db->filter('short');
 			$db->query("INSERT INTO cms_language_front (name,short) VALUES ('".$name."', '".$short."')");			
 			echo 'ok';
 			exit;
 		}
-		else if($_POST['type'] == 'statust') {
-			$id = $crypt->decrypt($_POST['id']);
-			$query = $db->query("SELECT enabled FROM cms_template WHERE ID='".$id."'");
-			$result = $db->get($query);
+		else if($db->filter('type') == 'statust') {
+			$id = $crypt->decrypt($db->filter('id'));
+			$result = $db->get($db->query("SELECT enabled FROM cms_template WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;
@@ -125,21 +124,21 @@
 				exit;
 			}
 		}
-		else if($_POST['type'] == 'editt') {
-			$id = $crypt->decrypt($_POST['id']);
+		else if($db->filter('type') == 'editt') {
+			$id = $crypt->decrypt($db->filter('id'));
 			$name= $db->filter('name');
 			$db->query("UPDATE cms_template SET name='".$name."' WHERE ID='".$id."'");
 			echo 'ok';
 			exit;
 		}
-		else if($_POST['type'] == 'deletet') {
-			$id = $crypt->decrypt($_POST['id']);
+		else if($db->filter('type') == 'deletet') {
+			$id = $crypt->decrypt($db->filter('id'));
 			$db->query("UPDATE cms_template SET status='D' WHERE ID='".$id."'");
 			echo 'ok';
 			exit;
 		}
-		else if($_POST['type'] == 'deletetP') {
-			$id = $crypt->decrypt($_POST['id']);
+		else if($db->filter('type') == 'deletetP') {
+			$id = $crypt->decrypt($db->filter('id'));
 			$name=$db->get($db->query('SELECT prefix FROM cms_template_position WHERE ID="'.$id.'"'));
 			$db->query("DELETE FROM cms_template_position WHERE ID='".$id."'");
 			$db->query("DROP TABLE `cms_panel_".$name['prefix']."`");
@@ -153,8 +152,8 @@
 			echo 'ok';
 			exit;
 		}
-		else if($_POST['type'] == 'deleteP') {
-			$id = $crypt->decrypt($_POST['id']);
+		else if($db->filter('type') == 'deleteP') {
+			$id = $crypt->decrypt($db->filter('id'));
 			$name=$db->get($db->query('SELECT prefix FROM cms_modul_prefix WHERE ID="'.$id.'"'));
 			$db->query("DELETE FROM cms_modul_prefix WHERE ID='".$id."'");
 			$query=$db->query('SELECT prefix FROM cms_template_position');
@@ -167,10 +166,9 @@
 			echo 'ok';
 			exit;
 		}
-		else if($_POST['type'] == 'statuslf') {
-			$id = $crypt->decrypt($_POST['id']);
-			$query = $db->query("SELECT enabled FROM cms_language_front WHERE ID='".$id."'");
-			$result = $db->get($query);
+		else if($db->filter('type') == 'statuslf') {
+			$id = $crypt->decrypt($db->filter('id'));
+			$result = $db->get($db->query("SELECT enabled FROM cms_language_front WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;
@@ -182,10 +180,9 @@
 				exit;
 			}
 		}
-		else if($_POST['type'] == 'statuslb') {
-			$id = $crypt->decrypt($_POST['id']);
-			$query = $db->query("SELECT enabled FROM cms_language WHERE ID='".$id."'");
-			$result = $db->get($query);
+		else if($db->filter('type') == 'statuslb') {
+			$id = $crypt->decrypt($db->filter('id'));
+			$result = $db->get($db->query("SELECT enabled FROM cms_language WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;
@@ -197,49 +194,47 @@
 				exit;
 			}
 		}
-		else if($_POST['type'] == 'gastat') {
-			$query = $db->query("SELECT GA_enabled FROM cms_global_settings WHERE ID='".$user->domain."'");
-			$result = $db->get($query);
+		else if($db->filter('type') == 'gastat') {
+			$result = $db->get($db->query("SELECT GA_enabled FROM cms_global_settings WHERE domain='".$user->domain."'"));
 			if($result) {
 				if($result['GA_enabled'] == 0) {
 					$new = 1;
 				} else {
 					$new = 0;
 				}
-				$db->query("UPDATE cms_global_settings SET GA_enabled='".$new."' WHERE ID='".$user->domain."'");
+				$db->query("UPDATE cms_global_settings SET GA_enabled='".$new."' WHERE domain='".$user->domain."'");
 				echo 'ok';
 				exit;
 			}
 		}
-		else if($_POST['type'] == 'wmstat') {
-			$query = $db->query("SELECT WM_enabled FROM cms_global_settings WHERE domain='".$user->domain."'");
-			$result = $db->get($query);
+		else if($db->filter('type') == 'wmstat') {
+			$result = $db->get($db->query("SELECT WM_enabled FROM cms_global_settings WHERE domain='".$user->domain."'"));
 			if($result) {
 				if($result['WM_enabled'] == 0) {
 					$new = 1;
 				} else {
 					$new = 0;
 				}
-				$db->query("UPDATE cms_global_settings SET WM_enabled='".$new."' WHERE ID='".$user->domain."'");
+				$db->query("UPDATE cms_global_settings SET WM_enabled='".$new."' WHERE domain='".$user->domain."'");
 				echo 'ok';
 				exit;
 			}
 		}
-		else if($_POST['type'] == 'error') {
+		else if($db->filter('type') == 'error') {
 			$file = "../logs/error.log";
 			$fh = fopen($file, 'w');
 			$string="Error log cleaned (".date("d.m.Y H:m", time()).")\r\n\n";
 			fwrite($fh, $string);
 			fclose($fh);
 		}
-		else if($_POST['type'] == 'errorFront') {
+		else if($db->filter('type') == 'errorFront') {
 			$file = "../logs/errorFront_".$user->domainName.".log";
 			$fh = fopen($file, 'w');
 			$string="Error log cleaned (".date("d.m.Y H:m", time()).")\r\n\n";
 			fwrite($fh, $string);
 			fclose($fh);
 		}
-		else if($_POST['type'] == "checkp") {
+		else if($db->filter('type') == "checkp") {
 			$name=$db->filter('name');
 			$query = $db->query("SELECT ID FROM cms_modul_prefix WHERE name='".$name."'");
 			$int=$db->rows($query);
@@ -249,7 +244,7 @@
 				echo 'ok';
 			exit;
 		}
-		else if($_POST['type'] == "saveprefix") {
+		else if($db->filter('type') == "saveprefix") {
 			$name=$db->filter('name');
 			$array=explode('##', $name);
 			if(count($array)>1) {				
@@ -267,10 +262,9 @@
 			echo "ok";
 			exit;
 		}
-		else if($_POST['type'] == 'prefstat') {
-			$id = $crypt->decrypt($_POST['id']);
-			$query = $db->query("SELECT enabled FROM cms_modul_prefix WHERE ID='".$id."'");
-			$result = $db->get($query);
+		else if($db->filter('type') == 'prefstat') {
+			$id = $crypt->decrypt($db->filter('id'));
+			$result = $db->get($db->query("SELECT enabled FROM cms_modul_prefix WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;
@@ -282,7 +276,7 @@
 				exit;
 			}
 		}
-		else if($_POST['type'] == "checktp") {
+		else if($db->filter('type') == "checktp") {
 			$name=$db->filter('name');
 			$query = $db->query("SELECT ID FROM cms_template_position WHERE name='".$name."'");
 			$int=$db->rows($query);
@@ -292,7 +286,7 @@
 				echo 'ok';
 			exit;
 		}
-		else if($_POST['type'] == "saveposition") {
+		else if($db->filter('type') == "saveposition") {
 			$name=$db->filter('name');
 			$array=explode('##', $name);
 			if(count($array)>1) {
@@ -348,7 +342,7 @@
 			echo "ok";
 			exit;
 		}
-		else if($_POST['type'] == "saveFTP") {
+		else if($db->filter('type') == "saveFTP") {
 			$user=$db->filter('user');
 			$pass=$db->filter('password');
 			$url=$db->filter('url');
@@ -371,7 +365,7 @@
 				exit;
 			}
 		}
-		else if($_POST['type'] == "changeChacheNumber") {
+		else if($db->filter('type') == "changeChacheNumber") {
 			$number=$db->get($db->query('SELECT cacheNumber, ID FROM cms_global_settings WHERE domain="'.$user->domain.'"'));
 			$db->query('UPDATE cms_global_settings SET cacheNumber="'.($number['cacheNumber']+1).'" WHERE ID="'.$number['ID'].'"');
 			

@@ -14,37 +14,28 @@ class User
 	private $access;
 	
 	function __construct($id) {
-		global $database;
-		$id=mysql_escape_string($id);
+		global $db;
+		$id=$db->filterVar($id);
 		$this->id = $id;
-		$results = $database->get($database->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$this->id."'"));
+		$results = $db->get($db->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$this->id."'"));
 		$this->username = $results['username'];
 		$this->email = $results['email'];
 		$this->permission = $results['GroupID'];
-		$permResult = $database->get($database->query("SELECT access FROM cms_user_groups WHERE ID='".$this->permission."'"));
+		$permResult = $db->get($db->query("SELECT access FROM cms_user_groups WHERE ID='".$this->permission."'"));
 		$this->access = unserialize(urldecode($permResult['access']));
 		$this->name = $results['name'];
 		$this->groupID = $results['GroupID'];
-		$query = $database->query("SELECT * FROM cms_user_settings WHERE cms_user_settings.UserID='".$this->id."'");
-		if($database->rows($query) > 0) {
-			$results = $database->get($query);
-			$i = 0;
+		$results = $db->get($db->query("SELECT * FROM cms_user_settings WHERE cms_user_settings.UserID='".$this->id."'"));
+		if($results) {
 			foreach($results as $key => $value) {
-				$i++;
-				if($i%2 == 0) {
-					$this->{$key} = $value;
-				}
+				$this->{$key} = $value;
 			}
 		}
-		$query = $database->query("SELECT name AS domainName  FROM cms_domains WHERE  cms_domains.ID='".$this->domain."'");
-		if($database->rows($query) > 0) {
-			$results = $database->get($query);
-			$i = 0;
+		
+		$results = $db->get($db->query("SELECT name AS domainName FROM cms_domains WHERE cms_domains.ID='".$this->domain."'"));
+		if($results) {
 			foreach($results as $key => $value) {
-				$i++;
-				if($i%2 == 0) {
-					$this->{$key} = $value;
-				}
+				$this->{$key} = $value;
 			}
 		}
 	}
@@ -90,28 +81,26 @@ class User
 	
 	public static function authenticate($username = '', $password = '')
 	{
-		global $database;
+		global $db;
 		global $crypt;
 		
 		$password = $crypt->passwordHash($password,$username);
-		$username = mysql_real_escape_string($username);
+		$username = $db->filterVar($username);
 		
-		$query = $database->query("SELECT ID,GroupID FROM cms_user WHERE username='".$username."' AND pass ='".$password."' AND status='N' AND enabled='1' AND GroupID!='3'");
-		$results = $database->get($query);
+		$results = $db->get($db->query("SELECT ID,GroupID FROM cms_user WHERE username='".$username."' AND pass ='".$password."' AND status='N' AND enabled='1' AND GroupID!='3'"));
 		if($results)
 		{
-			$new_query = $database->query("SELECT ID FROM cms_user_groups WHERE ID='".$results['GroupID']."' AND enabled='1'");
-			$new_results = $database->get($new_query);
+			$new_results = $db->get($db->query("SELECT ID FROM cms_user_groups WHERE ID='".$results['GroupID']."' AND enabled='1'"));
 			if($new_results) {
-				$domainID=$database->get($database->query("SELECT ID, parentID FROM cms_domains WHERE name='".str_replace("www.", "", getDomain())."'"));
+				$domainID=$db->get($db->query("SELECT ID, parentID FROM cms_domains WHERE name='".str_replace("www.", "", getDomain())."'"));
 				if($domainID['parentID']!="-1") {
-					$domainID=$database->get($database->query("SELECT ID, parentID FROM cms_domains WHERE ID='".$domainID['parentID']."'"));					
+					$domainID=$db->get($db->query("SELECT ID, parentID FROM cms_domains WHERE ID='".$domainID['parentID']."'"));					
 				}
-				$num=$database->rows($database->query("SELECT ID FROM cms_domains_ids WHERE type='group' AND domainID='".$domainID['ID']."' AND elementID='".$results['GroupID']."'"));			
+				$num=$db->rows($db->query("SELECT ID FROM cms_domains_ids WHERE type='group' AND domainID='".$domainID['ID']."' AND elementID='".$results['GroupID']."'"));			
 				if($num>0) {
 					return $results['ID'];	
 				} else {
-					$num=$database->rows($database->query("SELECT ID FROM cms_domains WHERE alias='0'"));			
+					$num=$db->rows($db->query("SELECT ID FROM cms_domains WHERE alias='0'"));			
 					if($num==0 && $results['GroupID']=='1') {
 						return $results['ID'];	
 					} else {						
@@ -130,15 +119,15 @@ class User
 	}
 	
 	public static function updateVisit($id) {
-		global $database;
-		$id = mysql_real_escape_string($id);
-		$query = $database->query("UPDATE cms_user SET visit='".date("Y-m-d H:i:s")."' WHERE ID='".$id."'");
+		global $db;
+		$id = $db->filterVar($id);
+		$query = $db->query("UPDATE cms_user SET visit='".date("Y-m-d H:i:s")."' WHERE ID='".$id."'");
 	}
 	
 	public function langshort($id) {
-		global $database;
-		$id = mysql_real_escape_string($id);
-		$query = $database->get($database->query("SELECT short FROM cms_language_front WHERE ID='".$id."'"));
+		global $db;
+		$id = $db->filterVar($id);
+		$query = $db->get($db->query("SELECT short FROM cms_language_front WHERE ID='".$id."'"));
 		return $query['short'];
 	}
 }

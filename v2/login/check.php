@@ -10,10 +10,10 @@ if($allow>0) {
 	echo "ip";
 	exit();
 }
-if($_POST['token'] == $session->getFormToken())
+if($db->filter('token') == $session->getFormToken())
 {
-	$password = $_POST['password'];
-	$username = $_POST['username'];
+	$password = $db->filter('password');
+	$username = $db->filter('username');
 	if($valid->isUsername($username,1,20) && $valid->isLength($password,6,20))
 	{
 		$id = User::authenticate($username,$password);

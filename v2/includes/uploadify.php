@@ -26,7 +26,7 @@ THE SOFTWARE.
 */
 if (!empty($_FILES)) {
 	$tempFile = $_FILES['Filedata']['tmp_name'];
-	$targetPath = $_SERVER['DOCUMENT_ROOT'] .'/'. $_POST['folder'] . '/';
+	$targetPath = $_SERVER['DOCUMENT_ROOT'] .'/'. $db->filter('folder') . '/';
 	$targetFile =  str_replace('//','/',$targetPath) . $_FILES['Filedata']['name'];
 	
 	$targetFile=str_replace("/v2", "", $targetFile);

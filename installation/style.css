@@ -1,0 +1,86 @@
+body {
+	background-image: url(../v2/login/back.gif);
+	background-repeat: repeat-x;
+	background-color: #F1F7F9;
+}
+
+h1 {
+	font-size:27px;
+}
+#okvir {
+	text-align:center;
+	margin:100px auto;
+	font-size:1em;
+	width:40%;
+	padding:10px 20px;
+	background:#FFF;
+	border:3px solid #e3e3e3;
+	color:#000;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	-khtml-border-radius:20px;
+	border-radius:20px;
+}
+
+#zacni {
+	background:url(start.png) no-repeat;
+	width:147px;
+	height:41px;
+	display:block;
+	cursor:pointer;
+	margin: 0 auto;
+}
+
+#button {
+	margin-top:40px;
+	display:none;
+	float:right;
+}
+
+#content {
+	display:none;
+	width:100%;
+}
+
+#progressbar {
+	display:none;
+	width:100%;
+	height:50px;
+	text-align:left;
+	margin-bottom:30px;
+}
+
+#help {
+	display:none;
+	width:100%;
+	margin-bottom:20px;
+	font-weight:bold;
+}
+
+/*Progress bar*/
+
+.left_td {
+	width:50%;
+	text-align:right;
+	padding-right:5px;	
+}
+
+.right_td {
+	width:50%;
+	text-align:left;
+	padding-left:5px;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*jQuery UI*/
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.ui-progressbar { height:2em; text-align: left; overflow: hidden; }
+.ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
+.ui-widget-content { border: 1px solid #a6c9e2; background: #fcfdfd url(images/ui-bg_inset-hard_100_fcfdfd_1x100.png) 50% bottom repeat-x; color: #222222; }
+.ui-widget { font-family: Lucida Grande,Lucida Sans,Arial,sans-serif; font-size: 1.1em; }
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { -moz-border-radius-topleft: 5px; -webkit-border-top-left-radius: 5px; -khtml-border-top-left-radius: 5px; border-top-left-radius: 5px; }
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { -moz-border-radius-topright: 5px; -webkit-border-top-right-radius: 5px; -khtml-border-top-right-radius: 5px; border-top-right-radius: 5px; }
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { -moz-border-radius-bottomleft: 5px; -webkit-border-bottom-left-radius: 5px; -khtml-border-bottom-left-radius: 5px; border-bottom-left-radius: 5px; }
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 5px; -webkit-border-bottom-right-radius: 5px; -khtml-border-bottom-right-radius: 5px; border-bottom-right-radius: 5px; }
+.ui-widget-header { border: 1px solid #4297d7; background: #5c9ccc url(images/ui-bg_gloss-wave_55_5c9ccc_500x100.png) 50% 50% repeat-x; color: #ffffff; font-weight: bold; }

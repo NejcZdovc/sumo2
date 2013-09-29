@@ -1,6 +1,6 @@
 <?php 
 	require_once('../initialize.php');
-	if(isset($_POST['images'])) {
+	if($db->is('images')) {
 		$dir = SITE_ROOT.SITE_FOLDER.'/sumoctrl/images/';
 		$dh = opendir($dir);
 		$images = '#%#';
@@ -11,7 +11,7 @@
 		}
 		$images = str_replace('#%##','',$images);
 		echo $images;
-	} else if(isset($_POST['scripts'])) {
+	} else if($db->is('scripts')) {
 		$dir = SITE_ROOT.SITE_FOLDER.'/sumoctrl/scripts/';
 		$dh = opendir($dir);
 		$scripts = '#%#';

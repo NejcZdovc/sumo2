@@ -27,8 +27,7 @@
 		$counter = 1;
 		while($result = $db->fetch($query)) {
 			$group_id = $result['GroupID'];
-			$new_query = $db->query("SELECT title FROM cms_user_groups WHERE ID='".$group_id."' AND status='N'");
-			$new_result = $db->get($new_query);
+			$new_result = $db->get($db->query("SELECT title FROM cms_user_groups WHERE ID='".$group_id."' AND status='N'"));
 			if($new_result) {
 				if($counter&1) {
 					echo '<tr class="odd">';

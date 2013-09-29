@@ -4,8 +4,7 @@
 		exit;
 	}
 	$id = $crypt->decrypt($db->filter('id'));
-	$query = $db->query("SELECT title,description,access FROM cms_user_groups WHERE ID='".$id."'");
-	$result = $db->get($query);
+	$result = $db->get($db->query("SELECT title,description,access FROM cms_user_groups WHERE ID='".$id."'"));
 	if($result) {
 	$access = unserialize(urldecode($result['access']));
 ?>

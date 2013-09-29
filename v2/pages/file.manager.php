@@ -43,8 +43,8 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
 					  $path = $base.$subdirectory;
 					  if($subdirectory != '.' && $subdirectory != '..' && is_dir($path)) {
 						  if($root && $dirInc == 0) echo '<ul>';
-						  if(isset($_POST['path']) && $subdirectory != '_thumbs') {
-							  if($_POST['path'] == $path."/") {
+						  if($db->is('path') && $subdirectory != '_thumbs') {
+							  if($db->filter('path') == $path."/") {
 							  echo '<li class="show"><div id="'.$path.'" class="conMenu" onclick="sumo2.ftp.RefreshFileView(\''.$path.'/'.'\')">'.$subdirectory.'</div>';
 							  } else {
 						  	echo '<li><div id="'.$path.'" class="conMenu" onclick="sumo2.ftp.RefreshFileView(\''.$path.'/'.'\')">'.$subdirectory.'</div>';  
