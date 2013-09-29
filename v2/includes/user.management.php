@@ -67,7 +67,7 @@ if($db->is('type')) {
 	} else if($db->filter('type') == 'addgroup') {
 		$name = $db->filter('name');
 		$description = $db->filter('description');
-		$access = json_decode($db->filter('access');
+		$access = json_decode($db->filter('access'));
 		$groupArray = array();
 		for($i = 0;$i<count($access->access);$i++) {
 			$result = $db->get($db->query("SELECT subtitle FROM cms_favorites_def WHERE ID='".$access->access[$i]->id."'"));
