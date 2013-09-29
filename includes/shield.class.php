@@ -45,7 +45,13 @@ class Shield {
 		$file = "./ip/".$user->IP;
 		if(!file_exists($file)) {
 			if(!file_exists($file)) {
-				$json = file_get_contents("http://api.codehelper.io/ips/?php&ip=".$user->IP);
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, "http://api.codehelper.io/ips/?php&ip=".$user->IP);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				$json = curl_exec($ch);
+				curl_close($ch);
+				
 				$data = json_decode($json);
 			} else {
 				$json = file_get_contents($file);
