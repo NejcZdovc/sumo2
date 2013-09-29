@@ -6,11 +6,11 @@
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
 	}
-	if(isset($_POST['sel'])) {
-		if(strpos($_POST['sel'],'#') === false) {
-			$sel = 	$_POST['sel'];
+	if($db->is('sel')) {
+		if(strpos($db->filter('sel'),'#') === false) {
+			$sel = 	$db->filter('sel');
 		} else {
-			$temp = explode('#',$_POST['sel']);
+			$temp = explode('#',$db->filter('sel'));
 			$sel = $temp[0];
 		}
 	} else {

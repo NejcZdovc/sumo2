@@ -3,9 +3,14 @@
 		exit;
 	}
 	$file = "../logs/errorFront_".$user->domainName.".log";
-	$fh = fopen($file, 'r');
-	$data = fread($fh, filesize($file));
-	fclose($fh);
+	$data="";
+	if(is_file($file)) {
+		$fh = fopen($file, 'r');
+		$data = fread($fh, filesize($file));
+		fclose($fh);
+	} else {
+		error_log("Error log doesn't existst: errorFront_".$user->domainName.".log");
+	}
 ?>
 <div id="a_settings_error">
 <div class="sumo2-tooltip" style="float:right; margin-bottom:10px; cursor:pointer;" onclick="sumo2.sumoSettings.ErrorFront()" title="<?=$lang->SETTINGS_41?>"><div style="display:block;width:16px;height:16px;background-image:url(images/css_sprite.png);background-position:-604px -1629px;"></div></div>

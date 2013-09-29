@@ -4,15 +4,14 @@
 		exit;
 	}
 	$id = $crypt->decrypt($db->filter('id'));
-	$query = $db->query("SELECT * FROM cms_user WHERE ID='".$id."'");
-	$result = $db->get($query);
+	$query = $db->get($db->query("SELECT * FROM cms_user WHERE ID='".$id."'"));
 	if($result) {
 ?>
 <form action="" name="d_user_edit_user" method="post" class="form2">
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <input type="hidden" name="verify" value="<?php echo $db->filter('id'); ?>" />
     <?php
-		if(isset($_POST['accId'])) {
+		if($db->is('accId')) {
 			echo '<input type="hidden" name="accid" value="'.$db->filter('accId').'" />';	
 		} else {
 			echo '<input type="hidden" name="accid" value="" />';
@@ -99,10 +98,9 @@
 <tr><td height="10px" width="100%" colspan="2"></td></tr>
 <?php
 	$fieldQuery = $db->query("SELECT * FROM cms_user_fields WHERE enabled='1' AND status='N'");
-	$infoQuery = $db->query("SELECT * FROM cms_user_aditional WHERE userID='".$result['ID']."'");
-	if($db->rows($infoQuery) > 0) {
+	$infoResult = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE userID='".$result['ID']."'"));
+	if($infoResult) {
 		$found = true;
-		$infoResult = $db->get($infoQuery);
 	} else {
 		$found = false;
 	}

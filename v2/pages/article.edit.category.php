@@ -4,8 +4,7 @@
 	 	exit;
 	}
 	$id = $crypt->decrypt($db->filter('id'));
-	$query = $db->query("SELECT title,description FROM cms_article_categories WHERE ID='".$id."'");
-	$result = $db->get($query);
+	$result = $db->get($db->query("SELECT title,description FROM cms_article_categories WHERE ID='".$id."'"));
 	if($result) {
 ?>
 <form action="" name="d_article_edit_c" method="post" class="form2">

@@ -6,8 +6,8 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 }
 class Shield {
 	function __construct() {
-		global $crypt;
-		if(isset($_POST['shield'])) {
+		global $crypt, $db;
+		if($db->is('shield')) {
 			$encData = $this->findPlus($_GET['shield']);
 			$data = AESDecryptCtr($encData, "h39oyMN9cXzKT7loxCzYIUgD4uyHt9Fvccigc39GXpTjlAfkAlPegh3lnAIqJRDnAmJwc91WtwPHSs", 256);
 			$params = explode("&",$data);

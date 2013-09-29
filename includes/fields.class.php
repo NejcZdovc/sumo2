@@ -18,7 +18,7 @@ class Fields
 		  {element.className=element.className.replace('error','');}";
 		}
 		if($db->is($fieldId))
-			return '<input type="text" maxlength="'.$max.'" value="'.$db->filter($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
+			return '<input type="text" maxlength="'.$max.'" value="'.$db->filterVar($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 		else if($value!=null)
 			return '<input type="text" maxlength="'.$max.'" value="'.$value.'" name="'.$fieldId.'" id="'.$fieldId.'" />';
 		else
@@ -35,7 +35,7 @@ class Fields
 			if(!reg.test(element.value)) {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}";
 		}
 		if($db->is($fieldId))
-			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$db->filter($fieldId).'" />';
+			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$db->filterVar($fieldId).'" />';
 		else if($value!=null)
 			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$value.'" />';
 		else
@@ -48,7 +48,7 @@ class Fields
 		$this->javascript.="var element=document.getElementById('".$fieldId."'); if(element.value.length<".$min.") {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}";
 		}
 		if($db->is($fieldId))
-			return '<input type="password" value="'.$db->filter($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
+			return '<input type="password" value="'.$db->filterVar($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 		else if($value!=null) 
 			return '<input type="password" value="'.$value.'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 		else
@@ -89,7 +89,7 @@ class Fields
 		  {element.className=element.className.replace('error','');}";
 		}
 		if($db->is($fieldId))
-			return '<textarea maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'">'.$db->filter($fieldId).'"</textarea>';		
+			return '<textarea maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'">'.$db->filterVar($fieldId).'"</textarea>';		
 		else if($value!=null)
 			return '<textarea maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'">'.$value.'</textarea>';
 		else

@@ -5,11 +5,9 @@ if(!$session->isLogedIn() || !$security->checkURL()) {
  exit;
 }
 if(ob_get_length()>0) {ob_end_clean();}
-if(isset($_POST['get'])) {
-    $query = $db->query("SELECT state FROM cms_state WHERE userID='".$user->id."' LIMIT 1");
-    $num_rows = $db->rows($query);
-	if($num_rows > 0) {
-	    $result = $db->get($query);
+if($db->is('get')) {
+    $result = $db->get($db->query("SELECT state FROM cms_state WHERE userID='".$user->id."' LIMIT 1"));
+	if($result) {
 	    if($result['state'] != 'empty' && $result['state'] != '') {
 			$replaced = str_replace('##','&',$result['state']);
 			$replaced = str_replace('\"','"',$replaced);
@@ -33,13 +31,11 @@ if(isset($_POST['get'])) {
 	} else {
 		echo 'default';
 	}
-} else if(isset($_POST['update'])) {
+} else if($db->is('update')) {
     $state = $db->filter('state');
 	$state = str_replace('##$##','+',$state);
-    $query = $db->query("SELECT ID FROM cms_state WHERE userID='".$user->id."' LIMIT 1");
-	$num_rows = $db->rows($query);
-	if($num_rows > 0) {
-	    $stateResult = $db->get($query);
+    $stateResult = $db->get($db->query("SELECT ID FROM cms_state WHERE userID='".$user->id."' LIMIT 1"));
+	if($stateResult) {
 	    $db->query("UPDATE cms_state SET state='".$state."' WHERE ID='".$stateResult['ID']."'");
 	} else {
 	    $db->query("INSERT INTO cms_state (userID,state) VALUES ('".$user->id."','".$state."')");

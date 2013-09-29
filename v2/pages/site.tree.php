@@ -15,8 +15,7 @@
 	$specialSite=false;
 	if($db->is('sel_page')) {
 		$selPage = $db->filter('sel_page');
-		$selQuery = $db->query("SELECT * FROM cms_menus_items WHERE ID='".$selPage."'");
-		$selResult = $db->get($selQuery);
+		$selResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$selPage."'"));
 		if($selResult['menuID'] != -1) {
 			$langResult = $db->get($db->query("SELECT * FROM cms_menus WHERE ID='".$selResult['menuID']."'"));
 			if($langResult['lang'] == $selected_lang_menus) {
@@ -299,11 +298,11 @@
 				$links = '<div id="sumo2-sitetree-template-link" title="Template" class="sumo2-tooltip" style="background:url(/v2/images/css_sprite.png); background-position:-540px -1725px;width:16px;height:16px;cursor:pointer;float:right;margin-right:3px;"></div><div id="sumo2-sitetree-layout-link" title="Layout" class="sumo2-tooltip" style="background:url(/v2/images/css_sprite.png); background-position:-507px -1725px;width:16px;height:16px;cursor:pointer;float:right;margin-right:3px;"></div>';
 			} else {
 				$page = 'includes/site.tree.template.php?menu='.$firstNum.'&lang_sel='.$selected_lang_menus.'&temp='.$firstTmp;
-				if(isset($_POST['layout']) && $_POST['layout'] == 'no') {
+				if($db->is('layout') && $db->filter('layout') == 'no') {
 					//Do nothing
 				} else if($user->view == "L") {
 					$page .= '&layout=ok';
-				} else if(isset($_POST['layout']) && $_POST['layout'] == 'ok') {
+				} else if($db->is('layout') && $db->filter('layout') == 'ok') {
 					$page .= '&layout=ok';
 				}
 				$links = '<div id="sumo2-sitetree-template-link" title="Template" class="sumo2-tooltip" style="background:url(/v2/images/css_sprite.png); background-position:-540px -1725px;width:16px;height:16px;cursor:pointer;float:right;margin-right:3px;" onclick="sumo2.siteTree.RefreshLayout(\''.$firstNum.'\',\''.$selected_lang_menus.'\',\''.checkTemplate($firstTmp).'\',\'no\')"></div><div id="sumo2-sitetree-layout-link" class="sumo2-tooltip" title="Layout" style="background:url(/v2/images/css_sprite.png); background-position:-507px -1725px;width:16px;height:16px;cursor:pointer;float:right;margin-right:3px;" onclick="sumo2.siteTree.RefreshLayout(\''.$firstNum.'\',\''.$selected_lang_menus.'\',\''.checkTemplate($firstTmp).'\',\'ok\')"></div>';	

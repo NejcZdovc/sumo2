@@ -12,42 +12,63 @@ class User
 	function __construct($id) {
 		global $db;
 		$this->{"developer"}="0";
-		$this->IP=$_SERVER["REMOTE_ADDR"];
+		$this->IP=$this->getRealIP();
 		if($id=="-1") {
 			return;
 		}
 		
-		$id=$db->filter($id);
+		$id=$db->filterVar($id);
 		$query=$db->get($db->query('SELECT name, email, ID, visit FROM cms_user WHERE ID="'.$id.'"'));
 		$this->{'name'}=$query['name'];
 		$this->{'email'}=$query['email'];
 		$this->{'ID'}=$query['ID'];
 		$this->{'visit'}=$query['visit'];
-		$query=$db->query('SELECT developer FROM cms_user_settings WHERE UserID="'.$id.'"');
-		if($db->rows($query) > 0) {
-			$results = $db->get($query);
-			$this->{"developer"}=$results['developer'];
+		$query=$db->get($db->query('SELECT developer FROM cms_user_settings WHERE UserID="'.$id.'"'));
+		if($query) {
+			$this->{"developer"}=$query['developer'];
 		}
 		
-		$query = $db->query("SELECT * FROM cms_user_aditional WHERE UserID='".$id."'");
-		if($db->rows($query) > 0) {
-			$results = $db->get($query);
-			$i=0;
+		$results = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE UserID='".$id."'"));
+		if($results) {
 			foreach($results as $key => $value) {
-				$i++;
-				if($i%2==0 && $key!="ID" && $key!="userID" && $key!="email" && $key!="name" && $key!="visit") {
+				if($key!="ID" && $key!="userID" && $key!="email" && $key!="name" && $key!="visit") {
 					$this->{$key} = $value;
 				}
 			}
 		}
 	}
 	
+	 public function getRealIP() {
+        $ipaddress = '';
+        if(isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            $ipaddress =  $_SERVER['HTTP_CF_CONNECTING_IP'];
+        } else if (isset($_SERVER['HTTP_X_REAL_IP'])) {
+            $ipaddress = $_SERVER['HTTP_X_REAL_IP'];
+        }
+        else if (isset($_SERVER['HTTP_CLIENT_IP']))
+            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_X_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+        else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+        else if(isset($_SERVER['HTTP_FORWARDED']))
+            $ipaddress = $_SERVER['HTTP_FORWARDED'];
+        else if(isset($_SERVER['REMOTE_ADDR']))
+            $ipaddress = $_SERVER['REMOTE_ADDR'];
+        else
+            $ipaddress = 'UNKNOWN';
+
+        return $ipaddress;
+    }
+	
 	public function authenticate($username = '', $password = '')
 	{
 		global $db,$crypt, $session;
 		
 		$password = $crypt->passwordHash($password,$username);
-		$username = $db->filter($username);
+		$username = $db->filterVar($username);
 		
 		$results = $db->get($db->query("SELECT ID,GroupID FROM cms_user WHERE email='".$username."' AND pass ='".$password."' AND status='N' AND enabled='1' AND GroupID='3'"));
 		if($results)
@@ -86,7 +107,7 @@ class User
 	
 	private function updateVisit($id) {
 		global $db;
-		$id = $db->filter($id);
+		$id = $db->filterVar($id);
 		$query = $db->query("UPDATE cms_user SET visit='".date("Y-m-d H:i:s")."' WHERE ID='".$id."'");
 	}
 	

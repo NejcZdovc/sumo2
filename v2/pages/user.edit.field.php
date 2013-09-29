@@ -3,8 +3,7 @@
 		exit;
 	}
 	$id = $crypt->decrypt($db->filter('id'));
-	$query = $db->query("SELECT * FROM cms_user_fields WHERE ID='".$id."'");
-	$result = $db->get($query);
+	$query = $db->get($db->query("SELECT * FROM cms_user_fields WHERE ID='".$id."'"));
 	if($result) {
 ?>
 <form action="" name="d_user_edit_field" method="post" class="form2">

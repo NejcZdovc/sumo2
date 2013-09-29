@@ -4,12 +4,12 @@
 		exit;
 	}
 	
-	if(isset($_POST['path']) && (strpos($_POST['path'],'/storage/') !== false || strpos($_POST['path'],'/images/') !== false)) {
-		$dir=opendir($_POST['path']);
+	if($db->is('path') && (strpos($db->filter('path'),'/storage/') !== false || strpos($db->filter('path'),'/images/') !== false)) {
+		$dir=opendir($db->filter('path'));
 		$dir_array = array();
 		$file_array = array();
 		while(($file=readdir($dir)) !== false) {
-			$path = $_POST['path'].$file;
+			$path = $db->filter('path').$file;
 			if(is_file($path)) {
 				$extension = strtolower(end(explode('.',$file)));
 				$fileName = str_replace('.'.$extension,'',$file);
@@ -53,7 +53,7 @@
 			echo $file;
 		}
 	} else {
-	    echo $_POST['path'];
+	    echo $db->filter('path');
 	}
 ?>
 <div class="contextMenu" id="myMenu2" style="display:none;">

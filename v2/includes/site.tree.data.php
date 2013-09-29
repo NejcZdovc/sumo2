@@ -17,7 +17,7 @@
 				$db->query("UPDATE cms_panel_".$targetArray[1]." SET orderID='".($incResult['orderID']+1)."' WHERE ID='".$incResult['ID']."'");
 			}
 			$db->query("INSERT INTO cms_panel_".$targetArray[1]." (modulID,orderID,enabled,pageID,lang,title,prefix,table_name,domain) VALUES ('".$objResult['modulID']."','".$targetResult['orderID']."','".$objResult['enabled']."','".$objResult['pageID']."','".$objResult['lang']."','".$objResult['title']."','".$objResult['prefix']."','".$objResult['table_name']."', '".$user->domain."')");
-			$newId = mysql_insert_id();
+			$newId = $db->getLastId();
 			$db->query("UPDATE ".$objResult['table_name']." SET cms_layout='".$targetArray[1]."',cms_panel_id='".$newId."' WHERE cms_layout='".$objArray[1]."' AND cms_panel_id='".$objArray[0]."'");
 			$db->query("DELETE FROM cms_panel_".$objArray[1]." WHERE ID='".$objArray[0]."'");
 			$decQuery = $db->query("SELECT * FROM cms_panel_".$objArray[1]." WHERE orderID > ".$objResult['orderID']." AND pageID='".$objResult['pageID']."'");		
@@ -32,7 +32,7 @@
 			$objResult = $db->get($db->query("SELECT * FROM cms_panel_".$objArray[1]." WHERE ID='".$objArray[0]."'"));
 			$orderResult = $db->get($db->query("SELECT * FROM cms_panel_".$target." WHERE pageID='".$objResult['pageID']."' ORDER BY orderID DESC LIMIT 1"));
 			$db->query("INSERT INTO cms_panel_".$target." (modulID,orderID,enabled,pageID,lang,title,prefix,table_name,domain) VALUES ('".$objResult['modulID']."','".($orderResult['orderID']+1)."','".$objResult['enabled']."','".$objResult['pageID']."','".$objResult['lang']."','".$objResult['title']."','".$objResult['prefix']."','".$objResult['table_name']."', '".$user->domain."')");
-			$newId = mysql_insert_id();
+			$newId = $db->getLastId();
 			$db->query("UPDATE ".$objResult['table_name']." SET cms_layout='".$target."',cms_panel_id='".$newId."' WHERE cms_layout='".$objArray[1]."' AND cms_panel_id='".$objArray[0]."'");
 			$db->query("DELETE FROM cms_panel_".$objArray[1]." WHERE ID='".$objArray[0]."'");		
 			$decQuery = $db->query("SELECT * FROM cms_panel_".$objArray[1]." WHERE orderID > ".$objResult['orderID']." AND pageID='".$objResult['pageID']."'");		
@@ -78,7 +78,7 @@
 				$langResult = $db->get($db->query("SELECT * FROM cms_homepage WHERE ID='".$parentPageResult['link']."'"));
 			}
 			$db->query("INSERT INTO cms_panel_".$target." (modulID,orderID,enabled,pageID,lang,title,prefix,table_name, copyModul,domain) VALUES ('".$id."','".($orderResult['orderID']+1)."','1','".$currentPage."','".$langResult['lang']."','".$name."','".$prefixResult['prefix']."','".$tableResult['editTable']."', '".$currentID."', '".$user->domain."')");
-			$curId = mysql_insert_id();
+			$curId = $db->getLastId();
 			$db->query("INSERT INTO ".$tableResult['editTable']." (cms_layout,cms_panel_id,cms_group_id) VALUES ('".$target."','".$curId."','".$group_id."')");
 			if($copyModule=='0')
 				$currentID=0;
@@ -100,7 +100,7 @@
 						$langResult = $db->get($db->query("SELECT * FROM cms_homepage WHERE ID='".$parentPageResult['link']."'"));
 					}
 					$db->query("INSERT INTO cms_panel_".$target." (modulID,orderID,enabled,pageID,lang,title,prefix,table_name, copyModul,domain) VALUES ('".$id."','".($orderResult['orderID']+1)."','1','".$page."','".$langResult['lang']."','".$name."','".$prefixResult['prefix']."','".$tableResult['editTable']."', '".$currentID."', '".$user->domain."')");
-					$curId = mysql_insert_id();
+					$curId = $db->getLastId();
 					$db->query("INSERT INTO ".$tableResult['editTable']." (cms_layout,cms_panel_id,cms_group_id) VALUES ('".$target."','".$curId."','".$group_id."')");
 				}
 			}
@@ -200,9 +200,8 @@
 					$db->query("UPDATE cms_panel_".$layout." SET title='".$name."', ".$copyModul." prefix='".$prefix."' , cache='".$cache."', specialPage='".$specialPage."' WHERE ID='".$panelID."'");
 					continue;	
 				}
-				$search = $db->query("SELECT ".$modulInfo['editTable'].".ID, cms_panel_".$layout.".ID AS layoutID FROM cms_panel_".$layout.", ".$modulInfo['editTable']." WHERE cms_panel_".$layout.".pageID='".$page."' AND cms_panel_".$layout.".modulID='".$modulInfo['ID']."' AND ".$modulInfo['editTable'].".cms_group_id='".$modulResult['cms_group_id']."'  AND ".$modulInfo['editTable'].".cms_layout='".$layout."'  AND ".$modulInfo['editTable'].".cms_panel_id=cms_panel_".$layout.".ID LIMIT 1");
-				if($db->rows($search) > 0) {
-					$searchResult = $db->get($search);
+				$searchResult = $db->get($db->query("SELECT ".$modulInfo['editTable'].".ID, cms_panel_".$layout.".ID AS layoutID FROM cms_panel_".$layout.", ".$modulInfo['editTable']." WHERE cms_panel_".$layout.".pageID='".$page."' AND cms_panel_".$layout.".modulID='".$modulInfo['ID']."' AND ".$modulInfo['editTable'].".cms_group_id='".$modulResult['cms_group_id']."'  AND ".$modulInfo['editTable'].".cms_layout='".$layout."'  AND ".$modulInfo['editTable'].".cms_panel_id=cms_panel_".$layout.".ID LIMIT 1"));
+				if($searchResult) {
 					$setString = '';
 					$first = true;
 					foreach($columnNames as $column) {

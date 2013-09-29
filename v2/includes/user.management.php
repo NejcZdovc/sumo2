@@ -4,9 +4,9 @@
 	 exit;
 	}
 	
-if(isset($_POST['type'])) {
+if($db->is('type')) {
 	if(ob_get_length()>0) {ob_end_clean();}
-	if($_POST['type'] == 'add') {
+	if($db->filter('type') == 'add') {
 		$name = $db->filter('name');
 		$password = $db->filter('password');
 		$email = $db->filter('email');
@@ -35,12 +35,12 @@ if(isset($_POST['type'])) {
 			echo 'group';
 			exit;
 		}
-		$filName = mysql_escape_string($name);
-		$filUsername = mysql_escape_string($username);
+		$filName = $db->filterVar($name);
+		$filUsername = $db->filterVar($username);
 		$filPass = $crypt->passwordHash($password,$username);
-		$filEmail = mysql_escape_string($email);
+		$filEmail = $db->filterVar($email);
 		$db->query("INSERT INTO cms_user (username,pass,email,GroupID,name) VALUES ('".$filUsername."','".$filPass."','".$filEmail."','".$group."','".$filName."')");
-		$last_insert=mysql_insert_id();
+		$last_insert=$db->getLastId();
 		$db->query("INSERT INTO cms_favorites (UserID,option1,option2,option3) VALUES ('".$last_insert."','3','8','11')");
 		$db->query("INSERT INTO cms_state (userID, state) VALUES ('".$last_insert."', 'empty')");
 		$db->query("INSERT INTO cms_user_settings (userID,lang) VALUES ('".$last_insert."','1')");		
@@ -51,11 +51,11 @@ if(isset($_POST['type'])) {
 			if(strpos($key,"_e_x_t_r_a") > -1) {
 				if($first) {
 					$extraInfoValues .= str_replace("_e_x_t_r_a","",$key);
-					$extraInfo .= "'".mysql_escape_string($value)."'";
+					$extraInfo .= "'".$db->filterVar($value)."'";
 					$first = false;
 				} else {
 					$extraInfoValues .= ','.str_replace("_e_x_t_r_a","",$key);
-					$extraInfo .= ",'".mysql_escape_string($value)."'";
+					$extraInfo .= ",'".$db->filterVar($value)."'";
 				}
 			}
 		}
@@ -64,10 +64,10 @@ if(isset($_POST['type'])) {
 		}		
 		echo 'ok';
 		exit;
-	} else if($_POST['type'] == 'addgroup') {
+	} else if($db->filter('type') == 'addgroup') {
 		$name = $db->filter('name');
 		$description = $db->filter('description');
-		$access = json_decode($_POST['access']);
+		$access = json_decode($db->filter('access'));
 		$groupArray = array();
 		for($i = 0;$i<count($access->access);$i++) {
 			$result = $db->get($db->query("SELECT subtitle FROM cms_favorites_def WHERE ID='".$access->access[$i]->id."'"));
@@ -84,8 +84,8 @@ if(isset($_POST['type'])) {
 		}
 		echo 'ok';
 		exit;
-	} else if($_POST['type'] == 'status') {
-		$id = $crypt->decrypt($_POST['id']);
+	} else if($db->filter('type') == 'status') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$result = $db->get($db->query("SELECT enabled FROM cms_user WHERE ID='".$id."'"));
 		if($result) {
 			if($result['enabled'] == 0) {
@@ -97,8 +97,8 @@ if(isset($_POST['type'])) {
 			echo 'Finished';
 			exit;
 		}
-	}else if($_POST['type'] == 'statusgroup') {
-		$id = $crypt->decrypt($_POST['id']);
+	}else if($db->filter('type') == 'statusgroup') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$result = $db->get($db->query("SELECT enabled FROM cms_user_groups WHERE ID='".$id."'"));
 		if($result) {
 			if($result['enabled'] == 0) {
@@ -110,21 +110,21 @@ if(isset($_POST['type'])) {
 			echo 'Finished';
 			exit;
 		}
-	} else if($_POST['type'] == 'deletegroup') {
-		$id = $crypt->decrypt($_POST['id']);
+	} else if($db->filter('type') == 'deletegroup') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$db->query("UPDATE cms_user_groups SET status='D' WHERE ID='".$id."'");
 		echo 'Finished';
 		exit;
-	} else if($_POST['type'] == 'delete') {
-		$id = $crypt->decrypt($_POST['id']);
+	} else if($db->filter('type') == 'delete') {
+		$id = $crypt->decrypt($db->filter('id'));
 		$db->query("UPDATE cms_user SET status='D' WHERE ID='".$id."'");
 		echo 'Finished';
 		exit;
-	} else if($_POST['type'] == 'editgroup') {
+	} else if($db->filter('type') == 'editgroup') {
 		$name = $db->filter('name');
 		$description = $db->filter('description');
 		$id = $crypt->decrypt($db->filter('id'));
-		$access = json_decode($_POST['access']);
+		$access = json_decode($db->filter('access'));
 		$groupArray = array();
 		for($i = 0;$i<count($access->access);$i++) {
 			$result = $db->get($db->query("SELECT subtitle FROM cms_favorites_def WHERE ID='".$access->access[$i]->id."'"));
@@ -141,7 +141,7 @@ if(isset($_POST['type'])) {
 		}
 		echo 'ok';
 		exit;
-	} else if($_POST['type'] == 'edit') {
+	} else if($db->filter('type') == 'edit') {
 		if($db->is('newpassword')) {
 			$newpassword = $db->filter('newpassword');
 			$id = $crypt->decrypt($db->filter('id'));
@@ -159,8 +159,8 @@ if(isset($_POST['type'])) {
 					echo 'group';
 					exit;
 				}
-				$filName = mysql_escape_string($name);
-				$filEmail = mysql_escape_string($email);
+				$filName = $db->filterVar($name);
+				$filEmail = $db->filterVar($email);
 				$filPass = $crypt->passwordHash($newpassword,$result['username']);
 				$db->query("UPDATE cms_user SET pass='".$filPass."',email='".$filEmail."',GroupID='".$group."',name='".$filName."' WHERE ID='".$id."'");
 			} else {
@@ -168,32 +168,29 @@ if(isset($_POST['type'])) {
 				exit;
 			}
 		} else {
-			$name = $_POST['name'];
-			$email = $_POST['email'];
-			$group = $_POST['group'];
+			$group = $db->filter('group');
 			$id = $crypt->decrypt($db->filter('id'));
 			if(!$valid->isNumber($group)) {
 				echo 'group';
 				exit;
 			}
-			$filName = mysql_escape_string($name);
-			$filEmail = mysql_escape_string($email);
+			
+			$filName = $db->filter('name');
+			$filEmail = $db->filter('email');
 			$db->query("UPDATE cms_user SET email='".$filEmail."',GroupID='".$group."',name='".$filName."' WHERE ID='".$id."'");
 		}
 		
-		$checkQuery = $db->query("SELECT * FROM cms_user_aditional WHERE userID='".$id."'");			
-		$check = $db->rows($checkQuery);
-		if($check > 0) {
-			$checkResult = $db->get($checkQuery);
+		$checkResult = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE userID='".$id."'"));			
+		if($checkResult) {
 			$extraInfo = '';
 			$first = true;
 			foreach($_POST as $key => $value) {
 				if(strpos($key,"_e_x_t_r_a") > -1) {
 					if($first) {
-						$extraInfo .= str_replace("_e_x_t_r_a","",$key)."='".mysql_escape_string($value)."'";
+						$extraInfo .= str_replace("_e_x_t_r_a","",$key)."='".$db->filterVar($value)."'";
 						$first = false;
 					} else {
-						$extraInfo .= ",".str_replace("_e_x_t_r_a","",$key)."='".mysql_escape_string($value)."'";
+						$extraInfo .= ",".str_replace("_e_x_t_r_a","",$key)."='".$db->filterVar($value)."'";
 					}
 				}
 			}
@@ -208,11 +205,11 @@ if(isset($_POST['type'])) {
 				if(strpos($key,"_e_x_t_r_a") > -1) {
 					if($first) {
 						$extraInfoValues .= str_replace("_e_x_t_r_a","",$key);
-						$extraInfo .= "'".mysql_escape_string($value)."'";
+						$extraInfo .= "'".$db->filterVar($value)."'";
 						$first = false;
 					} else {
 						$extraInfoValues .= ','.str_replace("_e_x_t_r_a","",$key);
-						$extraInfo .= ",'".mysql_escape_string($value)."'";
+						$extraInfo .= ",'".$db->filterVar($value)."'";
 					}
 				}
 			}

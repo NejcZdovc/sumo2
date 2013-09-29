@@ -98,16 +98,16 @@ class Module {
     public function registerModule($name, $id, $edit = true, $componentId = null, $version=null) {
         global $db, $lang;
         if($this->success === true) {
-            $fId = 'mod_'.mysql_escape_string($id);
-			if(mysql_escape_string($edit)==false) {
+            $fId = 'mod_'.$db->filterVar($id);
+			if($db->filterVar($edit)==false) {
 				$fEdit = '';
 				$dataEdit="";
 			} else {
-            	$fEdit = 'mod_'.mysql_escape_string($id).'_edit';
+            	$fEdit = 'mod_'.$db->filterVar($id).'_edit';
 				$dataEdit=" OR editName='".$fEdit."'";
 			}
-            $fName = mysql_escape_string($name);
-            $fComponent = mysql_escape_string($componentId);
+            $fName = $db->filterVar($name);
+            $fComponent = $db->filterVar($componentId);
             $this->moduleEdit = $fEdit;
             $this->moduleID = $fId;
             $this->moduleName = $fName;
@@ -150,8 +150,8 @@ class Module {
                 }
             }
 			if($this->moduleInsertID != 0) {
-				if(mysql_escape_string($edit)==false)
-					$this->addEditTableWithOut(mysql_escape_string($id));
+				if($db->filterVar($edit)==false)
+					$this->addEditTableWithOut($db->filterVar($id));
             }		
         }
     }
@@ -159,8 +159,8 @@ class Module {
     public function registerComponent($id, $name, $version=null) {
         global $db, $lang;
         if($this->success === true) {
-            $fId = 'com_'.mysql_escape_string($id);
-            $fName = mysql_escape_string($name);
+            $fId = 'com_'.$db->filterVar($id);
+            $fName = $db->filterVar($name);
             $this->componentID = $fId;
             $this->componentName = $fName;
             $rows = $db->rows($db->query("SELECT * FROM cms_components_def WHERE componentName='".$fId."'"));
@@ -185,17 +185,17 @@ class Module {
     public function addSpecialPage($title, $id, $keyword = null, $description = null) {
     	global $db, $lang;
     	if($this->success === true) {
-    		$fTitle = mysql_escape_string($title);
-    		$fId = mysql_escape_string($id);
+    		$fTitle = $db->filterVar($title);
+    		$fId = $db->filterVar($id);
     		if($keyword == null) {
     			$fKeyword = '';
     		} else {
-    			$fKeyword = mysql_escape_string($keyword);
+    			$fKeyword = $db->filterVar($keyword);
     		}
     		if($description == null) {
     			$fDescription = '';
     		} else {
-    			$fDescription = mysql_escape_string($description);
+    			$fDescription = $db->filterVar($description);
     		}
     		if($this->moduleInsertID != 0) {
     			$rows = $db->rows($db->query("SELECT * FROM cms_menus_items WHERE link='".$fId."'"));
@@ -226,10 +226,10 @@ class Module {
 	public function addSubFavorites($main, $sub, $image, $link) {
 		global $db, $lang;
 		if($this->success === true) {
-			$fMain = mysql_escape_string($main);
-			$fSub = mysql_escape_string($sub);
-			$fImage = mysql_escape_string($image);
-			$fLink = mysql_escape_string($link);
+			$fMain = $db->filterVar($main);
+			$fSub = $db->filterVar($sub);
+			$fImage = $db->filterVar($image);
+			$fLink = $db->filterVar($link);
 			if($this->componentInsertID != 0) {
 				$rows = $db->rows($db->query("SELECT * FROM cms_favorites_def WHERE title='".$fMain."' AND subtitle='".$fSub."'"));
 				if($rows > 0) {
@@ -262,8 +262,8 @@ class Module {
         global $db, $lang;
         if($this->success === true) {
             if($this->moduleInsertID != 0 || $this->componentInsertID !=0) {
-                $fLink = 'mod_'.mysql_escape_string($link);
-                $fType = mysql_escape_string($type);
+                $fLink = 'mod_'.$db->filterVar($link);
+                $fType = $db->filterVar($type);
                 $rows = $db->rows($db->query("SELECT * FROM includes WHERE link='".$fLink."' AND modulID='".$this->moduleInsertID."'"));
                 if($rows > 0) {
                     $this->success = false;
@@ -288,8 +288,8 @@ class Module {
 	global $db, $lang;
         if($this->success === true) {
             if($this->moduleInsertID != 0 || $this->componentInsertID != 0) {
-                $fLink = 'mod_'.mysql_escape_string($link);
-                $fType = mysql_escape_string($type);
+                $fLink = 'mod_'.$db->filterVar($link);
+                $fType = $db->filterVar($type);
 				$trueFile = str_replace($this->moduleID.'/','',$fLink);
 				if(is_file('../temp/'.$this->number.'/files-f/'.$trueFile)) {
 					$fMd5 = md5_file('../temp/'.$this->number.'/files-f/'.$trueFile);
@@ -323,7 +323,7 @@ class Module {
     public function addTable($tableName, $tableStructure) {
         global $db,$lang;
         if($this->success === true) {
-            $fName = mysql_escape_string($tableName);
+            $fName = $db->filterVar($tableName);
             $rows = $db->rows($db->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE table_name='".$fName."' AND table_schema='".DB_DATABASE."'"));
             if($rows > 0) {
                 $this->success = false;
@@ -346,7 +346,7 @@ class Module {
 	public function addTableInsert($tableName, $query) {
 		global $db, $lang;
 		if($this->success === true) {
-			$fName = mysql_escape_string($tableName);
+			$fName = $db->filterVar($tableName);
 			$rows = $db->rows($db->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE table_name='".$fName."' AND table_schema='".DB_DATABASE."'"));
 			if($rows == 0) {
 				$this->success = false;
@@ -354,9 +354,9 @@ class Module {
 				return;
 			}		
 			$db->query($query);
-			if (mysql_errno()) {
+			if ($db->isError()) {
 				$this->success = false;
-				$this->error[] = $lang->MOD_167.': '.mysql_error();
+				$this->error[] = $lang->MOD_167.': '.$db->error();
 			}
 		}
 	}
@@ -365,8 +365,8 @@ class Module {
         global $db, $lang;
         if($this->success === true) {
             if($this->moduleInsertID != 0) {
-                $fName = 'mod_'.mysql_escape_string($tableName);
-                $fStructure = mysql_escape_string($tableStructure);
+                $fName = 'mod_'.$db->filterVar($tableName);
+                $fStructure = $db->filterVar($tableStructure);
                 $rows = $db->rows($db->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME='".$fName."'"));
                 if($rows > 0) {
                     $this->success = false;
@@ -399,7 +399,7 @@ class Module {
         global $db, $lang;
         if($this->success === true) {
             if($this->moduleInsertID != 0) {
-                $fName = 'mod_'.mysql_escape_string($tableName);
+                $fName = 'mod_'.$db->filterVar($tableName);
 				$tableStructure = 'ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT ,cms_group_id INT(11) NOT NULL, cms_panel_id INT(11) NOT NULL, cms_layout VARCHAR(200) NOT NULL, cms_enabled TINYINT(1) NOT NULL DEFAULT 1';
 				$queryString = 'CREATE TABLE IF NOT EXISTS '.$fName.' ('.$tableStructure.')';
 				$result = $db->query($queryString);

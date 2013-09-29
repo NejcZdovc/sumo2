@@ -208,7 +208,7 @@ sumo2.user = {
 		var required = this.GetRadio(document.d_user_add_field.required);
 		var min = document.d_user_add_field.min.value;
 		var max = document.d_user_add_field.max.value;
-		if(!sumo2.validate.IsAlphaNumerical(fieldName,3,40)) {
+		if(!sumo2.validate.IsLength(fieldName,2,60)) {
 			problem += sumo2.language.VARIABLES.MOD_63;
 		}
 		if(!sumo2.validate.IsAlphaNumerical(name,3,40)) {
@@ -283,7 +283,7 @@ sumo2.user = {
 			var min = document.d_user_edit_field.min.value;
 			var max = document.d_user_edit_field.max.value;
 		}
-		if(!sumo2.validate.IsAlphaNumerical(fieldName,3,40)) {
+		if(!sumo2.validate.IsLength(fieldName,2,60)) {
 			problem += sumo2.language.VARIABLES.MOD_63;
 		}
 		if(!sumo2.validate.IsAlphaNumerical(name,3,20)) {

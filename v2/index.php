@@ -74,7 +74,7 @@ $langDomainAuth = $user->checkLang();
                     <div class="domain-hover hide" id="sumo2-domain-wrapper">
                         <div class="lang-top"></div>
                         <div class="lang-middle" id="sumo2-domain-text">
-                        	<? $query = $db->query("SELECT domain.ID, domain.name FROM cms_domains as domain, cms_domains_ids as ids WHERE domain.alias='0' AND domain.ID=ids.domainID AND ids.type='group' AND ids.elementID='".$user->groupID."'");
+                        	<? $query = $db->query("SELECT domain.ID, domain.name FROM cms_domains as domain, cms_domains_ids as ids WHERE domain.alias='0' AND domain.ID=ids.domainID AND ids.type='group' AND ids.elementID='".$user->groupID."' ORDER BY domain.name ASC");
 							while($result = $db->fetch($query)) {
 								($user->domain==$result['ID'])?$temp='itemb':$temp='item';
 								if(strlen($result['name'])>15) {

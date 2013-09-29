@@ -23,8 +23,7 @@
                         echo '<tr class="even">';
                     }
 					$group_id = $result['GroupID'];
-					$new_query = $db->query("SELECT title FROM cms_user_groups WHERE ID='".$group_id."' AND status='N'");
-					$new_result = $db->get($new_query);
+					$new_result = $db->get($db->query("SELECT title FROM cms_user_groups WHERE ID='".$group_id."' AND status='N'"));
                     ?>
                     	<td><input type="checkbox" name="a_trash_user_check" value="<?php echo $crypt->encrypt($result['ID']); ?>" /></td>
                         <td><?php echo $result['name'];?></td>

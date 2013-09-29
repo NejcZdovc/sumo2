@@ -1,6 +1,5 @@
 <?php 
-	$query = $db->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$user->id."'");
-	$result = $db->get($query);
+	$result = $db->get($db->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$user->id."'"));
 	if($result) {
 ?>
 <form action="" name="a_settings_user" method="post" class="form2">

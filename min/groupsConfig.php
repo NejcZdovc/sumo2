@@ -18,7 +18,7 @@ include_once('../includes/xml.class.php');
 include_once('../includes/cryptography.class.php');
 
 ini_set('log_errors',1);
-ini_set('error_log','../v2/logs/errorFront.log');
+ini_set('error_log','../v2/logs/errorFront_'.str_replace("www.", "", $_SERVER['HTTP_HOST']).'.log');
 
 function getJs() {
 	global $db,$globals,$xml;
@@ -26,7 +26,7 @@ function getJs() {
 	$files[] = '//includes/converter.js';
 	
 	//template
-	if(isset($_GET['a'])) {
+	if($db->is('a')) {
 		$name=$db->filter('a');
 		$xmlParse = $xml->getSpecialArray(SITE_ROOT.SITE_FOLDER.DS.'templates/'.$globals->domainName.'/'.$name.'/settings.xml');
 		foreach($xmlParse as $element) {
@@ -40,8 +40,18 @@ function getJs() {
 		}	
 	}
 	
+	$modules=explode("-", $db->filter('b'));
+	
+	$sql="";
+	foreach($modules as $module) {
+		$sql.="cms_group_includes.modulID='".$module."' OR ";
+	}
+	if(strlen($sql)>0) {
+		$sql="AND (".substr($sql, 0, -3).")";
+	}
+	
 	//groupinclude
-	$query = $db->query("SELECT link FROM cms_group_includes, cms_domains_ids WHERE cms_group_includes.type='javascript' AND cms_domains_ids.domainID='".$globals->domainID."' AND cms_group_includes.modulID=cms_domains_ids.elementID AND cms_domains_ids.type='mod' GROUP BY cms_group_includes.md5");
+	$query = $db->query("SELECT link FROM cms_group_includes, cms_domains_ids WHERE cms_group_includes.type='javascript' AND cms_domains_ids.domainID='".$globals->domainID."' AND cms_group_includes.modulID=cms_domains_ids.elementID AND cms_domains_ids.type='mod' ".$sql." GROUP BY cms_group_includes.md5");
 	while($result = $db->fetch($query)) {
 		if(file_exists('../modules/'.$globals->domainName.'/'.$result['link'])) {
 			$files[] = '//'.SITE_FOLDER.'modules/'.$globals->domainName.'/'.$result['link'];	
@@ -50,8 +60,7 @@ function getJs() {
 		}
 	}
 	
-	//modeules
-	$modules=explode("-", $db->filter('b'));
+	//modeules	
 	$sql="";
 	foreach($modules as $module) {
 		$sql.="includes.modulID='".$module."' OR ";
@@ -76,7 +85,7 @@ function getCss() {
 	global $db,$globals,$xml;
 	$files = array();
 	//template
-	if(isset($_GET['a'])) {
+	if($db->is('a')) {
 		$name=$db->filter('a');
 		$xmlParse = $xml->getSpecialArray(SITE_ROOT.SITE_FOLDER.DS.'templates/'.$globals->domainName.'/'.$name.'/settings.xml');
 		foreach($xmlParse as $element) {
@@ -91,7 +100,16 @@ function getCss() {
 	}
 	
 	//group include
-	$query = $db->query("SELECT DISTINCT cms_group_includes.md5, cms_group_includes.link FROM cms_group_includes, cms_domains_ids WHERE cms_group_includes.type='css' AND cms_domains_ids.domainID='".$globals->domainID."' AND cms_group_includes.modulID=cms_domains_ids.elementID AND cms_domains_ids.type='mod'");
+	$modules=explode("-", $db->filter('b'));
+	$sql="";
+	foreach($modules as $module) {
+		$sql.="cms_group_includes.modulID='".$module."' OR ";
+	}
+	if(strlen($sql)>0) {
+		$sql="AND (".substr($sql, 0, -3).")";
+	}	
+	
+	$query = $db->query("SELECT DISTINCT cms_group_includes.md5, cms_group_includes.link FROM cms_group_includes, cms_domains_ids WHERE cms_group_includes.type='css' AND cms_domains_ids.domainID='".$globals->domainID."' AND cms_group_includes.modulID=cms_domains_ids.elementID AND cms_domains_ids.type='mod' ".$sql."");
 	while($result = $db->fetch($query)) {
 		if(file_exists('../modules/'.$globals->domainName.'/'.$result['link'])) {
 			$files[] = '//'.SITE_FOLDER.'modules/'.$globals->domainName.'/'.$result['link'];
@@ -101,8 +119,7 @@ function getCss() {
 
 	}
 	
-	//modules
-	$modules=explode("-", $db->filter('b'));
+	//modules	
 	$sql="";
 	foreach($modules as $module) {
 		$sql.="includes.modulID='".$module."' OR ";

@@ -54,8 +54,7 @@ $shortLayout = $db->filter('layout');
 		$counter = 0;
 		$int = 0;
 		$tpage = $query['pageID'];
-		$tempQuery = $db->query("SELECT * FROM cms_menus_items WHERE ID='".$tpage."'");
-		$tempResult = $db->get($tempQuery);
+		$tempResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$tpage."'"));
 		if($tempResult['parentID'] == -1 && $tempResult['orderID'] == -1 && $tempResult['selection']!="4") {
 			$infoResults = $db->get($db->query("SELECT * FROM cms_homepage WHERE ID='".$tempResult['link']."'"));
 			$tempResult['template'] = $infoResults['template'];

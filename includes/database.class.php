@@ -10,14 +10,6 @@ class Database
 {
 	private $connection;
 	
-	private $server = DB_SERVER;
-	
-	private $user = DB_USER;
-	
-	private $pass = DB_PASSWORD;
-	
-	private $database = DB_DATABASE;
-	
 	private $last_query;
 	
 	function __construct()
@@ -27,64 +19,77 @@ class Database
 	
 	public function open_connection()
 	{
-		$this->connection = mysql_connect($this->server,$this->user,$this->pass);
-		if(!$this->connection)
+		$this->connection = new mysqli(__DB_SERVER__, __DB_USER__, __DB_PASSWORD__, __DB_DATABASE__);
+		if($this->connection->connect_errno)
 		{
-			error_log(ERR_DB_CON.': '.mysql_error());
-		}
-		else
-		{
-			$db_select = mysql_select_db($this->database, $this->connection);
-			if(!$db_select)
-			{
-				error_log(ERR_DB_SEL.': '.mysql_error());
-			}
-		}
+			error_log(ERR_DB_CON.': '.$this->connection->error);
+		}		
+		$this->connection->set_charset(__ENCODING__);
 	}
 	
 	public function close_connection()
 	{
 		if(isset($this->connection))
 		{
-			mysql_close($this->connection);
+			$this->connection->close();
 			unset($this->connection);
+		}
+	}
+	
+	public function free()
+	{
+		if(isset($this->connection))
+		{
+			$this->connection->close();
 		}
 	}
 	
 	public function query($sql)
 	{
 		$this->last_query = $sql;
-		$result = mysql_query($sql,$this->connection);
+		$result = $this->connection->query($sql);
 		if(!$result)
 		{
-			error_log(ERR_DB_QRY.': '.mysql_error().' '.ERR_QUERY.': '.$this->last_query);
+			error_log(ERR_DB_QRY.': '.$this->connection->error.' '.ERR_QUERY.': '.$sql);
 		}
 		return $result;
 	}
 	
 	public function getLastId() {
-		return mysql_insert_id($this->connection);
+		return $this->connection->insert_id;
 	}
 	
 	public function fetch($result_set)
 	{
-		return str_replace('$!$','&',mysql_fetch_array($result_set));	
+		if(is_object($result_set)) {
+			return str_replace('$!$','&', $result_set->fetch_assoc());	
+		} else {
+			return false;
+		}
 	}
 	
 	public function rows($result_set)
 	{
-		return mysql_num_rows($result_set);
+		if(is_object($result_set)) {
+			return $result_set->num_rows;
+		} else {
+			return false;
+		}
 	}
 	
 	public function get($result_set)
 	{
-		if($this->rows($result_set) > 0)
-		{
-			return $this->fetch($result_set);	
-		}
-		else
-		{
-			return false;	
+		if(is_object($result_set)) {
+			if($result_set->num_rows > 0)
+			{
+				return $result_set->fetch_assoc();	
+			}
+			else
+			{
+				return false;	
+			}
+		} else {
+			return false;
 		}
 	}
 	
@@ -97,27 +102,29 @@ class Database
 		else if(isset($_GET[$variable]))
 		{
 			$variable = $_GET[$variable];
-		}	
+		} else {
+			return "";
+		}
 		if(is_array($variable)) {
 			$postArray = array();
 			foreach($variable as $item){
-				array_push($postArray, mysql_real_escape_string($item));
+				array_push($postArray, $this->connection->real_escape_string($item));
 			}
 			return $postArray;
 		} else
-			return mysql_real_escape_string($variable);
+			return $this->connection->real_escape_string($variable);
 	}
 	
-	public function filterVariable($variable)
+	public function filterVar($variable)
 	{	
 		if(is_array($variable)) {
 			$postArray = array();
 			foreach($variable as $item){
-				array_push($postArray, mysql_real_escape_string($item));
+				array_push($postArray, $this->connection->real_escape_string($item));
 			}
 			return $postArray;
 		} else
-			return mysql_real_escape_string($variable);	
+			return $this->connection->real_escape_string($variable);	
 	}
 	
 	public function is($variable) 
@@ -131,7 +138,5 @@ class Database
 	}
 }
 
-$database = new Database();
-$db =& $database;
-
+$db = new Database();
 ?>

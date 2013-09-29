@@ -26,8 +26,7 @@
 		$counter = 1;
 		while($result = $db->fetch($query)) {
 			$group_id = $result['GroupID'];
-			$new_query = $db->query("SELECT title FROM cms_user_groups WHERE ID='".$group_id."' AND status='N'");
-			$new_result = $db->get($new_query);
+			$new_result = $db->get($db->query("SELECT title FROM cms_user_groups WHERE ID='".$group_id."' AND status='N'"));
 			if($new_result) {
 				if($counter&1) {
 					echo '<tr class="odd">';
@@ -53,10 +52,8 @@
 				<tr id="sumo2-user-row-<?php echo $rowEncryption; ?>" style="display:none;">
 					<td colspan="7">
 						<?php
-							$addQuery = $db->query("SELECT * FROM cms_user_aditional WHERE userID='".$result['ID']."'");
-							$exists = $db->rows($addQuery);
-							if($exists > 0) {
-								$addInfo = $db->get($addQuery);
+							$addInfo = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE userID='".$result['ID']."'"));
+							if($addInfo) {
 								$fieldQuery = $db->query("SELECT * FROM cms_user_fields WHERE enabled='1' AND status='N'");
 								echo '<table border="0" cellpadding="0" cellspacing="1" width="100%">';
 								while($fieldResult = $db->fetch($fieldQuery)) {

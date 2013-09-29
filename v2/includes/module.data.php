@@ -4,7 +4,7 @@ if(!$session->isLogedIn() || !$security->checkURL()) {
  exit;
 }
 if(ob_get_length()>0) { ob_end_clean(); }
-if($_POST['type'] == 'install') {
+if($db->filter('type') == 'install') {
 	include('../essentials/module.class.php');
 	if(($return = $module->checkSystem()) === true) { 
 		$module->number = $db->filter('number');
@@ -220,18 +220,18 @@ if($_POST['type'] == 'install') {
 		echo 'PERM'.$output;
 		exit;
 	}
-} else if($_POST['type'] == 'editdata') {
-	$id = $crypt->decrypt($_POST['id']);
+} else if($db->filter('type') == 'editdata') {
+	$id = $crypt->decrypt($db->filter('id'));
 	$result = $db->get($db->query("SELECT name FROM cms_modules_def WHERE ID='".$id."'"));
 	echo $result['name'];
 	exit;
-} else if($_POST['type'] == 'delete') {
-	$id = $crypt->decrypt($_POST['id']);
+} else if($db->filter('type') == 'delete') {
+	$id = $crypt->decrypt($db->filter('id'));
 	$db->query("UPDATE cms_modules_def SET status='D' WHERE ID='".$id."'");
 	echo 'ok';
 	exit;
-} else if($_POST['type'] == 'deleteC') {
-	$id = $crypt->decrypt($_POST['id']);
+} else if($db->filter('type') == 'deleteC') {
+	$id = $crypt->decrypt($db->filter('id'));
 	$db->query("UPDATE cms_components_def SET status='D' WHERE ID='".$id."'");
 	$query=$db->query('SELECT ID FROM cms_favorites_def WHERE comID="'.$id.'"');
 	while($result=$db->fetch($query)) {
@@ -239,7 +239,7 @@ if($_POST['type'] == 'install') {
 	}
 	echo 'ok';
 	exit;
-} else if($_POST['type'] == 'cache') {	 
+} else if($db->filter('type') == 'cache') {	 
 	 if($db->is('folder')) {
 		Clear($db->filter('folder'));
 		Clear($db->filter('folder'), 'default');
@@ -248,7 +248,7 @@ if($_POST['type'] == 'install') {
 	 else
 	 	echo 'no';
 	exit;
-}else if($_POST['type'] == 'clearCache') {
+}else if($db->filter('type') == 'clearCache') {
 	if($crypt->decrypt($db->filter('folder'))=='All') {
 		$query = $db->query("SELECT ID, moduleName FROM cms_modules_def WHERE status='N' ORDER BY ID asc");
 		while($result = $db->fetch($query)) {
@@ -264,7 +264,7 @@ if($_POST['type'] == 'install') {
 	}
 	echo 'ok';
 	exit;
-} else if($_POST['type'] == 'changeDomain') {
+} else if($db->filter('type') == 'changeDomain') {
 	$id=$crypt->decrypt($db->filter('id'));
 	$domains=explode('*/*', $db->filter('domain'));	
 	//delete existisng

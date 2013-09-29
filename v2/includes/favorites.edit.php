@@ -9,53 +9,53 @@
 	} else {
 		$user = new User($session->getId()); 
 	}
-	if($valid->isNumber($_POST['o1'])) {
-		$o1 = $_POST['o1'];
+	if($valid->isNumber($db->filter('o1'))) {
+		$o1 = $db->filter('o1');
 	} else {
 		$o1 = 0;
 	}
-	if($valid->isNumber($_POST['o2'])) {
-		$o2 = $_POST['o2'];
+	if($valid->isNumber($db->filter('o2'))) {
+		$o2 = $db->filter('o2');
 	} else {
 		$o2 = 0;
 	}
-	if($valid->isNumber($_POST['o3'])) {
-		$o3 = $_POST['o3'];
+	if($valid->isNumber($db->filter('o3'))) {
+		$o3 = $db->filter('o3');
 	} else {
 		$o3 = 0;
 	}
-	if($valid->isNumber($_POST['o4'])) {
-		$o4 = $_POST['o4'];
+	if($valid->isNumber($db->filter('o4'))) {
+		$o4 = $db->filter('o4');
 	} else {
 		$o4 = 0;
 	}
-	if($valid->isNumber($_POST['o5'])) {
-		$o5 = $_POST['o5'];
+	if($valid->isNumber($db->filter('o5'))) {
+		$o5 = $db->filter('o5');
 	} else {
 		$o5 = 0;
 	}
-	if($valid->isNumber($_POST['o6'])) {
-		$o6 = $_POST['o6'];
+	if($valid->isNumber($db->filter('o6'))) {
+		$o6 = $db->filter('o6');
 	} else {
 		$o6 = 0;
 	}
-	if($valid->isNumber($_POST['o7'])) {
-		$o7 = $_POST['o7'];
+	if($valid->isNumber($db->filter('o7'))) {
+		$o7 = $db->filter('o7');
 	} else {
 		$o7 = 0;
 	}
-	if($valid->isNumber($_POST['o8'])) {
-		$o8 = $_POST['o8'];
+	if($valid->isNumber($db->filter('o8'))) {
+		$o8 = $db->filter('o8');
 	} else {
 		$o8 = 0;
 	}
-	if($valid->isNumber($_POST['o9'])) {
-		$o9 = $_POST['o9'];
+	if($valid->isNumber($db->filter('o9'))) {
+		$o9 = $db->filter('o9');
 	} else {
 		$o9 = 0;
 	}
-	if($valid->isNumber($_POST['o10'])) {
-		$o10 = $_POST['o10'];
+	if($valid->isNumber($db->filter('o10'))) {
+		$o10 = $db->filter('o10');
 	} else {
 		$o10 = 0;
 	}

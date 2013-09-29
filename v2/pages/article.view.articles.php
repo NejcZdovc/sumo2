@@ -4,11 +4,11 @@
 	}
 	$accordion_id='a_article_view_a';
 	$selected_lang_cat=1;
-	if(isset($_POST['lang_art']))
+	if($db->is('lang_art'))
 		$selected_lang_cat=$db->filter('lang_art');
 	else
 		$selected_lang_cat=$user->translate_lang;
-	if(isset($_POST['cat_id'])) {
+	if($db->is('cat_id')) {
 		if($db->filter('cat_id')!='-1')
 			$selected_cat=" AND category LIKE '%#??#".$db->filter('cat_id')."#??#%'";
 		else
@@ -16,7 +16,7 @@
 	} else
 		$selected_cat='';
 		
-	if(isset($_POST['autor_id'])) {
+	if($db->is('autor_id')) {
 		if($db->filter('autor_id')!="-1")
 			$selected_author=" AND author='".$db->filter('autor_id')."'";
 		else
