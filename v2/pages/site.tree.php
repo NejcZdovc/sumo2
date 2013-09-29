@@ -15,8 +15,7 @@
 	$specialSite=false;
 	if($db->is('sel_page')) {
 		$selPage = $db->filter('sel_page');
-		$selQuery = $db->query("SELECT * FROM cms_menus_items WHERE ID='".$selPage."'");
-		$selResult = $db->get($selQuery);
+		$selResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$selPage."'"));
 		if($selResult['menuID'] != -1) {
 			$langResult = $db->get($db->query("SELECT * FROM cms_menus WHERE ID='".$selResult['menuID']."'"));
 			if($langResult['lang'] == $selected_lang_menus) {

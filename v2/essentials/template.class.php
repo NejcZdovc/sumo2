@@ -17,11 +17,9 @@ class Template {
 		echo '<div id="'.$className.'" class="site-tree-panel" style="min-height:'.(15+($stevilo*33)+10).'px"><div style="color:#a3a3a3;font-size:12px;">['.$className.']</div>';
 		if($stevilo > 0) {
 			while($result = $db->fetch($query)) {
-				$query2 = $db->query("SELECT * FROM cms_modules_def WHERE ID='".$result['modulID']."'");
-				$result2 = $db->get($query2);
+				$result2 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result['modulID']."'"));
 				//modul data
-				$query3 = $db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_panel_id='".$result['ID']."'");
-				$result3 = $db->get($query3);						
+				$result3 = $db->get($db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_panel_id='".$result['ID']."'"));
 				$classEnable=$result3['cms_enabled']? "enable":"disable";
 				if($result2['editName'] == '') {
 					$edit_button = '';

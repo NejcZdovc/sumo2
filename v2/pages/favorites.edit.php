@@ -5,8 +5,7 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
 }
 
 $id = $user->id;
-$query = $db->query("SELECT option1, option2, option3, option4, option5, option6, option7, option8, option9, option10 FROM cms_favorites WHERE UserID='".$id."' LIMIT 1");
-$result = $db->get($query);
+$result = $db->get($db->query("SELECT option1, option2, option3, option4, option5, option6, option7, option8, option9, option10 FROM cms_favorites WHERE UserID='".$id."' LIMIT 1"));
 ?>
 <form name="favoritesEdit">
 <table id="favoritesTable" cellspacing="0" summary="Favorites selection" class="table1 fav-table">

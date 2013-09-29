@@ -23,21 +23,15 @@ class User
 		$this->{'email'}=$query['email'];
 		$this->{'ID'}=$query['ID'];
 		$this->{'visit'}=$query['visit'];
-		$query=$db->query('SELECT developer FROM cms_user_settings WHERE UserID="'.$id.'"');
-		if($db->rows($query) > 0) {
-			$results = $db->get($query);
-			$this->{"developer"}=$results['developer'];
+		$query=$db->get($db->query('SELECT developer FROM cms_user_settings WHERE UserID="'.$id.'"'));
+		if($query) {
+			$this->{"developer"}=$query['developer'];
 		}
 		
-		$query = $db->query("SELECT * FROM cms_user_aditional WHERE UserID='".$id."'");
-		if($db->rows($query) > 0) {
-			$results = $db->get($query);
-			$i=0;
-			foreach($results as $key => $value) {
-				$i++;
-				if($i%2==0 && $key!="ID" && $key!="userID" && $key!="email" && $key!="name" && $key!="visit") {
-					$this->{$key} = $value;
-				}
+		$results = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE UserID='".$id."'"));
+		foreach($results as $key => $value) {
+			if($key!="ID" && $key!="userID" && $key!="email" && $key!="name" && $key!="visit") {
+				$this->{$key} = $value;
 			}
 		}
 	}

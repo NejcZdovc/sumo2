@@ -16,16 +16,9 @@ class Globals
 		$this->domainName=$domain['name'];
 		$this->domainID=$domain['ID'];
 		$this->domainParent=$domain['parentID'];
-		$query = $db->query("SELECT * FROM cms_global_settings WHERE domain='".$domain['ID']."'");
-		if($db->rows($query) > 0) {
-			$results = $db->get($query);
-			$i = 0;
-			foreach($results as $key => $value) {
-				$i++;
-				if($i%2 == 0) {
-					$this->{$key} = $value;
-				}
-			}
+		$results = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$domain['ID']."'"));
+		foreach($results as $key => $value) {
+			$this->{$key} = $value;
 		}
 	}
 }

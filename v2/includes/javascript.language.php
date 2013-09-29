@@ -6,8 +6,7 @@ if(!$session->isLogedIn()) {
 }
 if (ob_get_length() > 0) {ob_end_clean();}
 header('Content-Type: application/rss+xml;');
-$query = $db->query("SELECT short FROM cms_language WHERE ID='".$user->lang."'");
-$result = $db->get($query);
+$result = $db->get($db->query("SELECT short FROM cms_language WHERE ID='".$user->lang."'"));
 if($result) {
 	$myfile = SITE_ROOT.SITE_FOLDER.'/v2/language/'.$result['short'].'/javascript.lang.xml';
 	$fh = fopen($myfile,"rb");

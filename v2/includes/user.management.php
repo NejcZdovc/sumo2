@@ -180,10 +180,8 @@ if($db->is('type')) {
 			$db->query("UPDATE cms_user SET email='".$filEmail."',GroupID='".$group."',name='".$filName."' WHERE ID='".$id."'");
 		}
 		
-		$checkQuery = $db->query("SELECT * FROM cms_user_aditional WHERE userID='".$id."'");			
-		$check = $db->rows($checkQuery);
-		if($check > 0) {
-			$checkResult = $db->get($checkQuery);
+		$checkResult = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE userID='".$id."'"));			
+		if($checkResult) {
 			$extraInfo = '';
 			$first = true;
 			foreach($_POST as $key => $value) {

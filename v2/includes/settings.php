@@ -2,8 +2,8 @@
 	if(!$session->isLogedIn() || !$security->checkURL()) {
 	 exit;
 	}
-	if(ob_get_length()>0) {ob_end_clean();}
-	if($db->is('type')) {
+if(ob_get_length()>0) {ob_end_clean();}
+if($db->is('type')) {
 		if($db->filter('type') == 'sumo') {
 			$lang=$db->filter('lang');
 			$items=$db->filter('items');
@@ -49,7 +49,7 @@
 		}
 		else if($db->filter('type') == 'welcome') {
 			$content=$db->filter('content');
-			$db->query('UPDATE cms_sumo_settings SET welcome="'.$content.'" WHERE ID="'.$user->domain.'"');
+			$db->query('UPDATE cms_sumo_settings SET welcome="'.$content.'" WHERE ID="1"');
 			echo "ok";
 			exit;
 		}
@@ -112,8 +112,7 @@
 		}
 		else if($db->filter('type') == 'statust') {
 			$id = $crypt->decrypt($db->filter('id'));
-			$query = $db->query("SELECT enabled FROM cms_template WHERE ID='".$id."'");
-			$result = $db->get($query);
+			$result = $db->get($db->query("SELECT enabled FROM cms_template WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;
@@ -169,8 +168,7 @@
 		}
 		else if($db->filter('type') == 'statuslf') {
 			$id = $crypt->decrypt($db->filter('id'));
-			$query = $db->query("SELECT enabled FROM cms_language_front WHERE ID='".$id."'");
-			$result = $db->get($query);
+			$result = $db->get($db->query("SELECT enabled FROM cms_language_front WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;
@@ -184,8 +182,7 @@
 		}
 		else if($db->filter('type') == 'statuslb') {
 			$id = $crypt->decrypt($db->filter('id'));
-			$query = $db->query("SELECT enabled FROM cms_language WHERE ID='".$id."'");
-			$result = $db->get($query);
+			$result = $db->get($db->query("SELECT enabled FROM cms_language WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;
@@ -198,29 +195,27 @@
 			}
 		}
 		else if($db->filter('type') == 'gastat') {
-			$query = $db->query("SELECT GA_enabled FROM cms_global_settings WHERE ID='".$user->domain."'");
-			$result = $db->get($query);
+			$result = $db->get($db->query("SELECT GA_enabled FROM cms_global_settings WHERE domain='".$user->domain."'"));
 			if($result) {
 				if($result['GA_enabled'] == 0) {
 					$new = 1;
 				} else {
 					$new = 0;
 				}
-				$db->query("UPDATE cms_global_settings SET GA_enabled='".$new."' WHERE ID='".$user->domain."'");
+				$db->query("UPDATE cms_global_settings SET GA_enabled='".$new."' WHERE domain='".$user->domain."'");
 				echo 'ok';
 				exit;
 			}
 		}
 		else if($db->filter('type') == 'wmstat') {
-			$query = $db->query("SELECT WM_enabled FROM cms_global_settings WHERE domain='".$user->domain."'");
-			$result = $db->get($query);
+			$result = $db->get($db->query("SELECT WM_enabled FROM cms_global_settings WHERE domain='".$user->domain."'"));
 			if($result) {
 				if($result['WM_enabled'] == 0) {
 					$new = 1;
 				} else {
 					$new = 0;
 				}
-				$db->query("UPDATE cms_global_settings SET WM_enabled='".$new."' WHERE ID='".$user->domain."'");
+				$db->query("UPDATE cms_global_settings SET WM_enabled='".$new."' WHERE domain='".$user->domain."'");
 				echo 'ok';
 				exit;
 			}
@@ -269,8 +264,7 @@
 		}
 		else if($db->filter('type') == 'prefstat') {
 			$id = $crypt->decrypt($db->filter('id'));
-			$query = $db->query("SELECT enabled FROM cms_modul_prefix WHERE ID='".$id."'");
-			$result = $db->get($query);
+			$result = $db->get($db->query("SELECT enabled FROM cms_modul_prefix WHERE ID='".$id."'"));
 			if($result) {
 				if($result['enabled'] == 0) {
 					$new = 1;

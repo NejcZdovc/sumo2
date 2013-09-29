@@ -200,9 +200,8 @@
 					$db->query("UPDATE cms_panel_".$layout." SET title='".$name."', ".$copyModul." prefix='".$prefix."' , cache='".$cache."', specialPage='".$specialPage."' WHERE ID='".$panelID."'");
 					continue;	
 				}
-				$search = $db->query("SELECT ".$modulInfo['editTable'].".ID, cms_panel_".$layout.".ID AS layoutID FROM cms_panel_".$layout.", ".$modulInfo['editTable']." WHERE cms_panel_".$layout.".pageID='".$page."' AND cms_panel_".$layout.".modulID='".$modulInfo['ID']."' AND ".$modulInfo['editTable'].".cms_group_id='".$modulResult['cms_group_id']."'  AND ".$modulInfo['editTable'].".cms_layout='".$layout."'  AND ".$modulInfo['editTable'].".cms_panel_id=cms_panel_".$layout.".ID LIMIT 1");
-				if($db->rows($search) > 0) {
-					$searchResult = $db->get($search);
+				$searchResult = $db->get($db->query("SELECT ".$modulInfo['editTable'].".ID, cms_panel_".$layout.".ID AS layoutID FROM cms_panel_".$layout.", ".$modulInfo['editTable']." WHERE cms_panel_".$layout.".pageID='".$page."' AND cms_panel_".$layout.".modulID='".$modulInfo['ID']."' AND ".$modulInfo['editTable'].".cms_group_id='".$modulResult['cms_group_id']."'  AND ".$modulInfo['editTable'].".cms_layout='".$layout."'  AND ".$modulInfo['editTable'].".cms_panel_id=cms_panel_".$layout.".ID LIMIT 1"));
+				if($searchResult) {
 					$setString = '';
 					$first = true;
 					foreach($columnNames as $column) {
