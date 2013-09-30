@@ -146,7 +146,7 @@ class Template {
 				echo "<script type=\"text/javascript\">
 				 var _gaq = _gaq || [];
 				 _gaq.push(['_setAccount', '".$result_glob['GA_ID']."']);
-				 _gaq.push(['_setDomainName', '".preg_replace("/^(.*\.)?([^.]*\..*)$/", "$2", $_SERVER['HTTP_HOST'])."']); 
+				 _gaq.push(['_setDomainName', '".str_replace("www.", "", $_SERVER['HTTP_HOST'])."']); 
 				 _gaq.push(['_trackPageview']);";
 				if($db->is('googleTracking')) {
 					echo str_replace("\'", "'", $db->filter('googleTracking'));
@@ -161,7 +161,7 @@ class Template {
 				echo "<script type=\"text/javascript\">
 				 var _gaq = _gaq || [];
 				 _gaq.push(['_setAccount', '".$result_glob['GA_ID']."']);
-				 _gaq.push(['_setDomainName', '".preg_replace("/^(.*\.)?([^.]*\..*)$/", "$2", $_SERVER['HTTP_HOST'])."']); 
+				 _gaq.push(['_setDomainName', '".str_replace("www.", "", $_SERVER['HTTP_HOST'])."']); 
 				 _gaq.push(['_setAllowLinker', true]);
 				 _gaq.push(['_trackPageview']);";
 				if($db->is('googleTracking')) {
