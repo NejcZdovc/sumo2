@@ -2,14 +2,12 @@
 function pricni1 () {
 	$("#zacni").hide();
 	$("#button").html('<div onclick="preveri1();" style="cursor:pointer"><img src="check.png" width="97" height="41" /></div>');
-	$("#help").html('Vse spodaj navedene datoteke in mape morajo imeti pravice 777.');
 	$.ajax({
 	  url: 'step1.php',
 	  success: function(data) {
 		var spli=data.split("%#%#%");
 		$('#content').html(spli[0]);
 		$("#progressbar").show("slow");
-		$("#help").show("slow");
 		$("#content").show("slow");	
 		if(spli[1]=="0") {
 			$("#button").hide("slow"); 
@@ -44,16 +42,12 @@ function pricni2 () {
 		$("#button").html('<div onclick="preveri2();" style="cursor:pointer"><img src="check.png" width="97" height="41" /></div>');	
 	});
 	$("#content").hide("slow");
-	$("#help").hide("slow", function () {
-		$("#help").html('Vnesite podate do vaše baze, nato pritisnite prever in če ste vnesli pravilne podatke boste lahko nadaljevali z delov, v nasprotnem primeru pa popravite podatke!');		
-	});
 	$.ajax({
 		url: 'step2.php',
 		success: function(data) {
 			var spli=data.split("%#%#%");
 			$('#content').html(spli[0]);
 			$("#progressbar").progressbar({ value: 25 });
-			$("#help").show("slow");
 			$("#content").show("slow");	
 			$("#button").show("slow");
 		}
@@ -81,18 +75,16 @@ function preveri2() {
 function pricni3 () {
 	$("#button").hide("slow");
 	$("#content").hide("slow");
-	$("#help").hide("slow", function () {
-		$("#help").html('V tem koraku se bo ustvarila baza in vstavili podatki, ki so potrebni za osnovno delovanje strani. Če pride do napake, prosim poskusite ponovno s klikom preveri, drugače nadaljujte na naslednji korak.');	
-	});	
 	$.ajax({
 	  url: 'step3.php',
 	  success: function(data) {
 		$("#progressbar").progressbar({ value: 50 });
-		$("#help").show("slow");
 		$('#content').html("");
-		$("#content").show("slow");	
-		if(data=="0") {
-			$('#content').html('<span style="color:#387C44;">Vsi vnosi so bili uspešni!</span>');
+		$("#content").show("slow");
+		var spli=data.split("%#%#%");
+		$('#content').html(spli[0]);
+		if(spli[1]=="0") {
+			$('#content').html('<span style="color:#387C44;">All queries were successfully executed!</span>');
 			$("#button").hide("slow", function () {
 				$("#button").html('<div onclick="pricni4();" style="cursor:pointer"><img src="next.png" width="77" height="37" /></div>');
 			});
@@ -112,8 +104,10 @@ function preveri3() {
 	$.ajax({
 	  url: 'step3.php',
 	  success: function(data) {
-		if(data=="0") {
-			$('#content').html('<span style="color:#387C44;">Vsi vnosi so bili uspešni!</span>');
+		var spli=data.split("%#%#%");
+		$('#content').html(spli[0]);
+		if(spli[1]=="0") {
+			$('#content').html('<span style="color:#387C44;">All queries were successfully executed!</span>');
 			$("#content").show("slow");	
 			$("#button").html('<div onclick="pricni4();" style="cursor:pointer"><img src="next.png" width="77" height="37" /></div>');
 			$("#button").show("slow");
@@ -131,14 +125,10 @@ function preveri3() {
 function pricni4 () {
 	$("#button").hide("slow");
 	$("#content").hide("slow");
-	$("#help").hide("slow", function () {
-		$("#help").html('V tem koraku se bo ustvaril administratorski račun. Podana bosta uporabniško ime in geslo.<br/> V CMS-u si lahko nato spremenite geslo.');	
-	});
 	$.ajax({
 		url: 'step4.php',
 		success: function(data) {
 			$("#progressbar").progressbar({ value: 75 });
-			$("#help").show("slow");
 			var spli=data.split("%#%#%");
 			$('#content').html(spli[0]);
 			$("#content").show("slow");		
@@ -176,7 +166,7 @@ function preveri4() {
 			}
 			if(!error && spli[1]=="0") {
 				$("#content").show("slow", function () {
-					$('#content').html('<span style="color:#387C44;">Uporabnik je bil uspešno ustvarjen!</span>');
+					$('#content').html('<span style="color:#387C44;">User was successfully created!</span>');
 				});	
 				$("#button").html('<div onclick="pricni5();" style="cursor:pointer"><img src="next.png" width="77" height="37" /></div>');
 				$("#button").show("slow");
@@ -184,7 +174,7 @@ function preveri4() {
 			else {
 				if(!error) {
 					$("#content").show("slow", function () {
-						$('#content').html("Postopek ni uspel, prosim poskusite ponovno.<br/>"+spli[1]);			
+						$('#content').html("There were some problems, please try again.<br/>"+spli[1]);			
 					});
 				}
 				$("#button").html('<div onclick="preveri4();" style="cursor:pointer"><img src="check.png" width="97" height="41" /></div>');
@@ -199,12 +189,9 @@ function pricni5 () {
 	$("#button").hide("slow", function () {
 		$("#button").html('<div onclick="window.location=\'http://'+window.location.hostname+'/v2/\'" style="cursor:pointer"><img src="finish.png" width="96" height="41" /></div>');	
 	});
+	$("#finish").show("slow");
 	$("#content").hide("slow");
-	$("#help").hide("slow", function () {
-		$("#help").html('Uspešno ste zaključili nastavitev Sumo 2 sistema.<br/> S klikom na zaključi vas bomo preusmerili na administracijske strani.');	
-	});
 	$("#progressbar").progressbar({ value: 100 });
-	$("#help").show("slow");
 	$("#button").show("slow");
 }
 

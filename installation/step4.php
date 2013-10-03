@@ -3,8 +3,9 @@
 	ini_set('display_errors', 1);
 	ini_set('log_errors', 1);
 	ini_set('error_log','../v2/logs/error.log');
+	include('../v2/configs/settings.php');
 	
-	function chmodAll($path, $filePerm=0644, $dirPerm=0755) {
+	function chmodAll($path, $filePerm=PER_FILE, $dirPerm=PER_FOLDER) {
 		if(!file_exists($path)) {
 			return false;
 		}
@@ -24,32 +25,55 @@
 	function copyFiles($src, $dst) {
 		$dir = opendir($src);
 		if(!is_dir($dst)) {
-			mkdir($dst, 0755) or die("Mkdir problem: ".$dst);
+			mkdir($dst, PER_FOLDER) or die("Mkdir problem: ".$dst);
 		}
 		
 		while(false !== ( $file = readdir($dir)) ) {
 			if (( $file != '.' ) && ( $file != '..' )) {
 				if (is_dir($src . '/' . $file) ) {
 					copyFiles($src . '/' . $file,$dst . '/' . $file);
-					chmodAll($dst . '/' . $file, 0644);					
+					chmodAll($dst . '/' . $file, PER_FILE);					
 				}
 				else {
 					copy($src . '/' . $file,$dst . '/' . $file) or die("Copy problem: ".$src . '/' . $file."  ->  ".$dst . '/' . $file);
-					chmodAll($dst . '/' . $file, 0644);					
+					chmodAll($dst . '/' . $file, PER_FILE);					
 				}
 			}
 		}
 		closedir($dir);
 	}
 	
-	include('../v2/configs/settings.php');
-	$link = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE);
-	$link->set_charset("utf8");
+	$link = new mysqli(__DB_SERVER__, __DB_USER__, __DB_PASSWORD__, __DB_DATABASE__);
+	$link->set_charset(__ENCODING__);
 	if ($link->connect_errno) {
-		printf("Connect failed: %s", $link->mysqli_error);
+		printf("Connect failed: %s<br/>", $link->mysqli_error);
 		exit();
 	}
-		
+	$domain="";
+	$nameA="";
+	$username="";
+	$password="";
+	$repassword="";
+	$email="";
+	if(isset($_REQUEST['domain'])) {
+		$domain=$_REQUEST['domain'];
+	}
+	if(isset($_REQUEST['name'])) {
+		$nameA=$_REQUEST['name'];
+	}
+	if(isset($_REQUEST['username'])) {
+		$username=$_REQUEST['username'];
+	}
+	if(isset($_REQUEST['password'])) {
+		$password=$_REQUEST['password'];
+	}
+	if(isset($_REQUEST['repassword'])) {
+		$repassword=$_REQUEST['repassword'];
+	}
+	if(isset($_REQUEST['email'])) {
+		$email=$_REQUEST['email'];
+	}
+	echo '<div id="help">In this step an administrator account will be created. You will be given a user name and password. <br/> You can later change the password in CMS settings.</div>';
 	echo '<form action="" name="forma" method="post" class="form2">
 		<table cellpadding="0" cellspacing="0" border="0" width="100%" >
 		<tr>
@@ -67,7 +91,7 @@
 			Main domain:
 			</td>	
 			<td  class="right_td" style="padding:5px;">
-				<input type="text" name="domain" id="domain" class="input" value="'.$_REQUEST['domain'].'" />
+				<input type="text" name="domain" id="domain" class="input" value="'.$domain.'" />
 			</td>
 		</tr>	
 		<tr>
@@ -97,7 +121,7 @@
 			</td>
 	
 			<td  class="right_td" style="padding:5px;">
-				<input type="text" name="name" id="name" class="input" value="'.$_REQUEST['name'].'" />
+				<input type="text" name="name" id="name" class="input" value="'.$nameA.'" />
 			</td>
 		</tr>	
 		<tr>
@@ -106,7 +130,7 @@
 			</td>
 	
 			<td  class="right_td" style="padding:5px;">
-				<input type="text" name="username" id="username" class="input" value="'.$_REQUEST['username'].'" />
+				<input type="text" name="username" id="username" class="input" value="'.$username.'" />
 			</td>
 		</tr>	
 		<tr>
@@ -115,7 +139,7 @@
 			</td>
 	
 			<td  class="right_td" style="padding:5px;">
-				<input type="password" name="password" id="password" class="input" value="'.$_REQUEST['password'].'" />
+				<input type="password" name="password" id="password" class="input" value="'.$password.'" />
 			</td>
 		</tr>	
 		<tr>
@@ -124,7 +148,7 @@
 			</td>
 	
 			<td  class="right_td" style="padding:5px;">
-				<input type="password" name="repassword" id="repassword" class="input" value="'.$_REQUEST['repassword'].'" />
+				<input type="password" name="repassword" id="repassword" class="input" value="'.$repassword.'" />
 			</td>
 		</tr>	
 		<tr>
@@ -133,14 +157,14 @@
 			</td>
 	
 			<td  class="right_td" style="padding:5px;">
-				<input type="text" name="email" id="email" class="input" value="'.$_REQUEST['email'].'" />
+				<input type="text" name="email" id="email" class="input" value="'.$email.'" />
 			</td>
 		</tr> 	
 		</table>
 	</form>';
 	echo '%#%#%';
 	
-	if($_REQUEST['show']=="ok") 
+	if(isset($_REQUEST['show']) && $_REQUEST['show']=="ok") 
 	{
 		$domain=$_REQUEST['domain'];
 		$name=str_replace('www.', '', $_SERVER['HTTP_HOST']);
@@ -149,80 +173,83 @@
 		
 		//template
 		if(!is_dir('../templates/'.$name.'/')) {
-			mkdir('../templates/'.$name.'/', 0755)or die("Mkdir problem: ".'../templates/'.$name.'/');			
+			mkdir('../templates/'.$name.'/', PER_FOLDER)or die("Mkdir problem: ".'../templates/'.$name.'/');			
 		}
-		chmod('../templates/'.$name.'/', 0755) or die("Chmode problem: ".'../templates/'.$name.'/');
+		chmod('../templates/'.$name.'/', PER_FOLDER) or die("Chmode problem: ".'../templates/'.$name.'/');
 		
 		if(!is_dir('../templates/'.$name.'/images')) {
-			mkdir('../templates/'.$name.'/images', 0755)or die("Mkdir problem: ".'../templates/'.$name.'/images');
+			mkdir('../templates/'.$name.'/images', PER_FOLDER)or die("Mkdir problem: ".'../templates/'.$name.'/images');
 		}
-		chmod('../templates/'.$name.'/images', 0755) or die("Chmode problem: ".'../templates/'.$name.'/images');
+		chmod('../templates/'.$name.'/images', PER_FOLDER) or die("Chmode problem: ".'../templates/'.$name.'/images');
 		
 		//module
 		if(!is_dir('../modules/'.$name.'/')) {
-			mkdir('../modules/'.$name, 0755)or die("Mkdir problem: ".'../modules/'.$name);			
+			mkdir('../modules/'.$name, PER_FOLDER)or die("Mkdir problem: ".'../modules/'.$name);			
 		}
-		chmod('../modules/'.$name, 0755) or die("Chmode problem: ".'../modules/'.$name);
+		chmod('../modules/'.$name, PER_FOLDER) or die("Chmode problem: ".'../modules/'.$name);
 		
 		if(!is_dir('../modules/'.$name.'/images')) {
-			mkdir('../modules/'.$name.'/images', 0755)or die("Mkdir problem: ".'../modules/'.$name.'/images');			
+			mkdir('../modules/'.$name.'/images', PER_FOLDER)or die("Mkdir problem: ".'../modules/'.$name.'/images');			
 		}
-		chmod('../modules/'.$name.'/images', 0755) or die("Chmode problem: ".'../modules/'.$name.'/images');
+		chmod('../modules/'.$name.'/images', PER_FOLDER) or die("Chmode problem: ".'../modules/'.$name.'/images');
 		
 		//off
 		if(!is_dir('../off/'.$name.'')) {
-			mkdir('../off/'.$name, 0755) or die("Mkdir problem: ".'../off/'.$name);			
+			mkdir('../off/'.$name, PER_FOLDER) or die("Mkdir problem: ".'../off/'.$name);			
 		}
-		chmod('../off/'.$name, 0755) or die("Chmode problem: ".'../off/'.$name);
+		chmod('../off/'.$name, PER_FOLDER) or die("Chmode problem: ".'../off/'.$name);
 		copyFiles('../off/default', '../off/'.$name);
 		
 		
 		//block
 		if(!is_dir('../block/'.$name.'')) {
-			mkdir('../block/'.$name, 0755) or die("Mkdir problem: ".'../block/'.$name);
+			mkdir('../block/'.$name, PER_FOLDER) or die("Mkdir problem: ".'../block/'.$name);
 		}
-		chmod('../block/'.$name, 0755) or die("Chmode problem: ".'../block/'.$name);
+		chmod('../block/'.$name, PER_FOLDER) or die("Chmode problem: ".'../block/'.$name);
 		copyFiles('../block/default', '../block/'.$name);
 		
 		//404
 		if(!is_dir('../404/'.$name.'')) {
-			mkdir('../404/'.$name, 0755) or die("Mkdir problem: ".'../404/'.$name);
+			mkdir('../404/'.$name, PER_FOLDER) or die("Mkdir problem: ".'../404/'.$name);
 		}
 		chmod('../404/'.$name, 0755) or die("Chmode problem: ".'../404/'.$name);
 		copyFiles('../404/default', '../404/'.$name);
 		
 		//images
 		if(!is_dir('../images/'.$name.'')) {
-			mkdir('../images/'.$name, 0755) or die("Mkdir problem: ".'../images/'.$name);
+			mkdir('../images/'.$name, PER_FOLDER) or die("Mkdir problem: ".'../images/'.$name);
 		}
-		chmod('../images/'.$name, 0755) or die("Chmode problem: ".'../images/'.$name);
+		chmod('../images/'.$name, PER_FOLDER) or die("Chmode problem: ".'../images/'.$name);
 		
 		if(!is_dir('../images/'.$name.'/article')) {
-			mkdir('../images/'.$name.'/article', 0755) or die("Mkdir problem: ".'../images/'.$name.'/article');
+			mkdir('../images/'.$name.'/article', PER_FOLDER) or die("Mkdir problem: ".'../images/'.$name.'/article');
 		}
-		chmod('../images/'.$name.'/article', 0755) or die("Chmode problem: ".'../images/'.$name.'/article');
+		chmod('../images/'.$name.'/article', PER_FOLDER) or die("Chmode problem: ".'../images/'.$name.'/article');
 		
 		//storage
 		if(!is_dir('../storage/'.$name.'')) {
-			mkdir('../storage/'.$name, 0755) or die("Mkdir problem: ".'../storage/'.$name);
+			mkdir('../storage/'.$name, PER_FOLDER) or die("Mkdir problem: ".'../storage/'.$name);
 		}
 		chmod('../storage/'.$name, 0755) or die("Chmode problem: ".'../storage/'.$name);
 		
 		if(!is_dir('../storage/'.$name.'/Images')) {
-			mkdir('../storage/'.$name.'/Images', 0755) or die("Mkdir problem: ".'../storage/'.$name.'/Images');
+			mkdir('../storage/'.$name.'/Images', PER_FOLDER) or die("Mkdir problem: ".'../storage/'.$name.'/Images');
 		}
-		chmod('../storage/'.$name.'/Images', 0755) or die("Chmode problem: ".'../storage/'.$name.'/Images');
+		chmod('../storage/'.$name.'/Images', PER_FOLDER) or die("Chmode problem: ".'../storage/'.$name.'/Images');
 		
 		if(!is_dir('../storage/'.$name.'/Documents')) {
-			mkdir('../storage/'.$name.'/Documents', 0755) or die("Mkdir problem: ".'../storage/'.$name.'/Documents');
+			mkdir('../storage/'.$name.'/Documents', PER_FOLDER) or die("Mkdir problem: ".'../storage/'.$name.'/Documents');
 		}
-		chmod('../storage/'.$name.'/Documents', 0755) or die("Chmode problem: ".'../storage/'.$name.'/Documents');
+		chmod('../storage/'.$name.'/Documents', PER_FOLDER) or die("Chmode problem: ".'../storage/'.$name.'/Documents');
+		
+		//Log
+		$fp = fopen("../v2/logs/errorFront_".$name.".si.log","wb");
+		fwrite($fp,"Error log");
+		fclose($fp);
 		
 		//add user
-		$string1=$_REQUEST['password'];
-		$string2=$_REQUEST['username'];
-		$pass=hash("sha512", $string1).hash("ripemd256",$string1).hash("ripemd320",$string2).hash("sha256",$string1);
-		$link->query("INSERT INTO cms_user (username, pass, email, GroupID, name, enabled, status) VALUES ('".$link->real_escape_string($_REQUEST['username'])."', '".$pass."', '".$link->real_escape_string($_REQUEST['email'])."', 1, '".$link->real_escape_string($_REQUEST['name'])."', 1, 'N');") or die($link->mysqli_error);
+		$pass=hash("sha512", $password).hash("ripemd256",$password).hash("ripemd320",$username).hash("sha256",$password);
+		$link->query("INSERT INTO cms_user (username, pass, email, GroupID, name, enabled, status) VALUES ('".$link->real_escape_string($username)."', '".$pass."', '".$link->real_escape_string($email)."', 1, '".$link->real_escape_string($nameA)."', 1, 'N');") or die($link->mysqli_error);
 		$userID=$link->insert_id;
 		
 		//add language

@@ -21,5 +21,6 @@
 	  <item>templates</item>	  
 	  <item>v2/modules</item>
 	  <item>v2/temp</item>
+	  <item>v2/logs</item>
 	</folders>	
 </permission>
