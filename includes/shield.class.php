@@ -66,15 +66,17 @@ class Shield {
 		$CountryName="";
 		if(isset($json->CountryName))
 			$CountryName=$json->CountryName;
-		else
+		elseif(isset($json->countryName))
 			$CountryName=$json->countryName;
-		if($globals->domainParent=="-1") {
-			$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainID.'" OR cms_domains.ID="'.$globals->domainID.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
-		} else {			
-			$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainParent.'" OR cms_domains.ID="'.$globals->domainParent.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
-		}	
-		if(isset($found['name']) && $found['name']!=$globals->domainName)
-			header("Location: http://".$found['name']);
+		if($CountryName!="") {	
+			if($globals->domainParent=="-1") {
+				$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainID.'" OR cms_domains.ID="'.$globals->domainID.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
+			} else {			
+				$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainParent.'" OR cms_domains.ID="'.$globals->domainParent.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
+			}	
+			if(isset($found['name']) && $found['name']!=$globals->domainName)
+				header("Location: http://".$found['name']);
+		}
 	}
 }
 
