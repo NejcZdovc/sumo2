@@ -11,56 +11,61 @@ class Template {
 	public $firstPage = false;
 	public $specialPage = false;
 	
-	private $title = '';
-	private $modul = '';
-	private $id = 0;
-	private $tableName = '';
-	private $folderName = '';
-	private $language = null;	
+	public $title = '';
+	public $modul = '';
+	public $id = 0;
+	public $tableName = '';
+	public $folderName = '';
+	public $language = null;	
 	
-    public function panel($className) {
-		global $db, $template, $globals;
-		$check = $db->query('SELECT ID FROM cms_template_position WHERE prefix="'.$className.'" AND domain="'.$globals->domainID.'"');
-		if($db->rows($check)>0) {
-			$query1 = $db->query("SELECT * FROM cms_panel_".$className." WHERE pageID='".$this->pageID."' AND lang='".$this->langID."' AND domain='".$globals->domainID."' ORDER BY orderID ASC");
-			while($result1 = $db->fetch($query1)) {
-				if($result1['copyModul']>0) {
-					$queryModul=$db->query("SELECT * FROM cms_panel_".$className." WHERE ID='".$result1['copyModul']."' AND domain='".$globals->domainID."'");					
-					if($db->rows($queryModul)>0) {
-						$result1=$db->get($queryModul);
-					}
-				}
-				$result2 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result1['modulID']."' AND enabled='1' AND status='N'"));
-				$result3 = $db->get($db->query("SELECT * FROM ".$result2['editTable']." WHERE cms_layout='".$className."' AND cms_panel_id='".$result1['ID']."' AND cms_enabled='1'"));
-				if(isset($result3['ID'])) {
-					$this->id = $result3['ID'];
-					$this->tableName = $result2['editTable'];
-					$this->folderName = $result2['moduleName'];
-					echo "<div id=\"".$result2['moduleName']."_".$this->id."\">\n";
-					$this->title = $result1['title'];
-					$this->modul = SITE_ROOT.SITE_FOLDER.DS.'modules/'.$globals->domainName.'/'.$result2['moduleName'].'/index.php';
-					$globals->GLOBAL_ID = $this->id;
-					$globals->GLOBAL_TN = $this->tableName;
-					$globals->GLOBAL_FN = $this->folderName;
-					if(is_file($this->modul)) {
-						include($this->modul);
-					} else {
-						error_log("Modul is missing: ".$result2['moduleName']);
-						die("Modul is missing: ".$result2['moduleName']);
-					}
-					echo "</div>\n";
-				}
-			}
+	public $smarty;
+	
+	public function setSmarty() {
+		global $globals, $user;
+		$path=SITE_ROOT.SITE_FOLDER.'/templates/'.$globals->domainName.'/'.$this->tempName.'/';
+		/*Smarty*/
+		if(!defined('CACHE_LIFETIME')) {
+			define('CACHE_LIFETIME', 60 * 60 * 24 * 7); // secs (60*60*24*7 = 1 week)			
 		}
-		else {
-			error_log('Template position '.$className.' does not exist, please create it in CMS.');
-			die('Template position '.$className.' does not exist, please create it in CMS.');
+		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/Smarty.class.php');	
+		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/plugins/function.sumo_panel.php');
+			
+		$this->smarty = new Smarty;
+		$this->smarty->registerPlugin('function', 'panel', 'sumo_panel');
+		$this->smarty->template_dir = '';
+		if($user->developer=="1") {
+			$this->smarty->caching = 0;
+		} else {
+			$this->smarty->caching = 2;
+			$this->smarty->cache_lifetime = 4*24*60*60;
 		}
-    }
+			
+		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
+		
+		if(!is_dir($path.'templates_c/')) {
+			mkdir($path.'templates_c/', PER_FOLDER);
+			chmod($path.'templates_c/', PER_FOLDER);
+		}
+		$this->smarty->compile_dir = $path.'templates_c/';
+		
+		if(!is_dir($path.'cache/')) {
+			mkdir($path.'cache/', PER_FOLDER);
+			chmod($path.'cache/', PER_FOLDER);
+		}
+		$this->smarty->cache_dir = $path.'cache/';
+	
+		$this->smarty->_file_perms = PER_FILE;			
+		
+		$this->smarty->assign('head', $this->head());
+		$this->smarty->assign('footer', $this->footer());
+		
+		$this->smarty->display($path.'template.tpl');
+	}
 	
 	public function title() {
 		echo $this->title;
 	}
+	
 	
 	public function modul() {
 		global $globals;
@@ -121,6 +126,7 @@ class Template {
 
 	public function footer() {
 		global $db, $user, $globals;
+		$result="";
 		$modArray = array();
 		$query1 = $db->query("SELECT * FROM cms_template_position WHERE domain='".$globals->domainID."'");
 		$result_glob = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'"));
@@ -136,38 +142,38 @@ class Template {
 		 	$pageURL .= "://";
 		 $pageURL .= $_SERVER["SERVER_NAME"];
 		if($user->developer=="1") {
-			echo "<script type=\"text/javascript\" src=\"".$pageURL."/min/?g=js&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;debug=1\"></script>\n";
+			$result.="<script type=\"text/javascript\" src=\"".$pageURL."/min/?g=js&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;debug=1\"></script>\n";
 		} else {
-			echo "<script type=\"text/javascript\" src=\"".$pageURL."/min/?g=js&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;".$globals->cacheNumber."\"></script>\n";
+			$result.="<script type=\"text/javascript\" src=\"".$pageURL."/min/?g=js&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;".$globals->cacheNumber."\"></script>\n";
 		}
 		
 		if($result_glob['GA_enabled'] == 1) {
 			if($result_glob['GA_type'] == 1) {
-				echo "<script type=\"text/javascript\">
+				$result.= "<script type=\"text/javascript\">
 				 var _gaq = _gaq || [];
 				 _gaq.push(['_setAccount', '".$result_glob['GA_ID']."']);
 				 _gaq.push(['_setDomainName', '".str_replace("www.", "", $_SERVER['HTTP_HOST'])."']); 
 				 _gaq.push(['_trackPageview']);";
 				if($db->is('googleTracking')) {
-					echo str_replace("\'", "'", $db->filter('googleTracking'));
+					$result.= str_replace("\'", "'", $db->filter('googleTracking'));
 				}
-				echo " (function() {
+				$result.= " (function() {
 					var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 				 })();
 				</script>";
 			} else if($result_glob['GA_type'] == 2) {
-				echo "<script type=\"text/javascript\">
+				$result.= "<script type=\"text/javascript\">
 				 var _gaq = _gaq || [];
 				 _gaq.push(['_setAccount', '".$result_glob['GA_ID']."']);
 				 _gaq.push(['_setDomainName', '".str_replace("www.", "", $_SERVER['HTTP_HOST'])."']); 
 				 _gaq.push(['_setAllowLinker', true]);
 				 _gaq.push(['_trackPageview']);";
 				if($db->is('googleTracking')) {
-					echo str_replace("\'", "'", $db->filter('googleTracking'));
+					$result.= str_replace("\'", "'", $db->filter('googleTracking'));
 				}
-				echo "(function() {
+				$result.= "(function() {
 					var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
@@ -175,10 +181,12 @@ class Template {
 				</script>";
 			}
 		}
+		return $result;
 	}
 	
 	public function head() {
 		global $db, $user, $globals, $crypt;
+		$result="";
 		$result_lang = $db->get($db->query("SELECT * FROM cms_language_front WHERE ID='".$this->langID."'"));
 		$result_page = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$this->pageID."'"));
 		$description = $result_page['description'];
@@ -220,16 +228,16 @@ class Template {
 			$keywords=$result_glob['keywords'];
 		if(strlen($description)<2)
 			$description=$result_glob['description'];
-		echo "<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n";
+		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n";
 		if($result_glob['WM_enabled'] == 1) {
-			echo "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
+			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
 		}
 		if($result_glob['display_title'] == 'F') {
-			echo "<title>".$title."</title>\n";
+			$result.= "<title>".$title."</title>\n";
 		} else if($this->firstPage) {
-			echo "<title>".$homepageTitle['title']."</title>\n";
+			$result.= "<title>".$homepageTitle['title']."</title>\n";
 		} else {
-			echo "<title>".$this->getTitle($title)."</title>\n";
+			$result.= "<title>".$this->getTitle($title)."</title>\n";
 		}
 		$pageURL = 'http';
 		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
@@ -246,10 +254,11 @@ class Template {
 			}
 		}
 		if($user->developer=="1") {
-			echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$pageURL."/min/?g=css&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;debug=1\" />\n";
+			$result.= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$pageURL."/min/?g=css&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;debug=1\" />\n";
 		} else {
-			echo "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$pageURL."/min/?g=css&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;".$globals->cacheNumber."\" />\n";
+			$result.= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$pageURL."/min/?g=css&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;".$globals->cacheNumber."\" />\n";
 		}
+		return $result;
 	}
 }
 

@@ -65,14 +65,14 @@ class Modules extends Shield {
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
 		if(!is_dir($path.'templates_c/')) {
-			mkdir($path.'templates_c/', 0775);
-			chmod($path.'templates_c/', 0775);
+			mkdir($path.'templates_c/', PER_FOLDER);
+			chmod($path.'templates_c/', PER_FOLDER);
 		}
 		$this->smarty->compile_dir = $path.'templates_c/';
 		
 		if(!is_dir($path.'cache/')) {
-			mkdir($path.'cache/', 0775);
-			chmod($path.'cache/', 0775);
+			mkdir($path.'cache/', PER_FOLDER);
+			chmod($path.'cache/', PER_FOLDER);
 		}
 		$this->smarty->cache_dir = $path.'cache/';
 	

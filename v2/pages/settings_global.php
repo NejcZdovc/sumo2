@@ -11,20 +11,21 @@
             </div>
             <table width="99%" cellpadding="0" cellspacing="0" border="0">
             <?
-			$template_q=$db->query("SELECT ID, name, enabled FROM cms_template WHERE status='N' AND domain='".$user->domain."' order by ID asc");
+			$template_q=$db->query("SELECT ID, name, enabled, folder FROM cms_template WHERE status='N' AND domain='".$user->domain."' order by ID asc");
 			while($template_f=$db->fetch($template_q)) {			
 			?>
-            <tr>
-            <td style="background:#F3F3F3;vertical-align:middle; height:30px; padding:10px;">
-            	<?=$template_f['name']?>
-            </td>
-            <td style="background:#F3F3F3;vertical-align:middle; padding:10px;" width="81px">
-            	<div title="<?=$lang->MENU_7?>" class="<?php echo $template_f['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.sumoSettings.ChangeStatus('<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
-                	<div title="<?=$lang->MENU_14?>" class="add sumo2-tooltip" onclick="sumo2.sumoSettings.NewPageT('<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_107?>" class="edit sumo2-tooltip" onclick="sumo2.dialog.NewDialog('d_settings_edit_t','ID=<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_108?>" class="delete sumo2-tooltip" onclick="sumo2.sumoSettings.DeleteT('<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
-            </td>
-            </tr>
+                <tr>
+                <td style="background:#F3F3F3;vertical-align:middle; height:30px; padding:10px;">
+                    <?=$template_f['name']?>
+                </td>
+                <td style="background:#F3F3F3;vertical-align:middle; padding:10px;" width="100px">
+                    <div title="<?=$lang->MENU_7?>" class="<?php echo $template_f['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.sumoSettings.ChangeStatus('<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
+                    <div title="<?=$lang->MENU_14?>" class="add sumo2-tooltip" onclick="sumo2.sumoSettings.NewPageT('<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
+                    <div title="<?=$lang->MOD_107?>" class="edit sumo2-tooltip" onclick="sumo2.dialog.NewDialog('d_settings_edit_t','ID=<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
+                    <div title="<?=$lang->MOD_246?>" class="edit sumo2-tooltip" style="background-image: url(/v2/images/css_sprite.png);background-position: -604px -1629px;" onclick="sumo2.sumoSettings.ClearCacheT('<?php echo $crypt->encrypt($template_f['folder']); ?>')"></div>
+                    <div title="<?=$lang->MOD_108?>" class="delete sumo2-tooltip" onclick="sumo2.sumoSettings.DeleteT('<?php echo $crypt->encrypt($template_f['ID']); ?>')"></div>
+                </td>
+                </tr>
             <? } ?>
             </table>
         </td>

@@ -2237,6 +2237,16 @@ sumo2.sumoSettings = {
 			else
 				sumo2.message.NewMessage(data,3);
 		});
+	},
+	
+	ClearCacheT : function(name) {
+		var param="type=ClearCacheT$!$name="+name;
+		sumo2.ajax.SendPost("includes/settings.php",param,function(data) {
+			if(data=='ok')
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_159,1);
+			else
+				sumo2.message.NewMessage(data,3);
+		});
 	}
 };
 
