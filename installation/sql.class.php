@@ -15,7 +15,7 @@ function remove_comments(&$output)
          $in_comment = true; 
       } 
 
-      if($lines[$i][0]!="-" && $lines[$i][1]!="-" && !$in_comment ) 
+      if(isset($lines[$i][0]) && $lines[$i][0]!="-" && $lines[$i][1] && $lines[$i][1]!="-" && !$in_comment ) 
       { 
          $output .= $lines[$i] . "\n"; 
       } 
@@ -43,7 +43,7 @@ function remove_remarks($sql)
    { 
       if (($i != ($linecount - 1)) || (strlen($lines[$i]) > 0)) 
       { 
-         if ($lines[$i][0] != "#") 
+         if (isset($lines[$i][0]) && $lines[$i][0] != "#") 
          { 
             $output .= $lines[$i] . "\n"; 
          } 

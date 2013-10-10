@@ -372,5 +372,10 @@ if($db->is('type')) {
 			echo "ok";
 			exit;
 		}
+		else if($db->filter('type') == "ClearCacheT") {
+			Clear('templates/'.$user->domainName.'/'.$crypt->decrypt($db->filter('name')));
+			echo "ok";
+			exit;
+		}
 	}
 ?>

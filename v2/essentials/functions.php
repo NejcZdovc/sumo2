@@ -323,12 +323,12 @@ function copyFiles($src, $dst) {
 	closedir($dir);
 }
 	
-function Clear ($folder, $domain=null) {
+function Clear ($folder) {
 	global $user;
 	if($domain==null)
-		$dir=$_SERVER['DOCUMENT_ROOT'].'/modules/'.$user->domainName.'/'.$folder.'/cache/';
+		$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
 	else
-		$dir=$_SERVER['DOCUMENT_ROOT'].'/modules/'.$domain.'/'.$folder.'/cache/';
+		$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
 	if(is_dir($dir)) {
 		if($handler = opendir($dir)) { 
 			while (($sub = readdir($handler)) !== FALSE) {
@@ -343,7 +343,7 @@ function Clear ($folder, $domain=null) {
 		}
 	}
 	
-	$dir=$_SERVER['DOCUMENT_ROOT'].'/modules/'.$folder.'/templates_c/';
+	$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/templates_c/';
 	if(is_dir($dir)) {
 		if($handler = opendir($dir)) { 
 			while (($sub = readdir($handler)) !== FALSE) {
@@ -357,7 +357,6 @@ function Clear ($folder, $domain=null) {
 			closedir($handler);
 		}
 	}
-	echo 'yes';
 }
 
 function checkPrefixTitle($exist, $table, $colum, $id="") {

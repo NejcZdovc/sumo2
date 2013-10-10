@@ -3,16 +3,15 @@
 	ini_set('display_errors', 1);
 	ini_set('log_errors', 1);
 	ini_set('error_log','../v2/logs/error.log');
+	include('../v2/configs/settings.php');
 	
 	$stanje=0;
-	$filePermG=644;
-	$fodlerPermG=777;
-	
-
+	echo '<div id="help">Set the current permissions to match the required permissions.</div>';
 	echo '<table cellpadding="0" cellspacing="0" border="0" width="100%">
 	<tr>
-		<th width="80%">File</th>
-		<th width="10%">Permission</th>
+		<th width="70%">File</th>
+		<th width="10%">Current</th>
+		<th width="10%">Required</th>
 		<th width="10%">Status</th>
 	</tr>';
 	$system = new DOMDocument();
@@ -26,11 +25,11 @@
 		if($item->getAttribute('perm')) {
 			$filePerm=floatval($item->getAttribute('perm'));
 		} else {
-			$filePerm=$filePermG;
+			$filePerm=sprintf('%o',PER_FILE);
 		}
-		
 		echo '<td>'.substr(sprintf('%o', $ss), 3).'</td>';
-		if(substr(sprintf('%o', $ss), 3)!=$filePerm) {
+		echo '<td>'.$filePerm.'</td>';
+		if(substr(sprintf('%o', $ss), 2)!=$filePerm) {
 			echo '<td><img src="no.png" /></td></tr>';
 			$stanje+=1;
 		}
@@ -41,8 +40,9 @@
 echo '</table>';	
 echo '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:30px;">
 <tr>
-	<th width="80%">Folder</th>
-    <th width="10%">Permission</th>
+	<th width="70%">File</th>
+	<th width="10%">Current</th>
+	<th width="10%">Required</th>
 	<th width="10%">Status</th>
 </tr>';
 
@@ -57,11 +57,12 @@ echo '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="marg
 		if($item->getAttribute('perm')) {
 			$fodlerPerm=$item->getAttribute('perm');
 		} else {
-			$fodlerPerm=$fodlerPermG;
+			$fodlerPerm=sprintf('%o',PER_FOLDER);
 		}
 		
 		echo '<td>'.substr(sprintf('%o', $ss), 2).'</td>';
-		if(substr(sprintf('%o', $ss), 2)!=$fodlerPerm) {
+		echo '<td>'.$filePerm.'</td>';
+		if(substr(sprintf('%o', $ss), 1)!=$fodlerPerm) {
 			echo '<td><img src="no.png" /></td></tr>';
 			$stanje+=1;
 		}

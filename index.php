@@ -270,8 +270,8 @@
 		ob_end_clean();
 	}
 	
-	if(is_file('templates/'.$globals->domainName.'/'.$template->tempName.'/template.php')) {
-		require_once('templates/'.$globals->domainName.'/'.$template->tempName.'/template.php');
+	if(is_file('templates/'.$globals->domainName.'/'.$template->tempName.'/template.tpl')) {
+		$template->setSmarty();
 	} else {
 		error_log("Template file was not loaded properly. / Path: index.php (278)");
 		header('Location: '.$f404_link);
