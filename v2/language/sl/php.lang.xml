@@ -537,5 +537,6 @@
 		<item constant="MOD_243">Izberite kakšne pravice bodo imele datoteke na steržniku.</item>
 		<item constant="MOD_244">Pravice map</item>
 		<item constant="MOD_245">Izberite kakšne pravice bodo imele mape na steržniku.</item>
+		<item constant="MOD_246">Izbriši pomnilnik</item>
 	</parent>
 </language>

@@ -537,5 +537,6 @@
 		<item constant="MOD_243">Choose which persmission should be used for files on server.</item>
 		<item constant="MOD_244">Folder permissions</item>
 		<item constant="MOD_245">Choose which persmission should be used for folder on server.</item>
+		<item constant="MOD_246">Clear cache</item>
 	</parent>
 </language>

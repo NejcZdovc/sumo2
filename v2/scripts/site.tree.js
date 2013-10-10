@@ -98,8 +98,6 @@ var st = {
 			httpObj.open('POST', location, true);	
 		}
 		httpObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		httpObj.setRequestHeader("Content-length", parameters.length);
-		httpObj.setRequestHeader("Connection", "close");
 		httpObj.send(parameters);
 	},
 

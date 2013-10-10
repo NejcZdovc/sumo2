@@ -2,6 +2,8 @@
 	define( '_VALID_MOS', 1 );
 	define( '_VALID_EXT', 1 );
 	require_once('../configs/settings.php'); 
+	require_once('../includes/errors.php');
+	require_once('../essentials/security.class.php');
 	require_once('../essentials/database.class.php');
 	require_once('../essentials/xml.class.php');
 	require_once('../essentials/template.class.php'); 
@@ -10,6 +12,9 @@
 	require_once('../essentials/session.class.php');
 	require_once('../essentials/language.class.php');
 	require_once('../essentials/user.class.php');
+	
+	
+	
 	if(isset($_GET['menu'])) {
 		$menuID = $db->filter('menu');;
 	} else {
@@ -44,34 +49,67 @@
 	$template->menuID = $menuID;
 	$template->langID = $langID;
 	$template->tempID = $tempID;
-	if($templateResult && $layout == false) {
-		require_once('../../templates/'.$user->domainName.'/'.$templateResult['folder'].'/template.php');	
-	} else if($templateResult && $layout == true) {
+	if($templateResult && $layout == false) 
+	{
+			
+		$path='../../templates/'.$user->domainName.'/'.$templateResult['folder'].'/';
+		/*Smarty*/
+		if(!defined('CACHE_LIFETIME')) {
+			define('CACHE_LIFETIME', 60 * 60 * 24 * 7); // secs (60*60*24*7 = 1 week)			
+		}
+		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/Smarty.class.php');	
+		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/plugins/function.sumo_admin_panel.php');
+			
+		$smarty = new Smarty;
+		$smarty->registerPlugin('function', 'panel', 'sumo_admin_panel');
+		$smarty->template_dir = '';
+		if($user->developer=="1") {
+			$smarty->caching = 0;
+		} else {
+			$smarty->caching = 2;
+			$smarty->cache_lifetime = 4*24*60*60;
+		}
+			
+		$smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
+		
+		if(!is_dir($path.'templates_c/')) {
+			mkdir($path.'templates_c/', PER_FOLDER);
+			chmod($path.'templates_c/', PER_FOLDER);
+		}
+		$smarty->compile_dir = $path.'templates_c/';
+		
+		if(!is_dir($path.'cache/')) {
+			mkdir($path.'cache/', PER_FOLDER);
+			chmod($path.'cache/', PER_FOLDER);
+		}
+		$smarty->cache_dir = $path.'cache/';
+	
+		$smarty->_file_perms = PER_FILE;			
+		
+		$smarty->assign('head', $template->head());
+		$smarty->assign('footer', "");
+		$smarty->display($path.'template.tpl');	
+	} 
+	else if($templateResult && $layout == true) {
 		$groupArray = array();
-		$content = file_get_contents('../../templates/'.$user->domainName.'/'.$templateResult['folder'].'/template.php');
-		$firstArray = explode("<?",$content);
+		$content = file_get_contents('../../templates/'.$user->domainName.'/'.$templateResult['folder'].'/template.tpl');
+		$firstArray = explode("{panel",$content);
 		for($i=count($firstArray)-1;$i>=0;$i--) {
-			if(strpos($firstArray[$i],"template->panel")) {
-				$posEnd = strpos($firstArray[$i],"?>");
-				$removeString = substr($firstArray[$i],$posEnd);
-				$params = str_replace("\$template->panel(","",$firstArray[$i]);
-				$params = str_replace($removeString,"",$params);
-				$params = str_replace(")","",$params);
-				$params = str_replace(";","",$params);
-				$params = str_replace("php","",$params);
-				$params = str_replace("=","",$params);
-				$params = str_replace("echo","",$params);
-				$params = str_replace("'","",$params);
-				$params = str_replace(" ","",$params);
-				$params = str_replace("\t","",$params);
-				$params = str_replace("\n","",$params);
+			
+			$posEnd = strpos($firstArray[$i],"'}");
+			$removeString = substr($firstArray[$i],$posEnd);
+			$params = str_replace("' row='",",",$firstArray[$i]);
+			$params = str_replace($removeString,"",$params);
+			$params = str_replace("id='","",$params);
+			$params = str_replace(" ", "", $params);
+			if(strlen($params)>1) {
 				$secondArray = explode(",",$params);
 				if(count($secondArray) == 2) {
 					$group = $secondArray[1];
 					$groupArray[$group][] = $secondArray[0];
 				} else {
 					array_push($groupArray,$secondArray[0]);
-				}		
+				}
 			}
 		}
 		echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
