@@ -21,7 +21,7 @@ class Template {
 	public $smarty;
 	
 	public function setSmarty() {
-		global $globals, $user;
+		global $globals, $user,$db;
 		$path=SITE_ROOT.SITE_FOLDER.'/templates/'.$globals->domainName.'/'.$this->tempName.'/';
 		/*Smarty*/
 		if(!defined('CACHE_LIFETIME')) {
@@ -33,12 +33,7 @@ class Template {
 		$this->smarty = new Smarty;
 		$this->smarty->registerPlugin('function', 'panel', 'sumo_panel');
 		$this->smarty->template_dir = '';
-		if($user->developer=="1") {
-			$this->smarty->caching = 0;
-		} else {
-			$this->smarty->caching = 2;
-			$this->smarty->cache_lifetime = 4*24*60*60;
-		}
+		$this->smarty->caching = 0;
 			
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
@@ -58,6 +53,12 @@ class Template {
 		
 		$this->smarty->assign('head', $this->head());
 		$this->smarty->assign('footer', $this->footer());
+		$this->smarty->assign('page', $db->filter('page'));
+		$this->smarty->assign('tempName', $this->tempName);
+		$this->smarty->assign('lang', $db->filter('lang'));
+		$this->smarty->assign('langShort', $db->filter('langShort'));
+		$this->smarty->assign('specialPage', $specialPage);
+		$this->smarty->assign('firstPage', $firstPage);
 		
 		$this->smarty->display($path.'template.tpl');
 	}
