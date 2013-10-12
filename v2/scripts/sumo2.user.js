@@ -1951,7 +1951,7 @@ sumo2.sumoSettings = {
 		var name =document.a_settings_add_t.name.value;
 		
 		if(ok=="n") {
-			if(!sumo2.validate.IsFile(name, 5, 20)) 
+			if(!sumo2.validate.IsFile(name, 2, 30)) 
 				problem += sumo2.language.VARIABLES.MOD_32+'<br />';
 			if(problem !== "") {
 					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);

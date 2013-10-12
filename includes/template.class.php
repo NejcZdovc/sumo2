@@ -57,8 +57,8 @@ class Template {
 		$this->smarty->assign('tempName', $this->tempName);
 		$this->smarty->assign('lang', $db->filter('lang'));
 		$this->smarty->assign('langShort', $db->filter('langShort'));
-		$this->smarty->assign('specialPage', $specialPage);
-		$this->smarty->assign('firstPage', $firstPage);
+		$this->smarty->assign('specialPage', $this->specialPage);
+		$this->smarty->assign('firstPage', $this->firstPage);
 		
 		$this->smarty->display($path.'template.tpl');
 	}
