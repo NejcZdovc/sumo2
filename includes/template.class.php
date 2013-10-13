@@ -132,10 +132,9 @@ class Template {
 		$query1 = $db->query("SELECT * FROM cms_template_position WHERE domain='".$globals->domainID."'");
 		$result_glob = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'"));
 		while($result1 = $db->fetch($query1)) {
-			$query2 = $db->query("SELECT DISTINCT modulID FROM cms_panel_".$result1['prefix']." WHERE pageID='".$this->pageID."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'");
+			$query2 = $db->query("SELECT DISTINCT modulID, moduleName FROM cms_panel_".$result1['prefix']." as panel LEFT JOIN cms_modules_def as def ON panel.modulID=def.ID WHERE panel.pageID='".$this->pageID."' AND panel.lang='".$this->langID."' AND panel.domain='".$globals->domainID."' AND def.enabled='1' AND def.status='N'");
 			while($result2 = $db->fetch($query2)) {
-				$result3 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result2['modulID']."' AND enabled='1' AND status='N'"));
-				$modArray[$result3['moduleName']]= $result2['modulID'];
+				$modArray[$result2['moduleName']]= $result2['modulID'];
 			}
 		}
 		$pageURL = 'http';
@@ -248,11 +247,11 @@ class Template {
 		$modArray = array();
 		$query1 = $db->query("SELECT * FROM cms_template_position WHERE domain='".$globals->domainID."'");
 		while($result1 = $db->fetch($query1)) {
-			$query2 = $db->query("SELECT DISTINCT modulID FROM cms_panel_".$result1['prefix']." WHERE pageID='".$this->pageID."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'");
+			$query2 = $db->query("SELECT DISTINCT panel.modulID, def.moduleName FROM cms_panel_".$result1['prefix']." as panel LEFT JOIN cms_modules_def as def ON panel.modulID=def.ID WHERE panel.pageID='".$this->pageID."' AND panel.lang='".$this->langID."' AND panel.domain='".$globals->domainID."' AND def.enabled='1' AND def.status='N'");
 			while($result2 = $db->fetch($query2)) {
-				$query3 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result2['modulID']."' AND enabled='1' AND status='N'"));
-				$modArray[$query3['moduleName']]= $result2['modulID'];
+				$modArray[$result2['moduleName']]= $result2['modulID'];
 			}
+			
 		}
 		if($user->developer=="1") {
 			$result.= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$pageURL."/min/?g=css&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;debug=1\" />\n";
