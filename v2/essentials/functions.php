@@ -57,7 +57,7 @@ function check_pagging($sql, $page) {
 		$page_size=$page;
 		
 	if($db->is('pag_id'))
-		$pag_id=$$db->filter('pag_id');
+		$pag_id=$db->filter('pag_id');
 	else
 		$pag_id=0;
 		
@@ -325,10 +325,7 @@ function copyFiles($src, $dst) {
 	
 function Clear ($folder) {
 	global $user;
-	if($domain==null)
-		$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
-	else
-		$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
+	$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
 	if(is_dir($dir)) {
 		if($handler = opendir($dir)) { 
 			while (($sub = readdir($handler)) !== FALSE) {

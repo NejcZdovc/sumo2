@@ -5,10 +5,8 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	exit;
 }
 class Language {
-	public $_specialArray = null;
-	
-	private $_open = false;
-	
+	public $_specialArray = null;	
+	private $_open = false;	
 	private $_oldVariable = null;
 	
 	public function setLanguage($short) {
@@ -24,8 +22,12 @@ class Language {
 				$this->{$element['attributes']['constant']} = $element['value'];
 			} else if($element['tag'] == 'item' && $element['type'] == 'open') {
 				$this->_open = true;
-				$this->{$element['attributes']['constant']} = $element['value'];
-				$this->_oldVariable = $element['attributes']['constant'];
+				if(isset($element['value']) && isset($element['attributes']['constant'])) {
+					$this->{$element['attributes']['constant']} = $element['value'];						
+				}
+				if(isset($element['attributes']['constant'])) {
+					$this->_oldVariable = $element['attributes']['constant'];
+				}
 			} else if($element['tag'] == 'item' && $element['type'] == 'close' && $this->_open == true && $this->_oldVariable != null) {
 				$this->_open = false;
 				if(isset($element['value']))
@@ -51,8 +53,12 @@ class Language {
 					$this->{$element['attributes']['constant']} = $element['value'];
 				} else if($element['tag'] == 'item' && $element['type'] == 'open') {
 					$this->_open = true;
-					$this->{$element['attributes']['constant']} = $element['value'];
-					$this->_oldVariable = $element['attributes']['constant'];
+					if(isset($element['value']) && isset($element['attributes']['constant'])) {
+						$this->{$element['attributes']['constant']} = $element['value'];						
+					}
+					if(isset($element['attributes']['constant'])) {
+						$this->_oldVariable = $element['attributes']['constant'];
+					}
 				} else if($element['tag'] == 'item' && $element['type'] == 'close' && $this->_open == true && $this->_oldVariable != null) {
 					$this->_open = false;
 					$this->{$this->_oldVariable} .= $element['value'];
@@ -79,9 +85,12 @@ class Language {
 					$this->{$element['attributes']['constant']} = $element['value'];
 				} else if($element['tag'] == 'item' && $element['type'] == 'open') {
 					$this->_open = true;
-					if(isset($element['value']))
-					$this->{$element['attributes']['constant']} = $element['value'];
-					$this->_oldVariable = $element['attributes']['constant'];
+					if(isset($element['value']) && isset($element['attributes']['constant'])) {
+						$this->{$element['attributes']['constant']} = $element['value'];						
+					}
+					if(isset($element['attributes']['constant'])) {
+						$this->_oldVariable = $element['attributes']['constant'];
+					}
 				} else if($element['tag'] == 'item' && $element['type'] == 'close' && $this->_open == true && $this->_oldVariable != null) {
 					$this->_open = false;
 					if(isset($element['value']))

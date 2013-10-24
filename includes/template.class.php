@@ -54,7 +54,8 @@ class Template {
 		$this->smarty->assign('head', $this->head());
 		$this->smarty->assign('footer', $this->footer());
 		$this->smarty->assign('page', $db->filter('page'));
-		$this->smarty->assign('tempName', $this->tempName);
+		$this->smarty->assign('templateName', $this->tempName);
+		$this->smarty->assign('domain', $globals->domainName);
 		$this->smarty->assign('lang', $db->filter('lang'));
 		$this->smarty->assign('langShort', $db->filter('langShort'));
 		$this->smarty->assign('specialPage', $this->specialPage);

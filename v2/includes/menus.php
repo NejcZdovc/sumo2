@@ -44,7 +44,7 @@
 			$restriction=$db->filter('restriction');
 			$target=$db->filter('target');
 			$parentID=$db->filter('parentID');
-			$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'"');
+			$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'" AND parentID="'.$id[0].'"');
 			if($selected==1)
 				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, restriction, altPrefix, domain) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "1", "'.$template.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'")');
 			else if($selected==2) {
@@ -54,9 +54,9 @@
 				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, link, target, restriction, altPrefix, domain) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "3", "'.$template.'", "'.$elink.'", "'.$target.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'")');
 			else if($selected==4) {	
 				if($elink=="") {
-					$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'"');
+					$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'" AND parentID="'.$id[0].'"');
 				} else {
-					$prefix=getPrefixTitle("", "cms_menus_items", "altPrefix", "", $elink, 'AND domain="'.$user->domain.'"');
+					$prefix=getPrefixTitle("", "cms_menus_items", "altPrefix", "", $elink, 'AND domain="'.$user->domain.'" AND parentID="'.$id[0].'"');
 				}
 				
 				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, target, restriction, altPrefix, domain) VALUES ("'.$name.'", "N", '.$parentID.', '.$id[0].', -1, "'.$keywords.'", "'.$description.'", "4", "'.$template.'", "'.$id[1].'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'")');
@@ -78,9 +78,9 @@
 			$parentID=$db->filter('parentID');
 			$altPrefix=$db->filter('altPrefix');
 			if($altPrefix=="") {
-				$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'"');
+				$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'" AND parentID="'.$parentID.'"');
 			} else {
-				$prefix=getPrefixTitle("", 'cms_menus_items', 'altPrefix', $id, $altPrefix, 'AND domain="'.$user->domain.'"');
+				$prefix=getPrefixTitle("", 'cms_menus_items', 'altPrefix', $id, $altPrefix, 'AND domain="'.$user->domain.'" AND parentID="'.$parentID.'"');
 			}
 			
 			if($selected==1)
