@@ -130,6 +130,13 @@ class User
 		$query = $db->get($db->query("SELECT short FROM cms_language_front WHERE ID='".$id."'"));
 		return $query['short'];
 	}
+	
+	public function langShortBack($id) {
+		global $db;
+		$id = $db->filterVar($id);
+		$query = $db->get($db->query("SELECT short FROM cms_language WHERE ID='".$id."'"));
+		return $query['short'];
+	}
 }
 
 if($session->isLogedIn()) {

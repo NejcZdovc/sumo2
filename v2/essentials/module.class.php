@@ -324,7 +324,7 @@ class Module {
         global $db,$lang;
         if($this->success === true) {
             $fName = $db->filterVar($tableName);
-            $rows = $db->rows($db->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE table_name='".$fName."' AND table_schema='".DB_DATABASE."'"));
+            $rows = $db->rows($db->query("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE table_name='".$fName."' AND table_schema='".__DB_DATABASE__."'"));
             if($rows > 0) {
                 $this->success = false;
 				$this->error[] = $lang->MOD_166.': '.$fName;
