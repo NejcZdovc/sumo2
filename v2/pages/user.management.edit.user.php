@@ -4,7 +4,7 @@
 		exit;
 	}
 	$id = $crypt->decrypt($db->filter('id'));
-	$query = $db->get($db->query("SELECT * FROM cms_user WHERE ID='".$id."'"));
+	$result = $db->get($db->query("SELECT * FROM cms_user WHERE ID='".$id."'"));
 	if($result) {
 ?>
 <form action="" name="d_user_edit_user" method="post" class="form2">

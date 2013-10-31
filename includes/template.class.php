@@ -229,7 +229,7 @@ class Template {
 			$keywords=$result_glob['keywords'];
 		if(strlen($description)<2)
 			$description=$result_glob['description'];
-		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n";
+		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"generator\" content=\"SUMO 2 CMS\" />\n";
 		if($result_glob['WM_enabled'] == 1) {
 			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
 		}
