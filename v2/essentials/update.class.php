@@ -209,19 +209,26 @@ class Update
 		foreach($specialArray as $element) {
 			if($element['tag'] == 'item') {
 				$pos1 = strpos($_SESSION['CurrentVersion'], 'b');
-				if(floatval($_SESSION['CurrentVersion'])<floatval($element['value']))
+				$current=str_replace("b", "", $_SESSION['CurrentVersion']);
+				$current=floatval(str_pad(str_replace(".", "", $current), 8, "0"));
+				$new=floatval(str_pad(str_replace(".", "", $element['value']), 8, "0"));
+				if($current<$new) {
 					array_push($valArray, $element['value']);
-				else if($pos1!==false && floatval($_SESSION['CurrentVersion'])<=floatval($element['value']) && $_SESSION['CurrentVersion']!=$element['value'])
+				}
+				else if($pos1!==false && $current==$new && $_SESSION['CurrentVersion']!=$element['value']) {
 					array_push($valArray, $element['value']);
+				}
 			}
 		}
-		sort($valArray, SORT_NUMERIC);
 		if(count($valArray)==0) {
 			if($user->beta==1) {
 				foreach($specialArray as $element) {
 					if($element['tag'] == 'beta') {
-						if(floatval($_SESSION['CurrentVersion'])<floatval($element['value']))
+						$current=floatval(str_pad(str_replace(".", "", $_SESSION['CurrentVersion']), 8, "0"));
+						$new=floatval(str_pad(str_replace(".", "", $element['value']), 8, "0"));
+						if($current<$new) {
 							array_push($valArray, $element['value']);
+						}
 					}
 				}
 				sort($valArray);
