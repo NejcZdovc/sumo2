@@ -60,7 +60,7 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
         <div class="title_form_big"><?=$lang->MOD_225?>:</div><div class="title_form_small"><?=$lang->MOD_226?></div>
         </td>
         <td class="right_td">
-            <select id="domain" class="input" multiple="multiple" style="height:52px;">
+            <select id="domain" class="input" multiple="multiple" style="height:60px;">
                 <?
                     $query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
                     while($result=$db->fetch($query)) {

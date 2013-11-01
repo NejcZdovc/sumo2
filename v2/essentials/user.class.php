@@ -56,7 +56,7 @@ class User
 	}
 
 	public function isAuth($id,$level = 666) {
-		if(array_key_exists($id,$this->access)) {
+		if(is_array($this->access) && array_key_exists($id,$this->access)) {
 			if($level === 666) {
 				return true;	
 			} else {
@@ -72,7 +72,7 @@ class User
 	}
 	
 	public function getAuth($id) {
-		if(array_key_exists($id,$this->access)) {
+		if(is_array($this->access) && array_key_exists($id,$this->access)) {
 			return $this->access[$id];
 		} else {
 			return 0;	

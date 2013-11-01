@@ -103,7 +103,7 @@
 					array_push($domain, $result['domainID']);
 				}
 			?>
-            <select id="domain" class="input" multiple="multiple" style="height:52px;">                
+            <select id="domain" class="input" multiple="multiple" style="height:60px;">                
 				<?
                     $query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
                     while($result=$db->fetch($query)) {
