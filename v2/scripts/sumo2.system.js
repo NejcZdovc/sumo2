@@ -2047,6 +2047,7 @@ var sumo2 = {
 				$('#sumo2-main-update #top').html("<b>"+sumo2.language.VARIABLES.MOD_156+"</b><br/>"+sumo2.language.VARIABLES.MOD_157+"");
 				$('#sumo2-main-update').fadeIn();
 				sumo2.cacheSelection.Select('c28b874debda32d5a1QO');
+				sumo2.sumoSettings.ChangeChacheNumber();
 				setTimeout("window.location.reload()", 2000);
 			});
 		},
