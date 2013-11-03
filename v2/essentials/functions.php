@@ -57,7 +57,7 @@ function check_pagging($sql, $page) {
 		$page_size=$page;
 		
 	if($db->is('pag_id'))
-		$pag_id=$$db->filter('pag_id');
+		$pag_id=$db->filter('pag_id');
 	else
 		$pag_id=0;
 		
@@ -325,10 +325,7 @@ function copyFiles($src, $dst) {
 	
 function Clear ($folder) {
 	global $user;
-	if($domain==null)
-		$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
-	else
-		$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
+	$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
 	if(is_dir($dir)) {
 		if($handler = opendir($dir)) { 
 			while (($sub = readdir($handler)) !== FALSE) {
@@ -396,7 +393,7 @@ function getPrefixTitle($niz, $tableQuery, $colum, $id="", $exist="", $customSQl
 		'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
 		'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o',
 		'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b',
-		'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r'
+		'ÿ'=>'y', 'Ŕ'=>'R', 'ŕ'=>'r', 'Č'=>'c', 'Ž'=>'z'
 	);
 	$niz=strtr($niz, $table);
 	$niz=trim($niz, '-');

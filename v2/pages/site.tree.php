@@ -326,13 +326,21 @@
 							$drag = '';
 					}					
 					while($result = $db->fetch($query)) {
+						$url="";
 					     if(is_file('../modules/'.$result['moduleName'].'/small.png')) {
-							echo '<div id="'.$result['ID'].'" class="modules-item" '.$drag.' style="background-image:url(modules/'.$result['moduleName'].'/small.png);">'.$result['name'].'</div>';	
+							$url='background-image:url(modules/'.$result['moduleName'].'/small.png)';	
 					     } else if(is_file('../modules/'.$result['moduleName'].'/small.jpg')) {
-							echo '<div id="'.$result['ID'].'" class="modules-item" '.$drag.' style="background-image:url(modules/'.$result['moduleName'].'/small.jpg);">'.$result['name'].'</div>';	
+							$url='background-image:url(modules/'.$result['moduleName'].'/small.jpg)';
 					     }  else if(is_file('../modules/'.$result['moduleName'].'/small.gif')) {
-							echo '<div id="'.$result['ID'].'" class="modules-item" '.$drag.' style="background-image:url(modules/'.$result['moduleName'].'/small.gif);">'.$result['name'].'</div>';	
+							$url='background-image:url(modules/'.$result['moduleName'].'/small.gif)';
 					     }
+						 echo '<div id="'.$result['ID'].'" class="modules-item" '.$drag.' style="'.$url.'">';
+						 if(strlen($result['name'])>18) {
+							echo substr($result['name'], 0, 17).'...'; 
+						 } else {
+							echo $result['name'];
+						 }
+						 echo '</div>';	
 					}
 				?>
             </div>

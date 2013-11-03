@@ -218,7 +218,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs_trash li.ac
 #sumo2-main-message>.error {background:#FF0033;}
 #sumo2-main-message>.warning {background:#FFFF00;}
 #sumo2-main-message>.note {color:#000000; text-align:center; padding:5px; font-size:13px; min-height:15px; border-radius: 5px 5px 5px 5px; margin-bottom:1px; cursor:pointer; vertical-align:middle; font-weight:bold;}
-#sumo2-main-update {min-height:90px;width:329px;top:0;right:0; margin-right:534px; display:none; position:absolute; z-index:10;}
+#sumo2-main-update {min-height:90px;width:329px;top:0;right:0; margin-right:570px; display:none; position:absolute; z-index:10;}
 #sumo2-main-update #bg {min-height:90px;width:329px;background:url(../images/update_line.jpg) repeat-y;}
 #sumo2-main-update #top {height:auto; width:299px; min-height:68px; background:url(../images/update_block.jpg) top left no-repeat; color:#FFF; font-size:11px; padding-left:15px; padding-right:15px; padding-top:10px;}
 #sumo2-main-update #bottom {height:7px; width:329px;background-image:url(../images/css_sprite.png);background-position:-10px -1747px; display:block;}

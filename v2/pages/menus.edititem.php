@@ -182,13 +182,13 @@
                 <? $query=$db->query('SELECT ID, name FROM cms_language_front WHERE enabled=1');
 					while($resultsF=$db->fetch($query)) {
 					echo '<optgroup label="'.$resultsF['name'].'">';
-					$home_name=$db->fetch($db->query('SELECT ID,title FROM cms_homepage WHERE lang="'.$resultsF['ID'].'"'));
+					$home_name=$db->fetch($db->query('SELECT ID,title FROM cms_homepage WHERE lang="'.$resultsF['ID'].'" AND domain="'.$user->domain.'"'));
 					$home_id=$db->fetch($db->query('SELECT ID FROM cms_menus_items WHERE parentID="-1" AND orderID="-1" AND link="'.$home_name['ID'].'"'));
 					if($results['link']==$home_id['ID'])
 						echo '<option value="'.$home_id['ID'].'" selected="selected">&bull;&nbsp;'.$home_name['title'].'</option>';
 					else
 						echo '<option value="'.$home_id['ID'].'">&bull;&nbsp;'.$home_name['title'].'</option>';
-					$query1=$db->query('SELECT ID, title FROM cms_menus WHERE lang="'.$resultsF['ID'].'" AND enabled=1');
+					$query1=$db->query('SELECT ID, title FROM cms_menus WHERE lang="'.$resultsF['ID'].'" AND enabled=1 AND domain="'.$user->domain.'"');
 					while($results1=$db->fetch($query1)) {
 						echo '<optgroup style="padding-left:15px; font-weight:bold !important; font-style:normal !important; text-decoration:none !important;" label="&nbsp;'.$results1['title'].'">';
 						$query2=$db->query('SELECT ID, title FROM cms_menus_items WHERE menuID="'.$results1['ID'].'" AND parentID="-1" AND selection!="4" AND enabled="1" AND status="N"');

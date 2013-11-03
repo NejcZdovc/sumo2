@@ -108,7 +108,7 @@
 						$query1=$db->query('SELECT ID, title FROM cms_menus WHERE lang="'.$results['ID'].'" AND enabled=1 AND domain="'.$user->domain.'"');
 						while($results1=$db->fetch($query1)) {
 							echo '<optgroup style="padding-left:15px; font-weight:bold !important; font-style:normal !important; text-decoration:none !important;" label="&nbsp;'.$results1['title'].'">';
-							$query2=$db->query('SELECT ID, title FROM cms_menus_items WHERE menuID="'.$results1['ID'].'" AND parentID=0 AND enabled=1 AND status="N"');
+							$query2=$db->query('SELECT ID, title FROM cms_menus_items WHERE menuID="'.$results1['ID'].'" AND parentID="-1" AND enabled=1 AND status="N"');
 							while($results2=$db->fetch($query2)) {
 								echo' <option value="'.$results2['ID'].'">&nbsp;&nbsp;'.$results2['title'].'</option>';
 								$query3=$db->query('SELECT ID, title FROM cms_menus_items WHERE menuID="'.$results1['ID'].'" AND parentID="'.$results2['ID'].'" AND enabled=1 AND status="N"');

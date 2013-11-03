@@ -49,7 +49,7 @@ $langDomainAuth = $user->checkLang();
                         <div class="lang-top"></div>
                         <div class="lang-middle" id="sumo2-cache-text">
                         	<? echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt('All').'\');" class="cache-item"><span class="icon"></span><span class="item">'.$lang->MOD_187.'</span></div>';
-                            $query = $db->query("SELECT moduleName, name FROM cms_modules_def WHERE status='N' ORDER BY ID asc");
+                            $query = $db->query("SELECT def.moduleName, def.name FROM cms_modules_def as def, cms_domains_ids as di WHERE def.status='N' AND di.elementID=def.ID AND di.type='mod' AND di.domainID='".$user->domain."' ORDER BY def.ID asc");
                             while($result = $db->fetch($query)) {
                                 if(file_exists('modules/'.$result['moduleName'].'/small.png')) {
                                     $img = 'modules/'.$result['moduleName'].'/small.png';
@@ -144,17 +144,15 @@ $langDomainAuth = $user->checkLang();
             <div id="sumo2-main-version">
         		<?=$lang->MOD_39?> <?=$globals->version?> &copy; <a style="color:#e3e3e3;" href="http://www.3zsistemi.si" target="_blank" >3Z Sistemi</a>
        		</div>
-        </div>
-        <? if($user->permission==1 && $user->updateOption=='ON') {?>
-            <div class="float-right">
-                <div class="update" id="sumo2-main-update">
-                    <div id="bg">
-                        <div id="top"></div>
-                    </div>
-                    <div id="bottom"></div>
+        </div>        
+        <div class="float-right">
+            <div class="update" id="sumo2-main-update">
+                <div id="bg">
+                    <div id="top"></div>
                 </div>
+                <div id="bottom"></div>
             </div>
-        <? } ?>
+        </div>
     </div>
     <div class="menu nav">
     	<ul id="sumo2-navigation">
@@ -240,8 +238,24 @@ $langDomainAuth = $user->checkLang();
 <? } ?>
 <script type="text/javascript" src="includes/javascript.settings.php?<?=$globals->cacheNumber?>"></script>
 <script type="text/javascript">
-sumo2.AddLoadEvent(function() {
-	sumo2.state.LoadState();
+sumo2.AddLoadEvent(function() {	
+	sumo2.image.GetSize();
+	sumo2.navigation.Init();
+	sumo2.client.Init();
+	sumo2.tooltip.FindTooltips(document);
+	sumo2.state.Init();
+	setInterval("sumo2.preview.Update();", 540000);
+	<? if($user->permission==1 && $user->updateOption=='ON') {?>
+		if(sumo2.update.Checked===true) {
+			if($("#sumo2-main-update").length > 0){
+				setTimeout("sumo2.update.Init();", 3000);
+			}		
+			sumo2.update.Checked=false;
+		}
+	<? } else { ?>		
+		sumo2.update.Checked=false;
+	<? } ?>
+	sumo2.state.LoadState();		
 });
 </script>
 <?

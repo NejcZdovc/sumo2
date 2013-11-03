@@ -21,7 +21,7 @@ class Template {
 	public $smarty;
 	
 	public function setSmarty() {
-		global $globals, $user;
+		global $globals, $user,$db;
 		$path=SITE_ROOT.SITE_FOLDER.'/templates/'.$globals->domainName.'/'.$this->tempName.'/';
 		/*Smarty*/
 		if(!defined('CACHE_LIFETIME')) {
@@ -33,12 +33,7 @@ class Template {
 		$this->smarty = new Smarty;
 		$this->smarty->registerPlugin('function', 'panel', 'sumo_panel');
 		$this->smarty->template_dir = '';
-		if($user->developer=="1") {
-			$this->smarty->caching = 0;
-		} else {
-			$this->smarty->caching = 2;
-			$this->smarty->cache_lifetime = 4*24*60*60;
-		}
+		$this->smarty->caching = 0;
 			
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
@@ -58,6 +53,13 @@ class Template {
 		
 		$this->smarty->assign('head', $this->head());
 		$this->smarty->assign('footer', $this->footer());
+		$this->smarty->assign('page', $db->filter('page'));
+		$this->smarty->assign('templateName', $this->tempName);
+		$this->smarty->assign('domain', $globals->domainName);
+		$this->smarty->assign('lang', $db->filter('lang'));
+		$this->smarty->assign('langShort', $db->filter('langShort'));
+		$this->smarty->assign('specialPage', $this->specialPage);
+		$this->smarty->assign('firstPage', $this->firstPage);
 		
 		$this->smarty->display($path.'template.tpl');
 	}
@@ -131,10 +133,9 @@ class Template {
 		$query1 = $db->query("SELECT * FROM cms_template_position WHERE domain='".$globals->domainID."'");
 		$result_glob = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'"));
 		while($result1 = $db->fetch($query1)) {
-			$query2 = $db->query("SELECT DISTINCT modulID FROM cms_panel_".$result1['prefix']." WHERE pageID='".$this->pageID."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'");
+			$query2 = $db->query("SELECT DISTINCT modulID, moduleName FROM cms_panel_".$result1['prefix']." as panel LEFT JOIN cms_modules_def as def ON panel.modulID=def.ID WHERE panel.pageID='".$this->pageID."' AND panel.lang='".$this->langID."' AND panel.domain='".$globals->domainID."' AND def.enabled='1' AND def.status='N'");
 			while($result2 = $db->fetch($query2)) {
-				$result3 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result2['modulID']."' AND enabled='1' AND status='N'"));
-				$modArray[$result3['moduleName']]= $result2['modulID'];
+				$modArray[$result2['moduleName']]= $result2['modulID'];
 			}
 		}
 		$pageURL = 'http';
@@ -228,7 +229,7 @@ class Template {
 			$keywords=$result_glob['keywords'];
 		if(strlen($description)<2)
 			$description=$result_glob['description'];
-		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n";
+		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"generator\" content=\"SUMO 2 CMS\" />\n";
 		if($result_glob['WM_enabled'] == 1) {
 			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
 		}
@@ -247,11 +248,11 @@ class Template {
 		$modArray = array();
 		$query1 = $db->query("SELECT * FROM cms_template_position WHERE domain='".$globals->domainID."'");
 		while($result1 = $db->fetch($query1)) {
-			$query2 = $db->query("SELECT DISTINCT modulID FROM cms_panel_".$result1['prefix']." WHERE pageID='".$this->pageID."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'");
+			$query2 = $db->query("SELECT DISTINCT panel.modulID, def.moduleName FROM cms_panel_".$result1['prefix']." as panel LEFT JOIN cms_modules_def as def ON panel.modulID=def.ID WHERE panel.pageID='".$this->pageID."' AND panel.lang='".$this->langID."' AND panel.domain='".$globals->domainID."' AND def.enabled='1' AND def.status='N'");
 			while($result2 = $db->fetch($query2)) {
-				$query3 = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$result2['modulID']."' AND enabled='1' AND status='N'"));
-				$modArray[$query3['moduleName']]= $result2['modulID'];
+				$modArray[$result2['moduleName']]= $result2['modulID'];
 			}
+			
 		}
 		if($user->developer=="1") {
 			$result.= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$pageURL."/min/?g=css&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;debug=1\" />\n";

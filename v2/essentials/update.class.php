@@ -19,23 +19,18 @@ class Update
 		if(@ftp_put($ftpConn, '/v2/temp/index.html', '/v2/index.html', FTP_BINARY)) {
 			$_SESSION['FTPsrc']='/';
 			$_SESSION['FTPdest']="/";
-			error_log("0");
 		} else if(@ftp_put($ftpConn, '/v2/temp/index.html', $_SERVER['DOCUMENT_ROOT'].'/v2/index.html', FTP_BINARY)) {
 			$_SESSION['FTPsrc']=$_SERVER['DOCUMENT_ROOT'].'/';
 			$_SESSION['FTPdest']="/";
-			error_log("1");
 		} else if(@ftp_put($ftpConn, $_SERVER['DOCUMENT_ROOT'].'/v2/temp/index.html', basename($_SERVER['DOCUMENT_ROOT']).'/v2/index.html', FTP_BINARY)) {
 			$_SESSION['FTPsrc']=basename($_SERVER['DOCUMENT_ROOT']).'/';
-		  	$_SESSION['FTPdest']=$_SERVER['DOCUMENT_ROOT'].'/';			
-			error_log("2");
+		  	$_SESSION['FTPdest']=$_SERVER['DOCUMENT_ROOT'].'/';	
 		} else if(@ftp_put($ftpConn, basename($_SERVER['DOCUMENT_ROOT']).'/v2/temp/index.html', $_SERVER['DOCUMENT_ROOT'].'/v2/index.html', FTP_BINARY)) {
 			$_SESSION['FTPsrc']=$_SERVER['DOCUMENT_ROOT'].'/';
 		    $_SESSION['FTPdest']=basename($_SERVER['DOCUMENT_ROOT']).'/';	
-			error_log("3");
 		} else if(@ftp_put($ftpConn, $_SERVER['DOCUMENT_ROOT'].'/v2/temp/index.html', $_SERVER['DOCUMENT_ROOT'].'/v2/index.html', FTP_BINARY)) {
 			$_SESSION['FTPsrc']=$_SERVER['DOCUMENT_ROOT'].'/';
-		  	$_SESSION['FTPdest']=$_SERVER['DOCUMENT_ROOT'].'/';			
-			error_log("4");
+		  	$_SESSION['FTPdest']=$_SERVER['DOCUMENT_ROOT'].'/';	
 		}
 		else {
 			error_log("no");
@@ -214,19 +209,26 @@ class Update
 		foreach($specialArray as $element) {
 			if($element['tag'] == 'item') {
 				$pos1 = strpos($_SESSION['CurrentVersion'], 'b');
-				if(floatval($_SESSION['CurrentVersion'])<floatval($element['value']))
+				$current=str_replace("b", "", $_SESSION['CurrentVersion']);
+				$current=floatval(str_pad(str_replace(".", "", $current), 8, "0"));
+				$new=floatval(str_pad(str_replace(".", "", $element['value']), 8, "0"));
+				if($current<$new) {
 					array_push($valArray, $element['value']);
-				else if($pos1!==false && floatval($_SESSION['CurrentVersion'])<=floatval($element['value']) && $_SESSION['CurrentVersion']!=$element['value'])
+				}
+				else if($pos1!==false && $current==$new && $_SESSION['CurrentVersion']!=$element['value']) {
 					array_push($valArray, $element['value']);
+				}
 			}
 		}
-		sort($valArray, SORT_NUMERIC);
 		if(count($valArray)==0) {
 			if($user->beta==1) {
 				foreach($specialArray as $element) {
 					if($element['tag'] == 'beta') {
-						if(floatval($_SESSION['CurrentVersion'])<floatval($element['value']))
+						$current=floatval(str_pad(str_replace(".", "", $_SESSION['CurrentVersion']), 8, "0"));
+						$new=floatval(str_pad(str_replace(".", "", $element['value']), 8, "0"));
+						if($current<$new) {
 							array_push($valArray, $element['value']);
+						}
 					}
 				}
 				sort($valArray);
@@ -342,7 +344,7 @@ class Update
 	}
 	
 	public function DeleteFiles() {
-		global $xml, $db,$crypt, $lang;		
+		global $xml, $db,$crypt, $lang,$globals;		
 		$error= array();
 		$ftpUserName = $crypt->decrypt($globals->FTP_user);
 		$ftpUserPass = $crypt->decrypt($globals->FTP_pass);
@@ -364,13 +366,13 @@ class Update
 				$system->load('../temp/update/'.$_SESSION['valArray'].'/delete.xml');
 				$files = $system->getElementsByTagName('files')->item(0);
 				foreach($files->getElementsByTagName('item') as $item) {
-					if(file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$item->nodeValue.'')) {
+					if(strlen($item->nodeValue)>1 && file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$item->nodeValue.'')) {
 						ftp_delete($ftpConn, $_SESSION['FTPdest'].$item->nodeValue.'') ? '' : array_push($error, $lang->MOD_138.": ".$item->nodeValue."<br/>");
 					}
 				}
 				$folder = $system->getElementsByTagName('folder')->item(0);
 				foreach($folder->getElementsByTagName('item') as $item) {
-					if(file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$item->nodeValue.'/')) {
+					if(strlen($item->nodeValue)>1 && file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$item->nodeValue.'/')) {
 						$this->error=array();
 						$this->ftp_delAll($ftpConn, $_SESSION['FTPdest'].$item->nodeValue.'/');
 						if(count($this->error) !=0)
@@ -415,15 +417,19 @@ class Update
 				$system->load('../temp/update/'.$_SESSION['valArray'].'/copy.xml');
 				$files = $system->getElementsByTagName('files')->item(0);
 				foreach($files->getElementsByTagName('item') as $item) {
-					ftp_put($ftpConn, $_SESSION['FTPdest'].$item->nodeValue.'', $_SESSION['FTPsrc'].'v2/temp/update/'.$_SESSION['valArray'].'/files_update/'.$item->nodeValue, FTP_BINARY) ? '' : array_push($error, $lang->MOD_132.": ".$item->nodeValue."<br/>");
+					if(strlen($item->nodeValue)>1) {
+						ftp_put($ftpConn, $_SESSION['FTPdest'].$item->nodeValue.'', $_SESSION['FTPsrc'].'v2/temp/update/'.$_SESSION['valArray'].'/files_update/'.$item->nodeValue, FTP_BINARY) ? '' : array_push($error, $lang->MOD_132.": ".$item->nodeValue."<br/>");
+					}
 				}
 				$folder = $system->getElementsByTagName('folder')->item(0);
 				foreach($folder->getElementsByTagName('item') as $item) {
-					$this->error=array();
-					$this->ftp_copyAll($ftpConn, $_SESSION['FTPsrc'].'v2/temp/update/'.$_SESSION['valArray'].'/files_update/'.$item->nodeValue, $_SESSION['FTPdest'].$item->nodeValue.'');
-					if(count($this->error) !=0)
-						array_merge($error, $this->error);
-					$this->error=array();
+					if(strlen($item->nodeValue)>1) {
+						$this->error=array();
+						$this->ftp_copyAll($ftpConn, $_SESSION['FTPsrc'].'v2/temp/update/'.$_SESSION['valArray'].'/files_update/'.$item->nodeValue, $_SESSION['FTPdest'].$item->nodeValue.'');
+						if(count($this->error) !=0)
+							array_merge($error, $this->error);
+						$this->error=array();
+					}
 				}
 			}
 			ftp_close($ftpConn);

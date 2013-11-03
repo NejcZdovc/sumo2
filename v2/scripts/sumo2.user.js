@@ -1497,6 +1497,7 @@ sumo2.menu = {
 		if(!sumo2.validate.IsLength(menu, 2, 200))
 			error += sumo2.language.VARIABLES.MOD_17;
 		if(document.d_menus_new_i.typ.checked && document.d_menus_new_i.typ.value==4) {
+			selected=4;
 			elink=document.d_menus_new_i.linkA.value;
 			parentID=document.d_menus_new_i.parent.value;
 		}
@@ -1529,8 +1530,6 @@ sumo2.menu = {
 					sumo2.accordion.ReloadAccordion('a_menus');
 					sumo2.dialog.CloseDialog('d_menus_new_i');
 					sumo2.accordion.ReloadAccordion('a_sitetree');
-					sumo2.module.ClearCache('mod_basicMenu');
-					sumo2.module.ClearCache('mod_dynamicMenu');
 			});
 		} else
 				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
@@ -1951,7 +1950,7 @@ sumo2.sumoSettings = {
 		var name =document.a_settings_add_t.name.value;
 		
 		if(ok=="n") {
-			if(!sumo2.validate.IsFile(name, 5, 20)) 
+			if(!sumo2.validate.IsFile(name, 2, 30)) 
 				problem += sumo2.language.VARIABLES.MOD_32+'<br />';
 			if(problem !== "") {
 					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
