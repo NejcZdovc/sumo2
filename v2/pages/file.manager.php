@@ -33,6 +33,7 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
 				}
 				
 				function traverseDirTree($base,$root){
+				  global $db;
 				  $subdirectories=opendir($base);
 				  $dirs = countDir($base);
 				  $length = countFiles($base);

@@ -22,7 +22,21 @@ require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials/globals.class.ph
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials/ftp.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials/update.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials/phpmailer.class.php');
-require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials/pop3.class.php'); 
+require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials/pop3.class.php');
+
+$setLocaleLang['hr']='';
+$setLocaleLang['en-gb']='en_UK';
+$setLocaleLang['en-us']='en_US';
+$setLocaleLang['en']='english';
+$setLocaleLang['de']='de_DE';
+$setLocaleLang['de-lu']='de_AT';
+$setLocaleLang['it']='';
+$setLocaleLang['ru']='ru_RU';
+$setLocaleLang['sr']='';
+$setLocaleLang['sh']='';
+$setLocaleLang['sl']='sl_SI';
+$setLocaleLang['es']='es-ES';
+ 
 if(!isset($isLoginFile)) {
 	$login=false;
 	if(!$session->isLogedIn()) {
@@ -36,6 +50,10 @@ if(!isset($isLoginFile)) {
 	}
 	if($login && !isset($isNoUpdateFile)) {
 		echo '<div id="javascriptLoginBox">sumo2.dialog.NewDialog(\'d_relogin\', null, true);</div>';
+	}
+	
+	if(!$login) {		
+		setlocale(LC_ALL, $setLocaleLang[$user->langShortBack($user->lang)].'.UTF-8');
 	}
 }
 ?>

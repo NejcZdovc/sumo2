@@ -2062,21 +2062,6 @@ var sumo2 = {
 	}
 };
 
-sumo2.AddLoadEvent(function() {	
-	sumo2.image.GetSize();
-	sumo2.navigation.Init();
-	sumo2.client.Init();
-	sumo2.tooltip.FindTooltips(document);
-	sumo2.state.Init();
-	setInterval("sumo2.preview.Update();", 540000);
-	if(sumo2.update.Checked===true) {
-		if($("#sumo2-main-update").length > 0){
-			setTimeout("sumo2.update.Init();", 3000);
-		}		
-		sumo2.update.Checked=false;
-	}		
-});
-
 $.fn.enterKey = function (fnc) {
     return this.each(function () {
         $(this).keypress(function (ev) {

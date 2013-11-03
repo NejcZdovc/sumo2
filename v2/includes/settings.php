@@ -140,25 +140,51 @@ if($db->is('type')) {
 		else if($db->filter('type') == 'deletetP') {
 			$id = $crypt->decrypt($db->filter('id'));
 			$name=$db->get($db->query('SELECT prefix FROM cms_template_position WHERE ID="'.$id.'"'));
+			//delete position
 			$db->query("DELETE FROM cms_template_position WHERE ID='".$id."'");
-			$db->query("DROP TABLE `cms_panel_".$name['prefix']."`");
+			
+			//delete edit table of module
 			$query=$db->query('SELECT editTable FROM cms_modules_def');
 			while($result=$db->fetch($query)) {
-				$query1=$db->query('SELECT ID FROM '.$result['editTable'].' WHERE cms_layout="'.$name['prefix'].'"');
+				$query1=$db->query('SELECT edit.ID FROM '.$result['editTable'].' as edit LEFT JOIN cms_panel_'.$name['prefix'].' as pp ON edit.cms_panel_id=pp.ID WHERE edit.cms_layout="'.$name['prefix'].'" AND pp.domain="'.$user->domain.'"');				
 				while($result1=$db->fetch($query1)) {
 					$db->query("DELETE FROM ".$result['editTable']." WHERE ID='".$result1['ID']."'");
 				}
 			}
+			
+			//delete table of prefix
+			$check=$db->get($db->query('SELECT prefix FROM cms_template_position WHERE prefix="'.$name['prefix'].'"'));
+			if(!$check) {
+				$db->query("DROP TABLE `cms_panel_".$name['prefix']."`");
+			} else {
+				$db->query("DELETE FROM cms_panel_".$name['prefix']." WHERE domain='".$user->domain."'");
+			}			
 			echo 'ok';
 			exit;
 		}
 		else if($db->filter('type') == 'deleteP') {
 			$id = $crypt->decrypt($db->filter('id'));
 			$name=$db->get($db->query('SELECT prefix FROM cms_modul_prefix WHERE ID="'.$id.'"'));
+			
+			//delete prefix
 			$db->query("DELETE FROM cms_modul_prefix WHERE ID='".$id."'");
+			
+			//delete edit table of modules
+			$query=$db->query('SELECT editTable FROM cms_modules_def');
+			while($result=$db->fetch($query)) {
+				$prefix=$db->query('SELECT prefix FROM cms_template_position WHERE ID="'.$id.'"');
+				while($prefixR=$db->fetch($prefix)) {
+					$query1=$db->query('SELECT edit.ID FROM '.$result['editTable'].' as edit LEFT JOIN cms_panel_'.$prefixR['prefix'].' as pp ON edit.cms_panel_id=pp.ID WHERE pp.prefix="'.$name['prefix'].'" AND pp.domain="'.$user->domain.'"');				
+					while($result1=$db->fetch($query1)) {
+						$db->query("DELETE FROM ".$result['editTable']." WHERE ID='".$result1['ID']."'");
+					}
+				}				
+			}
+			
+			//delete prefix in panels
 			$query=$db->query('SELECT prefix FROM cms_template_position');
 			while($result=$db->fetch($query)) {
-				$query1=$db->query('SELECT ID FROM cms_panel_'.$result['prefix'].' WHERE prefix="'.$name['prefix'].'"');
+				$query1=$db->query('SELECT ID FROM cms_panel_'.$result['prefix'].' WHERE prefix="'.$name['prefix'].'" AND domain="'.$user->domain.'"');
 				while($result1=$db->fetch($query1)) {
 					$db->query("DELETE FROM cms_panel_".$result['prefix']." WHERE ID='".$result1['ID']."'");
 				}

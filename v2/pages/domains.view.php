@@ -31,7 +31,7 @@
             <select id="main" class="input">
                 <option value="-1" <? if($result['parentID']=="-1") echo 'selected="selected"';?>><?=$lang->MOD_215?></option>
                 <?
-                    $mainq=$db->query('SELECT * FROM cms_domains WHERE alias="0" AND ID!="'.$result['ID'].'"');
+                    $mainq=$db->query('SELECT * FROM cms_domains WHERE alias="0" AND ID!="'.$result['ID'].'"  ORDER BY name ASC');
                     while($mainr=$db->fetch($mainq)) {
 						if($result['parentID']==$mainr['ID'])
                         	echo '<option value="'.$mainr['ID'].'" selected="selected">'.$mainr['name'].'</option>';

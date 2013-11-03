@@ -55,7 +55,8 @@ class Cookie {
 	
 	public function remCookie($key,$path = NULL) {
 	    global $crypt;
-		setcookie($crypt->hash($key),'',time()-3600,$path,NULL,false,$this->httpOnly);
+		setcookie($crypt->hash($key),'',1);
+		setcookie($crypt->hash($key),'',1,$path,NULL,NULL,$this->httpOnly);
 	}
 }
 

@@ -27,5 +27,8 @@
 	} else {
 		ini_set('display_errors',0);		
 	}	
+	if(!is_object($shield)) {
+		$shield = new Shield();
+	}		
 	$shield->checkIP();	
 ?>

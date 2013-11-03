@@ -11,7 +11,7 @@
                 <ul class="tabsDomain" >
                     <li id="addtab"><a href="#add"><?=$lang->MOD_209?></a></li>
                     <?
-						$query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
+						$query=$db->query('SELECT * FROM cms_domains WHERE alias="0" ORDER BY name ASC');
 						while($result=$db->fetch($query)) {
 							echo '<li id="domain_'.$result['ID'].'tab"><a href="#domain_'.$result['ID'].'">'.$result['name'].'</a></li>';
 						}
@@ -25,7 +25,7 @@
                     <? include("domains.add.php") ?>
                 </div>  
                 <?
-					$query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
+					$query=$db->query('SELECT * FROM cms_domains WHERE alias="0"  ORDER BY name ASC');
 					while($result=$db->fetch($query)) {
 						 echo '<div id="domain_'.$result['ID'].'" class="domain_content" style="overflow:auto;">
 								<form action="" id="a_domains_edit_'.$result['ID'].'" method="post" class="form2">
