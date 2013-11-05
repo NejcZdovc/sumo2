@@ -21,12 +21,10 @@ class Session {
 	
 	private function checkUser() {
 	    global $cookie;
-	    if($cookie->isCSC('user')) {
+	    if($cookie->isCSC('user') && $this->isSession('user')) {
 	        $this->logedIn = true;
 	        $_SESSION['user'] = $cookie->getCSC('user');
-	    } else if($this->isSession('user')) {
-	        $this->logedIn = true;
-	    }
+	    } 
 		else
 			$this->logedIn = false;
 	}
