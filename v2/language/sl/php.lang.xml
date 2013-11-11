@@ -3,7 +3,7 @@
 	<parent id="None specified">
 		<item constant="EDIT">Uredi</item>
 		<item constant="SENT_DATE">Datum pošiljanja</item>
-		<item constant="CONTROL"/>
+		<item constant="CONTROL">Možnosti</item>
 		<item constant="DATE_1">H:i:s d. m. Y</item>
 		<item constant="SELECT_ALL">Izberi vse</item>
 		<item constant="MANUAL_SEL">Izberi posamezno</item>

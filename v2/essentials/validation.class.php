@@ -23,7 +23,7 @@ class Validation {
 	
 	public function isUsername($string,$min=0,$max=50) {
 		if($this->isLength($string,$min,$max)) {
-			if(preg_match("/^([a-zA-Z0-9._])+$/", $string)) {
+			if(preg_match("/^([a-zA-Z0-9._@-])+$/", $string)) {
 				return true;
 			} else {
 				return false;
