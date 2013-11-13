@@ -351,6 +351,8 @@
 		<item constant="MOD_212">Preusmeritev uspešno izbrisana.</item>
 		<item constant="MOD_213">Pomnilnik uspšeno posodobljen</item>
 		<item constant="MOD_214">Čestitamo!<br/>Uporabljate najnovejšo verzijo SUMO2 CMS-a.</item>
+		<item constant="MOD_215">Vse module v skupini</item>
+		<item constant="MOD_216">Samo ta modul</item>
 	</parent>
 	<parent id="Language">
 		<item constant="LANG_WAR">Ali ste prepričani, da želite spremeniti jezik v </item>

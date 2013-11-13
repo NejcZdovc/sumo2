@@ -2736,17 +2736,39 @@ sumo2.siteTree = {
 	},
 	
 	RemoveModule : function(layout, id) {	
-		sumo2.dialog.YesNoDialog(sumo2.language.VARIABLES.WARNING, sumo2.language.VARIABLES.MOD_190,250,30,function() {
-			var params = "type=remove$!$layout=" + layout + "$!$id=" + id+ "$!$all=yes" ;
-			sumo2.ajax.SendPost('includes/site.tree.data.php', params, function(data) {
-				sumo2.accordion.ReloadAccordion("a_sitetree")
-			});
-		}, function() {
-			var params = "type=remove$!$layout=" + layout + "$!$id=" + id+ "$!$all=no";
-			sumo2.ajax.SendPost('includes/site.tree.data.php', params, function(data) {
-				sumo2.accordion.ReloadAccordion("a_sitetree")
-			});
-		});
+		sumo2.dialog.CustomDialog(sumo2.language.VARIABLES.WARNING, sumo2.language.VARIABLES.MOD_190,400,30,
+			Array(
+				  {
+					  title : sumo2.language.VARIABLES.CANCEL,
+					  icon : 'background-image:url(images/css_sprite.png);background-position:-540px -1693px;width:16px;height:16px;',
+					  func : function() {																		
+						  sumo2.dialog.CloseDialog('customDialog');
+					  }
+				  },
+				  {
+					  title : sumo2.language.VARIABLES.MOD_215,
+					  icon : 'background-image:url(images/css_sprite.png);background-position:-588px -1693px;width:16px;height:16px;',
+					  func : function() {
+						  var params = "type=remove$!$layout=" + layout + "$!$id=" + id+ "$!$all=yes" ;
+						  sumo2.ajax.SendPost('includes/site.tree.data.php', params, function(data) {
+							  sumo2.accordion.ReloadAccordion("a_sitetree")
+						  });					
+						  sumo2.dialog.CloseDialog('customDialog');
+					  }
+				  },
+				  {
+					  title : sumo2.language.VARIABLES.MOD_216,
+					  icon : 'background-image:url(images/css_sprite.png);background-position:-588px -1693px;width:16px;height:16px;',
+					  func : function() {
+						  var params = "type=remove$!$layout=" + layout + "$!$id=" + id+ "$!$all=no";
+						  sumo2.ajax.SendPost('includes/site.tree.data.php', params, function(data) {
+							  sumo2.accordion.ReloadAccordion("a_sitetree")
+						  });							
+						  sumo2.dialog.CloseDialog('customDialog');
+					  }
+				  }
+			)
+		);
 	}
 };
 sumo2.moduleManager = {
