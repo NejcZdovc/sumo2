@@ -1675,6 +1675,23 @@ var sumo2 = {
 			this.AddDialog(dialog.uniqueId);
 		},
 		
+		CustomDialog : function(title, text, width, maxHeight, buttons) {
+			var dialog = {
+				refresh : false,
+				close : false,
+				uniqueId : 'customDialog',
+				title : title,
+				page : '',
+				params : '',
+				height : maxHeight,
+				width : width,
+				buttons : buttons
+			};
+			this.CreateDialog(dialog,text);
+			this.SELECTED = dialog.uniqueId;
+			this.AddDialog(dialog.uniqueId);
+		},
+		
 		NewDialog : function(number, parameters, esc) {
 			if(number!='d_relogin' && $.cookie(cookieIDGlobal)==null) {
 					sumo2.dialog.NewDialog('d_relogin', null, true);
