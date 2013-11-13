@@ -350,6 +350,7 @@
 		<item constant="MOD_211">Are you sure you would like to delete this redirection?</item>
 		<item constant="MOD_212">Redirect successfully deleted.</item>
 		<item constant="MOD_213">Cache number successfully updated.</item>
+		<item constant="MOD_214">Congratulation!<br/>You are using the latest version of SUMO2 CMS.</item>
 	</parent>	
 	<parent id="Language">
 		<item constant="LANG_WAR">Are you sure you want to change the language into </item>

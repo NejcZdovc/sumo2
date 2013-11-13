@@ -250,8 +250,8 @@ sumo2.user = {
 	ChangeStatusField : function(id) {
 		var params = "mode=status$!$id="+id;
 		sumo2.ajax.SendPost("includes/user.fields.php",params,function(data) {
-            		sumo2.accordion.ReloadAccordion('a_user_view_f');
-        	});	
+				sumo2.accordion.ReloadAccordion('a_user_view_f');
+		});	
 	},
 
 	DeleteField : function(id) {
@@ -435,11 +435,6 @@ sumo2.user = {
 	ChangeStatus : function(id,accId) {
 		var params = "type=status$!$id="+id;
 		sumo2.ajax.SendPost("includes/user.management.php",params,function(data) {
-
-
-
-
-
 				if(accId) {
 					sumo2.accordion.ReloadAccordion(accId);
 					sumo2.accordion.ReloadAccordion('a_user_view_u');
@@ -2547,11 +2542,11 @@ sumo2.siteTree = {
 		var copyModul = document.getElementById('copyModul').value;
 		if(!sumo2.validate.IsLength(newname,2,20)) {
 			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_44,250,250,1);
-			return false;
+			return;
 		}
 		if(!sumo2.validate.IsNumerical(cache,1,11)) {
 			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_158,250,250,1);
-			return false;
+			return;
 		}
 		var pages = '';
 		var dialog = document.getElementById("sumo2-sitetree-rename-check");
@@ -2598,7 +2593,7 @@ sumo2.siteTree = {
 		var name = document.getElementById('nameOfModule').value;
 		var prefix = document.getElementById('prefixOfModule');
 		var selPrefix = prefix.options[prefix.selectedIndex].value;
-		var id = document.getElementById('idOfModule').value;
+		id = document.getElementById('idOfModule').value;
 		var layout = document.getElementById('layoutOfModule').value;
 		var tpage = document.getElementById('tpageOfModule').value;
 		var copyModule = document.getElementById('copyForModule').value;
@@ -2617,11 +2612,11 @@ sumo2.siteTree = {
 		}
 		if(!sumo2.validate.IsLength(name,2,50)) {
 			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_44,250,250,1);
-			return false;
+			return;
 		}
 		if(pages.length <= 0) {
 			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_45,250,250,1);
-			return false;
+			return;
 		}
 		if(window.frames.layout.st) {
 			window.frames.layout.st.AddModules(id, name , pages, selPrefix, layout, copyModule, sumo2.accordion.GetParamFromAccordion('a_sitetree', 'sel_page'));
@@ -2638,7 +2633,9 @@ sumo2.siteTree = {
 	
 	SetDrag : function(e) {
 		this.WORKING = true;
-		if(!e) var e = window.event;
+		if(!e) {
+			e = window.event;
+		}
 		var frame = document.getElementById('sumo2-tree-frame');
 		var frameInfo = this.GetPosition(frame);
 		var target = this.GetTarget(e);
@@ -2670,11 +2667,11 @@ sumo2.siteTree = {
 		var copyModul = document.getElementById('copyModul').value;
 		if(!sumo2.validate.IsLength(newname,2,50)) {
 			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_44,250,250,1);
-			return false;
+			return;
 		}
 		if(!sumo2.validate.IsNumerical(cache,1,11)) {
 			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_158,250,250,1);
-			return false;
+			return;
 		}
 		var param='type=rename$!$title='+newname+'$!$layout='+layout+'$!$id='+id+'$!$prefix='+prefix+'$!$cache='+cache+'$!$specialPage='+specialPage+'$!$copyModul='+copyModul;
 		sumo2.ajax.SendPost('includes/site.tree.data.php', param,function(data) {
@@ -3125,7 +3122,7 @@ sumo2.AddLoadEvent(function() {
 	setInterval('sumo2.mail.CheckMain()', 500000);
 	var checkFake;
 	sumo2.AddEvent(document.body,'mouseup',function(evt) {
-		if(!evt) var evt = window.event;
+		if(!evt) evt = window.event;
 		if(sumo2.siteTree.WORKING) {
 			var drag = sumo2.siteTree.DRAG.obj;
 			if(drag && drag.parentNode) {
@@ -3157,7 +3154,7 @@ sumo2.AddLoadEvent(function() {
 		}
 	},false);
 	sumo2.AddEvent(document.body,'mousemove',function(evt) {
-		if(!evt ||evt == null) var evt = window.event;
+		if(!evt ||evt == null) evt = window.event;
 		if(sumo2.siteTree.WORKING) {
 			var drag = sumo2.siteTree.DRAG.obj;
 			var offset = sumo2.siteTree.DRAG.offset;

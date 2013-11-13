@@ -350,6 +350,7 @@
 		<item constant="MOD_211">Ali ste prepričani, da želite izbrisati to preusmeritev?</item>
 		<item constant="MOD_212">Preusmeritev uspešno izbrisana.</item>
 		<item constant="MOD_213">Pomnilnik uspšeno posodobljen</item>
+		<item constant="MOD_214">Čestitamo!<br/>Uporabljate najnovejšo verzijo SUMO2 CMS-a.</item>
 	</parent>
 	<parent id="Language">
 		<item constant="LANG_WAR">Ali ste prepričani, da želite spremeniti jezik v </item>

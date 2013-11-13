@@ -558,12 +558,6 @@ var sumo2 = {
 			} while(--secondary);
 		},
 
-
-
-
-
-
-
 		Init : function() {
 			this.SetVariables();
 			this.SetContainers();
@@ -638,7 +632,7 @@ var sumo2 = {
 						allTags[i].title = "";
 						allTags[i].realData = data;
 						allTags[i].onmouseover = function(event) {
-							if(!event) var event = window.event;
+							if(!event) event = window.event;
 							var pos = sumo2.tooltip.GetPosition(event);
 							sumo2.tooltip.CreateTooltip(pos,this.realData);
 						};
@@ -1606,7 +1600,7 @@ var sumo2 = {
 			this.AddDialog(dialog.uniqueId);
 			if(esc === true) {
 				sumo2.AddEvent(document,'keydown',function(event) {
-					if(!event) var event = window.event;
+					if(!event) event = window.event;
 					if(event.keyCode == 27 && sumo2.dialog.SELECTED == dialog.uniqueId) {
 						sumo2.dialog.CloseDialog(dialog.uniqueId);
 					}
@@ -1705,7 +1699,7 @@ var sumo2 = {
 				this.AddDialog(dialog.uniqueId);
 				if(esc==null && esc==false) {
 					sumo2.AddEvent(document,'keydown',function(event) {
-						if(!event) var event = window.event;
+						if(!event) event = window.event;
 						if(event.keyCode == 27 && sumo2.dialog.SELECTED == dialog.uniqueId) {
 							sumo2.dialog.CloseDialog(dialog.uniqueId);
 						}
@@ -1958,7 +1952,7 @@ var sumo2 = {
 	
 	update : {
 		Checked: true,
-		Init : function () {
+		Init : function (manully) {
 			if ($("#sumo2-main-update").length > 0){
 				var params = 'type=check';
 				sumo2.ajax.SendPost('includes/update.php',params,function(data) {
@@ -1966,6 +1960,10 @@ var sumo2 = {
 					if(version[0] == 'Yes') {
 						$('#sumo2-main-update #top').html('<b>'+sumo2.language.VARIABLES.MOD_143+'</b><br/><br/>'+sumo2.language.VARIABLES.MOD_144+'<br/><br/><div class="button flt-left accordion-bttn" onclick="sumo2.update.Close();"><div style="float:left;display:block;background-image:url(images/css_sprite.png);background-position:-620px -1629px;width:16px;height:16px;"></div><div style="margin-left:2px;float:left;color:#000;">'+sumo2.language.VARIABLES.MOD_145+'</div></div><div class="button flt-right accordion-bttn" onclick="sumo2.update.Step1();"><div style="float:left;display:block;background-image:url(images/css_sprite.png);background-position:-557px -1661px;width:16px;height:16px;"></div><div style="margin-left:2px;float:left;color:#000;">'+sumo2.language.VARIABLES.MOD_146+'</div></div><div style="clear:both;"></div>');
 						$('#sumo2-main-update').slideDown('slow');
+					} else {
+						if (!!manully) {
+							sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_214,1);
+						}
 					}
 				});	
 			}
