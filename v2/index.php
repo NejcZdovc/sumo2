@@ -49,7 +49,7 @@ $langDomainAuth = $user->checkLang();
                         <div class="lang-top"></div>
                         <div class="lang-middle" id="sumo2-cache-text">
                         	<? echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt('All').'\');" class="cache-item"><span class="icon"></span><span class="item">'.$lang->MOD_187.'</span></div>';
-                            $query = $db->query("SELECT def.moduleName, def.name FROM cms_modules_def as def, cms_domains_ids as di WHERE def.status='N' AND di.elementID=def.ID AND di.type='mod' AND di.domainID='".$user->domain."' ORDER BY def.ID asc");
+                            $query = $db->query("SELECT def.moduleName, def.name FROM cms_modules_def as def, cms_domains_ids as di WHERE def.status='N' AND di.elementID=def.ID AND di.type='mod' AND di.domainID='".$user->domain."' ORDER BY def.name asc");
                             while($result = $db->fetch($query)) {
                                 if(file_exists('modules/'.$result['moduleName'].'/small.png')) {
                                     $img = 'modules/'.$result['moduleName'].'/small.png';

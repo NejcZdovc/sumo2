@@ -27,6 +27,7 @@ class Template {
 		if(!defined('CACHE_LIFETIME')) {
 			define('CACHE_LIFETIME', 60 * 60 * 24 * 7); // secs (60*60*24*7 = 1 week)			
 		}
+		
 		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/Smarty.class.php');	
 		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/plugins/function.sumo_panel.php');
 			
@@ -90,13 +91,12 @@ class Template {
 			$module = $db->get($db->query("SELECT moduleName FROM cms_modules_def WHERE ID='".$db->filter('spRID')."'"));
 			if(is_file($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php')) {
 				require_once($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php');
-				$function=$module['moduleName'].'_getTitleSP';
 				if($db->is('modulParam'))
 					$param=$db->filter('modulParam');
 				else
 					$param="";
-				if(function_exists($function)) {		
-					$link .= $function($param, $db->filter('spID')).' - ';
+				if(function_exists('getTitle')) {		
+					$link .= getTitle($param, $db->filter('spID')).' - ';
 				}else {
 					$link = '';
 				}
@@ -195,27 +195,33 @@ class Template {
 		$result_glob = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'"));
 		$keywords="";
 		$description="";
+		$customHead="";
 		if($db->is('spPage')) {
 			$module = $db->get($db->query("SELECT moduleName FROM cms_modules_def WHERE ID='".$db->filter('spRID')."'"));
 			if(is_file($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php')) {
 				require_once($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php');			
-				if($db->is('modulParam'))
+				if($db->is('modulParam')) {
 					$param=$db->filter('modulParam');
+				}
 				else
 					$param="";
-				$function='GetKeywords';
-				if(function_exists($function)) {
-					$k=$function($param, $db->filter('spID'));
+					
+				if(function_exists('getKeywords')) {
+					$k=GetKeywords($param, $db->filter('spID'));
 					if(strlen($k)>0) {		
 						$keywords=$k;
 					}
 				}
-				$function='GetDescription';
-				if(function_exists($function)) {
-					$d=$function($param, $db->filter('spID'));
+				
+				if(function_exists('getDescription')) {
+					$d=GetDescription($param, $db->filter('spID'));
 					if(strlen($d)>0) {	
 						$description=$d;
 					}
+				}
+				
+				if(function_exists('getCustom')) {
+					$customHead=getCustom($param, $db->filter('spID'));
 				}
 			}
 		} 
@@ -232,6 +238,9 @@ class Template {
 		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"generator\" content=\"SUMO 2 CMS\" />\n";
 		if($result_glob['WM_enabled'] == 1) {
 			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
+		}
+		if(strlen($customHead)>0) {
+				$result.= str_replace('"', '\"', $customHead);
 		}
 		if($result_glob['display_title'] == 'F') {
 			$result.= "<title>".$title."</title>\n";
@@ -251,7 +260,7 @@ class Template {
 			$query2 = $db->query("SELECT DISTINCT panel.modulID, def.moduleName FROM cms_panel_".$result1['prefix']." as panel LEFT JOIN cms_modules_def as def ON panel.modulID=def.ID WHERE panel.pageID='".$this->pageID."' AND panel.lang='".$this->langID."' AND panel.domain='".$globals->domainID."' AND def.enabled='1' AND def.status='N'");
 			while($result2 = $db->fetch($query2)) {
 				$modArray[$result2['moduleName']]= $result2['modulID'];
-			}
+				}
 			
 		}
 		if($user->developer=="1") {

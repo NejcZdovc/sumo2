@@ -45,6 +45,7 @@ class Shield {
 		$file = "./ip/".$user->IP;
 		if(!file_exists($file)) {
 			if(!file_exists($file)) {
+				/*http://ip.codehelper.io/*/
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_URL, "http://api.codehelper.io/ips/?php&ip=".$user->IP);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

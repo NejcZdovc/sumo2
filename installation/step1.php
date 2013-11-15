@@ -61,7 +61,7 @@ echo '<table cellpadding="0" cellspacing="0" border="0" width="100%" style="marg
 		}
 		
 		echo '<td>'.substr(sprintf('%o', $ss), 2).'</td>';
-		echo '<td>'.$filePerm.'</td>';
+		echo '<td>'.$fodlerPerm.'</td>';
 		if(substr(sprintf('%o', $ss), 1)!=$fodlerPerm) {
 			echo '<td><img src="no.png" /></td></tr>';
 			$stanje+=1;

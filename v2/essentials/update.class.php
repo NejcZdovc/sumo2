@@ -395,7 +395,7 @@ class Update
 	}
 	
 	public function CopyFiles() {
-		global $xml, $db,$crypt, $lang;		
+		global $xml, $db,$crypt, $lang, $globals;		
 		$error= array();
 		$ftpUserName = $crypt->decrypt($globals->FTP_user);
 		$ftpUserPass = $crypt->decrypt($globals->FTP_pass);

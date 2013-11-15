@@ -67,7 +67,7 @@
 		$link = new mysqli($url, $user, $pass, $name);
 		$link->set_charset(__ENCODING__);
 		if ($link->connect_errno) {
-			printf("Connect failed: %s", $link->mysqli_error);
+			printf("Connect failed: %s", $link->connect_error);
     		exit();
 		} else {
 			$fp = fopen('../v2/configs/settings.php', 'ab');

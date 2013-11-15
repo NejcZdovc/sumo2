@@ -46,9 +46,13 @@ if(ob_get_length()>0) { ob_end_clean();	}
 				echo implode("!!!!!",$delete);
 			else {
 				$copy=$update->CopyFiles();
-				if($copy!="yes")
-					echo implode("!!!!!",$copy);
-				else {
+				if($copy!="yes") {
+					if(is_array($copy)) {
+						echo implode("!!!!!",$copy);
+					} else {
+						echo $copy;
+					}
+				} else {
 					echo "yes";
 				}
 			}

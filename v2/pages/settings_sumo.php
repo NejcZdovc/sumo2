@@ -143,7 +143,7 @@
                 	<div class="title_form_big"><?=$lang->MOD_190?>:</div><div class="title_form_small"><?=$lang->MOD_191?></div>
                 </td>
                 <td class="right_td">
-                	<div style="cursor:pointer; font-weight:bold; font-size:15px; margin-left:40%;" onclick="sumo2.update.Init();"><?=$lang->MOD_190?></div>
+                	<div style="cursor:pointer; font-weight:bold; font-size:15px; margin-left:40%;" onclick="sumo2.update.Init(true);"><?=$lang->MOD_190?></div>
                 </td>
            </tr>
            <tr style="margin-bottom:20px;">
