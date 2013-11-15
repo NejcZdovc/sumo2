@@ -237,7 +237,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs_trash li.ac
 #tpmenuCache {cursor:pointer; margin-left:5px;background-image:url(../images/css_sprite.png);background-position:-604px -1629px;display:inline;height:16px;width:16px;margin-top:8px;float:left; }
 #tpmenuDomain {cursor:pointer; margin-left:-5px;background-image:url(../images/css_sprite.png);background-position:-523px -1725px;display:inline;height:16px;width:16px;margin-top:8px;float:left; }
 #tpmenuMail {background-image:url(../images/css_sprite.png);background-position:-556px -1678px;display:inline;height:16px;width:16px;margin-top:8px;float:left;}
-#sumo2-main-version {font-size:10px;font-weight:bold;color:#e3e3e3;padding:3px 0px;margin-top:87px;margin-left:200px;background:#626262;width:130px;padding-left:10px; padding-right:10px; text-align:center;}
+#sumo2-main-version {font-size:10px;font-weight:bold;color:#e3e3e3;padding:3px 0px;margin-top:87px;margin-left:200px;background:#626262;width:150px;padding-left:10px; padding-right:10px; text-align:center;}
 
 /*Thumb*/
 .thumb {

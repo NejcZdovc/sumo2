@@ -290,7 +290,7 @@
 		$link->query("INSERT INTO cms_state (userID, state) VALUES (".$userID.", 'empty');") or die($link->mysqli_error);
 		
 		//user settings
-		$link->query("INSERT INTO cms_user_settings (userID, lang, items, accordion, preview, view, translate_state, translate_lang, updateOption, beta, developer, domain) VALUES (".$userID.", 1, 666, 5, 1, 'L', 'OFF', 0, 'OFF', 0, 0, ".$domainID.");") or die($link->mysqli_error);
+		$link->query("INSERT INTO cms_user_settings (userID, lang, items, accordion, preview, view, translate_state, translate_lang, updateOption, beta, developer, domain) VALUES (".$userID.", 1, 666, 5, 1, 'L', 'OFF', ".$domainID.", 'OFF', 0, 0, ".$domainID.");") or die($link->mysqli_error);
 		echo "0";
 	}		
 ?>
