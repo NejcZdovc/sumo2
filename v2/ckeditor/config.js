@@ -11,7 +11,8 @@ CKEDITOR.editorConfig = function( config ) {
 	config.scayt_contextCommands = 'off';
 	config.scayt_defLan = 'en_GB';
 	config.enterMode = CKEDITOR.ENTER_BR;
-	config.removePlugins = 'elementspath';
+	config.removePlugins = 'image';
+    config.extraPlugins = 'image2';
 	config.emailProtection = 'encode';
 	config.toolbarCanCollapse = false;
 	config.allowedContent = true;
@@ -32,7 +33,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
 		{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'] },
 		{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-		{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar'] },
+		{ name: 'insert', items : [ 'image2','Flash','Table','HorizontalRule','Smiley','SpecialChar'] },
 		{ name: 'styles', items : [ 'Format'] }
 	];
 	
@@ -46,7 +47,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
 		{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
 		{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
-		{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
+		{ name: 'insert', items : [ 'image2','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
 		'/',
 		{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
 		{ name: 'colors', items : [ 'TextColor','BGColor' ] },
