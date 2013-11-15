@@ -1869,14 +1869,13 @@ var sumo2 = {
 		Init : function() {
 			if(sumo2.OPERA) {
 				document.body.onunload = function() {
-					sumo2.state.SaveState();
+					sumo2.state.SaveState();				
+					return;	
 				};
-			} /*else if(sumo2.IE) {
-				window.onbeforeunload=;
-			}*/else {				
+			} else {				
 				$(window).bind('beforeunload', function () {
 					sumo2.state.SaveState(); 
-					return null;				
+					return;				
 				});							
 			}				
 		},
