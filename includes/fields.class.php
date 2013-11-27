@@ -9,7 +9,7 @@ class Fields
 {	
 	public $javascript="";
 	
-	public function input($min, $max, $fieldId, $required="0", $value=null) {
+	public function input($min, $max, $fieldId, $required="0", $value=null, $dynamic=false) {
 		global $db;
 		if($required=="1") {
 		$this->javascript.="var element=document.getElementById('".$fieldId."');
@@ -18,19 +18,18 @@ class Fields
 		 else
 		  {element.className=element.className.replace('error','');}}";
 		}
-		if($db->is($fieldId))
-			return '<input type="text" maxlength="'.$max.'" value="'.$db->filterVar($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
+		if($dynamic && $db->is($fieldId))
+			return '<input type="text" maxlength="'.$max.'" value="'.$db->filter($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 		else if($value!=null)
 			return '<input type="text" maxlength="'.$max.'" value="'.$value.'" name="'.$fieldId.'" id="'.$fieldId.'" />';
 		else
 			return '<input type="text" maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 	}
 	
-	public function email($fieldId, $value=null, $required="0") {
+	public function email($fieldId, $value=null, $required="0", $dynamic=false) {
 		global $db;
 		if($required=="0") {
 			$this->javascript.="var element=document.getElementById('".$fieldId."'); var reg = /^([a-zA-Z0-9\u00A1-\uFFFF]+([\.+_-][a-zA-Z0-9\u00A1-\uFFFF]+)*)@(([a-zA-Z0-9]+((\.|[-]{1,2})[a-zA-Z0-9]+)*)\.[a-zA-Z]{2,6})$/;
-            console.log(typeof(element));
 			if (element)  {
 			if(element.value.length>0 && !reg.test(element.value)) {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		} else {
@@ -38,28 +37,28 @@ class Fields
 			if (element)  {
 			if(!reg.test(element.value)) {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		}
-		if($db->is($fieldId))
-			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$db->filterVar($fieldId).'" />';
+		if($dynamic && $db->is($fieldId))
+			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$db->filter($fieldId).'" />';
 		else if($value!=null)
 			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$value.'" />';
 		else
 			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'"/>';
 	}
 	
-	public function password($min, $fieldId, $required, $value=null) {
+	public function password($min, $fieldId, $required, $value=null, $dynamic=false) {
 		global $db;
 		if($required=="1") {
 		$this->javascript.="var element=document.getElementById('".$fieldId."'); if (element)  {if(element.value.length<".$min.") {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		}
-		if($db->is($fieldId))
-			return '<input type="password" value="'.$db->filterVar($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
+		if($dynamic && $db->is($fieldId))
+			return '<input type="password" value="'.$db->filter($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 		else if($value!=null) 
 			return '<input type="password" value="'.$value.'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 		else
 			return '<input type="password" name="'.$fieldId.'" id="'.$fieldId.'" />';		
 	}
 	
-	public function check($fieldId, $options, $required, $position, $value=null) {
+	public function check($fieldId, $options, $required, $position, $value=null, $dynamic=false) {
 		global $db;
 		$options=explode(',', $options);
 		$code="";
@@ -68,7 +67,7 @@ class Fields
 			$this->javascript.="var element=document.getElementsByName('".$fieldId."[]');if (element)  {var napaka=true; for (i = 0; i < element.length; i++) {if(element[i].checked) {napaka=false;}} if(napaka){ok=false;for (i = 0; i < element.length; i++) {document.getElementById(element[i].id+'_label').className=element[i].className.replace('error_text','');document.getElementById(element[i].id+'_label').className+=' error_text';}} else {for (i = 0; i < element.length; i++) {document.getElementById(element[i].id+'_label').className=document.getElementById(element[i].id+'_label').className.replace('error_text','');}}}";	
 		}
 		foreach($options as $i) {
-			if(isset($_REQUEST[$fieldId]) && in_array($i, $_REQUEST[$fieldId]))	{	
+			if($dynamic && isset($_REQUEST[$fieldId]) && in_array($i, $_REQUEST[$fieldId]))	{	
 				if($position=="L")	
 					$code.='<label for="'.$fieldId.'_'.$stevilo.'_label" id="'.$fieldId.'_'.$stevilo.'_label">'.$i.'</label><input type="checkbox" name="'.$fieldId.'[]" class="'.$fieldId.'" checked="checked" id="'.$fieldId.'_'.$stevilo.'" value="'.$i.'" />';
 				else
@@ -84,7 +83,7 @@ class Fields
 		return $code;
 	}
 	
-	public function text($min, $max, $fieldId, $required="0", $value=null) {
+	public function text($min, $max, $fieldId, $required="0", $value=null, $dynamic=false) {
 		global $db;
 		if($required=="1") {
 		$this->javascript.="var element=document.getElementById('".$fieldId."');
@@ -93,8 +92,8 @@ class Fields
 		 else
 		  {element.className=element.className.replace('error','');}}";
 		}
-		if($db->is($fieldId))
-			return '<textarea maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'">'.$db->filterVar($fieldId).'"</textarea>';		
+		if($dynamic && $db->is($fieldId))
+			return '<textarea maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'">'.$db->filter($fieldId).'"</textarea>';		
 		else if($value!=null)
 			return '<textarea maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'">'.$value.'</textarea>';
 		else
