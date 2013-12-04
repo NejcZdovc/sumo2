@@ -196,8 +196,68 @@ if($db->is('type')) {
 		$db->query('UPDATE cms_user_settings SET domain="'.$id.'", translate_lang="'.$lang['ID'].'" WHERE userID="'.$user->id.'"');
 		echo 'ok';
 		exit;
-	} else if($db->filter('type')=="delete") {
-		$id=$db->filter('id');		
+	}
+    else if($db->filter('type')=="delete")
+    {
+		$id=$db->filter('id');
+        $domain=$db->get($db->query('SELECT name FROM cms_domains WHERE ID="'.$id.'"'));
+        if(!$domain) {
+            return "error";
+        }
+        
+        $name=$domain['name'];
+        
+        //module panles
+        $tables=$db->query('SELECT prefix FROM cms_template_position WHERE domain="'.$id.'"');
+        while($table=$db->fetch($tables)) {
+            $db->query('DELETE FROM cms_panel_'.$table['prefix'].' WHERE domain="'.$id.'"');
+        }
+        
+        //article images
+        $tables=$db->query('SELECT ID FROM cms_article WHERE domain="'.$id.'"');
+        while($table=$db->fetch($tables)) {
+            $db->query('DELETE FROM cms_article_images WHERE articleID="'.$table['ID'].'"');
+            $db->query('DELETE FROM cms_article_tags WHERE articleID="'.$table['ID'].'"');
+        }        
+        
+        $db->query('DELETE FROM cms_article WHERE domain="'.$id.'"');
+        $db->query('DELETE FROM cms_article_categories WHERE domain="'.$id.'"');
+        $db->query("DELETE FROM cms_domains WHERE ID='".$id."'");
+        $db->query("DELETE FROM cms_domains WHERE parentID='".$id."'");
+        $db->query("DELETE FROM cms_domains_countries WHERE domainID='".$id."'");
+        $db->query("DELETE FROM cms_domains_ids WHERE domainID='".$id."'");
+        $db->query("DELETE FROM cms_domains_ips WHERE domainID='".$id."'");
+        $db->query('DELETE FROM cms_global_settings WHERE domain="'.$id.'"');
+        $db->query("DELETE FROM cms_homepage WHERE domain='".$id."'");
+        $db->query("DELETE FROM cms_menus WHERE domain='".$id."'");
+        $db->query("DELETE FROM cms_menus_items WHERE domain='".$id."'");
+        $db->query("DELETE FROM cms_modul_prefix WHERE domain='".$id."'");
+        $db->query("DELETE FROM cms_seo_redirects WHERE domainID='".$id."'"); 
+        $db->query("DELETE FROM cms_template WHERE domain='".$id."'");
+        $db->query('DELETE FROM cms_template_position WHERE domain="'.$id.'"');        
+        
+        //template
+		recursive_remove_directory('../../templates/'.$name.'/');
+		
+		//module
+		recursive_remove_directory('../../modules/'.$name);
+		
+		//off
+		recursive_remove_directory('../../off/'.$name);
+		
+		//block
+		recursive_remove_directory('../../block/'.$name);
+		
+		//block
+		recursive_remove_directory('../../404/'.$name);
+		
+		//images
+		recursive_remove_directory('../../images/'.$name);
+		
+		//storage
+		recursive_remove_directory('../../storage/'.$name);
+        
+        return "ok";
 	}
 }
 ?>

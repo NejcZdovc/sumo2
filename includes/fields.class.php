@@ -37,7 +37,7 @@ class Fields
 			if (element)  {
 			if(!reg.test(element.value)) {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		}
-		if($dynamic && $db->is($fieldId))
+		if($dynamic && $db->is($fieldId))		
 			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$db->filter($fieldId).'" />';
 		else if($value!=null)
 			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$value.'" />';
