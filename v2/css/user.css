@@ -140,7 +140,7 @@
 .tree2 li.last {background:url(../images/tree_view_end.png) no-repeat 11px center;}
 .tree2 li.root.last {background:none;}
 .the-tree div {background:none !important;padding:0px !important;height:16px;display:inline-block; cursor:pointer;border:1px solid transparent;}
-.the-tree div.sel {background;none !important;border:1px solid transparent;color:inherit !important;}
+.the-tree div.sel {background:none !important;border:1px solid transparent;color:inherit !important;}
 .the-tree input {padding-right:3px;margin-right:3px;}
 .file-tree {background:#ffffff;overflow:auto;width:100%; height:100%;vertical-align:top;}
 .file-view {background:#ffffff;overflow:auto;width:100%;height:100%;vertical-align:top; padding-bottom:20px;}
@@ -212,7 +212,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs_trash li.ac
 .module-outer {float:left;width:150px;min-height:150px;margin:10px;padding:0px 22px 0px 0px;border:1px solid #999999;background:#e3e3e3;}
 .module-inner {width:100%;height:100%;min-height:200px;border:1px solid #fefefe;background:#e3e3e3;padding:10px;}
 .module-inner:hover {background:#cccccc;}
-.loading {background:url(../images/ldr_bck.gif) no-repeat;height:100px;width:100px;position:absolute;top:0px;left:40%;}
+.loading {background:url(../images/ldr_bck.gif) no-repeat;height:40px;width:40px;position:absolute;top:0px;left:40%;}
 #sumo2-main-message { left:40%; z-index:100; position:absolute; width:400px; height:auto;} 
 #sumo2-main-message>.ok {background:#15b61c; color:#224422 !important;}
 #sumo2-main-message>.error {background:#FF0033;}
@@ -237,7 +237,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs_trash li.ac
 #tpmenuCache {cursor:pointer; margin-left:5px;background-image:url(../images/css_sprite.png);background-position:-604px -1629px;display:inline;height:16px;width:16px;margin-top:8px;float:left; }
 #tpmenuDomain {cursor:pointer; margin-left:-5px;background-image:url(../images/css_sprite.png);background-position:-523px -1725px;display:inline;height:16px;width:16px;margin-top:8px;float:left; }
 #tpmenuMail {background-image:url(../images/css_sprite.png);background-position:-556px -1678px;display:inline;height:16px;width:16px;margin-top:8px;float:left;}
-#sumo2-main-version {font-size:10px;font-weight:bold;color:#e3e3e3;padding:3px 0px;margin-top:87px;margin-left:200px;background:#626262;width:150px;padding-left:10px; padding-right:10px; text-align:center;}
+#sumo2-main-version {font-size:10px;font-weight:bold;color:#e3e3e3;padding:3px 0px;margin-top:42px;margin-left:200px;background:#626262;width:150px;padding-left:10px; padding-right:10px; text-align:center;}
 
 /*Thumb*/
 .thumb {

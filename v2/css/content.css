@@ -8,10 +8,10 @@ ins {text-decoration:none;}
 del {text-decoration:line-through;}
 table {border-collapse:collapse;border-spacing:0;}
 body {background-color:#f1f7f9;width:100%;height:100%;}
-.background {background-image: url(../images/css_sprite.png);background-position:0px 166px;background-repeat:repeat-x;width:inherit;height:inherit;}
+.background {background-image: url(../images/css_sprite.png);background-position:0px 121px;background-repeat:repeat-x;width:inherit;height:inherit;}
 .header {background-repeat:repeat-x;}
 .height {height:100%;}
-.top {background-image:url(../images/css_sprite.png);background-position:0px -1250px;background-repeat:repeat-x;height:100px;min-width:870px; width:100%;}
+.top {background-image:url(../images/css_sprite.png);background-position:0px -1250px;background-repeat:repeat-x;height:55px;min-width:870px; width:100%;}
 .menu {background-image:url(../images/css_sprite.png);background-position:0px -1350px;background-repeat:repeat-x;height:39px;}
 .submenu {background-image:url(../images/css_sprite.png);background-position:0px -1389px;background-repeat:repeat-x;height:28px;}
 .left {width:110px;float:left;}
@@ -46,7 +46,7 @@ body {background-color:#f1f7f9;width:100%;height:100%;}
 .tpmnu-main {height:30px;background-image:url(../images/css_sprite.png);background-position:0px -1517px;width:auto;color:#ffffff;line-height:30px;padding:0px 5px;}
 .tpmnu-right {width:3px;height:30px;background-image:url(../images/css_sprite.png);background-position:-1469px -1658px;}
 .font-set {font-family:"Trebuchet MS", Arial, sans-serif; font-size:12px;color:#676767;}
-.logo {height:100px;width:321px; margin-left:10px; cursor:pointer;}
+.logo {height:40px;width:321px; margin-left:10px; cursor:pointer;}
 .hide {display:none;}
 .nav {font-size:22px;color:#ffffff;text-transform:uppercase;}
 .nav li {float:left;margin-left:15px;cursor:pointer;margin-top:3px;height:29px;padding: 7px 5px 0px 5px;}

@@ -509,8 +509,8 @@ var sumo2 = {
 				this.WIDTH = 1024;
 			if(this.HEIGHT < 768)
 				this.HEIGHT = 768;
-			this.MAIN_HEIGHT = this.HEIGHT - 185;
-			this.LEFT_HEIGHT = this.HEIGHT - 189;
+			this.MAIN_HEIGHT = this.HEIGHT - 140;
+			this.LEFT_HEIGHT = this.HEIGHT - 144;
 			this.MAIN_WIDTH = this.WIDTH - 130;
 		},
 		
@@ -1848,14 +1848,14 @@ var sumo2 = {
 			var widthimg=img.width;
 			var heightimg=img.height;
 			var margin=0;
-			if(heightimg<=90) {
-				margin=((90-heightimg)/2)+5;
+			if(heightimg<=40) {
+				margin=((40-heightimg)/2)+5;
 			}
 			else {
-				var diff = heightimg - 90;
+				var diff = heightimg - 40;
 				diff = diff/heightimg;
 				widthimg=widthimg-(widthimg*diff);
-				heightimg=90;
+				heightimg=40;
 				margin=5;
 			}
 			document.getElementById('logo_image').height=heightimg;
