@@ -37,7 +37,7 @@
 		$isSelected = false;
 	}
 	
-	function generateMenuItems($menuID, $parentID, $lang)
+	function generateMenuItems($menuID, $parentID, $lang, $isSelected, $selPage)
 	{
 		global $db;
 		$query=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$menuID.' AND parentID="'.$parentID.'" AND status="N" AND selection!="4" ORDER BY orderID asc');
@@ -67,7 +67,7 @@
 				} else if($results['selection'] == 3) {
 					echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results['link'].'" style="color:blue;" id="'.$results['ID'].'#'.$menuID.'" class="sumo2-tooltip S_RND">'.$results['title'].' '.$smenu.'</div>';
 				}
-				generateMenuItems($menuID, $results['ID']);
+				generateMenuItems($menuID, $results['ID'], $lang, $isSelected, $selPage);
 			}
 			echo '</ul>';
 		}
@@ -161,7 +161,7 @@
 			while($mainresults = $db->fetch($main)) {
 				$id_main=$mainresults['ID'];
 				echo '<li class="special"><div class="S_RN" id="'.$crypt->encrypt('-1').'#'.$crypt->encrypt($id_main).'#'.$id_main.'" style="cursor:pointer;">'.$mainresults['title'].'</div>';
-				generateMenuItems($id_main, "-1", $selected_lang_menus);				
+				generateMenuItems($id_main, "-1", $selected_lang_menus, $isSelected, $selPage);				
 			}
 			if($db->rows($main) > 0) {
 				echo "</ul>";
