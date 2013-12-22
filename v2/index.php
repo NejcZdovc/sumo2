@@ -37,7 +37,7 @@ $langDomainAuth = $user->checkLang();
 <div class="invisible-overlay hdn" id="sumo2-main-overlay"></div>
 <div class="header">
     <div class="top">
-    	<div class="logo" id="logo_test" style="color:#FFF; float:left;" onclick="sumo2.accordion.NewPanel('a_welcome');"><img id="logo_image" src="images/logo.png" height="90" alt="logo" style="margin-top:5px; margin-left:10px; display:none;"  /></div>
+    	<div class="logo" id="logo_test" style="color:#FFF; float:left;" onclick="sumo2.accordion.NewPanel('a_welcome');"><img id="logo_image" src="images/logo.png" height="40" alt="logo" style="margin-top:5px; margin-left:10px; display:none;"  /></div>
         <noscript><div class="noJava"><?=$lang->MOD_180?></div></noscript>
 	    <div class="loading hdn" id="sumo2-main-loading"></div>
         <div class="message" id="sumo2-main-message"></div>

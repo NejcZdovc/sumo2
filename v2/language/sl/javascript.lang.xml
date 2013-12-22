@@ -135,6 +135,7 @@
 		<item constant="MENU_9">Prevedi</item>
 		<item constant="MENU_10">Dodaj prevod</item>
 		<item constant="MENU_11">Prevod drevesne strukture</item>
+		<item constant="MENU_12">Ali ste prepričani, da želite izbrisati to stran?</item>
 	</parent>
 		<parent id="Modul">
 		<item constant="MOD_1">Ali ste prepričani, da želite izbrisati ta članek?</item>

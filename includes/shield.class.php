@@ -41,34 +41,33 @@ class Shield {
 		}
 		if($_SERVER["REQUEST_URI"]!="/" && $_SERVER["REQUEST_URI"]!="/index.php")
 			return;
+		
+		$ipQ=$db->get($db->query('SELECT country FROM cms_ip_locator WHERE IP="'.$user->IP.'"'));
+		if(!$ipQ) {
+			/*http://ip.codehelper.io/*/
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, "http://api.codehelper.io/ips/?php&ip=".$user->IP);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_HEADER, false);
+			$json = json_decode(curl_exec($ch));
+			curl_close($ch);			
 			
-		$file = "./ip/".$user->IP;
-		if(!file_exists($file)) {
-			if(!file_exists($file)) {
-				/*http://ip.codehelper.io/*/
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, "http://api.codehelper.io/ips/?php&ip=".$user->IP);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($ch, CURLOPT_HEADER, false);
-				$json = curl_exec($ch);
-				curl_close($ch);
+			$CountryName="";
+			if(isset($json->CountryName))
+				$CountryName=$json->CountryName;
+			elseif(isset($json->countryName))
+				$CountryName=$json->countryName;
 				
-				$data = json_decode($json);
-			} else {
-				$json = file_get_contents($file);
-			}
-			$f = fopen($file,"w+");
-			fwrite($f,$json);
-			fclose($f);
+			$CountryCode="";
+			if(isset($json->Country))
+				$CountryCode=$json->Country;
+			elseif(isset($json->country))
+				$CountryCode=$json->country;
+			
+			$db->query('INSERT INTO cms_ip_locator (country, countryCode, IP) VALUES ("'.$db->filterVar($CountryName).'", "'.$db->filterVar($CountryCode).'", "'.$user->IP.'")');
 		} else {
-			$json = file_get_contents($file);
+			$CountryName = $ipQ['country'];
 		}
-		$json = json_decode($json);
-		$CountryName="";
-		if(isset($json->CountryName))
-			$CountryName=$json->CountryName;
-		elseif(isset($json->countryName))
-			$CountryName=$json->countryName;
 		if($CountryName!="") {	
 			if($globals->domainParent=="-1") {
 				$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainID.'" OR cms_domains.ID="'.$globals->domainID.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));

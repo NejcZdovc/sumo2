@@ -43,6 +43,7 @@ class Modules extends Shield {
 		$this->title = $layoutInfo['title'];
 		$this->specialPage = $layoutInfo['specialPage'];
 		$path=SITE_ROOT.SITE_FOLDER.'/modules/'.$globals->domainName.'/'.$this->folderName.'/';
+		$cachePath=SITE_ROOT.SITE_FOLDER.'/cache/modules/'.$globals->domainName.'/'.$this->folderName.'/';
 		
 		/*Language*/
 		$this->lang = new Language();
@@ -64,17 +65,17 @@ class Modules extends Shield {
 			$this->smarty->cache_lifetime = $layoutInfo['cache']*60;
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
-		if(!is_dir($path.'templates_c/')) {
-			mkdir($path.'templates_c/', PER_FOLDER);
-			chmod($path.'templates_c/', PER_FOLDER);
+		if(!is_dir($cachePath.'templates_c/')) {
+			mkdir($cachePath.'templates_c/', PER_FOLDER, true);
+			chmod($cachePath.'templates_c/', PER_FOLDER);
 		}
-		$this->smarty->compile_dir = $path.'templates_c/';
+		$this->smarty->compile_dir = $cachePath.'templates_c/';
 		
-		if(!is_dir($path.'cache/')) {
-			mkdir($path.'cache/', PER_FOLDER);
-			chmod($path.'cache/', PER_FOLDER);
+		if(!is_dir($cachePath.'cache/')) {
+			mkdir($cachePath.'cache/', PER_FOLDER, true);
+			chmod($cachePath.'cache/', PER_FOLDER);
 		}
-		$this->smarty->cache_dir = $path.'cache/';
+		$this->smarty->cache_dir = $cachePath.'cache/';
 	
 		$this->smarty->_file_perms = PER_FILE;
 		
@@ -163,8 +164,8 @@ class Modules extends Shield {
 		else if($param!=null && $moduleName!=null) {
 			if(is_file($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$moduleName.'/seo.php')) {
 				require_once($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$moduleName.'/seo.php');
-				if(function_exists($moduleName.'_getSEO')) {	
-					$function=$moduleName.'_getSEO';	
+				$function=$moduleName.'\\getSEO';
+				if(function_exists($function)) {					
 					$link.= $this->encodeLink($function($param, $page['alias']));
 				}
 			}

@@ -1,69 +1,72 @@
-SetEnv TZ Europe/Ljubljana
-
-ErrorDocument 404 /404/index.php
-
-Options +FollowSymLinks
-
-RewriteEngine on 
-
-RewriteRule ^/?(v2)?/$ /v2/login/index.php [R=301,L]
-RewriteRule ^/?(v2/login)?/$ /v2/login/index.php [L]
-
-RewriteRule ^/?(installation)?/$ /installation/index.php [L]
-
-RewriteCond %{REQUEST_URI} !/v2/ [OR]
-RewriteCond %{REQUEST_URI} !/v2/login/
-
-RewriteRule ^(images/|min/|modules/images/|off/|storage/|templates/images/|v2/|404/|block/) - [L]
-
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !favicon.ico
-
-RewriteRule .* index.php [L]
-
-DirectoryIndex index.html index.php
-
-# 480 weeks
-<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
-Header set Cache-Control "max-age=290304000, public"
-</FilesMatch>
- 
-# 2 DAYS
-<FilesMatch "\.(xml|txt)$">
-Header set Cache-Control "max-age=172800, public, must-revalidate"
-</FilesMatch>
- 
-# 2 HOURS
-<FilesMatch "\.(html|htm)$">
-Header set Cache-Control "max-age=7200, must-revalidate"
-</FilesMatch>
-
-# Kill em ETags
-FileETag none
-
-
-# compress text, html, javascript, css, xml:
-AddOutputFilterByType DEFLATE text/plain
-AddOutputFilterByType DEFLATE text/html
-AddOutputFilterByType DEFLATE text/xml
-AddOutputFilterByType DEFLATE text/css
-AddOutputFilterByType DEFLATE application/xml
-AddOutputFilterByType DEFLATE application/xhtml+xml
-AddOutputFilterByType DEFLATE application/rss+xml
-AddOutputFilterByType DEFLATE application/javascript
-AddOutputFilterByType DEFLATE application/x-javascript
-
-# Or, compress certain file types by extension:
-<Files *.php>
-SetOutputFilter DEFLATE
-</Files>
-<Files *.png>
-SetOutputFilter DEFLATE
-</Files>
-<Files *.gif>
-SetOutputFilter DEFLATE
-</Files>
-<Files *.jpg>
-SetOutputFilter DEFLATE
+SetEnv TZ Europe/Ljubljana
+
+ErrorDocument 404 /404/index.php
+
+Options +FollowSymLinks
+
+RewriteEngine on
+
+RewriteRule ^/?(v2)?/$ /v2/login/index.php [R=301,L]
+RewriteRule ^/?(v2/login)?/$ /v2/login/index.php [L]
+
+RewriteRule ^/?(installation)?/$ /installation/index.php [L]
+
+RewriteCond %{REQUEST_URI} !/v2/ [OR]
+RewriteCond %{REQUEST_URI} !/v2/login/
+
+RewriteRule ^(images/|min/|modules/images/|off/|storage/|templates/images/|v2/|404/|block/) - [L]
+
+RewriteCond %{THE_REQUEST} ^.*/index\.php 
+RewriteRule ^(.*)index.php$ /$1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !favicon.ico
+
+RewriteRule .* index.php [L]
+
+DirectoryIndex index.html index.php
+
+# 480 weeks
+<FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+Header set Cache-Control "max-age=290304000, public"
+</FilesMatch>
+ 
+# 2 DAYS
+<FilesMatch "\.(xml|txt)$">
+Header set Cache-Control "max-age=172800, public, must-revalidate"
+</FilesMatch>
+ 
+# 2 HOURS
+<FilesMatch "\.(html|htm)$">
+Header set Cache-Control "max-age=7200, must-revalidate"
+</FilesMatch>
+
+# Kill em ETags
+FileETag none
+
+
+# compress text, html, javascript, css, xml:
+AddOutputFilterByType DEFLATE text/plain
+AddOutputFilterByType DEFLATE text/html
+AddOutputFilterByType DEFLATE text/xml
+AddOutputFilterByType DEFLATE text/css
+AddOutputFilterByType DEFLATE application/xml
+AddOutputFilterByType DEFLATE application/xhtml+xml
+AddOutputFilterByType DEFLATE application/rss+xml
+AddOutputFilterByType DEFLATE application/javascript
+AddOutputFilterByType DEFLATE application/x-javascript
+
+# Or, compress certain file types by extension:
+<Files *.php>
+SetOutputFilter DEFLATE
+</Files>
+<Files *.png>
+SetOutputFilter DEFLATE
+</Files>
+<Files *.gif>
+SetOutputFilter DEFLATE
+</Files>
+<Files *.jpg>
+SetOutputFilter DEFLATE
 </Files>
