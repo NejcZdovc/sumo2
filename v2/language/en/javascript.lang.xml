@@ -135,6 +135,7 @@
 		<item constant="MENU_9">Translate</item>
 		<item constant="MENU_10">Add translation</item>
 		<item constant="MENU_11">Site tree translation</item>
+		<item constant="MENU_12">Are you sure you want to delete this page?</item>
 	</parent>
 	<parent id="Modul">
 		<item constant="MOD_1">Are you sure you want to delete this article?</item>
