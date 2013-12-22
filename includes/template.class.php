@@ -23,6 +23,7 @@ class Template {
 	public function setSmarty() {
 		global $globals, $user,$db;
 		$path=SITE_ROOT.SITE_FOLDER.'/templates/'.$globals->domainName.'/'.$this->tempName.'/';
+		$cachepath=SITE_ROOT.SITE_FOLDER.'/cache/templates/'.$globals->domainName.'/'.$this->tempName.'/';
 		/*Smarty*/
 		if(!defined('CACHE_LIFETIME')) {
 			define('CACHE_LIFETIME', 60 * 60 * 24 * 7); // secs (60*60*24*7 = 1 week)			
@@ -32,23 +33,24 @@ class Template {
 		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/plugins/function.sumo_panel.php');
 			
 		$this->smarty = new Smarty;
+		$this->smarty->inheritance_merge_compiled_includes=true;
 		$this->smarty->registerPlugin('function', 'panel', 'sumo_panel');
 		$this->smarty->template_dir = '';
 		$this->smarty->caching = 0;
 			
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
-		if(!is_dir($path.'templates_c/')) {
-			mkdir($path.'templates_c/', PER_FOLDER);
-			chmod($path.'templates_c/', PER_FOLDER);
+		if(!is_dir($cachepath.'templates_c/')) {
+			mkdir($cachepath.'templates_c/', PER_FOLDER, true);
+			chmod($cachepath.'templates_c/', PER_FOLDER);
 		}
-		$this->smarty->compile_dir = $path.'templates_c/';
+		$this->smarty->compile_dir = $cachepath.'templates_c/';
 		
-		if(!is_dir($path.'cache/')) {
-			mkdir($path.'cache/', PER_FOLDER);
-			chmod($path.'cache/', PER_FOLDER);
+		if(!is_dir($cachepath.'cache/')) {
+			mkdir($cachepath.'cache/', PER_FOLDER, true);
+			chmod($cachepath.'cache/', PER_FOLDER);
 		}
-		$this->smarty->cache_dir = $path.'cache/';
+		$this->smarty->cache_dir = $cachepath.'cache/';
 	
 		$this->smarty->_file_perms = PER_FILE;			
 		
