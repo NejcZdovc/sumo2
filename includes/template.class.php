@@ -33,10 +33,10 @@ class Template {
 		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/plugins/function.sumo_panel.php');
 			
 		$this->smarty = new Smarty;
-		$this->smarty->inheritance_merge_compiled_includes=true;
 		$this->smarty->registerPlugin('function', 'panel', 'sumo_panel');
 		$this->smarty->template_dir = '';
-		$this->smarty->caching = 0;
+		$this->smarty->caching = 0;		
+		$this->smarty->inheritance_merge_compiled_includes=true;
 			
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
@@ -97,8 +97,9 @@ class Template {
 					$param=$db->filter('modulParam');
 				else
 					$param="";
-				if(function_exists('getTitle')) {		
-					$link .= getTitle($param, $db->filter('spID')).' - ';
+				$function=$module['moduleName'].'\\getTitle';
+				if(function_exists($function)) {		
+					$link .= $function($param, $db->filter('spID')).' - ';
 				}else {
 					$link = '';
 				}
@@ -208,23 +209,24 @@ class Template {
 				}
 				else
 					$param="";
-					
-				if(function_exists('getKeywords')) {
-					$k=getKeywords($param, $db->filter('spID'));
+				
+				$function=$module['moduleName'].'\\getKeywords';
+				if(function_exists($function)) {
+					$k=$function($param, $db->filter('spID'));
 					if(strlen($k)>0) {		
 						$keywords=$k;
 					}
 				}
-				
-				if(function_exists('getDescription')) {
-					$d=getDescription($param, $db->filter('spID'));
+				$function=$module['moduleName'].'\\getDescription';
+				if(function_exists($function)) {	
+					$d=$function($param, $db->filter('spID'));
 					if(strlen($d)>0) {	
 						$description=$d;
 					}
 				}
-				
-				if(function_exists('getCustom')) {
-					$customHead=getCustom($param, $db->filter('spID'));
+				$function=$module['moduleName'].'\\getCustom';
+				if(function_exists($function)) {	
+					$customHead=$function($param, $db->filter('spID'));
 				}
 			}
 		} 
