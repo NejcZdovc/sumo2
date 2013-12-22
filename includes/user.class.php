@@ -28,7 +28,7 @@ class User
 			$this->{"developer"}=$query['developer'];
 		}
 		
-		$results = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE UserID='".$id."'"));
+		$results = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE UserID='".$id."' ORDER BY ID DESC LIMIT 1"));
 		if($results) {
 			foreach($results as $key => $value) {
 				if($key!="ID" && $key!="userID" && $key!="email" && $key!="name" && $key!="visit") {

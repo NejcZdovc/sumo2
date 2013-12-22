@@ -23,6 +23,7 @@ class Template {
 	public function setSmarty() {
 		global $globals, $user,$db;
 		$path=SITE_ROOT.SITE_FOLDER.'/templates/'.$globals->domainName.'/'.$this->tempName.'/';
+		$cachepath=SITE_ROOT.SITE_FOLDER.'/cache/templates/'.$globals->domainName.'/'.$this->tempName.'/';
 		/*Smarty*/
 		if(!defined('CACHE_LIFETIME')) {
 			define('CACHE_LIFETIME', 60 * 60 * 24 * 7); // secs (60*60*24*7 = 1 week)			
@@ -34,21 +35,21 @@ class Template {
 		$this->smarty = new Smarty;
 		$this->smarty->registerPlugin('function', 'panel', 'sumo_panel');
 		$this->smarty->template_dir = '';
-		$this->smarty->caching = 0;
+		$this->smarty->caching = 0;		
 			
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
-		if(!is_dir($path.'templates_c/')) {
-			mkdir($path.'templates_c/', PER_FOLDER);
-			chmod($path.'templates_c/', PER_FOLDER);
+		if(!is_dir($cachepath.'templates_c/')) {
+			mkdir($cachepath.'templates_c/', PER_FOLDER, true);
+			chmod($cachepath.'templates_c/', PER_FOLDER);
 		}
-		$this->smarty->compile_dir = $path.'templates_c/';
+		$this->smarty->compile_dir = $cachepath.'templates_c/';
 		
-		if(!is_dir($path.'cache/')) {
-			mkdir($path.'cache/', PER_FOLDER);
-			chmod($path.'cache/', PER_FOLDER);
+		if(!is_dir($cachepath.'cache/')) {
+			mkdir($cachepath.'cache/', PER_FOLDER, true);
+			chmod($cachepath.'cache/', PER_FOLDER);
 		}
-		$this->smarty->cache_dir = $path.'cache/';
+		$this->smarty->cache_dir = $cachepath.'cache/';
 	
 		$this->smarty->_file_perms = PER_FILE;			
 		
@@ -95,8 +96,9 @@ class Template {
 					$param=$db->filter('modulParam');
 				else
 					$param="";
-				if(function_exists('getTitle')) {		
-					$link .= getTitle($param, $db->filter('spID')).' - ';
+				$function=$module['moduleName'].'\\getTitle';
+				if(function_exists($function)) {		
+					$link .= $function($param, $db->filter('spID')).' - ';
 				}else {
 					$link = '';
 				}
@@ -188,6 +190,7 @@ class Template {
 	public function head() {
 		global $db, $user, $globals, $crypt;
 		$result="";
+        $title="";
 		$result_lang = $db->get($db->query("SELECT * FROM cms_language_front WHERE ID='".$this->langID."'"));
 		$result_page = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$this->pageID."'"));
 		$description = $result_page['description'];
@@ -205,36 +208,44 @@ class Template {
 				}
 				else
 					$param="";
-					
-				if(function_exists('getKeywords')) {
-					$k=GetKeywords($param, $db->filter('spID'));
+				
+				$function=$module['moduleName'].'\\getKeywords';
+				if(function_exists($function)) {
+					$k=$function($param, $db->filter('spID'));
 					if(strlen($k)>0) {		
 						$keywords=$k;
 					}
 				}
-				
-				if(function_exists('getDescription')) {
-					$d=GetDescription($param, $db->filter('spID'));
+				$function=$module['moduleName'].'\\getDescription';
+				if(function_exists($function)) {	
+					$d=$function($param, $db->filter('spID'));
 					if(strlen($d)>0) {	
 						$description=$d;
 					}
 				}
-				
-				if(function_exists('getCustom')) {
-					$customHead=getCustom($param, $db->filter('spID'));
+				$function=$module['moduleName'].'\\getCustom';
+				if(function_exists($function)) {	
+					$customHead=$function($param, $db->filter('spID'));
 				}
 			}
 		} 
-		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE lang='".$this->langID."' AND domain='".$globals->domainID."'"));
-		$keywords=$homepageTitle['keyword'];
-		$description=$homepageTitle['description'];
-		$title=$homepageTitle['altTitle'];
-		if(strlen($title)<2)
+		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE ID='".$result_page['link']."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'"));
+        if($homepageTitle) {
+            $keywords=$homepageTitle['keyword'];
+            $description=$homepageTitle['description'];
+            $title=$homepageTitle['altTitle'];
+        }
+        
+		if(strlen($title)<2){
 			$title = $result_glob['title'];
-		if(strlen($keywords)<2) 
+		}
+		if(strlen($keywords)<2) {
 			$keywords=$result_glob['keywords'];
-		if(strlen($description)<2)
+		}
+		if(strlen($description)<2) {
 			$description=$result_glob['description'];
+		}
+            
 		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"generator\" content=\"SUMO 2 CMS\" />\n";
 		if($result_glob['WM_enabled'] == 1) {
 			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
@@ -260,8 +271,7 @@ class Template {
 			$query2 = $db->query("SELECT DISTINCT panel.modulID, def.moduleName FROM cms_panel_".$result1['prefix']." as panel LEFT JOIN cms_modules_def as def ON panel.modulID=def.ID WHERE panel.pageID='".$this->pageID."' AND panel.lang='".$this->langID."' AND panel.domain='".$globals->domainID."' AND def.enabled='1' AND def.status='N'");
 			while($result2 = $db->fetch($query2)) {
 				$modArray[$result2['moduleName']]= $result2['modulID'];
-				}
-			
+			}			
 		}
 		if($user->developer=="1") {
 			$result.= "<link type=\"text/css\" rel=\"stylesheet\" href=\"".$pageURL."/min/?g=css&amp;a=".$this->tempName."&amp;b=".implode("-",$modArray)."&amp;debug=1\" />\n";

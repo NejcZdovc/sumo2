@@ -36,11 +36,48 @@
 	} else {
 		$isSelected = false;
 	}
+	
+	function generateMenuItems($menuID, $parentID, $lang, $isSelected, $selPage)
+	{
+		global $db;
+		$query=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$menuID.' AND parentID="'.$parentID.'" AND status="N" AND selection!="4" ORDER BY orderID asc');
+		$int=$db->rows($query);
+		if($int>0) {
+			echo '<ul>';
+			while($results = $db->fetch($query)) {
+				$shown = '';
+				if($isSelected && $selPage == $results['ID']) {
+						$firstLayout = true;
+					$firstNum = $results['ID'];
+					$firstTmp = $results['template'];
+					$shown = 'class="show"';
+				} else if(!$isSelected && $firstLayout === false) {
+					$firstLayout = true;
+					$firstNum = $results['ID'];
+					$firstTmp = $results['template'];
+					$shown = 'class="show"';
+				}
+				if($results['enabled']==1) $ena=''; else $ena='style="color:#ff0000;"';
+				if($results['showM']=="Y") $smenu=''; else $smenu='<span style="color:#ff0000 !important;">*</span>';
+				if($results['selection'] == 1) {
+					echo '<li '.$shown.'><div '.$ena.' class="S_RND" id="'.$results['ID'].'#'.$menuID.'" onclick="sumo2.siteTree.RefreshLayout('.$results['ID'].','.$lang.','.checkTemplate($results['template']).')">'.$results['title'].' '.$smenu.'</div>';
+				} else if($results['selection'] == 2) {
+					$nameResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$results['link']."' LIMIT 1"));
+					echo '<li class="nosel"><div title="'.$lang->MOD_96.''.$nameResult['title'].'" style="color:green;" id="'.$results['ID'].'#'.$menuID.'" class="sumo2-tooltip S_RND">'.$results['title'].' '.$smenu.'</div>';
+				} else if($results['selection'] == 3) {
+					echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results['link'].'" style="color:blue;" id="'.$results['ID'].'#'.$menuID.'" class="sumo2-tooltip S_RND">'.$results['title'].' '.$smenu.'</div>';
+				}
+				generateMenuItems($menuID, $results['ID'], $lang, $isSelected, $selPage);
+			}
+			echo '</ul>';
+		}
+	}
 ?>
 <div class="contextMenu" id="myMenuS_RND" style="display:none;">
       <ul style="font-size:12px;">
         <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
+		<li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>		
         <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
       </ul>
 </div>
@@ -124,126 +161,7 @@
 			while($mainresults = $db->fetch($main)) {
 				$id_main=$mainresults['ID'];
 				echo '<li class="special"><div class="S_RN" id="'.$crypt->encrypt('-1').'#'.$crypt->encrypt($id_main).'#'.$id_main.'" style="cursor:pointer;">'.$mainresults['title'].'</div>';
-				$query=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$id_main.' AND parentID="-1" AND status="N" AND selection!="4" ORDER BY orderID asc');
-				$int=$db->rows($query);
-				if($int>0) {
-					echo '<ul>';
-					while($results = $db->fetch($query)) {
-						$query2=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$id_main.' AND parentID="'.$results['ID'].'" AND status="N" ORDER BY orderID asc');
-						$int=$db->rows($query2);
-						$shown = '';
-						if($isSelected && $selPage == $results['ID']) {
-						        $firstLayout = true;
-							$firstNum = $results['ID'];
-							$firstTmp = $results['template'];
-							$shown = 'class="show"';
-						} else if(!$isSelected && $firstLayout === false) {
-							$firstLayout = true;
-							$firstNum = $results['ID'];
-							$firstTmp = $results['template'];
-							$shown = 'class="show"';
-						}
-						if($results['enabled']==1) $ena=''; else $ena='style="color:#ff0000;"';
-						if($results['selection'] == 1) {
-							echo '<li '.$shown.'><div '.$ena.' class="S_RND" id="'.$results['ID'].'#'.$id_main.'" onclick="sumo2.siteTree.RefreshLayout('.$results['ID'].','.$selected_lang_menus.','.checkTemplate($results['template']).')">'.$results['title'].'</div>';
-						} else if($results['selection'] == 2) {
-							$nameResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$results['link']."' LIMIT 1"));
-							echo '<li class="nosel"><div title="'.$lang->MOD_96.''.$nameResult['title'].'" style="color:green;" id="'.$results['ID'].'#'.$id_main.'" class="sumo2-tooltip S_RND">'.$results['title'].'</div>';
-						} else if($results['selection'] == 3) {
-							echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results['link'].'" style="color:blue;" id="'.$results['ID'].'#'.$id_main.'" class="sumo2-tooltip S_RND">'.$results['title'].'</div>';
-						}
-						if($int>0) {
-							echo '<ul>';
-							while($results2 = $db->fetch($query2)) {
-								$query3=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$id_main.' AND parentID="'.$results2['ID'].'" AND status="N" ORDER BY orderID asc');
-								$int=$db->rows($query3);
-								$shown = '';
-								if($isSelected && $selPage == $results2['ID']) {
-									$firstLayout = true;
-									$firstNum = $results2['ID'];
-									$firstTmp = $results2['template'];
-									$shown = 'class="show"';
-								} else if(!$isSelected && $firstLayout === false) {
-									$firstLayout = true;
-									$firstNum = $results2['ID'];
-									$firstTmp = $results2['template'];
-									$shown = 'class="show"';
-								}
-								if($results2['enabled']==1) $ena=''; else $ena='style="color:#ff0000;"';
-								if($results2['selection'] == 1) {
-									echo '<li '.$shown.'><div '.$ena.' class="S_RND" id="'.$results2['ID'].'#'.$id_main.'" onclick="sumo2.siteTree.RefreshLayout('.$results2['ID'].','.$selected_lang_menus.','.checkTemplate($results2['template']).')">'.$results2['title'].'</div>';
-								} else if($results2['selection'] == 2) {
-									$nameResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$results2['link']."' LIMIT 1"));
-									echo '<li class="nosel"><div title="'.$lang->MOD_96.''.$nameResult['title'].'" style="color:green;" id="'.$results2['ID'].'#'.$id_main.'" class="sumo2-tooltip S_RND">'.$results2['title'].'</div>';
-								} else if($results2['selection'] == 3) {
-									echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results2['link'].'" style="color:blue;" id="'.$results2['ID'].'#'.$id_main.'" class="sumo2-tooltip S_RND">'.$results2['title'].'</div>';
-								}
-								if($int>0) {
-									echo '<ul>';
-									while($results3 = $db->fetch($query3)) {
-										$query4=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$id_main.' AND parentID="'.$results3['ID'].'" AND status="N" ORDER BY orderID asc');
-										$int=$db->rows($query4);
-										$shown = '';
-										if($isSelected && $selPage == $results3['ID']) {
-										        $firstLayout = true;
-										        $firstNum = $results3['ID'];
-											$firstTmp = $results3['template'];
-											$shown = 'class="show"';
-										} else if(!$isSelected && $firstLayout === false) {
-											$firstLayout = true;
-											$firstNum = $results3['ID'];
-											$firstTmp = $results3['template'];
-											$shown = 'class="show"';
-										}
-										if($results3['enabled']==1) $ena=''; else $ena='style="color:#ff0000;"';
-										if($results3['selection'] == 1) {
-											echo '<li '.$shown.'><div class="S_RD" '.$ena.' id="'.$results3['ID'].'#'.$id_main.'" onclick="sumo2.siteTree.RefreshLayout('.$results3['ID'].','.$selected_lang_menus.','.checkTemplate($results3['template']).')">'.$results3['title'].'</div>';
-										} else if($results3['selection'] == 2) {
-											$nameResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$results3['link']."' LIMIT 1"));
-											echo '<li class="nosel"><div title="'.$lang->MOD_96.''.$nameResult['title'].'" id="'.$results3['ID'].'#'.$id_main.'" style="color:green;" class="sumo2-tooltip lastMenu">'.$results3['title'].'</div>';
-										} else if($results3['selection'] == 3) {
-											echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results3['link'].'" id="'.$results3['ID'].'#'.$id_main.'" style="color:blue;" class="sumo2-tooltip lastMenu">'.$results3['title'].'</div>';
-										}
-										if($int>0) {
-											echo "<ul>";
-											while($results4 = $db->fetch($query4)) {
-												$shown = '';
-												if($isSelected && $selPage == $results4['ID']) {
-														$firstLayout = true;
-														$firstNum = $results4['ID'];
-													$firstTmp = $results4['template'];
-													$shown = 'class="show"';
-												} else if(!$isSelected && $firstLayout === false) {
-													$firstLayout = true;
-													$firstNum = $results4['ID'];
-													$firstTmp = $results4['template'];
-													$shown = 'class="show"';
-												}
-												if($results4['enabled']==1) $ena=''; else $ena='style="color:#ff0000;"';
-												if($results4['selection'] == 1) {
-													echo '<li '.$shown.'><div class="S_RD" '.$ena.' id="'.$results4['ID'].'#'.$id_main.'" onclick="sumo2.siteTree.RefreshLayout('.$results4['ID'].','.$selected_lang_menus.','.checkTemplate($results4['template']).')">'.$results4['title'].'</div></li>';
-												} else if($results4['selection'] == 2) {
-													$nameResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$results4['link']."' LIMIT 1"));
-													echo '<li class="nosel"><div title="'.$lang->MOD_96.''.$nameResult['title'].'" id="'.$results4['ID'].'#'.$id_main.'" style="color:green;" class="sumo2-tooltip lastMenu">'.$results4['title'].'</div>';
-												} else if($results4['selection'] == 3) {
-													echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results4['link'].'" id="'.$results4['ID'].'#'.$id_main.'" style="color:blue;" class="sumo2-tooltip lastMenu">'.$results4['title'].'</div>';
-												}
-											}
-											echo "</ul>";
-										}
-										echo "</li>";
-									}
-									echo "</ul>";
-								}
-								echo "</li>";
-							}
-							echo "</ul>";
-						}
-						echo "</li>";
-					}
-					echo "</ul>";
-				}
-				echo "</li>";
+				generateMenuItems($id_main, "-1", $selected_lang_menus, $isSelected, $selPage);				
 			}
 			if($db->rows($main) > 0) {
 				echo "</ul>";

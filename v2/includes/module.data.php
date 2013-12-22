@@ -241,8 +241,8 @@ if($db->filter('type') == 'install') {
 	exit;
 } else if($db->filter('type') == 'cache') {	 
 	 if($db->is('folder')) {
-		Clear('modules/'.$user->domainName.'/'.$db->filter('folder'));
-		Clear('modules/'.$user->domainName.'/'.$db->filter('folder'), 'default');
+		Clear('cache/modules/'.$user->domainName.'/'.$db->filter('folder'));
+		Clear('cache/modules/'.$user->domainName.'/'.$db->filter('folder'), 'default');
 		echo 'ok';
 	 }
 	 else
@@ -254,13 +254,13 @@ if($db->filter('type') == 'install') {
 		while($result = $db->fetch($query)) {
 			$query1 = $db->query("SELECT cms_domains.name FROM cms_domains, cms_domains_ids WHERE cms_domains_ids.type='mod' AND cms_domains_ids.elementID='".$result['ID']."' AND cms_domains_ids.domainID=cms_domains.ID");
 			while($result1 = $db->fetch($query1)) {
-				Clear('modules/'.$result1['name'].'/'.$result['moduleName']);				
+				Clear('cache/modules/'.$result1['name'].'/'.$result['moduleName']);				
 			}
-			Clear('modules/default/'.$result['moduleName']);
+			Clear('cache/modules/default/'.$result['moduleName']);
 		}
 	}
 	else {
-		Clear('modules/'.$user->domainName.'/'.$crypt->decrypt($db->filter('folder')));
+		Clear('cache/modules/'.$user->domainName.'/'.$crypt->decrypt($db->filter('folder')));
 	}
 	echo 'ok';
 	exit;

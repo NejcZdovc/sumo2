@@ -305,6 +305,20 @@ CREATE TABLE IF NOT EXISTS `cms_homepage` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cms_ip_locator`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_ip_locator` (
+  `ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `IP` VARCHAR(70) NOT NULL,
+  `country` TEXT NOT NULL,
+  `countryCode` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cms_language`
 --
 
