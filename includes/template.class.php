@@ -36,7 +36,6 @@ class Template {
 		$this->smarty->registerPlugin('function', 'panel', 'sumo_panel');
 		$this->smarty->template_dir = '';
 		$this->smarty->caching = 0;		
-		$this->smarty->inheritance_merge_compiled_includes=true;
 			
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		

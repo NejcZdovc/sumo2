@@ -56,7 +56,6 @@ class Modules extends Shield {
 		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/Smarty.class.php');
 		$this->smarty = new Smarty;
 		$this->smarty->template_dir = '';
-		$this->smarty->inheritance_merge_compiled_includes=true;
 		if($user->developer=="1") {
 			$this->smarty->caching = 0;
 		} else {
