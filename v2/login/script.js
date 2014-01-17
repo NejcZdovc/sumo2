@@ -12,7 +12,7 @@ var login = {
     },
     GetSize: function() {
         var img = new Image;
-        img.src = "../images/logo.png";
+        img.src = "../images/logoBig.png";
         var widthimg = img.width;
         var heightimg = img.height;
         if (heightimg > 100) {

@@ -17,7 +17,7 @@ if($session->isLogedIn()) {
 </head>
 
 <body>
-<div id="logo"><img id="logo_image" src="../images/logo.png" height="90px" alt="logo" style="display:none;"  /></div>
+<div id="logo"><img id="logo_image" src="../images/logoBig.png" height="90px" alt="logo" style="display:none;"  /></div>
 <div class="error" id="error"></div>
 <div class="panel">
 	<form method="post" action="" name="login">
