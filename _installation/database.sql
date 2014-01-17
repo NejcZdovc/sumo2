@@ -429,6 +429,7 @@ CREATE TABLE IF NOT EXISTS `cms_menus_items` (
   `target` int(11) NOT NULL DEFAULT '1',
   `restriction` int(1) NOT NULL DEFAULT '1',
   `showM` enum('Y','N') NOT NULL DEFAULT 'Y',
+  `moduleID` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
