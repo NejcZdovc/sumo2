@@ -229,7 +229,7 @@ class Template {
 				}
 			}
 		} 
-		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE ID='".$result_page['link']."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'"));
+		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE lang='".$this->langID."' AND domain='".$globals->domainID."'"));
         if($homepageTitle) {
             $keywords=$homepageTitle['keyword'];
             $description=$homepageTitle['description'];
