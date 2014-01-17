@@ -6,7 +6,7 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
 <table width="100%" cellpadding="0" cellspacing="0" style="height:inherit; background:#FFF;">
 <tr>
 	<td width="250px" valign="top" style="border-right:1px solid #cccccc;vertical-align: top !important;">
-    	<input type="hidden" value="<?= SITE_ROOT.SITE_FOLDER.'/storage/Documents/' ?>" id="file_manager_path" />
+    	<input type="hidden" value="<?php echo  SITE_ROOT.SITE_FOLDER.'/storage/Documents/' ?>" id="file_manager_path" />
         <input type="hidden" value="" id="file_manager_selected" />
     	<div class="file-tree flt-left" valign="top" id="<?php echo SITE_ROOT.SITE_FOLDER.'/storage/'; ?>">
         	<ul id="file-manager-treeview" class="ending">
@@ -83,13 +83,13 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
 <div class="clear"></div>
  <div class="contextMenu" id="myMenu1" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->FILE_2?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->FILE_3?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->FILE_4?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->FILE_2?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->FILE_3?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->FILE_4?></li>
       </ul>
 </div>
  <div class="contextMenu" id="myMenu3" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->FILE_4?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->FILE_4?></li>
       </ul>
 </div>

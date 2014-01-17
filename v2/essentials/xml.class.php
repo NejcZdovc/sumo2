@@ -14,8 +14,12 @@ class Xml
 	
 	private function getFile($filename)
 	{
-		$this->xmlFile = file_get_contents($filename);
-		$this->filename = $filename;
+		if(file_exists($filename)) {
+			$this->xmlFile = file_get_contents($filename);
+			$this->filename = $filename;
+		} else {
+			error_log("XML missing: ".$filename);
+		}		
 	}
 	
 	private function setParser()

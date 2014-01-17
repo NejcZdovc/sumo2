@@ -9,15 +9,15 @@
 ?>
 <div id="a_user_view_u_table" style="clear:both;">
 <table cellpadding="0" cellspacing="1" border="0" summary="View users" class="table1 table2" width="99%">
-<caption class="hide"><?=$lang->LEFT_USER_1?></caption>
+<caption class="hide"><?php echo $lang->LEFT_USER_1?></caption>
 	<tr>
 		<th scope="col" abbr=""></th>
-		<th scope="col" abbr="<?=$lang->NAME?>"><?=$lang->NAME?></th>
-		<th scope="col" abbr="<?=$lang->USERNAME?>"><?=$lang->USERNAME?></th>
-		<th scope="col" abbr="<?=$lang->MAIL?>"><?=$lang->MAIL?></th>
-		<th scope="col" abbr="<?=$lang->GROUP?>"><?=$lang->GROUP?></th>
-		<th scope="col" abbr="<?=$lang->LAST_VISIT?>"><?=$lang->LAST_VISIT?></th>
-        <? if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5)
+		<th scope="col" abbr="<?php echo $lang->NAME?>"><?php echo $lang->NAME?></th>
+		<th scope="col" abbr="<?php echo $lang->USERNAME?>"><?php echo $lang->USERNAME?></th>
+		<th scope="col" abbr="<?php echo $lang->MAIL?>"><?php echo $lang->MAIL?></th>
+		<th scope="col" abbr="<?php echo $lang->GROUP?>"><?php echo $lang->GROUP?></th>
+		<th scope="col" abbr="<?php echo $lang->LAST_VISIT?>"><?php echo $lang->LAST_VISIT?></th>
+        <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5)
 			echo '<th scope="col" abbr="'.$lang->CONTROL.'">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
@@ -41,13 +41,13 @@
 					<td><?php echo $result['email'];?></td>
 					<td><?php echo $new_result['title'];?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['visit']));?></td>
-                    <? if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5) {?>
+                    <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5) {?>
 					<td width="65px">
-						<div title="<?=$lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
 					</td>
-                    <? } ?>
+                    <?php } ?>
 				</tr>
 				<tr id="sumo2-user-row-<?php echo $rowEncryption; ?>" style="display:none;">
 					<td colspan="7">
@@ -101,5 +101,5 @@
 			echo '<tr><td colspan="6" style="text-align:center; font-size:13px;"><b>'.$lang->MOD_3.'</b></td></td>';
 	?>
 </table>
-<?= pagging($accordion_id, $pagging); ?>
+<?php echo  pagging($accordion_id, $pagging); ?>
 </div>

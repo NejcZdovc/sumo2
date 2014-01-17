@@ -5,34 +5,20 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	exit;
 }
 class Module {
-    public $number = 0;
-    
-    public $moduleID = '';
-    
-    public $moduleName = '';
-    
-    public $moduleEdit = '';
-    
-    public $parentComponent = 0;
-    
-    public $moduleInsertID = 0;
-    
-    public $componentInsertID = 0;
-    
-    public $componentID = '';
-    
-    public $componentName = '';
-	
-	public $domains= '';
-    
-    private $success = true;
-    
-    private $insertTable = array();
-    
-    private $tableTable = array();
-    
-    private $component = false;
-    
+    public $number = 0;    
+    public $moduleID = '';    
+    public $moduleName = '';    
+    public $moduleEdit = '';    
+    public $parentComponent = 0;    
+    public $moduleInsertID = 0;    
+    public $componentInsertID = 0;    
+    public $componentID = '';    
+    public $componentName = '';	
+	public $domains= '';    
+    private $success = true;    
+    private $insertTable = array();    
+    private $tableTable = array();    
+    private $component = false;    
     public $error = array();
     
     public function __construct() {

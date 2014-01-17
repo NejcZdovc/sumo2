@@ -254,7 +254,7 @@
 	$_POST['currentUrl']=$currentURL;
 	$_POST['langShort'] = $langCode;
 	
-	include('includes/local.php');
+	include('includes'.DS.'local.php');
 	
 	if($specialPage) {
 		$_POST['spID'] = $modulID;

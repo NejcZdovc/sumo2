@@ -11,9 +11,9 @@ class Language {
 	
 	public function setLanguage($short) {
 		global $xml, $db;	
-		$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language/'.$short.'/php.lang.xml';
+		$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language'.DS.$short.DS.'php.lang.xml';
 		if(!is_file($filename)) {
-			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language/en/php.lang.xml';
+			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language'.DS.'en'.DS.'php.lang.xml';
 		}
 		$this->_specialArray = $xml->getSpecialArray($filename);
 		foreach($this->_specialArray as $element) {
@@ -43,9 +43,9 @@ class Language {
 		}
 		$modulesQ = $db->query("SELECT * FROM cms_modules_def WHERE status='N'");
 		while($result = $db->fetch($modulesQ)) {
-			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules/'.$result['moduleName'].'/language/php/'.$short.'.xml';
+			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['moduleName'].DS.'language'.DS.'php'.DS.$short.'.xml';
 			if(!is_file($filename)) {
-				$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules/'.$result['moduleName'].'/language/php/en.xml';
+				$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['moduleName'].DS.'language'.DS.'php'.DS.'en.xml';
 			}
 			$this->_specialArray = $xml->getSpecialArray($filename);
 			foreach($this->_specialArray as $element) {
@@ -74,9 +74,9 @@ class Language {
 		}
 		$componentsQ = $db->query("SELECT * FROM cms_components_def WHERE status='N'");
 		while($result = $db->fetch($componentsQ)) {
-			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules/'.$result['componentName'].'/language/php/'.$short.'.xml';
+			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['componentName'].DS.'language'.DS.'php'.DS.$short.'.xml';
 			if(!is_file($filename)) {
-				$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules/'.$result['componentName'].'/language/php/en.xml';
+				$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['componentName'].DS.'language'.DS.'php'.DS.'en.xml';
 			}
 			$this->_specialArray = $xml->getSpecialArray($filename);
 			foreach($this->_specialArray as $element) {

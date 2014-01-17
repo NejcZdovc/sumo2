@@ -13,9 +13,9 @@ require_once dirname(__FILE__) . '/lib/Minify/HTML/Helper.php';
  * will contain timestamps to allow far-future Expires headers.
  *
  * <code>
- * <link rel="stylesheet" type="text/css" href="<?= Minify_getUri('css'); ?>" />
- * <script src="<?= Minify_getUri('js'); ?>"></script>
- * <script src="<?= Minify_getUri(array(
+ * <link rel="stylesheet" type="text/css" href="<?php echo  Minify_getUri('css'); ?>" />
+ * <script src="<?php echo  Minify_getUri('js'); ?>"></script>
+ * <script src="<?php echo  Minify_getUri(array(
  *      '//scripts/file1.js'
  *      ,'//scripts/file2.js'
  * )); ?>"></script>

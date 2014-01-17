@@ -1,4 +1,4 @@
-<? 
+<?php 
 	define( '_VALID_MIX', 1 );
 	define( '_VALID_ETT', 1 );
 	require_once('../v2/configs/settings.php');

@@ -9,19 +9,19 @@
 	echo '<div class="flt-right display">'.$dropdown.'</div>';
 ?>
 <div>
-      <div style="margin-left:10px; float:left; margin-top:10px; font-weight:bold;"><?=$lang->MOD_44?></div>
+      <div style="margin-left:10px; float:left; margin-top:10px; font-weight:bold;"><?php echo $lang->MOD_44?></div>
       <input id="a_article_view_cd_table_id_search" name="search" class="input" style="width:200px; margin-left:10px;" value="" type="text" maxlength="50" />
 </div>
 <table cellpadding="0" cellspacing="1" border="0" class="table1 table2" id="viewgroups_detailed" width="99%">
 	<thead>
 	<tr>
-    	<th><?=$lang->MOD_40?></th>
-		<th><?=$lang->TITLE?></th>
-		<th><?=$lang->ARTICLE_5?></th>
-        <th><?=$lang->ARTICLE_6?></th>
-        <th><?=$lang->ARTICLE_7?></th>
-		<th><?=$lang->CREATE_DATE?></th>
-		<? if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5)
+    	<th><?php echo $lang->MOD_40?></th>
+		<th><?php echo $lang->TITLE?></th>
+		<th><?php echo $lang->ARTICLE_5?></th>
+        <th><?php echo $lang->ARTICLE_6?></th>
+        <th><?php echo $lang->ARTICLE_7?></th>
+		<th><?php echo $lang->CREATE_DATE?></th>
+		<?php if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
@@ -38,19 +38,19 @@
 					echo '<tr class="even">';
 				}
 				?>
-                	<td width="30px;" style="text-align:center;"><img src="images/icons/flags/<?=lang_name_front($result['lang'])?>.png" alt="<?=lang_name_front($result['lang'])?>"/></td>
+                	<td width="30px;" style="text-align:center;"><img src="images/icons/flags/<?php echo lang_name_front($result['lang'])?>.png" alt="<?php echo lang_name_front($result['lang'])?>"/></td>
 					<td><?php echo $result['title'];?></td>
 					<td><?php echo $result['author'];?></td>
 					<td><?php if($result['dateStart']==0) echo $lang->ARTICLE_11; else echo date($lang->DATE_1, $result['dateStart']);?></td>
                     <td><?php if($result['dateEnd']==0) echo $lang->ARTICLE_12; else  echo date($lang->DATE_1, $result['dateEnd']);?></td>
                     <td><?php echo  date($lang->DATE_1, $result['date']);?></td>
-                     <? if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5) {?>
+                     <?php if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5) {?>
 					<td width="65px">
-						<div title="<?=$lang->ARTICLE_9?>" class="<?php echo $result['published']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.article.ChangeStatusArticle('<?php echo $crypt->encrypt($result['ID']); ?>','<?=$accordion_id?>')"></div>
-						<div title="<?=$lang->ARTICLE_8?>" class="edit sumo2-tooltip" onclick="sumo2.accordion.NewPanel('a_article_edit_a','id=<?= $crypt->encrypt($result['ID']); ?>',null,'a_article_edit_a<?=$result['ID']?>','<?=$lang->MOD_43?> - <?= str_replace("'", "", $result['title']);?>')"></div>
-						<div title="<?=$lang->ARTICLE_10?>" class="delete sumo2-tooltip" onclick="sumo2.article.DeleteArticle('<?php echo $crypt->encrypt($result['ID']); ?>','<?=$accordion_id?>')"></div>
+						<div title="<?php echo $lang->ARTICLE_9?>" class="<?php echo $result['published']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.article.ChangeStatusArticle('<?php echo $crypt->encrypt($result['ID']); ?>','<?php echo $accordion_id?>')"></div>
+						<div title="<?php echo $lang->ARTICLE_8?>" class="edit sumo2-tooltip" onclick="sumo2.accordion.NewPanel('a_article_edit_a','id=<?php echo  $crypt->encrypt($result['ID']); ?>',null,'a_article_edit_a<?php echo $result['ID']?>','<?php echo $lang->MOD_43?> - <?php echo  str_replace("'", "", $result['title']);?>')"></div>
+						<div title="<?php echo $lang->ARTICLE_10?>" class="delete sumo2-tooltip" onclick="sumo2.article.DeleteArticle('<?php echo $crypt->encrypt($result['ID']); ?>','<?php echo $accordion_id?>')"></div>
 					</td>
-                    <? } ?>
+                    <?php } ?>
 				</tr>
 				<?php 
 				$counter++;
@@ -60,4 +60,4 @@
 	?>
     </tbody>
 </table>
-<?= pagging($accordion_id, $pagging); ?>
+<?php echo  pagging($accordion_id, $pagging); ?>

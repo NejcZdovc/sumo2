@@ -4,7 +4,7 @@ if( !defined( '_VALID_MIX' ) && !defined( '_VALID_ETT' ) ) {
 	header( 'Location: http://www.3zsistemi.si');
 	exit;
 }
-include_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.'/includes/errors.php');
+include_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'includes'.DS.'errors.php');
 
 class Database
 {

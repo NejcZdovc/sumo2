@@ -1,4 +1,4 @@
-<? 
+<?php 
 $isNoUpdateFile=1;
 require_once('../initialize.php');
 if(!$session->isLogedIn()) {

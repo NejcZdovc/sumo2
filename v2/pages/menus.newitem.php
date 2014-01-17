@@ -1,19 +1,19 @@
-<? require_once('../initialize.php'); 
+<?php require_once('../initialize.php'); 
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
 	}
 ?>
 <form action="" name="d_menus_new_i" method="post" class="form2">
-<? if($db->filter('mode')!='sp') { ?>
-<input type="hidden" name="id" id="id" value="<?= $db->filter('id') ?>" />
-<? } else {?>
-	<input type="hidden" name="id" id="id" value="<?= $crypt->decrypt($db->filter('id')) ?>" />
-<? } ?>
+<?php if($db->filter('mode')!='sp') { ?>
+<input type="hidden" name="id" id="id" value="<?php echo  $db->filter('id') ?>" />
+<?php } else {?>
+	<input type="hidden" name="id" id="id" value="<?php echo  $crypt->decrypt($db->filter('id')) ?>" />
+<?php } ?>
 	<div class="">
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_20?>:</div><div class="title_form_small"><?=$lang->MENU_21?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_20?>:</div><div class="title_form_small"><?php echo $lang->MENU_21?></div>
         </td>
         <td class="right_td">
         <input type="text" name="name" id="name" class="input" />
@@ -22,11 +22,11 @@
     </tr>
      <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_22?>:</div><div class="title_form_small"><?=$lang->MENU_23?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_22?>:</div><div class="title_form_small"><?php echo $lang->MENU_23?></div>
         </td>
         <td class="right_td">
         <select id="template" style="width:100%;">
-        <? $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
+        <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
         	while($results=$db->fetch($query)) {
 			if($results['ID']==$globals->template)
 				echo '<option value="'.$results['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results['name'].'</option>';
@@ -41,7 +41,7 @@
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_24?>:</div><div class="title_form_small"><?=$lang->MENU_25?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_24?>:</div><div class="title_form_small"><?php echo $lang->MENU_25?></div>
         </td>
     </tr>
     <tr>
@@ -52,7 +52,7 @@
     </tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_26?>:</div><div class="title_form_small"><?=$lang->MENU_27?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_26?>:</div><div class="title_form_small"><?php echo $lang->MENU_27?></div>
         </td>
     </tr>
     <tr>
@@ -63,25 +63,25 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-            <div class="title_form_big"><?=$lang->MOD_174?>:</div><div class="title_form_small"><?=$lang->MOD_175?></div>
+            <div class="title_form_big"><?php echo $lang->MOD_174?>:</div><div class="title_form_small"><?php echo $lang->MOD_175?></div>
         </td>
         <td class="right_td">
-            <input type="radio" id="public" name="restriction" checked="checked" value="1" /><label for="public"><?=$lang->MOD_172?></label><br/>
-            <input type="radio" id="registred" name="restriction" value="2" /><label for="registred"><?=$lang->MOD_173?></label>
+            <input type="radio" id="public" name="restriction" checked="checked" value="1" /><label for="public"><?php echo $lang->MOD_172?></label><br/>
+            <input type="radio" id="registred" name="restriction" value="2" /><label for="registred"><?php echo $lang->MOD_173?></label>
         </td>
     </tr>
-    <? if($db->filter('mode')!='sp') { ?>
+    <?php if($db->filter('mode')!='sp') { ?>
         <tr>
             <td class="left_td" valign="top">
-                <div class="title_form_big"><?=$lang->MOD_11?>:</div><div class="title_form_small"><?=$lang->MOD_12?></div>
+                <div class="title_form_big"><?php echo $lang->MOD_11?>:</div><div class="title_form_small"><?php echo $lang->MOD_12?></div>
             </td>
             <td class="right_td">
-                <input type="radio" onchange="sumo2.menu.View(this.id);" checked="checked" id="new" name="typ" value="1" /><label for="new"><?=$lang->MOD_13?></label><br/>
-                <input type="radio" onchange="sumo2.menu.View(this.id);" id="short" name="typ" value="2" /><label for="short"><?=$lang->MOD_14?></label><br/>
-                <input type="radio" onchange="sumo2.menu.View(this.id);" id="link" name="typ" value="3" /><label for="link"><?=$lang->MOD_15?></label>
+                <input type="radio" onchange="sumo2.menu.View(this.id);" checked="checked" id="new" name="typ" value="1" /><label for="new"><?php echo $lang->MOD_13?></label><br/>
+                <input type="radio" onchange="sumo2.menu.View(this.id);" id="short" name="typ" value="2" /><label for="short"><?php echo $lang->MOD_14?></label><br/>
+                <input type="radio" onchange="sumo2.menu.View(this.id);" id="link" name="typ" value="3" /><label for="link"><?php echo $lang->MOD_15?></label>
             </td>
         </tr>
-     <? } else { ?>
+     <?php } else { ?>
     <tr>
         <td>
         	<input type="radio" checked="checked" disabled="disabled" id="new" name="typ" value="4" style="display:none;" />
@@ -89,21 +89,21 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-        	<div class="title_form_big"><?=$lang->MOD_181?>:</div><div class="title_form_small"><?=$lang->MOD_182?></div>
+        	<div class="title_form_big"><?php echo $lang->MOD_181?>:</div><div class="title_form_small"><?php echo $lang->MOD_182?></div>
         </td>
         <td class="right_td">
-        	<input type="text" name="linkA" id="linkA" class="input" value="<?= $results['alias'] ?>" />
+        	<input type="text" name="linkA" id="linkA" class="input" value="<?php echo  $results['alias'] ?>" />
         </td>
     </tr>
      <tr>
         <td class="left_td" valign="top" colspan="2">
-        	<div class="title_form_big"><?=$lang->MOD_183?>:</div><div class="title_form_small"><?=$lang->MOD_184?></div>
+        	<div class="title_form_big"><?php echo $lang->MOD_183?>:</div><div class="title_form_small"><?php echo $lang->MOD_184?></div>
         </td>
     </tr>
     <tr>
         <td class="right_td" colspan="2">
 			<select id="parent" size="3" style="width:450px; height:180px;">
-                <?
+                <?php
 				 echo '<option value="-1" selected="selected"><b>'.$lang->ARTICLE_20.'</b></option>';
 				 $query=$db->query('SELECT ID, name FROM cms_language_front WHERE enabled=1');
 					while($results=$db->fetch($query)) {
@@ -135,20 +135,20 @@
                 </select>
         </td>
     </tr>
-    <? } ?>
+    <?php } ?>
     </table>
     <div id="div_new" style="display:none;"></div>
     <div id="div_short" style="display:none;">
     	<table cellpadding="0" cellspacing="4" border="0" width="99%" >
         <tr>
             <td class="left_td" valign="top" colspan="2">
-                <div class="title_form_big"><?=$lang->MOD_16?>:</div><div class="title_form_small"><?=$lang->MOD_17?></div>
+                <div class="title_form_big"><?php echo $lang->MOD_16?>:</div><div class="title_form_small"><?php echo $lang->MOD_17?></div>
             </td>        
         </tr>
         <tr>
             <td class="right_td" valign="top" colspan="2" style="padding:5px;">
                 <select id="shortcut_link" size="3" style="width:450px; height:180px;">
-                <? $query=$db->query('SELECT ID, name FROM cms_language_front WHERE enabled=1');
+                <?php $query=$db->query('SELECT ID, name FROM cms_language_front WHERE enabled=1');
 					while($results=$db->fetch($query)) {
 					echo '<optgroup label="'.$results['name'].'">';
 						$query1=$db->query('SELECT ID, title FROM cms_menus WHERE lang="'.$results['ID'].'" AND enabled=1 AND domain="'.$user->domain.'"');
@@ -184,7 +184,7 @@
     	<table cellpadding="0" cellspacing="4" border="0" width="99%" >
         <tr>
             <td class="left_td" valign="top">
-                <div class="title_form_big"><?=$lang->MOD_18?>:</div><div class="title_form_small"><?=$lang->MOD_19?></div>
+                <div class="title_form_big"><?php echo $lang->MOD_18?>:</div><div class="title_form_small"><?php echo $lang->MOD_19?></div>
             </td>
             <td class="right_td">
                 <input name="extra_link" id="extra_link" value="http://" type="text" maxlength="50" class="input" />
@@ -192,12 +192,12 @@
         </tr>
         <tr>
             <td class="left_td" valign="top">
-                <div class="title_form_big"><?=$lang->MOD_20?>:</div><div class="title_form_small"><?=$lang->MOD_21?></div>
+                <div class="title_form_big"><?php echo $lang->MOD_20?>:</div><div class="title_form_small"><?php echo $lang->MOD_21?></div>
             </td>
             <td class="right_td">
-              	<input type="radio" checked="checked" id="same" name="target" value="1" /><label for="same"><?=$lang->MOD_22?></label><br/>
-                <input type="radio" id="blank" name="target" value="2" /><label for="blank"><?=$lang->MOD_23?></label><br/>
-           		<input type="radio" id="new_w" name="target" value="3" /><label for="new_w"><?=$lang->MOD_24?></label>  
+              	<input type="radio" checked="checked" id="same" name="target" value="1" /><label for="same"><?php echo $lang->MOD_22?></label><br/>
+                <input type="radio" id="blank" name="target" value="2" /><label for="blank"><?php echo $lang->MOD_23?></label><br/>
+           		<input type="radio" id="new_w" name="target" value="3" /><label for="new_w"><?php echo $lang->MOD_24?></label>  
             </td>        
         </tr>
         </table>

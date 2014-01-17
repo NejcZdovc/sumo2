@@ -11,14 +11,14 @@
 <table cellpadding="0" cellspacing="1" border="0" summary="View fields" class="table1 table2" width="99%">
 <caption class="hide">View fields</caption>
 	<tr>
-		<th scope="col" abbr=""><?=$lang->MOD_60?></th>
-		<th scope="col" abbr=""><?=$lang->MOD_61?></th>
-		<th scope="col" abbr=""><?=$lang->MOD_62?></th>
-		<th scope="col" abbr=""><?=$lang->MOD_11?></th>
-		<th scope="col" abbr=""><?=$lang->MOD_63?></th>
-		<th scope="col" abbr=""><?=$lang->MOD_64?></th>
-		<th scope="col" abbr=""><?=$lang->MOD_65?></th>
-        <? if($user->getAuth('FAV_USER_5') == 2 || $user->getAuth('FAV_USER_5') == 4 || $user->getAuth('FAV_USER_5') == 5)
+		<th scope="col" abbr=""><?php echo $lang->MOD_60?></th>
+		<th scope="col" abbr=""><?php echo $lang->MOD_61?></th>
+		<th scope="col" abbr=""><?php echo $lang->MOD_62?></th>
+		<th scope="col" abbr=""><?php echo $lang->MOD_11?></th>
+		<th scope="col" abbr=""><?php echo $lang->MOD_63?></th>
+		<th scope="col" abbr=""><?php echo $lang->MOD_64?></th>
+		<th scope="col" abbr=""><?php echo $lang->MOD_65?></th>
+        <?php if($user->getAuth('FAV_USER_5') == 2 || $user->getAuth('FAV_USER_5') == 4 || $user->getAuth('FAV_USER_5') == 5)
 			echo '<th scope="col" abbr="'.$lang->CONTROL.'">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
@@ -66,13 +66,13 @@
 					<td><?php echo $result['required']?('Yes'):('No');?></td>
 					<td><?php echo $result['min'];?></td>
 					<td><?php echo $result['max'];?></td>
-                    <? if($user->getAuth('FAV_USER_5') == 2 || $user->getAuth('FAV_USER_5') == 4 || $user->getAuth('FAV_USER_5') == 5) {?>
+                    <?php if($user->getAuth('FAV_USER_5') == 2 || $user->getAuth('FAV_USER_5') == 4 || $user->getAuth('FAV_USER_5') == 5) {?>
 					<td width="65px">
-						<div title="<?=$lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatusField('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditFieldShow('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteField('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatusField('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditFieldShow('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteField('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
 					</td>
-                    <? } ?>
+                    <?php } ?>
 				</tr>
 				<?php 
 				$counter++;
@@ -81,5 +81,5 @@
 			echo '<tr><td colspan="8" style="text-align:center; font-size:13px;"><b>'.$lang->MOD_74.'</b></td></td>';
 	?>
 </table>
-<?= pagging($accordion_id, $pagging); ?>
+<?php echo  pagging($accordion_id, $pagging); ?>
 </div>

@@ -11,23 +11,23 @@
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->SITE_TREE_2?>:</div><div class="title_form_small"><?=$lang->SITE_TREE_3?></div>
+        <div class="title_form_big"><?php echo $lang->SITE_TREE_2?>:</div><div class="title_form_small"><?php echo $lang->SITE_TREE_3?></div>
         </td>
         <td class="right_td">
         <input class="input" id="nameOfModule" value="" type="text" maxlength="50" />
         <input type="text" name="enterfix" style="display:none;" />
-        <input type="hidden" id="idOfModule" value="<?=$db->filter('modid')?>" />
-        <input type="hidden" id="layoutOfModule" value="<?=$db->filter('layout')?>" />
-        <input type="hidden" id="tpageOfModule" value="<?=$db->filter('tpage')?>" />
+        <input type="hidden" id="idOfModule" value="<?php echo $db->filter('modid')?>" />
+        <input type="hidden" id="layoutOfModule" value="<?php echo $db->filter('layout')?>" />
+        <input type="hidden" id="tpageOfModule" value="<?php echo $db->filter('tpage')?>" />
         </td>
     </tr>
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->SITE_TREE_4?>:</div><div class="title_form_small"><?=$lang->SITE_TREE_5?></div>
+        <div class="title_form_big"><?php echo $lang->SITE_TREE_4?>:</div><div class="title_form_small"><?php echo $lang->SITE_TREE_5?></div>
         </td>
         <td class="right_td">
         <select id="prefixOfModule" class="input">
-        <?
+        <?php
 			$query=$db->query('SELECT name, ID FROM cms_modul_prefix WHERE enabled=1 AND domain="'.$user->domain.'" ORDER BY ID');
 			while($results=$db->fetch($query)) {
 				echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
@@ -38,11 +38,11 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-		<div class="title_form_big"><?=$lang->SITE_TREE_6?>:</div><div class="title_form_small"><?=$lang->SITE_TREE_7?></div>
+		<div class="title_form_big"><?php echo $lang->SITE_TREE_6?>:</div><div class="title_form_small"><?php echo $lang->SITE_TREE_7?></div>
         </td>
         <td class="right_td">
         <select id="languageForModule" class="input" onchange="sumo2.siteTree.SelectLanguage(this)">
-        <?
+        <?php
 			$query=$db->query('SELECT name, ID FROM cms_language_front WHERE enabled=1 ORDER BY ID');
 			while($results=$db->fetch($query)) {
 				echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
@@ -53,19 +53,19 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-		<div class="title_form_big"><?=$lang->MOD_199?>:</div><div class="title_form_small"><?=$lang->MOD_200?></div>
+		<div class="title_form_big"><?php echo $lang->MOD_199?>:</div><div class="title_form_small"><?php echo $lang->MOD_200?></div>
         </td>
         <td class="right_td">
         <select id="copyForModule" class="input">
-       		<option value="0"><?=$lang->ARTICLE_20?></option>
-            <option value="1"><?=$lang->ARTICLE_19?></option>
+       		<option value="0"><?php echo $lang->ARTICLE_20?></option>
+            <option value="1"><?php echo $lang->ARTICLE_19?></option>
         </select>
         </td>
     </tr>
     </table>
     </td>
     <td width="200px" class="right_td">
-        <? 
+        <?php 
 		$first = true;
 		$counter = 0;
 		$int = 0;

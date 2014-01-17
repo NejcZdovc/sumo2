@@ -1,4 +1,4 @@
-<? require_once('../initialize.php'); 
+<?php require_once('../initialize.php'); 
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
 	}
@@ -9,8 +9,8 @@
     	<tr style="vertical-align:top;">
         	<td width="180px" style="vertical-align:top;">
                 <ul class="tabsDomain" >
-                    <li id="addtab"><a href="#add"><?=$lang->MOD_209?></a></li>
-                    <?
+                    <li id="addtab"><a href="#add"><?php echo $lang->MOD_209?></a></li>
+                    <?php
 						$query=$db->query('SELECT * FROM cms_domains WHERE alias="0" ORDER BY name ASC');
 						while($result=$db->fetch($query)) {
 							echo '<li id="domain_'.$result['ID'].'tab"><a href="#domain_'.$result['ID'].'">'.$result['name'].'</a></li>';
@@ -22,9 +22,9 @@
             <div id="domains_tab_container_id" class="domain_container" style="width:100% !important">
             	<input id="domains_current_tab" type="hidden" value="#tab1" /> 
                 <div id="add" class="domain_content" style="overflow:auto;">
-                    <? include("domains.add.php") ?>
+                    <?php include("domains.add.php") ?>
                 </div>  
-                <?
+                <?php
 					$query=$db->query('SELECT * FROM cms_domains WHERE alias="0"  ORDER BY name ASC');
 					while($result=$db->fetch($query)) {
 						 echo '<div id="domain_'.$result['ID'].'" class="domain_content" style="overflow:auto;">

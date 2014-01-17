@@ -8,7 +8,7 @@
  	<table cellpadding="0" cellspacing="4" border="0" width="99%" >       
         <tr>
             <td colspan="2" class="left_td" valign="top">
-            <div class="title_form_big"><?=$lang->MOD_233?>:</div><div class="title_form_small"><?=$lang->MOD_234?></div>
+            <div class="title_form_big"><?php echo $lang->MOD_233?>:</div><div class="title_form_small"><?php echo $lang->MOD_234?></div>
             </td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td colspan="2" class="left_td" valign="top">
-            <div class="title_form_big"><?=$lang->MOD_235?>:</div><div class="title_form_small"><?=$lang->MOD_236?></div>
+            <div class="title_form_big"><?php echo $lang->MOD_235?>:</div><div class="title_form_small"><?php echo $lang->MOD_236?></div>
             </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
         </tr>
          <tr>
             <td colspan="2" class="left_td" valign="top">
-            <div class="title_form_big"><?=$lang->MOD_237?>:</div><div class="title_form_small"><?=$lang->MOD_238?></div>
+            <div class="title_form_big"><?php echo $lang->MOD_237?>:</div><div class="title_form_small"><?php echo $lang->MOD_238?></div>
             </td>
         </tr>
         <tr>

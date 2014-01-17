@@ -77,51 +77,51 @@
 ?>
 <div class="contextMenu" id="myMenuS_RND" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-		<li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>		
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+		<li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>		
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuS_RN" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuS_RD" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuHS_RN" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_6?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_6?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuS_R" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuS_N" style="display:none;">
       <ul style="font-size:12px;">
-       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
+       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
       </ul>
 </div>
 <div class="contextMenu" id="myMenuSpecial_N" style="display:none;">
       <ul style="font-size:12px;">
-       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
+       	<li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
       </ul>
 </div>
 <table cellspacing="0" height="100%" width="100%">
 	<tr>
     	<td class="str-panel1" id="sumo2-tree-menus-panel">
         	<div class="str-lang">
-            	<?=$lang->SITE_TREE_1?> <?=lang_dropdown(''.$selected_lang_menus.'', ''.$accordion_id.'', 'lang_menus')?>
+            	<?php echo $lang->SITE_TREE_1?> <?php echo lang_dropdown(''.$selected_lang_menus.'', ''.$accordion_id.'', 'lang_menus')?>
             </div>
             <div class="str-menus-container" id="sumo2-tree-menus">
             	<?php
@@ -201,11 +201,11 @@
 		?>
             </div>
 		<div id="sumo2-sitetree-legend" style="font-size:10px;">
-			<p style="margin: 4px 3px;"><?=$lang->MOD_99?>:</p>
-			<p style="margin: 3px 5px;"><span style="color:#a3a3ac;"><?=$lang->MOD_100?></span></p>
-			<p style="margin: 3px 5px;"><span style="color:red;"><?=$lang->MOD_101?></span></p>
-			<p style="margin: 3px 5px;"><span style="color:green;"><?=$lang->MOD_102?></span></p>
-			<p style="margin: 3px 5px;"><span style="color:blue;"><?=$lang->MOD_103?></span></p>
+			<p style="margin: 4px 3px;"><?php echo $lang->MOD_99?>:</p>
+			<p style="margin: 3px 5px;"><span style="color:#a3a3ac;"><?php echo $lang->MOD_100?></span></p>
+			<p style="margin: 3px 5px;"><span style="color:red;"><?php echo $lang->MOD_101?></span></p>
+			<p style="margin: 3px 5px;"><span style="color:green;"><?php echo $lang->MOD_102?></span></p>
+			<p style="margin: 3px 5px;"><span style="color:blue;"><?php echo $lang->MOD_103?></span></p>
 		</div>
         </td>
         <td class="str-button" onclick="sumo2.siteTree.TogglePanel('sumo2-tree-menus-panel','men-side')"><div id="men-side" class="str-arrw-l"></div></td>
@@ -229,8 +229,8 @@
 			}
 		?>
         <td class="str-main">
-		<div id="sumo2-sitetree-uppermenu" style="background:#efefef;height:20px;width:100%;"><div style="float:right;padding-top:3px;padding-right:5px;"><?=$links?></div></div>
-		<iframe id="sumo2-tree-frame" width="100%" name="layout" src="<?=$page?>"></iframe>
+		<div id="sumo2-sitetree-uppermenu" style="background:#efefef;height:20px;width:100%;"><div style="float:right;padding-top:3px;padding-right:5px;"><?php echo $links?></div></div>
+		<iframe id="sumo2-tree-frame" width="100%" name="layout" src="<?php echo $page?>"></iframe>
 	</td>
         <td class="str-button" onclick="sumo2.siteTree.TogglePanel('sumo2-tree-modules','mod-side')"><div id="mod-side" class="str-arrw-r"></div></td>
         <td class="str-panel2" id="sumo2-tree-modules">

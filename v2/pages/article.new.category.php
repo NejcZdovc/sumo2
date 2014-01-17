@@ -1,4 +1,4 @@
-<? require_once('../initialize.php'); 
+<?php require_once('../initialize.php'); 
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
 	}
@@ -8,7 +8,7 @@
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->NAME?>:</div><div class="title_form_small"><?=$lang->USER_ADD_N_1?></div>
+        <div class="title_form_big"><?php echo $lang->NAME?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_N_1?></div>
         </td>
         <td class="right_td">
         <input name="name" id="name" value="" type="text" maxlength="50" class="input" />
@@ -18,7 +18,7 @@
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?=$lang->USER_ADD_D_2?></div>
+        <div class="title_form_big"><?php echo $lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_D_2?></div>
         </td>
     </tr>
     <tr>

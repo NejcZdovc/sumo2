@@ -5,7 +5,7 @@ if(!$session->isLogedIn() || !$security->checkURL()) {
 }
 if(ob_get_length()>0) { ob_end_clean(); }
 if($db->filter('type') == 'install') {
-	include('../essentials/module.class.php');
+	include('..'.DS.'essentials'.DS.'module.class.php');
 	if(($return = $module->checkSystem()) === true) { 
 		$module->number = $db->filter('number');
 		$zip = new ZipArchive();

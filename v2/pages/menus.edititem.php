@@ -1,4 +1,4 @@
-<? require_once('../initialize.php'); 
+<?php require_once('../initialize.php'); 
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
 	}
@@ -7,25 +7,25 @@
 	$results=$db->fetch($db->query('SELECT title, keyword, restriction, description, template, target, selection, link, alias, parentID, altPrefix FROM cms_menus_items WHERE ID='.$id[0].''));
 ?>
 <form action="" name="d_menus_edit_i" method="post" class="form2">
-<input type="hidden" name="id" id="id" value="<?= $id[0] ?>" />
+<input type="hidden" name="id" id="id" value="<?php echo  $id[0] ?>" />
 	<div class="">
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_20?>:</div><div class="title_form_small"><?=$lang->MENU_21?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_20?>:</div><div class="title_form_small"><?php echo $lang->MENU_21?></div>
         </td>
         <td class="right_td">
-        <input type="text" name="name" id="name" class="input" value="<?= $results['title'] ?>" />
+        <input type="text" name="name" id="name" class="input" value="<?php echo  $results['title'] ?>" />
         <input type="text" name="enterfix" style="display:none;" />
         </td>
     </tr>
      <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_22?>:</div><div class="title_form_small"><?=$lang->MENU_23?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_22?>:</div><div class="title_form_small"><?php echo $lang->MENU_23?></div>
         </td>
         <td class="right_td">
         <select id="template" style="width:100%;">
-        <? $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
+        <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
         	while($results1=$db->fetch($query)) {
 			if($results1['ID']==$results['template'])
 				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
@@ -40,56 +40,56 @@
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_24?>:</div><div class="title_form_small"><?=$lang->MENU_25?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_24?>:</div><div class="title_form_small"><?php echo $lang->MENU_25?></div>
         </td>
     </tr>
     <tr>
     	<td colspan="2" class="right_td" style="padding:5px;">
-			<textarea  id="keywords" class="input-area" name="content" rows="5" cols="54"><?= $results['keyword'] ?></textarea>
+			<textarea  id="keywords" class="input-area" name="content" rows="5" cols="54"><?php echo  $results['keyword'] ?></textarea>
         </td>
     
     </tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MENU_26?>:</div><div class="title_form_small"><?=$lang->MENU_27?></div>
+        <div class="title_form_big"><?php echo $lang->MENU_26?>:</div><div class="title_form_small"><?php echo $lang->MENU_27?></div>
         </td>
     </tr>
     <tr>
     	<td colspan="2" class="right_td" style="padding:5px;">
-			<textarea  id="description" class="input-area" name="content"  rows="5" cols="54"><?= $results['description'] ?></textarea>
+			<textarea  id="description" class="input-area" name="content"  rows="5" cols="54"><?php echo  $results['description'] ?></textarea>
         </td>
     
     </tr>
    
     <tr>
         <td class="left_td" valign="top">
-            <div class="title_form_big"><?=$lang->MOD_174?>:</div><div class="title_form_small"><?=$lang->MOD_175?></div>
+            <div class="title_form_big"><?php echo $lang->MOD_174?>:</div><div class="title_form_small"><?php echo $lang->MOD_175?></div>
         </td>
         <td class="right_td">
-            <input type="radio" <? if($results['restriction']==1) echo 'checked="checked"'; ?> id="public" name="restriction" value="1" /><label for="public"><?=$lang->MOD_172?></label><br/>
-            <input type="radio" <? if($results['restriction']==2) echo 'checked="checked"'; ?> id="registred" name="restriction" value="2" /><label for="registred"><?=$lang->MOD_173?></label>
+            <input type="radio" <?php if($results['restriction']==1) echo 'checked="checked"'; ?> id="public" name="restriction" value="1" /><label for="public"><?php echo $lang->MOD_172?></label><br/>
+            <input type="radio" <?php if($results['restriction']==2) echo 'checked="checked"'; ?> id="registred" name="restriction" value="2" /><label for="registred"><?php echo $lang->MOD_173?></label>
         </td>
     </tr>
-   <? if($db->filter('mode')!='sp') { ?>
+   <?php if($db->filter('mode')!='sp') { ?>
     <tr>
         <td class="left_td" valign="top">
-        	<div class="title_form_big"><?=$lang->MOD_201?>:</div><div class="title_form_small"><?=$lang->MOD_202?></div>
+        	<div class="title_form_big"><?php echo $lang->MOD_201?>:</div><div class="title_form_small"><?php echo $lang->MOD_202?></div>
         </td>
         <td class="right_td">
-        	<input type="text" name="altPrefix" id="altPrefix" class="input" value="<?= $results['altPrefix'] ?>" />
+        	<input type="text" name="altPrefix" id="altPrefix" class="input" value="<?php echo  $results['altPrefix'] ?>" />
         </td>
     </tr>
  	<tr>
         <td class="left_td" valign="top">
-            <div class="title_form_big"><?=$lang->MOD_11?>:</div><div class="title_form_small"><?=$lang->MOD_12?></div>
+            <div class="title_form_big"><?php echo $lang->MOD_11?>:</div><div class="title_form_small"><?php echo $lang->MOD_12?></div>
         </td>
         <td class="right_td">
-            <input type="radio" <? if($results['selection']==1) echo 'checked="checked"'; ?> onchange="sumo2.menu.View(this.id);" id="new" name="typ" value="1" /><label for="new"><?=$lang->MOD_13?></label><br/>
-            <input type="radio" <? if($results['selection']==2) echo 'checked="checked"'; ?> onchange="sumo2.menu.View(this.id);" id="short" name="typ" value="2" /><label for="short"><?=$lang->MOD_14?></label><br/>
-            <input type="radio" <? if($results['selection']==3) echo 'checked="checked"'; ?> onchange="sumo2.menu.View(this.id);" id="link" name="typ" value="3" /><label for="link"><?=$lang->MOD_15?></label>
+            <input type="radio" <?php if($results['selection']==1) echo 'checked="checked"'; ?> onchange="sumo2.menu.View(this.id);" id="new" name="typ" value="1" /><label for="new"><?php echo $lang->MOD_13?></label><br/>
+            <input type="radio" <?php if($results['selection']==2) echo 'checked="checked"'; ?> onchange="sumo2.menu.View(this.id);" id="short" name="typ" value="2" /><label for="short"><?php echo $lang->MOD_14?></label><br/>
+            <input type="radio" <?php if($results['selection']==3) echo 'checked="checked"'; ?> onchange="sumo2.menu.View(this.id);" id="link" name="typ" value="3" /><label for="link"><?php echo $lang->MOD_15?></label>
         </td>
     </tr>
-    <? } else { ?>
+    <?php } else { ?>
     <tr>
         <td>
         	<input type="radio" checked="checked" id="new" disabled="disabled" name="typ" value="4" style="display:none;" />
@@ -97,22 +97,21 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-        	<div class="title_form_big"><?=$lang->MOD_201?>:</div><div class="title_form_small"><?=$lang->MOD_202?></div>
+        	<div class="title_form_big"><?php echo $lang->MOD_201?>:</div><div class="title_form_small"><?php echo $lang->MOD_202?></div>
         </td>
         <td class="right_td">
-        	<input type="text" name="altPrefix" id="altPrefix" class="input" value="<?= $results['altPrefix'] ?>" />
+        	<input type="text" name="altPrefix" id="altPrefix" class="input" value="<?php echo  $results['altPrefix'] ?>" />
         </td>
     </tr>
      <tr>
         <td class="left_td" valign="top" colspan="2">
-        	<div class="title_form_big"><?=$lang->MOD_183?>:</div><div class="title_form_small"><?=$lang->MOD_184?></div>
+        	<div class="title_form_big"><?php echo $lang->MOD_183?>:</div><div class="title_form_small"><?php echo $lang->MOD_184?></div>
         </td>
     </tr>
     <tr>
         <td class="right_td" colspan="2">
 			<select id="parent" size="3" style="width:450px; height:180px;">
-            	
-                <?
+                <?php
 				if($results['parentID']=='-1')
 					echo '<option value="-1" selected="selected"><b>'.$lang->ARTICLE_20.'</b></option>';
 				else
@@ -166,20 +165,20 @@
                 </select>
         </td>
     </tr>
-    <? } ?>
+    <?php } ?>
     </table>
     <div id="div_new" style="display:none;"></div>
-    <div id="div_short" <? if($results['selection']==2) echo 'style="display:block;"'; else echo 'style="display:none;"'; ?>>
+    <div id="div_short" <?php if($results['selection']==2) echo 'style="display:block;"'; else echo 'style="display:none;"'; ?>>
     	<table cellpadding="0" cellspacing="4" border="0" width="99%" >
         <tr>
             <td class="left_td" valign="top" colspan="2">
-                <div class="title_form_big"><?=$lang->MOD_16?>:</div><div class="title_form_small"><?=$lang->MOD_17?></div>
+                <div class="title_form_big"><?php echo $lang->MOD_16?>:</div><div class="title_form_small"><?php echo $lang->MOD_17?></div>
             </td>        
         </tr>
         <tr>
             <td class="right_td" valign="top" colspan="2" style="padding:5px;">
             	<select id="shortcut_link" size="3" style="width:450px; height:180px;">
-                <? $query=$db->query('SELECT ID, name FROM cms_language_front WHERE enabled=1');
+                <?php $query=$db->query('SELECT ID, name FROM cms_language_front WHERE enabled=1');
 					while($resultsF=$db->fetch($query)) {
 					echo '<optgroup label="'.$resultsF['name'].'">';
 					$home_name=$db->fetch($db->query('SELECT ID,title FROM cms_homepage WHERE lang="'.$resultsF['ID'].'" AND domain="'.$user->domain.'"'));
@@ -229,24 +228,24 @@
         </tr>
         </table>
     </div>
-    <div id="div_link" <? if($results['selection']==3) echo 'style="display:block;"'; else echo 'style="display:none;"'; ?>>
+    <div id="div_link" <?php if($results['selection']==3) echo 'style="display:block;"'; else echo 'style="display:none;"'; ?>>
     	<table cellpadding="0" cellspacing="4" border="0" width="99%" >
         <tr>
             <td class="left_td" valign="top">
-                <div class="title_form_big"><?=$lang->MOD_18?>:</div><div class="title_form_small"><?=$lang->MOD_19?></div>
+                <div class="title_form_big"><?php echo $lang->MOD_18?>:</div><div class="title_form_small"><?php echo $lang->MOD_19?></div>
             </td>
             <td class="right_td">
-                <input name="extra_link" id="extra_link" type="text" maxlength="50" value="<?=$results['link']?>" class="input" />
+                <input name="extra_link" id="extra_link" type="text" maxlength="50" value="<?php echo $results['link']?>" class="input" />
             </td>        
         </tr>
         <tr>
             <td class="left_td" valign="top">
-                <div class="title_form_big"><?=$lang->MOD_20?>:</div><div class="title_form_small"><?=$lang->MOD_21?></div>
+                <div class="title_form_big"><?php echo $lang->MOD_20?>:</div><div class="title_form_small"><?php echo $lang->MOD_21?></div>
             </td>
             <td class="right_td">
-              	<input type="radio" <? if($results['target']==1) echo 'checked="checked"'; ?> id="same" name="target" value="1" /><label for="same"><?=$lang->MOD_22?></label><br/>
-                <input type="radio" <? if($results['target']==2) echo 'checked="checked"'; ?> id="blank" name="target" value="2" /><label for="blank"><?=$lang->MOD_23?></label><br/>
-           		<input type="radio" <? if($results['target']==3) echo 'checked="checked"'; ?> id="new_w" name="target" value="3" /><label for="new_w"><?=$lang->MOD_24?></label>  
+              	<input type="radio" <?php if($results['target']==1) echo 'checked="checked"'; ?> id="same" name="target" value="1" /><label for="same"><?php echo $lang->MOD_22?></label><br/>
+                <input type="radio" <?php if($results['target']==2) echo 'checked="checked"'; ?> id="blank" name="target" value="2" /><label for="blank"><?php echo $lang->MOD_23?></label><br/>
+           		<input type="radio" <?php if($results['target']==3) echo 'checked="checked"'; ?> id="new_w" name="target" value="3" /><label for="new_w"><?php echo $lang->MOD_24?></label>  
             </td>        
         </tr>
         </table>
