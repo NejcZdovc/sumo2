@@ -35,6 +35,7 @@
 		}
 	} else {
 		$isSelected = false;
+        $selPage="";
 	}
 	
 	function generateMenuItems($menuID, $parentID, $lang, $isSelected, $selPage)
@@ -43,11 +44,12 @@
 		$query=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$menuID.' AND parentID="'.$parentID.'" AND status="N" AND selection!="4" ORDER BY orderID asc');
 		$int=$db->rows($query);
 		if($int>0) {
+			$firstLayout=false;
 			echo '<ul>';
 			while($results = $db->fetch($query)) {
 				$shown = '';
 				if($isSelected && $selPage == $results['ID']) {
-						$firstLayout = true;
+					$firstLayout = true;
 					$firstNum = $results['ID'];
 					$firstTmp = $results['template'];
 					$shown = 'class="show"';
@@ -172,26 +174,26 @@
 			if($specialRows > 0) {
 				echo "<ul>";
 			}
-				$modulesQuery = $db->query("SELECT DISTINCT menuID FROM cms_menus_items WHERE selection='4' AND status='N' AND enabled='1' AND target='".$selected_lang_menus."'");
-				while($modulesRes = $db->fetch($modulesQuery)) {
-					$modInfo = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$modulesRes['menuID']."'"));
-					echo '<li class="special"><div class="ParentMenu S_N" id="'.$crypt->encrypt($modInfo['ID'].'#'.$selected_lang_menus.'').'" style="cursor:pointer;">'.$modInfo['name'].'</div><ul>';
-					$spQuery = $db->query("SELECT * FROM cms_menus_items WHERE menuID='".$modInfo['ID']."' AND selection='4' AND status='N' AND enabled='1' AND target='".$selected_lang_menus."' AND domain='".$user->domain."'");
-					while($result = $db->fetch($spQuery)) {
-						$shown ="";
-						if($isSelected && $selPage == $result['ID']) {
-							$shown = 'class="show"';
-							$specialSite=true;
-						} else if(!$isSelected && $firstLayout === false) {
-							$firstLayout = true;
-							$firstNum = $result['ID'];
-							$firstTmp = $result['template'];
-							$shown = 'class="show"';
-						}
-						echo '<li '.$shown.'><div class="S_R" id="'.$result['ID'].'#0" onclick="sumo2.siteTree.RefreshLayout('.$result['ID'].','.$selected_lang_menus.','.checkTemplate($result['template']).')">'.$result['title'].'</div></li>';
+			$modulesQuery = $db->query("SELECT DISTINCT menuID FROM cms_menus_items WHERE selection='4' AND status='N' AND enabled='1' AND target='".$selected_lang_menus."'");
+			while($modulesRes = $db->fetch($modulesQuery)) {
+				$modInfo = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$modulesRes['menuID']."'"));
+				echo '<li class="special"><div class="ParentMenu S_N" id="'.$crypt->encrypt($modInfo['ID'].'#'.$selected_lang_menus.'').'" style="cursor:pointer;">'.$modInfo['name'].'</div><ul>';
+				$spQuery = $db->query("SELECT * FROM cms_menus_items WHERE menuID='".$modInfo['ID']."' AND selection='4' AND status='N' AND enabled='1' AND target='".$selected_lang_menus."' AND domain='".$user->domain."'");
+				while($result = $db->fetch($spQuery)) {
+					$shown ="";
+					if($isSelected && $selPage == $result['ID']) {
+						$shown = 'class="show"';
+						$specialSite=true;
+					} else if(!$isSelected && $firstLayout === false) {
+						$firstLayout = true;
+						$firstNum = $result['ID'];
+						$firstTmp = $result['template'];
+						$shown = 'class="show"';
 					}
-					echo "</ul>";
+					echo '<li '.$shown.'><div class="S_R" id="'.$result['ID'].'#0" onclick="sumo2.siteTree.RefreshLayout('.$result['ID'].','.$selected_lang_menus.','.checkTemplate($result['template']).')">'.$result['title'].'</div></li>';
 				}
+				echo "</ul>";
+			}
 			if($specialRows > 0) {
 				echo "</ul>";
 			}
@@ -245,19 +247,19 @@
 					}					
 					while($result = $db->fetch($query)) {
 						$url="";
-					     if(is_file('../modules/'.$result['moduleName'].'/small.png')) {
-							$url='background-image:url(modules/'.$result['moduleName'].'/small.png)';	
-					     } else if(is_file('../modules/'.$result['moduleName'].'/small.jpg')) {
-							$url='background-image:url(modules/'.$result['moduleName'].'/small.jpg)';
-					     }  else if(is_file('../modules/'.$result['moduleName'].'/small.gif')) {
-							$url='background-image:url(modules/'.$result['moduleName'].'/small.gif)';
-					     }
-						 echo '<div id="'.$result['ID'].'" class="modules-item" '.$drag.' style="'.$url.'">';
-						 if(strlen($result['name'])>18) {
-							echo substr($result['name'], 0, 17).'...'; 
-						 } else {
-							echo $result['name'];
-						 }
+						if(is_file('../modules/'.$result['moduleName'].'/small.png')) {
+						   $url='background-image:url(modules/'.$result['moduleName'].'/small.png)';	
+						} else if(is_file('../modules/'.$result['moduleName'].'/small.jpg')) {
+						   $url='background-image:url(modules/'.$result['moduleName'].'/small.jpg)';
+						}  else if(is_file('../modules/'.$result['moduleName'].'/small.gif')) {
+						   $url='background-image:url(modules/'.$result['moduleName'].'/small.gif)';
+						}
+						echo '<div id="'.$result['ID'].'" class="modules-item" '.$drag.' style="'.$url.'">';
+						if(strlen($result['name'])>18) {
+						   echo substr($result['name'], 0, 17).'...'; 
+						} else {
+						   echo $result['name'];
+						}
 						 echo '</div>';	
 					}
 				?>
