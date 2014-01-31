@@ -9,8 +9,14 @@
 
 /**
  * Allow use of the Minify URI Builder app. Only set this to true while you need it.
- **/
+ */
 $min_enableBuilder = false;
+
+/**
+ * If non-empty, the Builder will be protected with HTTP Digest auth.
+ * The username is "admin".
+ */
+$min_builderPassword = 'admin';
 
 
 /**
@@ -44,7 +50,7 @@ $min_allowDebugFlag = true;
  * will have to load extra code to guess. Some examples below:
  */
 //$min_cachePath = 'c:\\WINDOWS\\Temp';
-//$min_cachePath = '/tmp';
+$min_cachePath = '/cache/minify';
 //$min_cachePath = preg_replace('/^\\d+;/', '', session_save_path());
 /**
  * To use APC/Memcache/ZendPlatform for cache storage, require the class and
@@ -100,15 +106,10 @@ $min_serveOptions['maxAge'] = 1800;
 
 
 /**
- * To use Google's Closure Compiler API (falling back to JSMin on failure),
- * uncomment the following lines:
+ * To use Google's Closure Compiler API to minify Javascript (falling back to JSMin
+ * on failure), uncomment the following line:
  */
-/*function closureCompiler($js) {
-    require_once 'Minify/JS/ClosureCompiler.php';
-    return Minify_JS_ClosureCompiler::minify($js);
-}
-$min_serveOptions['minifiers']['application/x-javascript'] = 'closureCompiler';
-//*/
+//$min_serveOptions['minifiers']['application/x-javascript'] = array('Minify_JS_ClosureCompiler', 'minify');
 
 
 /**
@@ -125,7 +126,7 @@ $min_serveOptions['minifiers']['application/x-javascript'] = 'closureCompiler';
  * Set to true to disable the "f" GET parameter for specifying files.
  * Only the "g" parameter will be considered.
  */
-$min_serveOptions['minApp']['groupsOnly'] = true;
+$min_serveOptions['minApp']['groupsOnly'] = false;
 
 
 /**

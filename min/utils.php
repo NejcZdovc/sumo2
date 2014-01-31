@@ -2,20 +2,27 @@
 /**
  * Utility functions for generating URIs in HTML files
  *
+ * @warning These functions execute min/groupsConfig.php, sometimes multiple times.
+ * You must make sure that functions are not redefined, and if your use custom sources,
+ * you must require_once dirname(__FILE__) . '/lib/Minify/Source.php' so that
+ * class is available.
+ *
  * @package Minify
  */
 
-require_once dirname(__FILE__) . '/lib/Minify/HTML/Helper.php';
-
+if (! class_exists('Minify_Loader', false)) {
+    require dirname(__FILE__) . '/lib/Minify/Loader.php';
+    Minify_Loader::register();
+}
 
 /*
  * Get an HTML-escaped Minify URI for a group or set of files. By default, URIs
  * will contain timestamps to allow far-future Expires headers.
  *
  * <code>
- * <link rel="stylesheet" type="text/css" href="<?php echo  Minify_getUri('css'); ?>" />
- * <script src="<?php echo  Minify_getUri('js'); ?>"></script>
- * <script src="<?php echo  Minify_getUri(array(
+ * <link rel="stylesheet" type="text/css" href="<?= Minify_getUri('css'); ?>" />
+ * <script src="<?= Minify_getUri('js'); ?>"></script>
+ * <script src="<?= Minify_getUri(array(
  *      '//scripts/file1.js'
  *      ,'//scripts/file2.js'
  * )); ?>"></script>
