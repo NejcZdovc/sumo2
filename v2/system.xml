@@ -1200,7 +1200,6 @@
 			<width>350</width>
 			<end>
 				<![CDATA[ 
-					console.log("ok");
 					$('#nameKKK').tagit({sortable:true});
 				]]>
 			</end>
