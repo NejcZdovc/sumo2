@@ -1,4 +1,4 @@
-<?	
+<?php	
 	header('Content-disposition: attachment; filename=error_log.txt');
 	header('Content-type: text/plain');
 
