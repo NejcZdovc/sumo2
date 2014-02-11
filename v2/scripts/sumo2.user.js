@@ -2961,7 +2961,7 @@ sumo2.domains= {
 	
 	Add : function() {
 		sumo2.domains.problem="";
-		var name=document.a_domains_add.name.value.replace("www.", "");
+		var name=document.a_domains_add.name.value.replace("www.", "").replace("http://", "");
 		var alias = sumo2.domains.Tag($("#a_domains_add .domain_alias").tagit("tags"), "domain");
 		var main=document.a_domains_add.main.value;
 		var white = sumo2.domains.Tag($("#a_domains_add .whiteIP").tagit("tags"), "IP");
@@ -3038,20 +3038,23 @@ sumo2.domains= {
 	
 	Tag: function(array, type) {
 		var tags="";
-		for (var i in array) {
-			if(type=="domain") {
-				if(!sumo2.validate.IsDomain(array[i].value)) {
-					sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_194+"<br/>";
-				}
-			}
-			else if(type=="IP") {
-				if(!sumo2.validate.IsIP6(array[i].value) && !sumo2.validate.IsIP4(array[i].value)) {
-					sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_193+"<br/>";
-				}
-			}
-			tags += array[i].value+"*/*";
-		}
-		return tags=tags.slice(0,tags.length-3);
+        if(array.length>0) {
+            for (var i in array) {
+                if(type=="domain") {
+                    if(!sumo2.validate.IsDomain(array[i].value)) {
+                        sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_194+"<br/>";
+                    }
+                }
+                else if(type=="IP") {
+                    if(!sumo2.validate.IsIP6(array[i].value) && !sumo2.validate.IsIP4(array[i].value)) {
+                        sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_193+"<br/>";
+                    }
+                }
+                tags += array[i].value+"*/*";
+            }
+            return tags=tags.slice(0,tags.length-3);
+        }
+        return "";
 	},
 	TIMEOUT : null,
 	
