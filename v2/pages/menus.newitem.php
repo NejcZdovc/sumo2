@@ -38,6 +38,20 @@
         </select>
         </td>
     </tr>
+	<tr>
+        <td class="left_td" valign="top">
+        <div class="title_form_big"><?php echo $lang->MOD_229?>:</div><div class="title_form_small"><?php echo $lang->MOD_247?></div>
+        </td>
+        <td class="right_td">
+        <select id="moduleID" style="width:100%;">
+			<option value="-1"><?php echo $lang->MOD_248 ?></option>
+			<?php $query=$db->query('SELECT md.ID, md.name FROM cms_modules_def as md LEFT JOIN cms_domains_ids as di ON md.ID=di.elementID WHERE md.enabled=1 AND md.status="N" AND di.domainID="'.$user->domain.'" AND di.type="mod"');
+        	while($results1=$db->fetch($query)) {
+				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
+			} ?>
+        </select>
+        </td>
+    </tr>
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">

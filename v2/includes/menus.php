@@ -32,6 +32,7 @@
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');
 			$template=$db->filter('template');
+			$moduleID=$db->filter('moduleID');
 			$id=$db->filter('id');
 			$id=explode("#", $id);
 			if($id[0]=="0")
@@ -46,12 +47,12 @@
 			$parentID=$db->filter('parentID');
 			$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'" AND parentID="'.$id[0].'"');
 			if($selected==1)
-				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, restriction, altPrefix, domain) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "1", "'.$template.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'")');
+				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, restriction, altPrefix, domain, moduleID) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "1", "'.$template.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'", "'.$moduleID.'")');
 			else if($selected==2) {
-				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, link, restriction, altPrefix, domain) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "2", "'.$template.'", "'.$short_link.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'")');
+				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, link, restriction, altPrefix, domain, moduleID) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "2", "'.$template.'", "'.$short_link.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'", "-1")');
 			}
 			else if($selected==3)
-				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, link, target, restriction, altPrefix, domain) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "3", "'.$template.'", "'.$elink.'", "'.$target.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'")');
+				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, link, target, restriction, altPrefix, domain, moduleID) VALUES ("'.$name.'", "N", '.$id[0].', '.$id[1].', '.$order.', "'.$keywords.'", "'.$description.'", "3", "'.$template.'", "'.$elink.'", "'.$target.'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'", "-1")');
 			else if($selected==4) {	
 				if($elink=="") {
 					$prefix=getPrefixTitle($name, "cms_menus_items", "altPrefix", "", "", 'AND domain="'.$user->domain.'" AND parentID="'.$id[0].'"');
@@ -59,7 +60,7 @@
 					$prefix=getPrefixTitle("", "cms_menus_items", "altPrefix", "", $elink, 'AND domain="'.$user->domain.'" AND parentID="'.$id[0].'"');
 				}
 				
-				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, target, restriction, altPrefix, domain) VALUES ("'.$name.'", "N", '.$parentID.', '.$id[0].', -1, "'.$keywords.'", "'.$description.'", "4", "'.$template.'", "'.$id[1].'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'")');
+				$db->query('INSERT INTO cms_menus_items (title, status, parentID, menuID, orderID, keyword, description, selection, template, target, restriction, altPrefix, domain, moduleID) VALUES ("'.$name.'", "N", '.$parentID.', '.$id[0].', -1, "'.$keywords.'", "'.$description.'", "4", "'.$template.'", "'.$id[1].'", "'.$restriction.'", "'.$prefix.'", "'.$user->domain.'", "-1")');
 			}
 			echo "ok";
 			exit;
@@ -68,6 +69,7 @@
 			$id=$id[0];
 			$name=htmlspecialchars($db->filter('menu'));
 			$template=$db->filter('template');
+			$moduleID=$db->filter('moduleID');
 			$keywords=$db->filter('keywords');
 			$description=$db->filter('description');
 			$selected=$db->filter('selected');
@@ -84,13 +86,13 @@
 			}
 			
 			if($selected==1)
-				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="1", altPrefix="'.$prefix.'" WHERE ID='.$id.'');
+				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="1", altPrefix="'.$prefix.'", moduleID="'.$moduleID.'" WHERE ID='.$id.'');
 			else if($selected==2)
-				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="2", link="'.$short_link.'", altPrefix="'.$prefix.'" WHERE ID='.$id.'');
+				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="2", link="'.$short_link.'", altPrefix="'.$prefix.'", moduleID="-1" WHERE ID='.$id.'');
 			else if($selected==3)
-				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="3", link="'.$elink.'", target="'.$target.'", altPrefix="'.$prefix.'" WHERE ID='.$id.'');
+				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="3", link="'.$elink.'", target="'.$target.'", altPrefix="'.$prefix.'", moduleID="-1" WHERE ID='.$id.'');
 			else if($selected==4) 
-				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="4", parentID="'.$parentID.'", altPrefix="'.$prefix.'" WHERE ID='.$id.'');
+				$db->query('UPDATE cms_menus_items SET title="'.$name.'", keyword="'.$keywords.'", description="'.$description.'", template="'.$template.'", restriction="'.$restriction.'", selection="4", parentID="'.$parentID.'", altPrefix="'.$prefix.'", moduleID="-1" WHERE ID='.$id.'');
 			echo "ok";
 			exit;
 		} else if($db->filter('type') == 'edithome') {

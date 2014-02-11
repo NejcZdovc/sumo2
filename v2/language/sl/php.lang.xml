@@ -538,5 +538,7 @@
 		<item constant="MOD_244">Pravice map</item>
 		<item constant="MOD_245">Izberite kakšne pravice bodo imele mape na steržniku.</item>
 		<item constant="MOD_246">Izbriši pomnilnik</item>
+		<item constant="MOD_247">Izberite modul, iz katerega se bodo črpali SEO podatki za to stran.</item>
+		<item constant="MOD_248">Nobeden</item>
 	</parent>
 </language>

@@ -1481,6 +1481,7 @@ sumo2.menu = {
 		var menu= document.d_menus_new_i.name.value;
 		var id= document.d_menus_new_i.id.value;
 		var template= document.d_menus_new_i.template.value;
+		var moduleID= document.d_menus_new_i.moduleID.value;
 		var keywords= document.d_menus_new_i.keywords.value;
 		var description= document.d_menus_new_i.description.value;
 		var short_link=document.d_menus_new_i.shortcut_link.value;
@@ -1517,7 +1518,7 @@ sumo2.menu = {
 			target=3;
 			
 		if(error.length==0) {
-			var param="type=newitem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID;
+			var param="type=newitem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID+"$!$moduleID="+moduleID;
 			sumo2.ajax.SendPost("includes/menus.php",param,function(data) {
 					sumo2.dialog.ReloadDialog('d_menus_sitetree','sel='+id);
 					sumo2.dialog.ReloadDialog('d_menus_sitetree_trans','sel='+id);
@@ -1565,6 +1566,7 @@ sumo2.menu = {
 		var menu= document.d_menus_edit_i.name.value;
 		var id= document.d_menus_edit_i.id.value;
 		var template= document.d_menus_edit_i.template.value;
+		var moduleID= document.d_menus_edit_i.moduleID.value;
 		var keywords= document.d_menus_edit_i.keywords.value;
 		var description= document.d_menus_edit_i.description.value;
 		var short_link=document.d_menus_edit_i.shortcut_link.value;
@@ -1595,7 +1597,7 @@ sumo2.menu = {
 		}
 		
 		if(error.length==0) {
-			var param="type=edititem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID+"$!$altPrefix="+altPrefix;
+			var param="type=edititem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID+"$!$altPrefix="+altPrefix+"$!$moduleID="+moduleID;
 			sumo2.ajax.SendPost("includes/menus.php",param,function(data) {
 					sumo2.dialog.CloseDialog('d_menus_edit_i', null);
 					sumo2.dialog.ReloadDialog('d_menus_sitetree_trans','sel='+id);
