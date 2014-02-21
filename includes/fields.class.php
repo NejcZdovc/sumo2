@@ -110,6 +110,7 @@ class Fields
 			else
 				$result.='<option value="'.$i.'">'.$i.'</option>';
 		}
+		$result.='</select>';
 		return $result;
 	}
 }
