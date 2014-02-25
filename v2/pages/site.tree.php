@@ -3,7 +3,6 @@
 		exit;
 	}	
 	$accordion_id='a_sitetree';
-	$selected_lang_menus=1;
 	if($db->is('lang_menus'))
 		$selected_lang_menus=$db->filter('lang_menus');
 	else
@@ -38,13 +37,14 @@
         $selPage="";
 	}
 	
-	function generateMenuItems($menuID, $parentID, $lang, $isSelected, $selPage)
+	function generateMenuItems($menuID, $parentID, $lang, $isSelected, $selPage, $firstLayout)
 	{
 		global $db;
+        $firstNum=NULL;
+        $firstTmp=NULL;
 		$query=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$menuID.' AND parentID="'.$parentID.'" AND status="N" AND selection!="4" ORDER BY orderID asc');
 		$int=$db->rows($query);
 		if($int>0) {
-			$firstLayout=false;
 			echo '<ul>';
 			while($results = $db->fetch($query)) {
 				$shown = '';
@@ -69,10 +69,16 @@
 				} else if($results['selection'] == 3) {
 					echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results['link'].'" style="color:blue;" id="'.$results['ID'].'#'.$menuID.'" class="sumo2-tooltip S_RND">'.$results['title'].' '.$smenu.'</div>';
 				}
-				generateMenuItems($menuID, $results['ID'], $lang, $isSelected, $selPage);
+				$tmp=generateMenuItems($menuID, $results['ID'], $lang, $isSelected, $selPage, $firstLayout);
+                if($tmp[0]!=NULL) {
+                    $firstNum=$tmp[0];
+                    $firstTmp=$tmp[1];
+                }
 			}
 			echo '</ul>';
 		}
+        
+        return array($firstNum, $firstTmp);
 	}
 ?>
 <div class="contextMenu" id="myMenuS_RND" style="display:none;">
@@ -160,11 +166,16 @@
 					echo "<ul>";
 				}
 			}
+            
 			while($mainresults = $db->fetch($main)) {
 				$id_main=$mainresults['ID'];
 				echo '<li class="special"><div class="S_RN" id="'.$crypt->encrypt('-1').'#'.$crypt->encrypt($id_main).'#'.$id_main.'" style="cursor:pointer;">'.$mainresults['title'].'</div>';
-				generateMenuItems($id_main, "-1", $selected_lang_menus, $isSelected, $selPage);				
-			}
+				$return=generateMenuItems($id_main, "-1", $selected_lang_menus, $isSelected, $selPage, $firstLayout);
+                 if($return[0]!=NULL) {
+                    $firstNum=$return[0];
+                    $firstTmp=$return[1];
+                }
+			}           
 			if($db->rows($main) > 0) {
 				echo "</ul>";
 			}
@@ -213,7 +224,7 @@
 			$template = $db->query("SELECT ID FROM cms_template WHERE status='N' AND enabled='1' AND ID='".$firstTmp."'");
 			if($db->rows($template)!=1)
 				$firstTmp=NULL;
-			if(is_null($firstNum) || is_null($firstTmp)) {
+			if($firstNum==NULL || $firstTmp==NULL) {
 				$page = 'includes/site.tree.notmp.php';
 				$links = '<div id="sumo2-sitetree-template-link" title="Template" class="sumo2-tooltip" style="background:url(/v2/images/css_sprite.png); background-position:-540px -1725px;width:16px;height:16px;cursor:pointer;float:right;margin-right:3px;"></div><div id="sumo2-sitetree-layout-link" title="Layout" class="sumo2-tooltip" style="background:url(/v2/images/css_sprite.png); background-position:-507px -1725px;width:16px;height:16px;cursor:pointer;float:right;margin-right:3px;"></div>';
 			} else {
@@ -236,15 +247,16 @@
         <td class="str-panel2" id="sumo2-tree-modules">
         	<div class="modules-container" id="sumo2-module-container">
                 <?php
-					$query = $db->query("SELECT cms_modules_def.ID, cms_modules_def.moduleName, cms_modules_def.name FROM cms_modules_def, cms_domains_ids WHERE cms_modules_def.status='N' AND cms_modules_def.enabled='1' AND cms_domains_ids.elementID=cms_modules_def.ID AND cms_domains_ids.domainID='".$user->domain."' AND cms_domains_ids.type='mod'");						
-					if((is_null($firstNum) || is_null($firstTmp)) && !$specialSite) {
-						$drag = '';
+					$query = $db->query("SELECT cms_modules_def.ID, cms_modules_def.moduleName, cms_modules_def.name FROM cms_modules_def, cms_domains_ids WHERE cms_modules_def.status='N' AND cms_modules_def.enabled='1' AND cms_domains_ids.elementID=cms_modules_def.ID AND cms_domains_ids.domainID='".$user->domain."' AND cms_domains_ids.type='mod'");                    
+					if(($firstNum==NULL || $firstTmp==NULL) && !$specialSite) {
+						$drag = '1';
 					} else {
 						if($user->getAuth('FAV_SITE_6') == 5)
 							$drag = 'onmousedown="sumo2.siteTree.SetDrag(event);"';
 						else
-							$drag = '';
-					}					
+							$drag = '2';
+					}
+                    
 					while($result = $db->fetch($query)) {
 						$url="";
 						if(is_file('../modules/'.$result['moduleName'].'/small.png')) {
