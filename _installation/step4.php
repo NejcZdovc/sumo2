@@ -283,6 +283,9 @@
 		//global settings for domain
 		$link->query("INSERT INTO cms_global_settings (domain, title, display_title) VALUES ('".$domainID."', '', 'D')") or die($link->mysqli_error);
 		
+		//module prefix
+		$link->query("INSERT INTO cms_modul_prefix (domain, name, enabled, prefix) VALUES ('".$domainID."', 'default', '1', 'default')") or die($link->mysqli_error);
+		
 		//add domain group
 		$link->query("INSERT INTO cms_domains_ids (type, domainID, elementID) VALUES ('group', '".$domainID."', '1')") or die($link->mysqli_error);
 		$link->query("INSERT INTO cms_domains_ids (type, domainID, elementID) VALUES ('group', '".$domainID."', '2')") or die($link->mysqli_error);
