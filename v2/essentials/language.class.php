@@ -14,6 +14,9 @@ class Language {
 		$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language'.DS.$short.DS.'php.lang.xml';
 		if(!is_file($filename)) {
 			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language'.DS.'en'.DS.'php.lang.xml';
+			if(!is_file($filename)) {
+				error_log("Main EN language file is missing!");
+			}
 		}
 		$this->_specialArray = $xml->getSpecialArray($filename);
 		foreach($this->_specialArray as $element) {
@@ -46,6 +49,9 @@ class Language {
 			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['moduleName'].DS.'language'.DS.'php'.DS.$short.'.xml';
 			if(!is_file($filename)) {
 				$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['moduleName'].DS.'language'.DS.'php'.DS.'en.xml';
+				if(!is_file($filename)) {
+					continue;
+				}
 			}
 			$this->_specialArray = $xml->getSpecialArray($filename);
 			foreach($this->_specialArray as $element) {
@@ -77,6 +83,9 @@ class Language {
 			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['componentName'].DS.'language'.DS.'php'.DS.$short.'.xml';
 			if(!is_file($filename)) {
 				$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'modules'.DS.$result['componentName'].DS.'language'.DS.'php'.DS.'en.xml';
+				if(!is_file($filename)) {
+					continue;
+				}
 			}
 			$this->_specialArray = $xml->getSpecialArray($filename);
 			foreach($this->_specialArray as $element) {
