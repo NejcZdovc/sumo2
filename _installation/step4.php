@@ -167,7 +167,11 @@
 	if(isset($_REQUEST['show']) && $_REQUEST['show']=="ok") 
 	{
 		$domain=$_REQUEST['domain'];
-		$name=str_replace('www.', '', $_SERVER['HTTP_HOST']);
+		if(strlen($domain)>3) {
+			$name=str_replace('www.', '', $domain);
+		} else {
+			$name=str_replace('www.', '', $_SERVER['HTTP_HOST']);
+		}
 		$name=str_replace('http://', '',$name);
 		$name=str_replace('/', '',$name);
 		
@@ -259,14 +263,15 @@
 		//add domain		
 		if(strlen($domain)>3) {
 			$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$domain."', '-1', '0', '0')") or die($link->mysqli_error);
-			$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$name."', '".$link->insert_id."', '0', '0')") or die($link->mysqli_error);
-			$name=str_replace('www.', '', $domain);
+			$domainID=$link->insert_id;
+			$name=str_replace('www.', '', $_SERVER['HTTP_HOST']);
 			$name=str_replace('http://', '',$name);
 			$name=str_replace('/', '',$name);
+			$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$name."', '".$domainID."', '0', '0')") or die($link->mysqli_error);
 		} else {
 			$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$name."', '-1', '0', '0')") or die($link->mysqli_error);
+			$domainID=$link->insert_id;
 		}
-		$domainID=$link->insert_id;
 		
 		//add domain language 
 		$link->query("INSERT INTO cms_domains_ids (domainID, value, type)  VALUES	('".$domainID."', '".$link->real_escape_string($_REQUEST['language'])."', 'lang')") or die($link->mysqli_error);
