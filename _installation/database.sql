@@ -519,7 +519,7 @@ CREATE TABLE IF NOT EXISTS `cms_sumo_settings` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `cms_sumo_settings` (`ID`, `version`, `FTP_user`, `FTP_pass`, `FTP_url`, `FTP_port`, `welcome`) VALUES
-(1, '1.3', NULL, NULL, NULL, '21', NULL);
+(1, '1.34', NULL, NULL, NULL, '21', NULL);
 
 
 -- --------------------------------------------------------

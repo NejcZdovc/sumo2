@@ -93,7 +93,16 @@
 			<td  class="right_td" style="padding:5px;">
 				<input type="text" name="domain" id="domain" class="input" value="'.$domain.'" />
 			</td>
-		</tr>	
+		</tr>
+		<tr id="aliasDomain" style="display:none;">
+			<td class="left_td" valign="middle">
+			Is this alias for main domain:
+			</td>	
+			<td  class="right_td" style="padding:5px;">
+				<input type="checkbox" name="alias[]" value="1" id="checkBoxYA" checked="checked" /><label for="checkBoxYA">Yes</label>
+				<input type="checkbox" name="alias[]" value="0" id="checkBoxNA" /><label for="checkBoxNA">No</label><br />
+			</td>
+		</tr>
 		<tr>
 			<td class="left_td" valign="middle">
 			Front-end language:
@@ -267,7 +276,11 @@
 			$name=str_replace('www.', '', $_SERVER['HTTP_HOST']);
 			$name=str_replace('http://', '',$name);
 			$name=str_replace('/', '',$name);
-			$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$name."', '".$domainID."', '0', '0')") or die($link->mysqli_error);
+			if($_REQUEST['alias']=="true") {
+				$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$name."', '".$domainID."', '0', '1')") or die($link->mysqli_error);
+			} else {
+				$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$name."', '".$domainID."', '0', '0')") or die($link->mysqli_error);
+			}
 		} else {
 			$link->query("INSERT INTO cms_domains (name, parentID, locator, alias) VALUES ('".$name."', '-1', '0', '0')") or die($link->mysqli_error);
 			$domainID=$link->insert_id;

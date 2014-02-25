@@ -139,10 +139,15 @@ function pricni4 () {
 }
 
 function preveri4() {
+	var alias=false;
+	if ($('#checkBoxYA').is(":checked")) {
+		alias=true;
+	}
 	$("#content").hide("slow");
+	
 	$.ajax({
 		url: 'step4.php',
-		data: "username="+$('#username').val()+"&password="+$('#password').val()+"&repassword="+$('#repassword').val()+"&domain="+$('#domain').val()+"&email="+$('#email').val()+"&name="+$('#name').val()+"&language="+$('#language').val()+"&show=ok",
+		data: "username="+$('#username').val()+"&password="+$('#password').val()+"&repassword="+$('#repassword').val()+"&domain="+$('#domain').val()+"&email="+$('#email').val()+"&name="+$('#name').val()+"&language="+$('#language').val()+"&show=ok&alias="+alias,
 		success: function(data) {
 			var spli=data.split("%#%#%");
 			$('#content').html(spli[0]);
@@ -198,9 +203,11 @@ function pricni5 () {
 function changeCheckbox (type) {
 	if(type=="y") {
 		$("#mainDomain").hide();
+		$("#aliasDomain").hide();
 		$("#checkBoxN").prop("checked", false);
 	} else {
 		$("#mainDomain").show();
+		$("#aliasDomain").show();
 		$("#checkBoxY").prop("checked", false);
 	}
 }
