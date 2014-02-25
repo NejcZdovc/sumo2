@@ -211,7 +211,11 @@
 	$result4 = $db->get($query4);
 	//Shortcut
 	if($result4['selection'] == 2) {
+        $page = intval($result4['link']);
+		$result6 = getNewPage($page);
+		$page = $result6['ID'];
 		$templateID=$result6['template'];
+        $query5 = $db->query("SELECT folder FROM cms_template WHERE ID='".$templateID."'");
 	} else {
 		$templateID=$result4['template'];
 	}
@@ -220,12 +224,6 @@
 		header('Location: '.$f404_link);		
 		exit();
 	}
-	if($result4['selection'] == 2) {
-		$page = intval($result4['link']);
-		$result6 = getNewPage($page);
-		$page = $result6['ID'];
-		$query5 = $db->query("SELECT folder FROM cms_template WHERE ID='".$templateID."'");
-	} 
 	//External link
 	else if($result4['selection'] == 3) {
 		header('Location: '.$result4['link']);
