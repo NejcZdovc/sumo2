@@ -87,7 +87,7 @@ class Template {
 	private function getTitle($begin) {
 		global $db,$globals;
 		$link="";
-		$customModuleID=$db->get($db->query('SELECT moduleID FROM cms_menus_items WHERE ID="'.$this->pageID.'"'));
+		$customModuleID=$db->get($db->query('SELECT moduleID, alias FROM cms_menus_items WHERE ID="'.$this->pageID.'"'));
 		//specail page title
 		if($db->is('spPage') || ($customModuleID && $customModuleID['moduleID']!="-1")) {
 			$spID=$db->filter('spRID');
@@ -103,7 +103,7 @@ class Template {
 					$param="";
 				$function=$module['moduleName'].'\\getTitle';
 				if(function_exists($function)) {		
-					$link .= $function($param, $db->filter('spID')).' - ';
+					$link .= $function($param, $customModuleID['alias']).' - ';
 				}else {
 					$link = '';
 				}
