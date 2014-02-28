@@ -12,6 +12,7 @@
 	$firstTmp = NULL;
 	$isSelected = false;
 	$specialSite=false;
+	$selPage="";
 	if($db->is('sel_page')) {
 		$selPage = $db->filter('sel_page');
 		$selResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$selPage."'"));
@@ -32,9 +33,6 @@
 				$isSelected = false;
 			}
 		}
-	} else {
-		$isSelected = false;
-        $selPage="";
 	}
 	
 	function generateMenuItems($menuID, $parentID, $lang, $isSelected, $selPage, $firstLayout)
