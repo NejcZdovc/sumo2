@@ -8,23 +8,27 @@
 		$selected_lang_cat=$db->filter('lang_art');
 	else
 		$selected_lang_cat=$user->translate_lang;
-	if($db->is('cat_id')) {
-		if($db->filter('cat_id')!='-1')
+		
+	if($db->is('cat_id') && $db->filter('cat_id')!='-1') {
 			$selected_cat=" AND category LIKE '%#??#".$db->filter('cat_id')."#??#%'";
-		else
-			$selected_cat='';
-	} else
+	} else {
 		$selected_cat='';
+	}
 		
-	if($db->is('autor_id')) {
-		if($db->filter('autor_id')!="-1")
-			$selected_author=" AND author='".$db->filter('autor_id')."'";
-		else
-			$selected_author='';
-	} else
+	if($db->is('autor_id') && $db->filter('autor_id')!="-1") {
+		$selected_author=" AND author='".$db->filter('autor_id')."'";
+	} else {
 		$selected_author='';
+	}
+	
+	$query="";
+	if($db->is('query') && strlen($db->filter('query'))>2) {
+		$search=" AND title LIKE '%".$db->filter('query')."%'";
+		$query=$db->filter('query');
+	} else
+		$search='';
 		
-	$pagging=check_pagging("SELECT ID,title,category,dateStart,views,dateEnd,lang,author,date, published FROM cms_article WHERE status='N' AND lang='".$selected_lang_cat."' AND domain='".$user->domain."' ".$selected_cat." ".$selected_author." order by title asc", $user->items);
+	$pagging=check_pagging("SELECT ID,title,category,dateStart,views,dateEnd,lang,author,date, published FROM cms_article WHERE status='N' AND lang='".$selected_lang_cat."' AND domain='".$user->domain."' ".$selected_cat." ".$selected_author." ".$search." order by title asc", $user->items);
 	$dropdown=dropdown_pagging($accordion_id, $pagging[0]);
 	echo '<div class="flt-right display">'.$dropdown.'</div>';
 	if($user->translate_state=="ON") {
@@ -54,7 +58,7 @@
 ?>
 <div>
       <div style="margin-left:10px; float:left; margin-top:10px; font-weight:bold;"><?php echo $lang->MOD_44?></div>
-      <input id="a_article_view_a_table_id_search" name="search" class="input" style="width:200px; margin-left:10px;" value="" type="text" maxlength="50" />
+      <input id="a_article_view_a_table_id_search" name="search" value="<?php echo $query ?>" class="input" style="width:200px; margin-left:10px;" value="" type="text" maxlength="50" />
 </div>
 <div id="a_article_view_a_table_div" style="clear:both;">
 <table cellpadding="0" cellspacing="1" border="0" class="table1 table2" id="a_article_view_a_table" width="99%">
