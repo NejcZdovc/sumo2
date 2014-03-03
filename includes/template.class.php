@@ -264,7 +264,7 @@ class Template {
 			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
 		}
 		if(strlen($customHead)>0) {
-				$result.= str_replace('"', '\"', $customHead);
+				$result.= $customHead;
 		}
 		if($result_glob['display_title'] == 'F') {
 			$result.= "<title>".$title."</title>\n";
