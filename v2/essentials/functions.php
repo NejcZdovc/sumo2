@@ -69,16 +69,19 @@ function check_pagging($sql, $page) {
 	return Array($page_size, $pag_id, $int_rows, $limit, $sql);
 }
 
-function dropdown_pagging($number_acc, $current) {
+function dropdown_pagging($number_acc, $current, $all=true) {
 	
 	$array = array(10, 20, 50, 100, 200, 666);
 	$result='Display #<select name="displaySelection" class="input" onchange="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id=0$!$size=\'+this.value+\'\')">';
 	foreach ($array as $i => $value) {
 		if($current==$array[$i]) $selected='selected="selected"'; else $selected='';
-		if($array[$i]===666)
-			$result.='<option value="666" '.$selected.'>All</option>';
+		if($array[$i]===666) {
+			if($all) {
+				$result.='<option value="666" '.$selected.'>All</option>';
+			}
+		}
 		else
-    		$result.='<option value="'.$array[$i].'" '.$selected.'>'.$array[$i].'</option>';
+			$result.='<option value="'.$array[$i].'" '.$selected.'>'.$array[$i].'</option>';
 	}	
 	$result.='</select>';
 	
