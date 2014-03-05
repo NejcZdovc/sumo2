@@ -71,7 +71,7 @@ function check_pagging($sql, $page) {
 
 function dropdown_pagging($number_acc, $current, $all=true) {
 	
-	$array = array(10, 20, 50, 100, 200, 666);
+	$array = array(10, 20, 50, 100, 500, 666);
 	$result='Display #<select name="displaySelection" class="input" onchange="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id=0$!$size=\'+this.value+\'\')">';
 	foreach ($array as $i => $value) {
 		if($current==$array[$i]) $selected='selected="selected"'; else $selected='';

@@ -11,8 +11,7 @@
             <option value="20" <?php if($user->items == 20) echo 'selected="selected"'; ?>>20</option>
             <option value="50" <?php if($user->items == 50) echo 'selected="selected"'; ?>>50</option>
             <option value="100" <?php if($user->items == 100) echo 'selected="selected"'; ?>>100</option>
-            <option value="100" <?php if($user->items == 200) echo 'selected="selected"'; ?>>200</option>
-            <option value="100" <?php if($user->items == 500) echo 'selected="selected"'; ?>>500</option>
+            <option value="500" <?php if($user->items == 500) echo 'selected="selected"'; ?>>500</option>
             <option value="666" <?php if($user->items == 666) echo 'selected="selected"'; ?>><?php echo $lang->ALL?></option>
         </select>
         </td>
