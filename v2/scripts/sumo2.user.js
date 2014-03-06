@@ -51,7 +51,7 @@ sumo2.favorites = {
 				obj.checked = false;
 			} else {
 				obj.checked = false;
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.FAV_WARNING,200,200,1);
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.FAV_WARNING,3);
 			}
 		} else {
 			if(obj.checked) {
@@ -232,7 +232,7 @@ sumo2.user = {
 			}
 		}
 		if(problem !== "") {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,450,200,1);
+			sumo2.message.NewMessage(problem,3);
 		} else {
 			var params = "mode=add$!$fname=" + fieldName + "$!$name=" + name + "$!$fid=" + fid + "$!$type=" + type + "$!$required=" + required + "$!$min=" + min + "$!$max=" + max + "$!$descr=" + descr + "$!$grlist=" + grouplist;
 			sumo2.ajax.SendPost("includes/user.fields.php",params,function(data) {
@@ -241,7 +241,7 @@ sumo2.user = {
 		       		sumo2.accordion.ReloadAccordion('a_user_view_f');
 					sumo2.dialog.ReloadDialog('d_user_add_fields');
 				} else if(data == 'exists') {
-					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_71,200,200,1);
+					sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_71,3);
 				}
 			});
 		}
@@ -307,7 +307,7 @@ sumo2.user = {
 			}
 		}
 		if(problem !== "") {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,200,200,1);
+			sumo2.message.NewMessage(problem,3);
 		} else {
 			var params = "mode=edit$!$fname=" + fieldName + "$!$name=" + name + "$!$fid=" + fid + "$!$type=" + type + "$!$required=" + required + "$!$id=" + id + "$!$descr=" + descr;
 			if(document.d_user_edit_field.min) {
@@ -405,7 +405,7 @@ sumo2.user = {
 			}
 		} while(--len);
 		if(problem !== "") {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,400,400,1);
+			sumo2.message.NewMessage(problem,3);
 		} else {
 			var params = "type=add$!$name="+name+"$!$username="+username+"$!$password="+password+"$!$email="+email+"$!$group="+group.options[group.selectedIndex].value+extraParams;
 			sumo2.ajax.SendPost("includes/user.management.php",params,function(data) {
@@ -418,15 +418,15 @@ sumo2.user = {
 					sumo2.dialog.ReloadDialog('d_user_add_user');
 					sumo2.accordion.ReloadAccordion('a_user_view_g');
 	            } else if(data == 'username') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_USER_2,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_USER_2,3);
 	            }else if(data == 'password') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_PASS_3,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_PASS_3,3);
 	            } else if(data == 'group') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_GROUP,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_GROUP,3);
 	            } else if(data == 'same') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_USER_3,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_USER_3,3);
 	            } else if(data == 'email') {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_77,200,200);
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_77,3);
 			}
 	        });
 		}	
@@ -539,7 +539,7 @@ sumo2.user = {
 			}
 		} while(--len);
 		if(problem !== "") {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,200,200,1);
+			sumo2.message.NewMessage(problem,3);
 		} else {
 			if(password == "") {
 				var params = "type=edit$!$id="+id+"$!$name="+name+"$!$email="+email+"$!$group="+group.options[group.selectedIndex].value+extraParams;
@@ -561,13 +561,13 @@ sumo2.user = {
 					sumo2.dialog.CloseDialog('d_user_edit_user');
 					sumo2.accordion.ReloadAccordion('a_user_view_g');
 	            } else if(data == 'group') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_GROUP,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_GROUP,3);
 	            } else if(data == 'password') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_PASS_3,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_PASS_3,3);
 	            } else if(data == 'oldpassword') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_PASS_4,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_PASS_4,3);
 	            } else if(data == 'id') {
-	            	sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_ID,200,200);
+	            	sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_ID,3);
 	            }
 	        });
 		}
@@ -656,7 +656,7 @@ sumo2.user = {
 			problem += '-'+sumo2.language.VARIABLES.MOD_199;
 		}
 		if(problem !== "") {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,200,200);
+			sumo2.message.NewMessage(problem,3);
 		} else {
 			var params = "type=addgroup$!$name="+name+"$!$description="+description+"$!$access="+access+"$!$domains="+domains;
 			sumo2.ajax.SendPost("includes/user.management.php",params,function(data) {
@@ -693,7 +693,7 @@ sumo2.user = {
 			problem += '-'+sumo2.language.VARIABLES.MOD_199;
 		}
 		if(problem !== "") {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,200,200);
+			sumo2.message.NewMessage(problem,200,200);
 		} else {
 			var obj = this;
 			var params = "type=editgroup$!$id="+id+"$!$name="+name+"$!$description="+description+"$!$access="+access+"$!$domains="+domains;
@@ -797,7 +797,7 @@ sumo2.article = {
 			}
 		}
 		if(pages.length <= 0) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_79,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_79,3);
 		}
 		else {
 			if(type=="N")
@@ -849,7 +849,7 @@ sumo2.article = {
 		var name = document.d_article_image_rename.rename_article_image.value;
 		var params = "type=renameimage$!$id="+id+"$!$name="+name;
 		if(!sumo2.validate.IsLength(name,2,50)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_13,200,200,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_13,3);
 		} else {
 			sumo2.ajax.SendPost("includes/article.php",params,function(data) {
 				sumo2.dialog.CloseDialog('d_article_image_rename');
@@ -890,15 +890,16 @@ sumo2.article = {
 			if(category[1]!='?')
 			category="#??#"+category;
 		}
-		if(error.length==0)  {
+		if(error.length==0)  {			
 			var params = "type=newarticle$!$title="+title+"$!$category="+category+"$!$datestart="+datestart+"$!$dateend="+dateend+"$!$published="+published+"$!$author="+author+"$!$alias="+alias+"$!$content="+content+"$!$stub="+stub+"$!$keywords="+keywords+"$!$description="+description+"$!$tags="+tags;
 			sumo2.ajax.SendPost("includes/article.php",params,function(data) {
-					sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_5,1);
-					sumo2.accordion.ReloadAccordion('a_article_view_a');
-					sumo2.accordion.ReloadAccordion('a_article_new_a');
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_5,1);
+				sumo2.accordion.ReloadAccordion('a_article_view_a');
+				sumo2.accordion.ReloadAccordion('a_article_new_a');
 			});
-		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,300,300,1);
+		} else {
+			sumo2.message.NewMessage(error,3);
+		}
 		
 	},
 	
@@ -955,8 +956,9 @@ sumo2.article = {
 						sumo2.accordion.ReloadAccordion('a_article_view_cd');
 						sumo2.accordion.ReloadAccordion('a_article_view_a');
 				});
-		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,300,300,1);
+		} else {
+			sumo2.message.NewMessage(error,3);
+		}
 	},
 	
 	UploadImage : function (state,rlid) {
@@ -986,7 +988,7 @@ sumo2.article = {
 				sumo2.dialog.CloseDialog('d_article_new_c');
 	        });
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	ChangeStatusGroup : function(id) {
@@ -1024,7 +1026,7 @@ sumo2.article = {
 		        sumo2.accordion.ReloadAccordion('a_article_view_c');
 	        });
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	Translate_Category : function() {
 		var error = "";
@@ -1042,7 +1044,7 @@ sumo2.article = {
 		        sumo2.accordion.ReloadAccordion('a_article_view_c');
 	        });
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	Counter: function(id) {
@@ -1092,7 +1094,7 @@ sumo2.article = {
 					sumo2.accordion.CloseAccordion('a_article_a_translate');
 			});
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,300,300,1);
+				sumo2.message.NewMessage(error,3);
 		
 	}
 };
@@ -1296,14 +1298,14 @@ sumo2.ftp = {
 			});
 		}
 		else
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_83,300,200,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_83,3);
 		
 	},
 	
 	RenameFile : function() {
 		var name = document.getElementById("rename-item");
 		if(!sumo2.validate.IsFile(name.value,1,50)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_13,200,200,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_13,3);
 		} else {
 			var param = "rename=ok$!$path="+this.PATH+"$!$name="+name.value;
 			var file = this.GetPathFromFile(this.PATH);
@@ -1317,7 +1319,7 @@ sumo2.ftp = {
 	RenameFolder : function() {
 		var name = document.getElementById("rename-item");
 		if(!sumo2.validate.IsFolder(name.value,2,15)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING, sumo2.language.VARIABLES.MOD_14,200,200,1);
+			sumo2.message.NewMessage( sumo2.language.VARIABLES.MOD_14,3);
 		} else {
 			var param = "renamef=ok$!$path="+this.PATH+"$!$name="+name.value;
 			var file = this.GetPathFromFile(this.PATH);
@@ -1331,7 +1333,7 @@ sumo2.ftp = {
 	CreateFolder : function() {
 		var name = document.getElementById("name-item");
 		if(!sumo2.validate.IsFolder(name.value,2,15)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_14,200,200,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_14,3);
 		} else {
 			var param = "newf=ok$!$path="+this.PATH+"$!$name="+name.value;
 			var path = this.PATH;
@@ -1399,7 +1401,7 @@ sumo2.mail = {
 			});
 		}
 		else
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+			sumo2.message.NewMessage(error,3);
 	},
 	
 	Remove : function(type, id) {
@@ -1451,7 +1453,7 @@ sumo2.menu = {
 			});
 		}
 		else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	EditMenu : function() {
@@ -1472,7 +1474,7 @@ sumo2.menu = {
 					sumo2.accordion.ReloadAccordion('a_sitetree');
 			});
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 
@@ -1481,6 +1483,7 @@ sumo2.menu = {
 		var menu= document.d_menus_new_i.name.value;
 		var id= document.d_menus_new_i.id.value;
 		var template= document.d_menus_new_i.template.value;
+		var moduleID= document.d_menus_new_i.moduleID.value;
 		var keywords= document.d_menus_new_i.keywords.value;
 		var description= document.d_menus_new_i.description.value;
 		var short_link=document.d_menus_new_i.shortcut_link.value;
@@ -1517,7 +1520,7 @@ sumo2.menu = {
 			target=3;
 			
 		if(error.length==0) {
-			var param="type=newitem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID;
+			var param="type=newitem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID+"$!$moduleID="+moduleID;
 			sumo2.ajax.SendPost("includes/menus.php",param,function(data) {
 					sumo2.dialog.ReloadDialog('d_menus_sitetree','sel='+id);
 					sumo2.dialog.ReloadDialog('d_menus_sitetree_trans','sel='+id);
@@ -1527,7 +1530,7 @@ sumo2.menu = {
 					sumo2.accordion.ReloadAccordion('a_sitetree');
 			});
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	NewItemSpecial : function() {
@@ -1557,7 +1560,7 @@ sumo2.menu = {
 					sumo2.accordion.ReloadAccordion('a_sitetree');
 			});
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	EditItem : function() {
@@ -1565,6 +1568,7 @@ sumo2.menu = {
 		var menu= document.d_menus_edit_i.name.value;
 		var id= document.d_menus_edit_i.id.value;
 		var template= document.d_menus_edit_i.template.value;
+		var moduleID= document.d_menus_edit_i.moduleID.value;
 		var keywords= document.d_menus_edit_i.keywords.value;
 		var description= document.d_menus_edit_i.description.value;
 		var short_link=document.d_menus_edit_i.shortcut_link.value;
@@ -1595,7 +1599,7 @@ sumo2.menu = {
 		}
 		
 		if(error.length==0) {
-			var param="type=edititem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID+"$!$altPrefix="+altPrefix;
+			var param="type=edititem$!$menu="+menu+"$!$id="+id+"$!$template="+template+"$!$keywords="+keywords+"$!$description="+description+"$!$selected="+selected+"$!$short_link="+short_link+"$!$elink="+elink+"$!$target="+target+"$!$restriction="+restriction+"$!$parentID="+parentID+"$!$altPrefix="+altPrefix+"$!$moduleID="+moduleID;
 			sumo2.ajax.SendPost("includes/menus.php",param,function(data) {
 					sumo2.dialog.CloseDialog('d_menus_edit_i', null);
 					sumo2.dialog.ReloadDialog('d_menus_sitetree_trans','sel='+id);
@@ -1608,7 +1612,7 @@ sumo2.menu = {
 					
 			});
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,300,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	EditHome: function() {
@@ -1638,7 +1642,7 @@ sumo2.menu = {
 					
 			});
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	DeleteItem : function(id) {
@@ -1712,7 +1716,7 @@ sumo2.menu = {
 					sumo2.module.ClearCache('mod_dynamicMenu');					
 			});
 		} else
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,error,200,200,1);
+				sumo2.message.NewMessage(error,3);
 	},
 	
 	Down : function(id) {
@@ -1829,7 +1833,7 @@ sumo2.sumoSettings = {
 				problem += '-'+sumo2.language.VARIABLES.USER_CHECK_PASS_2+'<br />';
 			}
 			if(problem !== "") {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,200,200,1);
+				sumo2.message.NewMessage(problem,3);
 			} else {
 				if(oldpassword == "") {
 					var params = "type=edit$!$id="+id+"$!$name="+name+"$!$email="+email+"$!$group="+group.options[group.selectedIndex].value;
@@ -1842,13 +1846,13 @@ sumo2.sumoSettings = {
 							sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_EDIT_SUCC,1);
 							setTimeout("window.location.reload()", 2000);
 						} else if(data == 'group') {
-							sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_GROUP,200,200);
+							sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_GROUP,3);
 						} else if(data == 'password') {
-							sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_PASS_3,200,200);
+							sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_PASS_3,3);
 						} else if(data == 'oldpassword') {
-							sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_PASS_4,200,200);
+							sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_PASS_4,3);
 						} else if(data == 'id') {
-							sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.USER_CHECK_ID,200,200);
+							sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_CHECK_ID,3);
 						}
 					});
 				});
@@ -1893,7 +1897,7 @@ sumo2.sumoSettings = {
 				problem += sumo2.language.VARIABLES.MOD_85;
 			
 			if(problem !== "") {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
+				sumo2.message.NewMessage(problem,3);
 			} else {
 				sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
 					var param="type=page$!$template="+template+"$!$description="+description+"$!$keyword="+keyword+"$!$title="+title+"$!$email="+email+"$!$display_title="+display_title+"$!$offline="+offline+"$!$language="+language;
@@ -1921,7 +1925,7 @@ sumo2.sumoSettings = {
 				if(!sumo2.validate.IsLength(WM_ID, 40, 70))
 					problem += sumo2.language.VARIABLES.MOD_29+'<br />';
 			if(problem !== "") {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
+				sumo2.message.NewMessage(problem,3);
 			} else {
 				var param="type=global$!$GA_ID="+GA_ID+"$!$GA_type="+GA_type+"$!$WM_ID="+WM_ID;
 				sumo2.ajax.SendPost("includes/settings.php",param,function(data) {
@@ -1948,7 +1952,7 @@ sumo2.sumoSettings = {
 			if(!sumo2.validate.IsFile(name, 2, 30)) 
 				problem += sumo2.language.VARIABLES.MOD_32+'<br />';
 			if(problem !== "") {
-					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
+					sumo2.message.NewMessage(problem,3);
 			}
 			else {
 				sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
@@ -1977,7 +1981,7 @@ sumo2.sumoSettings = {
 			if(short=='0') 
 				problem += sumo2.language.VARIABLES.MOD_36+'<br />';
 			if(problem !== "") {
-					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
+					sumo2.message.NewMessage(problem,3);
 			}
 			else {
 				sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
@@ -2004,7 +2008,7 @@ sumo2.sumoSettings = {
 		if(!sumo2.validate.IsLength(short, 2, 10)) 
 			problem += sumo2.language.VARIABLES.MOD_36+'<br />';
 		if(problem !== "") {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
+				sumo2.message.NewMessage(problem,3);
 		}
 		else {
 			var param="type=addlf$!$name="+name+"$!$short="+short;
@@ -2032,7 +2036,7 @@ sumo2.sumoSettings = {
 		if(!sumo2.validate.IsFile(name, 5, 20)) 
 				problem += sumo2.language.VARIABLES.MOD_32+'<br />';
 		if(problem !== "") {
-					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
+					sumo2.message.NewMessage(problem,3);
 		}
 		else {
 			sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
@@ -2137,7 +2141,7 @@ sumo2.sumoSettings = {
 		var problem="";
 		var name = document.a_settings_add_mp.name.value;
 		if(!sumo2.validate.IsFile(name, 3, 200)) 
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_8,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_8,3);
 		else {
 			sumo2.ajax.SendPost("includes/settings.php","type=checkp&name="+name,function(data) {
 				data=data.replace("\n", "");
@@ -2145,7 +2149,7 @@ sumo2.sumoSettings = {
 				data=data.replace("\t", "");
 				
 				 if(data=='error')
-					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_42+'<br />',250,250,1);
+					sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_42,3);
 				else {
 					sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
 						var params = "type=saveprefix$!$name="+name;
@@ -2163,7 +2167,7 @@ sumo2.sumoSettings = {
 		var problem="";
 		var name = document.a_settings_add_tp.name.value;
 		if(!sumo2.validate.IsFile(name, 3, 200)) 
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_8,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_8,3);
 		else {
 			sumo2.ajax.SendPost("includes/settings.php","type=checktp&name="+name,function(data) {
 				data=data.replace("\n", "");
@@ -2171,7 +2175,7 @@ sumo2.sumoSettings = {
 				data=data.replace("\t", "");
 				
 				 if(data=='error')
-					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_42+'<br/>',250,250,1);
+					sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_42,3);
 				else {
 					sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
 						var params = "type=saveposition$!$name="+name;
@@ -2209,7 +2213,7 @@ sumo2.sumoSettings = {
 		if(!sumo2.validate.IsNumerical(port, 1, 6)) 
 			problem += sumo2.language.VARIABLES.MOD_138+'<br />';
 		if(problem !== "") {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,problem,250,250,1);
+				sumo2.message.NewMessage(problem,3);
 		}
 		else {
 			var param="type=saveFTP$!$user="+user+"$!$password="+password+"$!$url="+url+"$!$port="+port;
@@ -2217,7 +2221,7 @@ sumo2.sumoSettings = {
 				if(data=='ok')
 					sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_139,1);
 				else
-					sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_140,250,250,1);
+					sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_140,3);
 
 			});
 		}		
@@ -2338,7 +2342,7 @@ sumo2.trash = {
 						 setTimeout("window.location.reload()", 2000);
 					}
 					else {
-						sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,data,400,550,1);
+						sumo2.message.NewMessage(data,3);
 					}
 				});
 			});
@@ -2541,11 +2545,11 @@ sumo2.siteTree = {
 		var specialPage = document.getElementById('specialPage').value;
 		var copyModul = document.getElementById('copyModul').value;
 		if(!sumo2.validate.IsLength(newname,2,20)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_44,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_44,3);
 			return;
 		}
 		if(!sumo2.validate.IsNumerical(cache,1,11)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_158,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_158,3);
 			return;
 		}
 		var pages = '';
@@ -2611,11 +2615,11 @@ sumo2.siteTree = {
 			}
 		}
 		if(!sumo2.validate.IsLength(name,2,50)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_44,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_44,3);
 			return;
 		}
 		if(pages.length <= 0) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_45,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_45,3);
 			return;
 		}
 		if(window.frames.layout.st) {
@@ -2666,11 +2670,11 @@ sumo2.siteTree = {
 		var specialPage = document.getElementById('specialPage').value;
 		var copyModul = document.getElementById('copyModul').value;
 		if(!sumo2.validate.IsLength(newname,2,50)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_44,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_44,3);
 			return;
 		}
 		if(!sumo2.validate.IsNumerical(cache,1,11)) {
-			sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_158,250,250,1);
+			sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_158,3);
 			return;
 		}
 		var param='type=rename$!$title='+newname+'$!$layout='+layout+'$!$id='+id+'$!$prefix='+prefix+'$!$cache='+cache+'$!$specialPage='+specialPage+'$!$copyModul='+copyModul;
@@ -2933,10 +2937,10 @@ sumo2.login= {
 		var params = "username=" + username + "$!$password=" + password + "$!$remember=" + remember + "$!$token=" + token;
 		sumo2.ajax.SendPost("includes/login.php", params, function (data) {
 			if (data == "token") {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_175,250,200, 1);
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_175,3);
 				sumo2.dialog.ReloadDialog ('d_relogin');
 			}else if (data == "match" || data == "format") {
-				sumo2.dialog.NewNotification(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_176,220,200, 1);				
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_176,3);				
 			} else if (data == "ip") {
 				window.location="/block/";
 			} else if (data == "ok") {
@@ -2961,7 +2965,7 @@ sumo2.domains= {
 	
 	Add : function() {
 		sumo2.domains.problem="";
-		var name=document.a_domains_add.name.value.replace("www.", "");
+		var name=document.a_domains_add.name.value.replace("www.", "").replace("http://", "");
 		var alias = sumo2.domains.Tag($("#a_domains_add .domain_alias").tagit("tags"), "domain");
 		var main=document.a_domains_add.main.value;
 		var white = sumo2.domains.Tag($("#a_domains_add .whiteIP").tagit("tags"), "IP");
@@ -3038,20 +3042,23 @@ sumo2.domains= {
 	
 	Tag: function(array, type) {
 		var tags="";
-		for (var i in array) {
-			if(type=="domain") {
-				if(!sumo2.validate.IsDomain(array[i].value)) {
-					sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_194+"<br/>";
-				}
-			}
-			else if(type=="IP") {
-				if(!sumo2.validate.IsIP6(array[i].value) && !sumo2.validate.IsIP4(array[i].value)) {
-					sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_193+"<br/>";
-				}
-			}
-			tags += array[i].value+"*/*";
-		}
-		return tags=tags.slice(0,tags.length-3);
+        if(array.length>0) {
+            for (var i in array) {
+                if(type=="domain") {
+                    if(!sumo2.validate.IsDomain(array[i].value)) {
+                        sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_194+"<br/>";
+                    }
+                }
+                else if(type=="IP") {
+                    if(!sumo2.validate.IsIP6(array[i].value) && !sumo2.validate.IsIP4(array[i].value)) {
+                        sumo2.domains.problem+="-"+sumo2.language.VARIABLES.MOD_193+"<br/>";
+                    }
+                }
+                tags += array[i].value+"*/*";
+            }
+            return tags=tags.slice(0,tags.length-3);
+        }
+        return "";
 	},
 	TIMEOUT : null,
 	

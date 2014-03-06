@@ -17,24 +17,24 @@ if($db->filter('token') == $session->getFormToken())
 	if($valid->isUsername($username,1,20) && $valid->isLength($password,6,20))
 	{
 		$id = User::authenticate($username,$password);
-		if($id != false)
-		{
-			$session->login($id);
-			User::updateVisit($id);
-			echo 'ok';	
-		}
-		else
-		{
-			echo 'match';	
-		}
+		if($id=="domain") {
+			echo 'domain';	
+		} else {
+			if($id != false) {
+				$session->login($id);
+				User::updateVisit($id);
+				echo 'ok';	
+			}
+			else {
+				echo 'match';	
+			}
+		}		
 	}
-	else
-	{
+	else {
 		echo 'format';	
 	}
 }
-else
-{
+else {
 	echo 'token';	
 }
 ?>

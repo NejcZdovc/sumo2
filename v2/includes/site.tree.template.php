@@ -1,4 +1,4 @@
-<? 
+<?php 
 	define( '_VALID_MOS', 1 );
 	define( '_VALID_EXT', 1 );
 	require_once('../configs/settings.php'); 

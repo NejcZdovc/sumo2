@@ -1,8 +1,9 @@
-<?	require_once('../initialize.php');
+<?php	require_once('../initialize.php');
 	if(!$session->isLogedIn() || !$security->checkURL()) {
 	 exit;
 	}
 if(ob_get_length()>0) {ob_end_clean(); }
+
 if($db->is('type')) {
 	if($db->filter('type') == 'addgroup') {
 		$name = htmlspecialchars($db->filter('name'));

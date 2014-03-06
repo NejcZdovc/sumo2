@@ -1,4 +1,4 @@
-<?
+<?php
 	require_once('../initialize.php');
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
@@ -7,5 +7,5 @@
 ?>
 
 
-<iframe src ="http://<?=$_SERVER['SERVER_NAME']?>/index.php?<?=$off?>" width="100%" style="padding-top:10px;" height="98%"> <p>Your browser does not support iframes.</p>
+<iframe src ="http://<?php echo $_SERVER['SERVER_NAME']?>/index.php?<?php echo $off?>" width="100%" style="padding-top:10px;" height="98%"> <p>Your browser does not support iframes.</p>
 </iframe>

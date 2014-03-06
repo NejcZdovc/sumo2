@@ -5,24 +5,7 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	exit;
 }
 class Firewall {
-	function __construct() {
-		$fileHandle = @fopen(SITE_ROOT.DS.ADMIN_ADDR.DS."logs/ip.log","r");
-		$clientIp = $this->getIP();
-		if($fileHandle) {
-			while(!feof($fileHandle)) {
-				$fileEntry = fgets($fileHandle,1024);
-				$ip = explode("]",$fileEntry);
-				if(count($ip) == 2) {
-					if($clientIp == trim($ip[1])) {
-						exit;
-					}
-				}
-			}
-			fclose($fileHandle);
-		} else {
-			error_log('File not found.');
-		}
-	}
+	function __construct() {}
 	
 	public function addBlockedIp($ip) {
 		$fileHandle = @fopen(SITE_ROOT.DS.ADMIN_ADDR.DS."logs/ip.log","a");

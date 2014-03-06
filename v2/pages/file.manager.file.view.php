@@ -58,10 +58,10 @@
 ?>
 <div class="contextMenu" id="myMenu2" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->FILE_2?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->FILE_3?></li>
-        <li id="open"><div style="width:16px; height:16px;display: inline-block; background-image: url(images/css_sprite.png); background-position: -540px -1629px;"></div>&nbsp;<?=$lang->MOD_54?></li>
-        <li id="edit"><div style="width:16px; height:16px;display: inline-block; background-image: url(images/css_sprite.png); background-position: -668px -1677px"></div>&nbsp;<?=$lang->EDIT?></li>
-        <li id="view"><div class="view"></div>&nbsp;<?=$lang->MOD_55?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->FILE_2?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->FILE_3?></li>
+        <li id="open"><div style="width:16px; height:16px;display: inline-block; background-image: url(images/css_sprite.png); background-position: -540px -1629px;"></div>&nbsp;<?php echo $lang->MOD_54?></li>
+        <li id="edit"><div style="width:16px; height:16px;display: inline-block; background-image: url(images/css_sprite.png); background-position: -668px -1677px"></div>&nbsp;<?php echo $lang->EDIT?></li>
+        <li id="view"><div class="view"></div>&nbsp;<?php echo $lang->MOD_55?></li>
       </ul>
 </div>

@@ -8,5 +8,5 @@
 			</p>
 		</noscript>
 	</div>
-	<textarea class="ckeditor" id="editorw" name="content" style="width:100%;"><?=$globals->welcome?></textarea>
+	<textarea class="ckeditor" id="editorw" name="content" style="width:100%;"><?php echo $globals->welcome?></textarea>
 </form>

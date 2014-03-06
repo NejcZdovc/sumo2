@@ -104,9 +104,9 @@ class User
 					if($num==0 && $results['GroupID']=='1') {
 						return $results['ID'];	
 					} else {						
-						return false;
+						return "domain";
 					}
-					return false;
+					return "domain";
 				}
 			} else {
 				return false;

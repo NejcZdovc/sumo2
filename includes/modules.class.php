@@ -165,8 +165,12 @@ class Modules extends Shield {
 			if(is_file($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$moduleName.'/seo.php')) {
 				require_once($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$moduleName.'/seo.php');
 				$function=$moduleName.'\\getSEO';
-				if(function_exists($function)) {					
-					$link.= $this->encodeLink($function($param, $page['alias']));
+				if(function_exists($function)) {
+					if($page['alias']=="") {
+						$link.= $this->encodeLink($function($param, $page['ID']));
+					} else {
+						$link.= $this->encodeLink($function($param, $page['alias']));
+					}
 				}
 			}
 		}

@@ -1,4 +1,4 @@
-<? require_once('../initialize.php');
+<?php require_once('../initialize.php');
 	$first=0;
 	$second=0;
 	$third=0;
@@ -126,97 +126,97 @@
 	}
 	echo "</ul></div>";
 ?>
-<div style="margin-top:20px; width:100%; text-align:center;"><?=$lang->MENU_11?></div>
+<div style="margin-top:20px; width:100%; text-align:center;"><?php echo $lang->MENU_11?></div>
 <!-- Rename, delete, new, down, enable, show -->
  <div class="contextMenu" id="myMenuM_RDNDES" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
-        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?=$lang->MENU_8?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
+        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?php echo $lang->MENU_8?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>
 <!-- New -->
 <div class="contextMenu" id="myMenuM_N" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
       </ul>
 </div>
 <!-- Rename, delete, down, enable, show -->
 <div class="contextMenu" id="myMenuM_RDDES" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?=$lang->MENU_8?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?php echo $lang->MENU_8?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>
 <!-- Rename, delete, new, up, down, enable, show -->
  <div class="contextMenu" id="myMenuM_RDNUDES" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
-        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?=$lang->MENU_9?></li>
-        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?=$lang->MENU_8?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
+        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?php echo $lang->MENU_9?></li>
+        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?php echo $lang->MENU_8?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>
 <!-- Rename, delete, new, up, enable, show -->
  <div class="contextMenu" id="myMenuM_RDNUES" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
-        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?=$lang->MENU_9?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
+        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?php echo $lang->MENU_9?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>
 <!-- Rename, delete, up, down, enable, show -->
 <div class="contextMenu" id="myMenuM_RDUDES" style="display:none;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?=$lang->MENU_9?></li>
-        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?=$lang->MENU_8?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?php echo $lang->MENU_9?></li>
+        <li id="down"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1629px;"></div>&nbsp;<?php echo $lang->MENU_8?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>
 
 <!-- Rename, delete, up, enable, show -->
 <div class="contextMenu" id="myMenuM_RDUES" style="display:none;  width:auto;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?=$lang->MENU_9?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="up"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1629px;"></div>&nbsp;<?php echo $lang->MENU_9?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>
 
 <!-- Rename, delete, enable, show -->
 <div class="contextMenu" id="myMenuM_RDES" style="display:none;  width:auto;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>
 
 <!-- Rename, delete, new, enable, show -->
 <div class="contextMenu" id="myMenuM_RDNES" style="display:none;  width:auto;">
       <ul style="font-size:12px;">
-        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?=$lang->MENU_4?></li>
-        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?=$lang->MENU_5?></li>
-        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?=$lang->MENU_28?></li>
-        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?=$lang->MENU_7?></li>
-        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?=$lang->MOD_122?></li>
+        <li id="rename"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-556px -1645px;"></div>&nbsp;<?php echo $lang->MENU_4?></li>
+        <li id="delete"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-524px -1645px;"></div>&nbsp;<?php echo $lang->MENU_5?></li>
+        <li id="new"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-540px -1645px;"></div>&nbsp;<?php echo $lang->MENU_28?></li>
+        <li id="enable"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/css_sprite.png);background-position:-668px -1629px;"></div>&nbsp;<?php echo $lang->MENU_7?></li>
+        <li id="show"><div style="width:16px;height:16px;display:inline-block;background-image:url(images/menuShow.png);"></div>&nbsp;<?php echo $lang->MOD_122?></li>
       </ul>
 </div>

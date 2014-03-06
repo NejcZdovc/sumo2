@@ -12,7 +12,7 @@ var login = {
     },
     GetSize: function() {
         var img = new Image;
-        img.src = "../images/logo.png";
+        img.src = "../images/logoBig.png";
         var widthimg = img.width;
         var heightimg = img.height;
         if (heightimg > 100) {
@@ -87,16 +87,19 @@ var login = {
             data = data.replace("\t", "");
             if (data == "token") {
                 error.style.display = "block";
-                error.innerHTML = "<b>Error:</b>Tokens don't match. Please refresh login page.";
+                error.innerHTML = "<b>Error:</b> Tokens don't match. Please refresh login page.";
             } else if (data == "format") {
                 error.style.display = "block";
-                error.innerHTML = "<b>Error:</b>Password or username is wrong format.";
+                error.innerHTML = "<b>Error:</b> Password or username is wrong format.";
             } else if (data == "match") {
                 error.style.display = "block";
-                error.innerHTML = "<b>Error:</b>Password or username is incorrect.";
+                error.innerHTML = "<b>Error:</b> Password or username is incorrect.";
             } else if (data == "folder") {
                 error.style.display = "block";
-                error.innerHTML = "<b>Error:</b>Plese delete <b>installation</b> folder first.";
+                error.innerHTML = "<b>Error:</b> Plese delete <b>installation</b> folder first.";
+            } else if (data == "domain") {
+                error.style.display = "block";
+                error.innerHTML = "<b>Error:</b> Domain don't match.<br/> Please add domain for this user.";
             } else if (data == "ok") {
                 window.location.reload();
             } else if (data == "ip") {

@@ -45,14 +45,14 @@ class Session {
 	public function login($id) {
 	    global $cookie;
 	    $_SESSION['user'] = $id;
-	    $cookie->setCSC('user',$id.'',1,DS);
+	    $cookie->setCSC('user',$id.'',1,"/");
 	    $this->logedIn = true;
 	}
 	
 	public function updateLogin($id) {
 		global $cookie;
 		if($cookie->isCSC('user')) {
-			$cookie->setCSC('user',$id.'',1,DS);
+			$cookie->setCSC('user',$id.'',1,"/");
 			return true;
 		}
 		else {

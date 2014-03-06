@@ -19,15 +19,15 @@
 <div id="a_article_view_c_table" style="clear:both;">
 <table cellpadding="0" cellspacing="1" border="0" class="table1 table2" id="viewgroups" width="99%">
 	<tr>
-    	<th><?=$lang->MOD_40?></th>
-		<th><?=$lang->TITLE?></th>
-		<th><?=$lang->USER_ADD_D_1?></th>
-		<th><?=$lang->ARTICLE_1?></th>
-		<th><?=$lang->CREATE_DATE?></th>
-		<? if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5)
+    	<th><?php echo $lang->MOD_40?></th>
+		<th><?php echo $lang->TITLE?></th>
+		<th><?php echo $lang->USER_ADD_D_1?></th>
+		<th><?php echo $lang->ARTICLE_1?></th>
+		<th><?php echo $lang->CREATE_DATE?></th>
+		<?php if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
-         <? if($user->translate_state=="ON")
+         <?php if($user->translate_state=="ON")
         	echo '<th style="text-align:center;">'.$lang->ARTICLE_2.'</th>';
 		?>
 	</tr>
@@ -68,23 +68,23 @@
 					$description .= "...";
 				}
 				?>
-                	<td width="30px;" style="text-align:center;"><img src="images/icons/flags/<?=lang_name_front($result['lang'])?>.png" alt="<?=lang_name_front($result['lang'])?>"/></td>
+                	<td width="30px;" style="text-align:center;"><img src="images/icons/flags/<?php echo lang_name_front($result['lang'])?>.png" alt="<?php echo lang_name_front($result['lang'])?>"/></td>
 					<td><?php echo $result['title'];?></td>
 					<td><div class="sumo2-tooltip" title="<?php echo $result['description']; ?>"><?php echo $description;?></div></td>
 					<td><?php echo $rows;?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['date']));?></td>
-                     <? if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5) {?>
+                     <?php if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5) {?>
 					<td width="85px">
-						<div title="<?=$lang->USER_TOOLTIP_ENABLE_1?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.article.ChangeStatusGroup('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-						<div title="<?=$lang->USER_TOOLTIP_EDIT_1?>" class="edit sumo2-tooltip" onclick="sumo2.dialog.NewDialog('d_article_edit_c','id=<?= $crypt->encrypt($result['ID']); ?>');"></div>
-						<div title="<?=$lang->USER_TOOLTIP_DELETE_1?>" class="delete sumo2-tooltip" onclick="sumo2.article.DeleteGroup('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-                        <div title="<?=$lang->MOD_41?>" class="view sumo2-tooltip" onclick="sumo2.accordion.NewPanel('a_article_view_cd','gida=<?= $crypt->encrypt($result['ID'])?>','a_article_view_cd<?=$result['ID']?>','<?=$lang->MOD_42?> <?= $result['title'] ?>')"></div>
+						<div title="<?php echo $lang->USER_TOOLTIP_ENABLE_1?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.article.ChangeStatusGroup('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->USER_TOOLTIP_EDIT_1?>" class="edit sumo2-tooltip" onclick="sumo2.dialog.NewDialog('d_article_edit_c','id=<?php echo  $crypt->encrypt($result['ID']); ?>');"></div>
+						<div title="<?php echo $lang->USER_TOOLTIP_DELETE_1?>" class="delete sumo2-tooltip" onclick="sumo2.article.DeleteGroup('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+                        <div title="<?php echo $lang->MOD_41?>" class="view sumo2-tooltip" onclick="sumo2.accordion.NewPanel('a_article_view_cd','gida=<?php echo  $crypt->encrypt($result['ID'])?>','a_article_view_cd<?php echo $result['ID']?>','<?php echo $lang->MOD_42?> <?php echo  $result['title'] ?>')"></div>
 					</td>
-                    <? } ?>
-                    <? if($user->translate_state=="ON") { ?>
+                    <?php } ?>
+                    <?php if($user->translate_state=="ON") { ?>
                     <td width="150px" style="text-align:center;">
                     <select id="lang_trans">
-                    <option value="0" >--- <?=$lang->ARTICLE_4?> ---</option>
+                    <option value="0" >--- <?php echo $lang->ARTICLE_4?> ---</option>
                    <?
 				   	$query1=$db->query("SELECT ID,name,short FROM cms_language_front WHERE enabled='1'");
 				  	while($result1 = $db->fetch($query1)) {
@@ -99,7 +99,7 @@
 					?>
                     </select>
                     </td>
-                    <? } ?>
+                    <?php } ?>
 				</tr>
 				<?php 
 				$counter++;
@@ -108,5 +108,5 @@
 			echo '<tr><td colspan="7" style="text-align:center; font-size:13px;"><b>'.$lang->MOD_9.'</b></td></td>';
 	?>
 </table>
-<?= pagging($accordion_id, $pagging); ?>
+<?php echo  pagging($accordion_id, $pagging); ?>
 </div>

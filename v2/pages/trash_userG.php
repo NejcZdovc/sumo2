@@ -1,17 +1,17 @@
 <form action="" name="a_trash_userG" method="post" id="a_trash_userG_id">
-<?
+<?php
     $query=$db->query("SELECT ID,title,description,creation,enabled FROM cms_user_groups WHERE status='D' order by ID asc");
 ?>
-	<div class="flt-right display" style="cursor:pointer;"><span onclick="sumo2.trash.SelectAll('a_trash_userG_check', '1');"><?=$lang->MOD_58?></span> / <span onclick="sumo2.trash.SelectAll('a_trash_userG_check', '0');"><?=$lang->MOD_59?></span></div><div class="flt-right display" onclick="sumo2.trash.DeleteAll('a_trash_userG_check', 'userG');" style="cursor:pointer;"><?=$lang->FILE_3?></div>
+	<div class="flt-right display" style="cursor:pointer;"><span onclick="sumo2.trash.SelectAll('a_trash_userG_check', '1');"><?php echo $lang->MOD_58?></span> / <span onclick="sumo2.trash.SelectAll('a_trash_userG_check', '0');"><?php echo $lang->MOD_59?></span></div><div class="flt-right display" onclick="sumo2.trash.DeleteAll('a_trash_userG_check', 'userG');" style="cursor:pointer;"><?php echo $lang->FILE_3?></div>
     <div style="clear:both;"></div>
     <table cellpadding="0" cellspacing="0" border="0" class="table1 table2" id="viewgroups" width="99%">
         <tr>
         	<th></th>
-            <th><?=$lang->TITLE?></th>
-            <th><?=$lang->USER_ADD_D_1?></th>
-            <th><?=$lang->USER_NUMBER?></th>
-            <th><?=$lang->CREATE_DATE?></th>
-            <th><?=$lang->CONTROL?></th>
+            <th><?php echo $lang->TITLE?></th>
+            <th><?php echo $lang->USER_ADD_D_1?></th>
+            <th><?php echo $lang->USER_NUMBER?></th>
+            <th><?php echo $lang->CREATE_DATE?></th>
+            <th><?php echo $lang->CONTROL?></th>
         </tr>
         <?php 
             $counter = 1;
@@ -36,8 +36,8 @@
                         <td width="120px"><?php echo date($lang->DATE_1, strtotime($result['creation']));?></td>
                         <td width="65px">
                         <div style="margin:0 auto; width:45px;">
-                            <div title="<?=$lang->MOD_57?>" class="enable sumo2-tooltip" style="margin-right:5px;" onclick="sumo2.trash.Recover('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-                            <div title="<?=$lang->ARTICLE_10?>" class="delete sumo2-tooltip"  onclick="sumo2.trash.Delete('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+                            <div title="<?php echo $lang->MOD_57?>" class="enable sumo2-tooltip" style="margin-right:5px;" onclick="sumo2.trash.Recover('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+                            <div title="<?php echo $lang->ARTICLE_10?>" class="delete sumo2-tooltip"  onclick="sumo2.trash.Delete('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
                         </div>
                         </td>
                     </tr>

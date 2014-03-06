@@ -87,9 +87,14 @@ class Template {
 	private function getTitle($begin) {
 		global $db,$globals;
 		$link="";
+		$customModuleID=$db->get($db->query('SELECT ID, moduleID, alias FROM cms_menus_items WHERE ID="'.$this->pageID.'"'));
 		//specail page title
-		if($db->is('spPage')) {
-			$module = $db->get($db->query("SELECT moduleName FROM cms_modules_def WHERE ID='".$db->filter('spRID')."'"));
+		if($db->is('spPage') || ($customModuleID && $customModuleID['moduleID']!="-1")) {
+			$spID=$db->filter('spRID');
+			if($customModuleID && $customModuleID['moduleID']!="-1") {
+				$spID=$customModuleID['moduleID'];
+			}
+			$module = $db->get($db->query("SELECT moduleName FROM cms_modules_def WHERE ID='".$spID."'"));
 			if(is_file($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php')) {
 				require_once($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php');
 				if($db->is('modulParam'))
@@ -97,8 +102,12 @@ class Template {
 				else
 					$param="";
 				$function=$module['moduleName'].'\\getTitle';
-				if(function_exists($function)) {		
-					$link .= $function($param, $db->filter('spID')).' - ';
+				if(function_exists($function)) {
+					if($customModuleID['alias']=="") {
+						$link .= $function($param, $customModuleID['ID']).' - ';
+					} else {
+						$link .= $function($param, $customModuleID['alias']).' - ';
+					}
 				}else {
 					$link = '';
 				}
@@ -114,10 +123,9 @@ class Template {
 			$titleArray = array();
 			array_push($titleArray,$begin);
 			$title = '';
-			$page = $this->pageID;
-				$result = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$page."'"));
-				$curTitle = $result['title'];
-				array_push($titleArray,$curTitle); 
+			$result = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$this->pageID."'"));
+			$curTitle = $result['title'];
+			array_push($titleArray,$curTitle); 
 			for($i = count($titleArray)-1;$i>=0;$i--) {
 				$title .= $titleArray[$i];
 				if(strlen($title) > 0 && $i != 0) {
@@ -199,8 +207,13 @@ class Template {
 		$keywords="";
 		$description="";
 		$customHead="";
-		if($db->is('spPage')) {
-			$module = $db->get($db->query("SELECT moduleName FROM cms_modules_def WHERE ID='".$db->filter('spRID')."'"));
+		$customModuleID=$db->get($db->query('SELECT moduleID FROM cms_menus_items WHERE ID="'.$this->pageID.'"'));
+		if($db->is('spPage') || ($customModuleID && $customModuleID['moduleID']!="-1")) {
+			$spID=$db->filter('spRID');
+			if($customModuleID && $customModuleID['moduleID']!="-1") {
+				$spID=$customModuleID['moduleID'];
+			}
+			$module = $db->get($db->query("SELECT moduleName FROM cms_modules_def WHERE ID='".$spID."'"));
 			if(is_file($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php')) {
 				require_once($_SERVER['DOCUMENT_ROOT'].'/modules/'.$globals->domainName.'/'.$module['moduleName'].'/seo.php');			
 				if($db->is('modulParam')) {
@@ -229,7 +242,7 @@ class Template {
 				}
 			}
 		} 
-		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE ID='".$result_page['link']."' AND lang='".$this->langID."' AND domain='".$globals->domainID."'"));
+		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE lang='".$this->langID."' AND domain='".$globals->domainID."'"));
         if($homepageTitle) {
             $keywords=$homepageTitle['keyword'];
             $description=$homepageTitle['description'];
@@ -251,7 +264,7 @@ class Template {
 			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
 		}
 		if(strlen($customHead)>0) {
-				$result.= str_replace('"', '\"', $customHead);
+				$result.= $customHead;
 		}
 		if($result_glob['display_title'] == 'F') {
 			$result.= "<title>".$title."</title>\n";

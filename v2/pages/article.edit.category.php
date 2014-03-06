@@ -13,7 +13,7 @@
     <input type="hidden" name="subject" id="verify" value="<?php echo $db->filter('id'); ?>" />
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->NAME?>:</div><div class="title_form_small"><?=$lang->USER_ADD_N_1?></div>
+        <div class="title_form_big"><?php echo $lang->NAME?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_N_1?></div>
         </td>
         <td class="right_td">
         <input name="subject" id="name" value="<?php echo $result['title']; ?>" type="text" maxlength="50" class="input" />
@@ -23,7 +23,7 @@
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-		<div class="title_form_big"><?=$lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?=$lang->USER_ADD_D_2?></div>
+		<div class="title_form_big"><?php echo $lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_D_2?></div>
         </td>
     </tr>
     <tr>

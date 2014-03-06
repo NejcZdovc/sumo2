@@ -1,4 +1,4 @@
-<?
+<?php
 
 $setLocaleLang['hr']='';
 $setLocaleLang['en-gb']='en_UK';
