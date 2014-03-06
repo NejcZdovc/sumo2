@@ -23,6 +23,7 @@ require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'ftp.class.p
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'update.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'phpmailer.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'pop3.class.php');
+require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'pagging.class.php');
 
 $setLocaleLang['hr']='';
 $setLocaleLang['en-gb']='en_UK';
