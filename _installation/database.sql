@@ -46,7 +46,8 @@ CREATE TABLE IF NOT EXISTS `cms_article` (
   `views` int(11) NOT NULL DEFAULT '0',
   `keywords` text,
   `description` text,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -66,7 +67,8 @@ CREATE TABLE IF NOT EXISTS `cms_article_categories` (
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `lang` int(11) NOT NULL DEFAULT '1',
   `parent` int(5) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -81,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `cms_article_images` (
   `name` varchar(100) NOT NULL,
   `file` varchar(200) NOT NULL,
   `statusID` enum('N','D') NOT NULL DEFAULT 'N',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `articleID` (`articleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -94,7 +97,8 @@ CREATE TABLE IF NOT EXISTS `cms_article_tags` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `value` text NOT NULL,
   `articleID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `articleID` (`articleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -127,7 +131,8 @@ CREATE TABLE IF NOT EXISTS `cms_domains` (
   `parentID` int(11) DEFAULT NULL,
   `locator` tinyint(1) NOT NULL DEFAULT '0',
   `alias` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `parentID` (`parentID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -140,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `cms_domains_countries` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `domainID` int(11) NOT NULL,
   `value` text NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domainID` (`domainID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -155,7 +161,9 @@ CREATE TABLE IF NOT EXISTS `cms_domains_ids` (
   `elementID` int(11) DEFAULT NULL,
   `domainID` int(11) NOT NULL,
   `value` text,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `elementID` (`elementID`),
+  KEY `domainID` (`domainID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -169,7 +177,8 @@ CREATE TABLE IF NOT EXISTS `cms_domains_ips` (
   `domainID` int(11) NOT NULL,
   `value` varchar(100) NOT NULL,
   `type` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domainID` (`domainID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -191,7 +200,8 @@ CREATE TABLE IF NOT EXISTS `cms_favorites` (
   `option8` int(11) NOT NULL DEFAULT '0',
   `option9` int(11) NOT NULL DEFAULT '0',
   `option10` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 
@@ -263,7 +273,8 @@ CREATE TABLE IF NOT EXISTS `cms_global_settings` (
   `WM_enabled` tinyint(1) NOT NULL DEFAULT '0',
   `WM_ID` varchar(60) NOT NULL,
   `cacheNumber` int(11) NOT NULL DEFAULT '18536',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -299,7 +310,8 @@ CREATE TABLE IF NOT EXISTS `cms_homepage` (
   `template` int(3) NOT NULL,
   `link` int(6) NOT NULL,
   `selection` int(2) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -380,7 +392,8 @@ CREATE TABLE IF NOT EXISTS `cms_mail_sent` (
   `mainID` int(11) NOT NULL,
   `status` enum('O','C','D','DD') NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `recipientID` (`recipientID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -400,7 +413,8 @@ CREATE TABLE IF NOT EXISTS `cms_menus` (
   `lang` int(1) NOT NULL DEFAULT '1',
   `parent` int(3) NOT NULL DEFAULT '0',
   `s_default` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -430,7 +444,10 @@ CREATE TABLE IF NOT EXISTS `cms_menus_items` (
   `restriction` int(1) NOT NULL DEFAULT '1',
   `showM` enum('Y','N') NOT NULL DEFAULT 'Y',
   `moduleID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`),
+  KEY `menuID` (`menuID`),
+  KEY `moduleID` (`moduleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -466,7 +483,8 @@ CREATE TABLE IF NOT EXISTS `cms_modul_prefix` (
   `name` varchar(100) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `prefix` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 
@@ -483,7 +501,8 @@ CREATE TABLE IF NOT EXISTS `cms_seo_redirects` (
   `type` varchar(100) NOT NULL,
   `domainID` int(11) NOT NULL,
   `lang` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domainID` (`domainID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -497,7 +516,8 @@ CREATE TABLE IF NOT EXISTS `cms_state` (
   `userID` int(11) NOT NULL,
   `state` text,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `userID` (`userID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 
@@ -535,7 +555,8 @@ CREATE TABLE IF NOT EXISTS `cms_template` (
   `folder` varchar(100) NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `status` enum('N','D','DD') NOT NULL DEFAULT 'N',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -549,7 +570,8 @@ CREATE TABLE IF NOT EXISTS `cms_template_position` (
   `domain` int(11) NOT NULL DEFAULT '1',
   `name` varchar(20) NOT NULL,
   `prefix` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -568,7 +590,8 @@ CREATE TABLE IF NOT EXISTS `cms_user` (
   `visit` datetime NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `status` enum('D','N','DD') NOT NULL DEFAULT 'N',
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `GroupID` (`GroupID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
@@ -580,7 +603,8 @@ CREATE TABLE IF NOT EXISTS `cms_user` (
 CREATE TABLE IF NOT EXISTS `cms_user_aditional` (
   `ID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `userID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `userID` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -651,7 +675,9 @@ CREATE TABLE IF NOT EXISTS `cms_user_settings` (
   `beta` tinyint(4) DEFAULT '0',
   `developer` tinyint(1) NOT NULL DEFAULT '0',
   `domain` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `userID` (`userID`),
+  KEY `domain` (`domain`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 
@@ -666,7 +692,8 @@ CREATE TABLE IF NOT EXISTS `includes` (
   `link` text NOT NULL,
   `type` enum('css','javascript') NOT NULL,
   `modulID` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`ID`),
+  KEY `modulID` (`modulID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
