@@ -52,8 +52,13 @@ if(!isset($isLoginFile)) {
 		echo '<div id="javascriptLoginBox">sumo2.dialog.NewDialog(\'d_relogin\', null, true);</div>';
 	}
 	
-	if(!$login) {		
-		setlocale(LC_ALL, $setLocaleLang[$user->langShortBack($user->lang)].'.UTF-8');
+	if(!$login) {
+		if(isset($setLocaleLang[$user->langShortBack($user->lang)])) {
+			setlocale(LC_ALL, $setLocaleLang[$user->langShortBack($user->lang)].'.UTF-8');
+		} else {
+			setlocale(LC_ALL, $setLocaleLang['en'].'.UTF-8');
+		}
+		
 	}
 }
 ?>
