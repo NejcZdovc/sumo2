@@ -7,8 +7,8 @@
 
 	//Database
     define('__DB_SERVER__','localhost');
-    define('__DB_USER__','magento');
-    define('__DB_PASSWORD__','magento');
+    define('__DB_USER__','root');
+    define('__DB_PASSWORD__','');
     define('__DB_DATABASE__','3zsistemi_rc');
 	
 	//FTP permissions
