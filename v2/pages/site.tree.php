@@ -35,9 +35,9 @@
 		}
 	}
 	
-	function generateMenuItems($menuID, $parentID, $lang, $isSelected, $selPage, $firstLayout)
+	function generateMenuItems($menuID, $parentID, $langIn, $isSelected, $selPage, $firstLayout)
 	{
-		global $db;
+		global $db, $lang;
         $firstNum=NULL;
         $firstTmp=NULL;
 		$query=$db->query('SELECT * FROM cms_menus_items WHERE menuID='.$menuID.' AND parentID="'.$parentID.'" AND status="N" AND selection!="4" ORDER BY orderID asc');
@@ -60,14 +60,14 @@
 				if($results['enabled']==1) $ena=''; else $ena='style="color:#ff0000;"';
 				if($results['showM']=="Y") $smenu=''; else $smenu='<span style="color:#ff0000 !important;">*</span>';
 				if($results['selection'] == 1) {
-					echo '<li '.$shown.'><div '.$ena.' class="S_RND" id="'.$results['ID'].'#'.$menuID.'" onclick="sumo2.siteTree.RefreshLayout('.$results['ID'].','.$lang.','.checkTemplate($results['template']).')">'.$results['title'].' '.$smenu.'</div>';
+					echo '<li '.$shown.'><div '.$ena.' class="S_RND" id="'.$results['ID'].'#'.$menuID.'" onclick="sumo2.siteTree.RefreshLayout('.$results['ID'].','.$langIn.','.checkTemplate($results['template']).')">'.$results['title'].' '.$smenu.'</div>';
 				} else if($results['selection'] == 2) {
 					$nameResult = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$results['link']."' LIMIT 1"));
 					echo '<li class="nosel"><div title="'.$lang->MOD_96.''.$nameResult['title'].'" style="color:green;" id="'.$results['ID'].'#'.$menuID.'" class="sumo2-tooltip S_RND">'.$results['title'].' '.$smenu.'</div>';
 				} else if($results['selection'] == 3) {
 					echo '<li class="nosel"><div title="'.$lang->MOD_97.''.$results['link'].'" style="color:blue;" id="'.$results['ID'].'#'.$menuID.'" class="sumo2-tooltip S_RND">'.$results['title'].' '.$smenu.'</div>';
 				}
-				$tmp=generateMenuItems($menuID, $results['ID'], $lang, $isSelected, $selPage, $firstLayout);
+				$tmp=generateMenuItems($menuID, $results['ID'], $langIn, $isSelected, $selPage, $firstLayout);
                 if($tmp[0]!=NULL) {
                     $firstNum=$tmp[0];
                     $firstTmp=$tmp[1];
