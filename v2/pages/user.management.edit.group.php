@@ -14,21 +14,21 @@
     <input type="hidden" name="subject" id="verify" value="<?php echo $db->filter('id'); ?>" />
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->NAME?>:</div><div class="title_form_small"><?=$lang->USER_ADD_N_1?></div>
+        <div class="title_form_big"><?php echo $lang->NAME?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_N_1?></div>
         </td>
         <td class="right_td">
-        <? if($id==1 && $result['title']=='Super administrator') { ?>
+        <?php if($id==1 && $result['title']=='Super administrator') { ?>
         	<input name="subject" id="name" disabled="disabled" value="<?php echo $result['title']; ?>" type="text" maxlength="50" class="input" />
-        <? }else { ?>
+        <?php }else { ?>
         	<input name="subject" id="name" value="<?php echo $result['title']; ?>" type="text" maxlength="50" class="input" />
-        <? } ?>
+        <?php } ?>
         <input type="text" name="enterfix" style="display:none;" />
         </td>
     </tr>
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-		<div class="title_form_big"><?=$lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?=$lang->USER_ADD_D_2?></div>
+		<div class="title_form_big"><?php echo $lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_D_2?></div>
         </td>
     </tr>
     <tr>
@@ -39,10 +39,10 @@
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td class="left_td"  style="width:100px;" valign="top">
-        <div class="title_form_big"><?=$lang->USER_ADD_A_1?>:</div><div class="title_form_small"><?=$lang->USER_ADD_A_2?></div>
+        <div class="title_form_big"><?php echo $lang->USER_ADD_A_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_A_2?></div>
         </td>
         <td class="right_td" style="padding:10px;">
-        <div style="float:left; margin-right:15px; cursor:pointer;"><a onclick="sumo2.user.SelectAll(1);"><?=$lang->SELECT_ALL?></a></div> <div style="float:left; cursor:pointer;"><a onclick="sumo2.user.SelectAll(2);"><?=$lang->MANUAL_SEL?></a></div><div style="clear:both; margin-bottom:10px;"></div>
+        <div style="float:left; margin-right:15px; cursor:pointer;"><a onclick="sumo2.user.SelectAll(1);"><?php echo $lang->SELECT_ALL?></a></div> <div style="float:left; cursor:pointer;"><a onclick="sumo2.user.SelectAll(2);"><?php echo $lang->MANUAL_SEL?></a></div><div style="clear:both; margin-bottom:10px;"></div>
         <div class="group-permission-wrapper">
                 <table width="100%" cellspacing="0" id="sumo2-user-group-permission">
                     <?php
@@ -79,10 +79,10 @@
 								$opt5 = ' selected="selected" ';
 							}
                             ?>
-                            <tr<?=$class?>>
-                                <td><input onclick="sumo2.user.ToggleRow(this)" value="sumo2-user-group-sel-<?=$result['ID']?>" type="checkbox" name="select" <?=$set?>/></td>
-                                <td><?=$lang->$result['title']?> - <?=$lang->$result['subtitle']?></td>
-                                <td><select id="sumo2-user-group-sel-<?=$result['ID']?>"><option<?=$opt1?> value="1">1</option><option<?=$opt2?> value="2">2</option><option<?=$opt3?> value="3">3</option><option<?=$opt4?> value="4">4</option><option<?=$opt5?> value="5">5</option></select></td>
+                            <tr<?php echo $class?>>
+                                <td><input onclick="sumo2.user.ToggleRow(this)" value="sumo2-user-group-sel-<?php echo $result['ID']?>" type="checkbox" name="select" <?php echo $set?>/></td>
+                                <td><?php echo $lang->$result['title']?> - <?php echo $lang->$result['subtitle']?></td>
+                                <td><select id="sumo2-user-group-sel-<?php echo $result['ID']?>"><option<?php echo $opt1?> value="1">1</option><option<?php echo $opt2?> value="2">2</option><option<?php echo $opt3?> value="3">3</option><option<?php echo $opt4?> value="4">4</option><option<?php echo $opt5?> value="5">5</option></select></td>
                             </tr>
                             <?php
                         }
@@ -93,7 +93,7 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->MOD_225?>:</div><div class="title_form_small"><?=$lang->MOD_226?></div>
+        <div class="title_form_big"><?php echo $lang->MOD_225?>:</div><div class="title_form_small"><?php echo $lang->MOD_226?></div>
         </td>
         <td class="right_td">
         	<?
@@ -104,7 +104,7 @@
 				}
 			?>
             <select id="domain" class="input" multiple="multiple" style="height:60px;">                
-				<?
+				<?php
                     $query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
                     while($result=$db->fetch($query)) {
 						if(in_array($result['ID'], $domain))

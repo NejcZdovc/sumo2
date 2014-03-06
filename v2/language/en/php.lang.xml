@@ -538,5 +538,7 @@
 		<item constant="MOD_244">Folder permissions</item>
 		<item constant="MOD_245">Choose which persmission should be used for folder on server.</item>
 		<item constant="MOD_246">Clear cache</item>
+		<item constant="MOD_247">Select which module is main for this page. All custom seo data will be displayed from this module.</item>
+		<item constant="MOD_248">None</item>
 	</parent>
 </language>

@@ -12,13 +12,13 @@
 define( '_VALID_MIX', 1 );
 define( '_VALID_ETT', 1 );
 include_once('../v2/configs/settings.php');
-include_once('../includes/database.class.php');
-include_once('../includes/globals.class.php');
-include_once('../includes/xml.class.php');
-include_once('../includes/cryptography.class.php');
+include_once('..'.DS.'includes'.DS.'database.class.php');
+include_once('..'.DS.'includes'.DS.'globals.class.php');
+include_once('..'.DS.'includes'.DS.'xml.class.php');
+include_once('..'.DS.'includes'.DS.'cryptography.class.php');
 
 ini_set('log_errors',1);
-ini_set('error_log','../v2/logs/errorFront_'.str_replace("www.", "", $_SERVER['HTTP_HOST']).'.log');
+ini_set('error_log','..'.DS.'v2'.DS.'logs'.DS.'errorFront_'.str_replace("www.", "", $_SERVER['HTTP_HOST']).'.log');
 
 function getJs() {
 	global $db,$globals,$xml;
@@ -31,7 +31,7 @@ function getJs() {
 		$xmlParse = $xml->getSpecialArray(SITE_ROOT.SITE_FOLDER.DS.'templates/'.$globals->domainName.'/'.$name.'/settings.xml');
 		foreach($xmlParse as $element) {
 			if($element['tag'] == 'js') {
-				if(file_exists("../templates/".$globals->domainName."/".$name."/".$element['value'])) {				
+				if(file_exists("..".DS."templates".DS.$globals->domainName.DS.$name.DS.$element['value'])) {				
 					$files[] = "//".SITE_FOLDER."templates/".$globals->domainName."/".$name."/".$element['value'];
 				} else {
 					error_log("File not found: //".SITE_FOLDER."templates/".$globals->domainName."/".$name."/".$element['value'].' / min/groupsConfig.php (37)');

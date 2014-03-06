@@ -1,4 +1,4 @@
-<? 
+<?php 
 	require_once('../initialize.php');
     require_once('../configs/settings.php');
 	
@@ -11,12 +11,12 @@
 	<thead>
     <tr>
     	<th width="20px"></th>
-    	<th><?=$lang->NAME?></th>
-		<th width="80"><?=$lang->MOD_51?></th>
-		<th><?=$lang->MOD_11?></th>
-		<th width="130"><?=$lang->MOD_52?></th>
-        <th width="100"><?=$lang->MOD_53?></th>
-		<? if($user->getAuth('FAV_SITE_2') == 2 || $user->getAuth('FAV_SITE_2') == 4 || $user->getAuth('FAV_SITE_2') == 5)
+    	<th><?php echo $lang->NAME?></th>
+		<th width="80"><?php echo $lang->MOD_51?></th>
+		<th><?php echo $lang->MOD_11?></th>
+		<th width="130"><?php echo $lang->MOD_52?></th>
+        <th width="100"><?php echo $lang->MOD_53?></th>
+		<?php if($user->getAuth('FAV_SITE_2') == 2 || $user->getAuth('FAV_SITE_2') == 4 || $user->getAuth('FAV_SITE_2') == 5)
 			echo '<th width="123">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>

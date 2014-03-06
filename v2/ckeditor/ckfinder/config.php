@@ -22,12 +22,12 @@
 define( '_VALID_MOS', 1 );
 define( '_VALID_EXT', 1 );
 include_once('../../../../../configs/settings.php');
-include_once('../../../../../includes/errors.php');
-include_once('../../../../../essentials/database.class.php');
-include_once('../../../../../essentials/cryptography.class.php');
-include_once('../../../../../essentials/cookie.class.php');
-include_once('../../../../../essentials/session.class.php');
-include_once('../../../../../essentials/user.class.php');
+include_once('..'.DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'includes'.DS.'errors.php');
+include_once('..'.DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'essentials'.DS.'database.class.php');
+include_once('..'.DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'essentials'.DS.'cryptography.class.php');
+include_once('..'.DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'essentials'.DS.'cookie.class.php');
+include_once('..'.DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'essentials'.DS.'session.class.php');
+include_once('..'.DS.'..'.DS.'..'.DS.'..'.DS.'..'.DS.'essentials'.DS.'user.class.php');
 function CheckAuthentication()
 {
 	global $crypt, $cookie;

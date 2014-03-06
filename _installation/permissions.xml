@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<permission>
+	<files>
+	  <item>v2/modules/css.xml</item>
+	  <item>v2/modules/javascript.xml</item>
+	  <item>v2/modules/system.xml</item>
+	  <item>v2/logs/error.log</item>
+	  <item perm="777">v2/configs/settings.php</item>
+	</files>
+
+	<folders>
+	  <item>404</item>
+	  <item>block</item>
+	  <item>images</item>
+	  <item>modules</item>
+	  <item>modules/default</item>
+	  <item>modules/default/images</item>
+	  <item>off</item>
+	  <item>storage</item>
+	  <item>cache</item>
+	  <item>cache/templates</item>
+	  <item>cache/modules</item>
+	  <item>templates</item>	  
+	  <item>v2/modules</item>
+	  <item>v2/temp</item>
+	  <item>v2/logs</item>
+	</folders>	
+</permission>

@@ -1,4 +1,4 @@
-<? require_once('../initialize.php'); 
+<?php require_once('../initialize.php'); 
 	if(!$session->isLogedIn() || !$security->checkURL()) {
 	 exit;
 	}

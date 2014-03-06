@@ -19,7 +19,7 @@
 	?>
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->NAME?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_N_1?></div>
+        <div class="title_form_big"><?php echo $lang->NAME?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_N_1?></div>
         </td>
         <td class="right_td">
         <input name="subject" class="input" id="name" value="<?php echo $result['name'];?>" type="text" maxlength="50" />
@@ -27,7 +27,7 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->USERNAME?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_U_1?></div>
+        <div class="title_form_big"><?php echo $lang->USERNAME?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_U_1?></div>
         </td>
         <td class="right_td">
         <input name="subject" class="input" id="username" readonly="readonly" value="<?php echo $result['username'];?>" type="text" maxlength="50" />
@@ -36,7 +36,7 @@
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td class="left_td" valign="top">
-		<div class="title_form_big"><?=$lang->USER_ADDU_P_10?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_P_11?></div>
+		<div class="title_form_big"><?php echo $lang->USER_ADDU_P_10?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_P_11?></div>
         </td>
         <td class="right_td">
         <input name="subject" class="input" id="password" value="" type="password" maxlength="50" onkeyup="sumo2.user.CheckPassword(this, 'd_user_edit_user')" />
@@ -44,7 +44,7 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->USER_ADDU_P_3?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_P_4?></div>
+        <div class="title_form_big"><?php echo $lang->USER_ADDU_P_3?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_P_4?></div>
         </td>
         <td class="right_td">
         <input name="subject" class="input" id="password2" value="" type="password" maxlength="50" />
@@ -52,14 +52,14 @@
     </tr>
     <tr>
         <td class="left_td clear" valign="top" colspan="2">
-        <div class="flt-left"><div class="title_form_big"><?=$lang->USER_ADDU_P_5?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_P_6?></div></div>
-        <div class="flt-right password"><div><div id="password_indicator_d_user_edit_user"><div style="display:block;background-image:url(images/css_sprite.png);background-position:-1109px -1634px;width:230px;height:19px;"></div></div></div><div id="password_strength_d_user_edit_user" class="password-title"><?=$lang->USER_ADDU_P_12?></div></div>
+        <div class="flt-left"><div class="title_form_big"><?php echo $lang->USER_ADDU_P_5?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_P_6?></div></div>
+        <div class="flt-right password"><div><div id="password_indicator_d_user_edit_user"><div style="display:block;background-image:url(images/css_sprite.png);background-position:-1109px -1634px;width:230px;height:19px;"></div></div></div><div id="password_strength_d_user_edit_user" class="password-title"><?php echo $lang->USER_ADDU_P_12?></div></div>
         </td>
     </tr>
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
      <tr>
         <td class="left_td" valign="top">
-       <div class="title_form_big"><?=$lang->USER_ADDU_E_1?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_E_2?></div>
+       <div class="title_form_big"><?php echo $lang->USER_ADDU_E_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_E_2?></div>
         </td>
         <td class="right_td">
         <input name="subject" class="input" id="email" value="<?php echo $result['email'];?>" type="text" maxlength="50" />
@@ -67,7 +67,7 @@
     </tr>
     <tr>
         <td class="left_td" valign="top">
-       	<div class="title_form_big"><?=$lang->USER_ADDU_E_3?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_E_4?></div>
+       	<div class="title_form_big"><?php echo $lang->USER_ADDU_E_3?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_E_4?></div>
         </td>
         <td class="right_td">
         <input name="subject" class="input" id="email2" value="<?php echo $result['email'];?>" type="text" maxlength="50" />
@@ -76,7 +76,7 @@
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
      <tr>
         <td class="left_td" valign="top">
-        <div class="title_form_big"><?=$lang->USER_ADDU_U_2?>:</div><div class="title_form_small"><?=$lang->USER_ADDU_U_3?></div>
+        <div class="title_form_big"><?php echo $lang->USER_ADDU_U_2?>:</div><div class="title_form_small"><?php echo $lang->USER_ADDU_U_3?></div>
         </td>
         <td class="right_td">
         <select id="group">
@@ -94,7 +94,7 @@
         </td>
     </tr>
 <tr><td height="10px" width="100%" colspan="2"></td></tr>
-<tr><td width="100%" colspan="2"><h2><?=$lang->MOD_78?></h2></td></tr>
+<tr><td width="100%" colspan="2"><h2><?php echo $lang->MOD_78?></h2></td></tr>
 <tr><td height="10px" width="100%" colspan="2"></td></tr>
 <?php
 	$fieldQuery = $db->query("SELECT * FROM cms_user_fields WHERE enabled='1' AND status='N'");
@@ -110,10 +110,10 @@
 				?>
 				<tr>
 				<td class="left_td" valign="top">
-				<div class="title_form_big"><?=$result['labelName']?>:</div><div class="title_form_small"><?=$result['description']?></div>
+				<div class="title_form_big"><?php echo $result['labelName']?>:</div><div class="title_form_small"><?php echo $result['description']?></div>
 				</td>
 				<td class="right_td">
-				<input name="<?=$result['name']?>" id="<?=$result['fieldId']?>#<?=$result['type']?>#<?=$result['required']?>#<?=$result['labelName']?>#<?=$result['min']?>" class="input extra" value="<?=$found?$infoResult[$result['fieldId']]:''?>" type="text" maxlength="<?=$result['max']?>"/>
+				<input name="<?php echo $result['name']?>" id="<?php echo $result['fieldId']?>#<?php echo $result['type']?>#<?php echo $result['required']?>#<?php echo $result['labelName']?>#<?php echo $result['min']?>" class="input extra" value="<?php echo $found?$infoResult[$result['fieldId']]:''?>" type="text" maxlength="<?php echo $result['max']?>"/>
 				</td>
 			    </tr>
 				<?php
@@ -122,12 +122,12 @@
 				?>
 					<tr>
 					<td colspan="2" class="left_td" valign="top">
-					<div class="title_form_big"><?=$result['labelName']?>:</div><div class="title_form_small"><?=$result['description']?></div>
+					<div class="title_form_big"><?php echo $result['labelName']?>:</div><div class="title_form_small"><?php echo $result['description']?></div>
 					</td>
 				    </tr>
 					<tr>
 					    	<td colspan="2" class="right_td" style="padding:5px;">
-								<textarea  id="<?=$result['fieldId']?>#<?=$result['type']?>#<?=$result['required']?>#<?=$result['labelName']?>#<?=$result['min']?>#<?=$result['max']?>" name="<?=$result['name']?>" rows="10" class="input-area extra" cols="54"><?=$found?$infoResult[$result['fieldId']]:''?></textarea>
+								<textarea  id="<?php echo $result['fieldId']?>#<?php echo $result['type']?>#<?php echo $result['required']?>#<?php echo $result['labelName']?>#<?php echo $result['min']?>#<?php echo $result['max']?>" name="<?php echo $result['name']?>" rows="10" class="input-area extra" cols="54"><?php echo $found?$infoResult[$result['fieldId']]:''?></textarea>
 						</td>
 					    
 					    </tr>
@@ -137,10 +137,10 @@
 				?>
 				<tr>
 				<td class="left_td" valign="top">
-				<div class="title_form_big"><?=$result['labelName']?>:</div><div class="title_form_small"><?=$result['description']?></div>
+				<div class="title_form_big"><?php echo $result['labelName']?>:</div><div class="title_form_small"><?php echo $result['description']?></div>
 				</td>
 				<td class="right_td">
-				<input name="<?=$result['name']?>" id="<?=$result['fieldId']?>#<?=$result['type']?>#<?=$result['required']?>#<?=$result['labelName']?>#<?=$result['min']?>" value="<?=$found?$infoResult[$result['fieldId']]:''?>" class="input extra sumo2-dcsibfvs" maxlength="<?=$result['max']?>" type="text" readonly="readonly"/>
+				<input name="<?php echo $result['name']?>" id="<?php echo $result['fieldId']?>#<?php echo $result['type']?>#<?php echo $result['required']?>#<?php echo $result['labelName']?>#<?php echo $result['min']?>" value="<?php echo $found?$infoResult[$result['fieldId']]:''?>" class="input extra sumo2-dcsibfvs" maxlength="<?php echo $result['max']?>" type="text" readonly="readonly"/>
 				</td>
 			    </tr>
 				<?php
@@ -149,10 +149,10 @@
 				?>
 				<tr>
 				<td class="left_td" valign="top">
-				<div class="title_form_big"><?=$result['labelName']?>:</div><div class="title_form_small"><?=$result['description']?></div>
+				<div class="title_form_big"><?php echo $result['labelName']?>:</div><div class="title_form_small"><?php echo $result['description']?></div>
 				</td>
 				<td class="right_td">
-				<input name="<?=$result['name']?>" id="<?=$result['fieldId']?>#<?=$result['type']?>#<?=$result['required']?>#<?=$result['labelName']?>#<?=$result['min']?>" class="input extra" value="<?=$found?$infoResult[$result['fieldId']]:''?>" type="text" maxlength="<?=$result['max']?>"/>
+				<input name="<?php echo $result['name']?>" id="<?php echo $result['fieldId']?>#<?php echo $result['type']?>#<?php echo $result['required']?>#<?php echo $result['labelName']?>#<?php echo $result['min']?>" class="input extra" value="<?php echo $found?$infoResult[$result['fieldId']]:''?>" type="text" maxlength="<?php echo $result['max']?>"/>
 				</td>
 			    </tr>
 				<?php
@@ -161,7 +161,7 @@
 				?>
 				<tr>
 				<td class="left_td" valign="top">
-				<div class="title_form_big"><?=$result['labelName']?>:</div><div class="title_form_small"><?=$result['description']?></div>
+				<div class="title_form_big"><?php echo $result['labelName']?>:</div><div class="title_form_small"><?php echo $result['description']?></div>
 				</td>
 				<td class="right_td">
 				<?php
@@ -184,7 +184,7 @@
 				?>
 				<tr>
 				<td class="left_td" valign="top">
-				<div class="title_form_big"><?=$result['labelName']?>:</div><div class="title_form_small"><?=$result['description']?></div>
+				<div class="title_form_big"><?php echo $result['labelName']?>:</div><div class="title_form_small"><?php echo $result['description']?></div>
 				</td>
 				<td class="right_td">
 				<?php
@@ -217,10 +217,10 @@
 				?>
 				<tr>
 				<td class="left_td" valign="top">
-				<div class="title_form_big"><?=$result['labelName']?>:</div><div class="title_form_small"><?=$result['description']?></div>
+				<div class="title_form_big"><?php echo $result['labelName']?>:</div><div class="title_form_small"><?php echo $result['description']?></div>
 				</td>
 				<td class="right_td">
-				<select name="<?=$result['name']?>" id="<?=$result['fieldId']?>#<?=$result['type']?>#<?=$result['required']?>#<?=$result['labelName']?>" class="extra">
+				<select name="<?php echo $result['name']?>" id="<?php echo $result['fieldId']?>#<?php echo $result['type']?>#<?php echo $result['required']?>#<?php echo $result['labelName']?>" class="extra">
 				<?php
 					$extraArray = explode(",",$result['extra']);
 					$counter = 1;

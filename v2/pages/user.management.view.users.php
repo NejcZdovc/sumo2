@@ -3,24 +3,36 @@
 	 	exit;
 	}
 	$accordion_id='a_user_view_u';
-	$pagging=check_pagging("SELECT ID,username,email,GroupID,name,visit,enabled FROM cms_user WHERE status='N'", $user->items);
+	$query="";
+	if($db->is('query') && strlen($db->filter('query'))>2) {
+		$search=" AND (username LIKE '%".$db->filter('query')."%' OR email LIKE '%".$db->filter('query')."%' OR name LIKE '%".$db->filter('query')."%')";
+		$query=$db->filter('query');
+	} else
+		$search='';
+	$pagging=check_pagging("SELECT ID,username,email,GroupID,name,visit,enabled FROM cms_user WHERE status='N' ".$search."", $user->items);
 	$dropdown=dropdown_pagging($accordion_id, $pagging[0]);
 	echo '<div class="flt-right display">'.$dropdown.'</div>';
 ?>
+<div>
+    <div style="margin-left:10px; float:left; margin-top:10px; font-weight:bold;"><?php echo $lang->MOD_44?></div>
+    <input id="a_user_view_u_table_id_search" name="search" value="<?php echo $query ?>" class="input" style="width:200px; margin-left:10px;" value="" type="text" maxlength="50" />
+</div>
 <div id="a_user_view_u_table" style="clear:both;">
-<table cellpadding="0" cellspacing="1" border="0" summary="View users" class="table1 table2" width="99%">
-<caption class="hide"><?=$lang->LEFT_USER_1?></caption>
+<?php echo  pagging($accordion_id, $pagging); ?>
+<table cellpadding="0" cellspacing="1" border="0" id="a_user_view_u_table" summary="View users" class="table1 table2" width="99%">
+<caption class="hide"><?php echo $lang->LEFT_USER_1?></caption>
 	<tr>
 		<th scope="col" abbr=""></th>
-		<th scope="col" abbr="<?=$lang->NAME?>"><?=$lang->NAME?></th>
-		<th scope="col" abbr="<?=$lang->USERNAME?>"><?=$lang->USERNAME?></th>
-		<th scope="col" abbr="<?=$lang->MAIL?>"><?=$lang->MAIL?></th>
-		<th scope="col" abbr="<?=$lang->GROUP?>"><?=$lang->GROUP?></th>
-		<th scope="col" abbr="<?=$lang->LAST_VISIT?>"><?=$lang->LAST_VISIT?></th>
-        <? if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5)
+		<th scope="col" abbr="<?php echo $lang->NAME?>"><?php echo $lang->NAME?></th>
+		<th scope="col" abbr="<?php echo $lang->USERNAME?>"><?php echo $lang->USERNAME?></th>
+		<th scope="col" abbr="<?php echo $lang->MAIL?>"><?php echo $lang->MAIL?></th>
+		<th scope="col" abbr="<?php echo $lang->GROUP?>"><?php echo $lang->GROUP?></th>
+		<th scope="col" abbr="<?php echo $lang->LAST_VISIT?>"><?php echo $lang->LAST_VISIT?></th>
+        <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5)
 			echo '<th scope="col" abbr="'.$lang->CONTROL.'">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
+	<tbody>
 	<?php
 		$query = $db->query($pagging[4]);
 		$counter = 1;
@@ -41,13 +53,13 @@
 					<td><?php echo $result['email'];?></td>
 					<td><?php echo $new_result['title'];?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['visit']));?></td>
-                    <? if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5) {?>
+                    <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5) {?>
 					<td width="65px">
-						<div title="<?=$lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
-						<div title="<?=$lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
+						<div title="<?php echo $lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
 					</td>
-                    <? } ?>
+                    <?php } ?>
 				</tr>
 				<tr id="sumo2-user-row-<?php echo $rowEncryption; ?>" style="display:none;">
 					<td colspan="7">
@@ -98,8 +110,9 @@
 			}
 		}
 		if($counter==1)
-			echo '<tr><td colspan="6" style="text-align:center; font-size:13px;"><b>'.$lang->MOD_3.'</b></td></td>';
+			echo '<tr><td colspan="7" style="text-align:center; font-size:13px;"><b>'.$lang->MOD_3.'</b></td></td>';
 	?>
+	</tbody>
 </table>
-<?= pagging($accordion_id, $pagging); ?>
+<?php echo  pagging($accordion_id, $pagging); ?>
 </div>

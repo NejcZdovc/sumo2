@@ -12,12 +12,12 @@
 <div id="a_user_group_vd" style="clear:both;">
 <table cellpadding="0" cellspacing="1" border="0" class="table1 table2" width="99%">
 	<tr>
-		<th><?=$lang->NAME?></th>
-		<th><?=$lang->USERNAME?></th>
-		<th><?=$lang->MAIL?></th>
-		<th><?=$lang->GROUP?></th>
-		<th><?=$lang->LAST_VISIT?></th>
-		<? if($user->getAuth('FAV_USER_4') == 2 || $user->getAuth('FAV_USER_4') == 4 || $user->getAuth('FAV_USER_4') == 5)
+		<th><?php echo $lang->NAME?></th>
+		<th><?php echo $lang->USERNAME?></th>
+		<th><?php echo $lang->MAIL?></th>
+		<th><?php echo $lang->GROUP?></th>
+		<th><?php echo $lang->LAST_VISIT?></th>
+		<?php if($user->getAuth('FAV_USER_4') == 2 || $user->getAuth('FAV_USER_4') == 4 || $user->getAuth('FAV_USER_4') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
@@ -40,13 +40,13 @@
 					<td><?php echo $result['email'];?></td>
 					<td><?php echo $new_result['title'];?></td>
 					<td><?php echo $result['visit'];?></td>
-                    <? if($user->getAuth('FAV_USER_4') == 2 || $user->getAuth('FAV_USER_4') == 4 || $user->getAuth('FAV_USER_4') == 5) {?>
+                    <?php if($user->getAuth('FAV_USER_4') == 2 || $user->getAuth('FAV_USER_4') == 4 || $user->getAuth('FAV_USER_4') == 5) {?>
 					<td width="65px">
-						<div title="<?=$lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>','<?=$accordion_id?>')"></div>
-						<div title="<?=$lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>','<?=$accordion_id?>')"></div>
-						<div title="<?=$lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteUser('<?php echo $crypt->encrypt($result['ID']); ?>','<?=$accordion_id?>')"></div>
+						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>','<?php echo $accordion_id?>')"></div>
+						<div title="<?php echo $lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>','<?php echo $accordion_id?>')"></div>
+						<div title="<?php echo $lang->MOD_6?>" class="delete sumo2-tooltip" onclick="sumo2.user.DeleteUser('<?php echo $crypt->encrypt($result['ID']); ?>','<?php echo $accordion_id?>')"></div>
 					</td>
-                    <? } ?>
+                    <?php } ?>
 				</tr>
 				<?php 
 				$counter++;
@@ -56,5 +56,5 @@
 			echo '<tr><td colspan="6" style="text-align:center; font-size:13px;"><b>'.$lang->MOD_77.'</b></td></td>';
 	?>
 </table>
-<?= pagging($accordion_id, $pagging); ?>
+<?php echo  pagging($accordion_id, $pagging); ?>
 </div>

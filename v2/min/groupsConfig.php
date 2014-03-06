@@ -14,7 +14,7 @@
 include_once('../configs/settings.php');
 
 ini_set('log_errors',1);
-ini_set('error_log','../logs/errorFront.log');
+ini_set('error_log','../logs/error.log');
 clearstatcache();
 
 if(isset($_GET['a']) && $_GET['a']=="css") {
@@ -42,7 +42,7 @@ if(isset($_GET['a']) && $_GET['a']=="css") {
 	} else {
 		error_log("ERROR: modules/javascript.xml file doesn\"t exsist.");	
 	}
-	return array('css' => array('//'.SITE_FOLDER.'v2/css/content.css', '//'.SITE_FOLDER.'v2/css/user.css', '//'.SITE_FOLDER.'v2/css/style.css', '//'.SITE_FOLDER.'v2/includes/javascript.mod.css.php', $src_css));
+	return array('css' => array('//'.SITE_FOLDER.'v2/css/content.css', '//'.SITE_FOLDER.'v2/css/user.css', '//'.SITE_FOLDER.'v2/css/style.css', $src_css));
 } else if(isset($_GET['a'])&& $_GET['a']=="js") {	
 	$isNoUpdateFile=1;
 	require_once('../initialize.php'); 	
@@ -74,6 +74,6 @@ if(isset($_GET['a']) && $_GET['a']=="css") {
 	}
 	
 	return array(
-		'js' => array('//'.SITE_FOLDER.'v2/ckeditor/ckeditor.min.js', '//'.SITE_FOLDER.'v2/scripts/jquery.min.js', '//'.SITE_FOLDER.'v2/scripts/sumo2.system.js', '//'.SITE_FOLDER.'v2/scripts/jquery.ui.js', '//'.SITE_FOLDER.'v2/scripts/jquery.plugins.js', '//'.SITE_FOLDER.'v2/scripts/sumo2.user.js','//'.SITE_FOLDER.'v2/scripts/javascript.plugin.js', $src_js)
+		'js' => array('//'.SITE_FOLDER.'v2/ckeditor/ckeditor.min.js', '//'.SITE_FOLDER.'v2/scripts/jquery.min.js', '//'.SITE_FOLDER.'v2/scripts/sumo2.system.js', '//'.SITE_FOLDER.'v2/scripts/jquery.ui.js', '//'.SITE_FOLDER.'v2/scripts/jquery.plugins.js', '//'.SITE_FOLDER.'v2/scripts/sumo2.user.js', '//'.SITE_FOLDER.'v2/scripts/javascript.plugin.js', $src_js)
 	);
 }

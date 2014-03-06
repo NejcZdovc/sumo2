@@ -5,10 +5,10 @@
 	}
 ?>
 <form action="" name="d_article_cat" id="d_article_cat_id" method="post" class="form2">
-<input type="hidden" id="edit_id_cat" value="<?=$db->filter('cat')?>" />
-<input type="hidden" id="edit_id" value="<?=$db->filter('id')?>" />
+<input type="hidden" id="edit_id_cat" value="<?php echo $db->filter('cat')?>" />
+<input type="hidden" id="edit_id" value="<?php echo $db->filter('id')?>" />
 <table cellpadding="0" cellspacing="4" border="0" width="99%" >
-<?
+<?php
 	$stevilo=0;
 	$query=$db->query('SELECT name, ID FROM cms_language_front');
 	while($results=$db->fetch($query)) {

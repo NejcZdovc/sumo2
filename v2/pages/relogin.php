@@ -11,12 +11,12 @@ include_once('../essentials/cookie.class.php');
 include_once('../essentials/session.class.php'); 
 include_once('../essentials/language.class.php'); 
 ?>
-<br/><b><?=$lang->MOD_192?></b><br/>
-<b><?=$lang->MOD_193?></b><br/><br/>
+<br/><b><?php echo $lang->MOD_192?></b><br/>
+<b><?php echo $lang->MOD_193?></b><br/><br/>
 <form method="post" action="" name="d_relogin">
     <input type="hidden" name="token" value="<?php echo base64_encode(time()); ?>" />
-    <div class="label"><?=$lang->USERNAME?>:</div>
+    <div class="label"><?php echo $lang->USERNAME?>:</div>
     <input type="text" name="username" tabindex="10" class="input" />
-    <div class="label"><?=$lang->USER_ADDU_P_1?>:</div>
+    <div class="label"><?php echo $lang->USER_ADDU_P_1?>:</div>
     <input type="password" name ="password" tabindex="20" class="input" autocomplete="off" />
 </form>

@@ -7,8 +7,8 @@
 
 	//Database
     define('__DB_SERVER__','localhost');
-    define('__DB_USER__','rcuser');
-    define('__DB_PASSWORD__','48uH_spu');
+    define('__DB_USER__','root');
+    define('__DB_PASSWORD__','');
     define('__DB_DATABASE__','3zsistemi_rc');
 	
 	//FTP permissions
@@ -17,8 +17,12 @@
 	
 	//Site tree
 	define('ADMIN_ADDR','v2');
-	$folder=__FILE__;
-	$folder=str_replace($_SERVER['DOCUMENT_ROOT'], '', $folder);
-	$folder=str_replace('/v2/configs/settings.php', '', $folder);
+	$root=$_SERVER['DOCUMENT_ROOT'];
+	if(DS=="\\") {
+		$root=str_replace('/', '\\', $root);
+	}
+	$folder=str_replace($root, '', __DIR__);
+	$folder=str_replace(DS.'v2'.DS.'configs', '', $folder);
+	
 	define('SITE_FOLDER',$folder);
 ?>

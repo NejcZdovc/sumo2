@@ -1200,7 +1200,6 @@
 			<width>350</width>
 			<end>
 				<![CDATA[ 
-					console.log("ok");
 					$('#nameKKK').tagit({sortable:true});
 				]]>
 			</end>
@@ -1688,8 +1687,12 @@
 			<page>pages/user.management.view.users.php</page>
 			<params/>
 			<func>
-				<![CDATA[  
+				<![CDATA[
 					sumo2.tooltip.FindTooltips(document.getElementById('a_user_view_u_table'));
+					
+					$("#a_user_view_u_table_id_search").enterKey(function () {
+						sumo2.accordion.ReloadAccordion('a_user_view_u','query='+this.value);
+					});
 				]]>
 			</func>
 			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_2</title>
@@ -2073,7 +2076,11 @@
 								sorter: 'dateSUMO' 
 							}
 						} 
-					});  
+					});
+					
+					$("#a_article_view_a_table_id_search").enterKey(function () {
+						sumo2.accordion.ReloadAccordion('a_article_view_a','query='+this.value);
+					});
 				]]>
 			</func>
 			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SETTINGS_21</title>

@@ -1,4 +1,4 @@
-<? 
+<?php 
 require_once('../initialize.php');
 /*
 Uploadify v2.1.0

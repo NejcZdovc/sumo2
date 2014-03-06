@@ -1,4 +1,4 @@
-<? require_once('../initialize.php'); 
+<?php require_once('../initialize.php'); 
 	if(!$session->isLogedIn() && !$security->checkURL()) {
 		exit;
 	}
@@ -10,12 +10,12 @@
 <div id="a_mail_sent_table" style="clear:both;">
 <table cellpadding="0" cellspacing="1" border="0" class="table1 table2" width="99%">
 	<tr>
-    	<th><?=$lang->MAIL_TO?></th>
-		<th><?=$lang->MAIL_SUBJECT?></th>
-		<th><?=$lang->SENT_DATE?></th>
-		<th><?=$lang->CONTROL?></th>
+    	<th><?php echo $lang->MAIL_TO?></th>
+		<th><?php echo $lang->MAIL_SUBJECT?></th>
+		<th><?php echo $lang->SENT_DATE?></th>
+		<th><?php echo $lang->CONTROL?></th>
 	</tr>
-    <? 
+    <?php 
 	$counter = 1;
 	$query = $db->query($pagging[4]);
 	while($result = $db->fetch($query)) {
@@ -57,5 +57,5 @@
 			echo '<tr><td colspan="6" style="text-align:center; font-size:13px;"><b>'.$lang->MAIL_SENTITEMS.'</b></td></td>';	
 	?>
 </table>
-<?= pagging($accordion_id, $pagging); ?>
+<?php echo  pagging($accordion_id, $pagging); ?>
 </div>

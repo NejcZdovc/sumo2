@@ -8,14 +8,14 @@ $tableName = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$que
 $modulData = $db->get($db->query("SELECT * FROM ".$tableName['editTable']." WHERE cms_layout='".$db->filter('layout')."' AND cms_panel_id='".$db->filter('panel')."'"));
 $shortLayout = $db->filter('layout');
 ?>
-<div class="center-inputs"><div class="input-label"><?=$lang->MOD_29?>:</div> 
-<input type="text" name="rename" id="rename-item-sitetree" class="input" value="<?=$query['title']?>" />
-<input type="hidden" id="sitetree-modul" value="<?=$db->filter('panel')?>" />
-<input type="hidden" id="sitetree-layout" value="<?=$db->filter('layout')?>" />
+<div class="center-inputs"><div class="input-label"><?php echo $lang->MOD_29?>:</div> 
+<input type="text" name="rename" id="rename-item-sitetree" class="input" value="<?php echo $query['title']?>" />
+<input type="hidden" id="sitetree-modul" value="<?php echo $db->filter('panel')?>" />
+<input type="hidden" id="sitetree-layout" value="<?php echo $db->filter('layout')?>" />
 <input type="text" name="enterfix" style="display:none;" />
-<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?=$lang->MOD_30?>:</div>
+<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?php echo $lang->MOD_30?>:</div>
 <select id="prefixOfModule" style="float:left; margin-top:10px;">
-        <?
+		<?php
 			$query2=$db->query('SELECT name, ID, prefix FROM cms_modul_prefix WHERE enabled="1" AND domain="'.$user->domain.'"');
 			while($results=$db->fetch($query2)) {
 				if($results['prefix'] == $query['prefix'])
@@ -27,24 +27,24 @@ $shortLayout = $db->filter('layout');
 		?>
 </select>
 <div style="clear:both; margin-bottom:5px;"></div>
-<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?=$lang->MOD_168?>:</div>
-<input type="text" name="cache" id="cache-item-sitetree" style="width:50px;" class="input" value="<?=$query['cache']?>" />&nbsp;<?=$lang->MOD_169?>
+<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?php echo $lang->MOD_168?>:</div>
+<input type="text" name="cache" id="cache-item-sitetree" style="width:50px;" class="input" value="<?php echo $query['cache']?>" />&nbsp;<?php echo $lang->MOD_169?>
 <div style="clear:both; margin-bottom:5px;"></div>
-<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?=$lang->MOD_198?>:</div>
+<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?php echo $lang->MOD_198?>:</div>
 <select id="specialPage" style="float:left; margin-top:10px;">
-	<option value="1" <? if($query['specialPage'] == '1') echo 'selected="selected"';?>><?=$lang->ARTICLE_19?></option>
-	<option value="0" <? if($query['specialPage'] == '0') echo 'selected="selected"';?>><?=$lang->ARTICLE_20?></option>
+	<option value="1" <?php if($query['specialPage'] == '1') echo 'selected="selected"';?>><?php echo $lang->ARTICLE_19?></option>
+	<option value="0" <?php if($query['specialPage'] == '0') echo 'selected="selected"';?>><?php echo $lang->ARTICLE_20?></option>
 </select>
-<? if($query['copyModul'] != '0') { ?>
+<?php if($query['copyModul'] != '0') { ?>
 <div style="clear:both; margin-bottom:5px;"></div>
-<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?=$lang->MOD_199?>:</div>
+<div class="input-label" style="margin-top:13px; float:left; margin-right:10px;"><?php echo $lang->MOD_199?>:</div>
 <select id="copyModul" style="float:left; margin-top:10px;">
-	<option value="1" <? if($query['copyModul'] != '0') echo 'selected="selected"';?>><?=$lang->ARTICLE_19?></option>
-	<option value="0" <? if($query['copyModul'] == '0') echo 'selected="selected"';?>><?=$lang->ARTICLE_20?></option>
+	<option value="1" <?php if($query['copyModul'] != '0') echo 'selected="selected"';?>><?php echo $lang->ARTICLE_19?></option>
+	<option value="0" <?php if($query['copyModul'] == '0') echo 'selected="selected"';?>><?php echo $lang->ARTICLE_20?></option>
 </select>
-<? } else { ?>
+<?php } else { ?>
 	<input type="hidden" value="0" id="copyModul" />
-<? } ?>
+<?php } ?>
 <div style="clear:both;"></div>
 </div>
 <div style="height:10px;display:block;width:100%;"></div>

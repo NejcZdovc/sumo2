@@ -1,4 +1,4 @@
-<? require_once('../initialize.php'); ?>
+<?php require_once('../initialize.php'); ?>
 <form action="" name="d_out_of_date" id="d_out_of_date" method="post" class="form2">
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
     <tr>
@@ -23,7 +23,7 @@
     </tr>
     <tr>
         <td colspan="5" class="left_td" valign="top" style="text-align:center;">
-        <?=$lang->MOD_114?>
+        <?php echo $lang->MOD_114?>
         </td>
     </tr>
     </table>
