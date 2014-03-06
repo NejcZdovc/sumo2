@@ -18,6 +18,7 @@
     <input id="a_user_view_u_table_id_search" name="search" value="<?php echo $query ?>" class="input" style="width:200px; margin-left:10px;" value="" type="text" maxlength="50" />
 </div>
 <div id="a_user_view_u_table" style="clear:both;">
+<?php echo  pagging($accordion_id, $pagging); ?>
 <table cellpadding="0" cellspacing="1" border="0" id="a_user_view_u_table" summary="View users" class="table1 table2" width="99%">
 <caption class="hide"><?php echo $lang->LEFT_USER_1?></caption>
 	<tr>
