@@ -375,7 +375,7 @@ if($db->is('type')) {
 			$port=$db->filter('port');
 			$ftpConn = ftp_connect($url, $port);			
 			if (!$ftpConn) {
-				echo $lang->MOD_128." $ftpServer";
+				echo $lang->MOD_128." ".$url;
 				exit;
 			}
 			
