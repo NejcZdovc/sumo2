@@ -1714,7 +1714,7 @@ var sumo2 = {
 				this.CreateDialog(dialog);
 				this.SELECTED = dialog.uniqueId;
 				this.AddDialog(dialog.uniqueId);
-				if(esc==null && esc==false) {
+				if(esc!=null && esc!=false) {
 					sumo2.AddEvent(document,'keydown',function(event) {
 						if(!event) event = window.event;
 						if(event.keyCode == 27 && sumo2.dialog.SELECTED == dialog.uniqueId) {
