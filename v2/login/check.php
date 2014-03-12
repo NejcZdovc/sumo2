@@ -14,7 +14,7 @@ if($db->filter('token') == $session->getFormToken())
 {
 	$password = $db->filter('password');
 	$username = $db->filter('username');
-	if($valid->isUsername($username,1,20) && $valid->isLength($password,6,20))
+	if($valid->isUsername($username,1,60) && $valid->isLength($password,6,20))
 	{
 		$id = User::authenticate($username,$password);
 		if($id=="domain") {

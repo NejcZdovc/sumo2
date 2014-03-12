@@ -1836,7 +1836,7 @@ sumo2.sumoSettings = {
 				sumo2.message.NewMessage(problem,3);
 			} else {
 				if(oldpassword == "") {
-					var params = "type=edit$!$id="+id+"$!$name="+name+"$!$email="+email+"$!$group="+group.options[group.selectedIndex].value;
+					var params = "type=edit$!$id="+id+"$!$name="+name+"$!$group="+group.options[group.selectedIndex].value;
 				} else {
 					var params = "type=edit$!$oldpassword="+oldpassword+"$!$id="+id+"$!$newpassword="+password+"$!$name="+name+"$!$email="+email+"$!$group="+group.options[group.selectedIndex].value;
 				}
