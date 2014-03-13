@@ -133,6 +133,9 @@ function getBrowser()
     elseif (preg_match('/windows|win32/i', $u_agent)) {
         $platform = 'windows';
     }
+	
+	$bname="Unknown";
+	$ub="Unknown";
    
     // Next get the name of the useragent yes seperately and for good reason
     if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent))
