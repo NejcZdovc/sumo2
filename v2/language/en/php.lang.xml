@@ -13,6 +13,7 @@
 		<item constant="GROUP">Group</item>
 		<item constant="TITLE">Title</item>
 		<item constant="LAST_VISIT">Last visit</item>
+		<item constant="REGISTRATION">Registration</item>
 		<item constant="CREATE_DATE">Creation date</item>
 		<item constant="ALL">All</item>
 	</parent>

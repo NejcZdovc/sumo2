@@ -587,6 +587,7 @@ CREATE TABLE IF NOT EXISTS `cms_user` (
   `email` varchar(100) NOT NULL,
   `GroupID` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `registration` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `visit` datetime NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `status` enum('D','N','DD') NOT NULL DEFAULT 'N',
