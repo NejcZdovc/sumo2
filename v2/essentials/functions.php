@@ -201,7 +201,14 @@ function getBrowser()
         'platform'  => $platform,
         'pattern'    => $pattern
     );
-} 
+}
+
+function detectDevice() {
+	$detect = new Mobile_Detect();
+	$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+	
+	return $deviceType;
+}
 
 function checkTemplate($ID) {
 	global $db;

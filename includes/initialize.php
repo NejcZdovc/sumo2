@@ -21,6 +21,7 @@
 	require_once(__DIR__.DS.'pop3.class.php');
 	require_once(__DIR__.DS.'smtp.class.php');
 	require_once(__DIR__.DS.'fields.class.php');
+	require_once(__DIR__.DS.'..'.DS.'v2'.DS.'essentials.'.DS.'device.detect.class.php');
 	if($user->developer=="1") {
 		ini_set('display_errors',1);
 		ini_set('error_reporting',E_ALL);		
