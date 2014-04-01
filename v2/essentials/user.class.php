@@ -17,6 +17,7 @@ class User
 		global $db;
 		$id=$db->filterVar($id);
 		$this->id = $id;
+		$this->ID = $id;
 		$results = $db->get($db->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$this->id."'"));
 		$this->username = $results['username'];
 		$this->email = $results['email'];
@@ -28,15 +29,15 @@ class User
 		$results = $db->get($db->query("SELECT * FROM cms_user_settings WHERE cms_user_settings.UserID='".$this->id."'"));
 		if($results) {
 			foreach($results as $key => $value) {
-				$this->{$key} = $value;
+				if($key!="ID" && $key!="userID") {
+					$this->{$key} = $value;
+				}
 			}
 		}
 		
 		$results = $db->get($db->query("SELECT name AS domainName FROM cms_domains WHERE cms_domains.ID='".$this->domain."'"));
 		if($results) {
-			foreach($results as $key => $value) {
-				$this->{$key} = $value;
-			}
+			$this->{'domainName'} = $results['domainName'];
 		}
 	}
 	
