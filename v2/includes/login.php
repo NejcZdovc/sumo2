@@ -8,33 +8,36 @@ if($allow>0) {
 	echo "ip";
 	exit();
 }
-if((time()-$time)<120)
+if((time()-$time)<600)
 {
 	$password = $db->filter('password');
 	$username = $db->filter('username');
+	$oldUserID = $db->filter('oldUserID');
 	$hold = $db->filter('remember');
 	if(ob_get_length()>0) {ob_end_clean();}
 	if($valid->isUsername($username,1,20) && $valid->isLength($password,6,20))
 	{
-		$id = User::authenticate($username,$password);
-		if($id != false)
-		{
+		$id = User::authenticate($username,$password, $oldUserID);
+		if($id=="token") {
+			echo 'token';	
+		} else if($id=="domain") {
+			echo 'domain';	
+		} else if($id=="refresh") {
+			echo 'refresh';	
+		} else if($id != false) {
 			$session->login($id,$hold);
 			User::updateVisit($id);
 			echo 'ok';	
 		}
-		else
-		{
+		else {
 			echo 'match';	
 		}
 	}
-	else
-	{
+	else {
 		echo 'format';	
 	}
 }
-else
-{
+else {
 	echo 'token';	
 }
 ?>

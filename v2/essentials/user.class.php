@@ -80,15 +80,28 @@ class User
 		}
 	}
 	
-	public static function authenticate($username = '', $password = '')
+	public static function authenticate($username = '', $password = '', $oldUser)
 	{
-		global $db;
-		global $crypt;
+		global $db, $crypt;
 		
 		$password = $crypt->passwordHash($password,$username);
 		$username = $db->filterVar($username);
+		$oldUserID=null;
+		$new=false;
+		$tempUser=explode("_", $crypt->decrypt($oldUser));
+		if($tempUser[0]=="new") {
+			$new=true;
+			if(!isset($tempUser[1]) || (isset($tempUser[1]) && (time()-$tempUser[1])>600)) {
+				return "token";
+			}
+		} else {
+			if(!isset($tempUser[1]) || (isset($tempUser[1]) && (time()-$tempUser[1])>600)) {
+				return "token";
+			}
+			$oldUserID=$tempUser[0];
+		}
 		
-		$results = $db->get($db->query("SELECT ID,GroupID FROM cms_user WHERE username='".$username."' AND pass ='".$password."' AND status='N' AND enabled='1' AND GroupID!='3'"));
+		$results = $db->get($db->query("SELECT ID, GroupID FROM cms_user WHERE username='".$username."' AND pass ='".$password."' AND status='N' AND enabled='1' AND GroupID!='3'"));
 		if($results)
 		{
 			$new_results = $db->get($db->query("SELECT ID FROM cms_user_groups WHERE ID='".$results['GroupID']."' AND enabled='1'"));
@@ -99,11 +112,19 @@ class User
 				}
 				$num=$db->rows($db->query("SELECT ID FROM cms_domains_ids WHERE type='group' AND domainID='".$domainID['ID']."' AND elementID='".$results['GroupID']."'"));			
 				if($num>0) {
-					return $results['ID'];	
+					if(!$new && $oldUserID!=$results['ID']) {
+						return "refresh";
+					} else {
+						return $results['ID'];
+					}
 				} else {
 					$num=$db->rows($db->query("SELECT ID FROM cms_domains WHERE alias='0'"));			
 					if($num==0 && $results['GroupID']=='1') {
-						return $results['ID'];	
+						if(!$new && $oldUserID!=$results['ID']) {
+							return "refresh";
+						} else {
+							return $results['ID'];
+						}
 					} else {						
 						return "domain";
 					}
@@ -112,9 +133,7 @@ class User
 			} else {
 				return false;
 			}
-		}
-		else
-		{
+		} else {
 			return false;	
 		}
 	}

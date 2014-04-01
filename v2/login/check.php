@@ -16,9 +16,11 @@ if($db->filter('token') == $session->getFormToken())
 	$username = $db->filter('username');
 	if($valid->isUsername($username,1,60) && $valid->isLength($password,6,20))
 	{
-		$id = User::authenticate($username,$password);
+		$id = User::authenticate($username,$password, $crypt->encrypt("new_".time()));
 		if($id=="domain") {
 			echo 'domain';	
+		} elseif($id=="token") {
+			echo 'token';	
 		} else {
 			if($id != false) {
 				$session->login($id);

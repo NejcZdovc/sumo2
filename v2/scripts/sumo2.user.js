@@ -2924,10 +2924,11 @@ sumo2.login= {
 	Check : function() {
 		var username = document.d_relogin.username.value;
 		var password = document.d_relogin.password.value;
+		var oldUserID = document.d_relogin.oldUserID.value;
 		var token = document.d_relogin.token.value;
 		var remember=true;
-		var params = "username=" + username + "$!$password=" + password + "$!$remember=" + remember + "$!$token=" + token;
-		sumo2.ajax.SendPost("includes/login.php", params, function (data) {
+		var params = "username=" + username + "$!$password=" + password + "$!$remember=" + remember + "$!$token=" + token + "$!$oldUserID=" + oldUserID;
+		sumo2.ajax.SendPost("includes/login.php", params, function (data) {			
 			if (data == "token") {
 				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_175,3);
 				sumo2.dialog.ReloadDialog ('d_relogin');
@@ -2935,6 +2936,10 @@ sumo2.login= {
 				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_176,3);				
 			} else if (data == "ip") {
 				window.location="/block/";
+			} else if (data == "refresh") {
+				window.location.reload();
+			} else if (data == "domain") {
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_217,3);
 			} else if (data == "ok") {
 				sumo2.preview.Update();
 				sumo2.dialog.CloseDialog('d_relogin');
