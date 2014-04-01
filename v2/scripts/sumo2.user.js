@@ -2122,17 +2122,9 @@ sumo2.sumoSettings = {
 		else if(WM=='1') 
 			document.a_settings_global.WM_ID.disabled=false;
 	},
-	Error : function() {
+	CleanLog: function(id) {
 		sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_40,300,250,function() {
-			sumo2.ajax.SendPost("includes/settings.php","type=error",function(data) {
-
-				 sumo2.accordion.ReloadAccordion('a_settings')
-			});
-		});
-	},
-	ErrorFront : function() {
-		sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_40,300,250,function() {
-			sumo2.ajax.SendPost("includes/settings.php","type=errorFront",function(data) {
+			sumo2.ajax.SendPost("includes/settings.php","type=cleanLog$!$id="+id,function(data) {
 				 sumo2.accordion.ReloadAccordion('a_settings')
 			});
 		});

@@ -226,6 +226,7 @@
 		<item constant="SETTINGS_63">Update cache</item>
 		<item constant="SETTINGS_64">Update cache number for CSS and JS, which will force browser to update it.</item>
 		<item constant="SETTINGS_65">Update</item>
+		<item constant="SETTINGS_66">Data log</item>
 	</parent>	
 	<parent id="Menus">
 		<item constant="MENU_1">Please enter menu name to identify it</item>

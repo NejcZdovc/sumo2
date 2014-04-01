@@ -445,4 +445,13 @@ function getSpaces($level) {
 	}
 	return $spaces;
 }
+
+function data_log($data) {
+	global $user;
+	$file = "..".DS."logs".DS."data_".$user->domainName.".log";
+	$fh = fopen($file, 'a+');
+	$string="[".date("d.m.Y H:i:s", time())."] ".$data.PHP_EOL;
+	fwrite($fh, $string);
+	fclose($fh);
+}
 ?>

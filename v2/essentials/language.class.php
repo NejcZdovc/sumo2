@@ -15,7 +15,7 @@ class Language {
 		if(!is_file($filename)) {
 			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language'.DS.'en'.DS.'php.lang.xml';
 			if(!is_file($filename)) {
-				error_log("Main EN language file is missing!");
+				error_log("Main v2 EN language file is missing!");
 			}
 		}
 		$this->_specialArray = $xml->getSpecialArray($filename);

@@ -10,9 +10,6 @@
  *
  * See http://code.google.com/p/minify/wiki/CustomSource for other ideas
  **/
-
-include_once('../configs/settings.php');
-
 ini_set('log_errors',1);
 ini_set('error_log','../logs/error.log');
 clearstatcache();

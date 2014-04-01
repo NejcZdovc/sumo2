@@ -177,7 +177,7 @@
 		<item constant="MOD_37">Jezik je uspešno dodan.</item>
 		<item constant="MOD_38">Ali ste prepričani, da želite izbrisati to predlogo?</item>
 		<item constant="MOD_39">Predloga je uspešno izbrisana.</item>
-		<item constant="MOD_40">Ali ste prepričani, da želite <b>počistiti (izbrisati)</b> dnevnik napak?<br/><br/> Zavihek z nastavitvami bo osvežen, vsa <b>neshranjeva vsebina bo izbrisana</b>. </item>
+		<item constant="MOD_40">Ali ste prepričani, da želite <b>počistiti (izbrisati)</b> dnevnik?<br/><br/> Zavihek z nastavitvami bo osvežen, vsa <b>neshranjeva vsebina bo izbrisana</b>. </item>
 		<item constant="MOD_41">Prefks je uspešno dodan.</item>
 		<item constant="MOD_42">-<b>Ime</b> mora biti unikatno.</item>
 		<item constant="MOD_43">Pozicija je uspešno dodana.</item>
