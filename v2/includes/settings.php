@@ -246,17 +246,10 @@ if($db->is('type')) {
 				exit;
 			}
 		}
-		else if($db->filter('type') == 'error') {
-			$file = "../logs/error.log";
+		else if($db->filter('type') == 'cleanLog') {
+			$file = "..".DS."logs".DS.$db->filter('id');
 			$fh = fopen($file, 'w');
-			$string="Error log cleaned (".date("d.m.Y H:m", time()).")\r\n\n";
-			fwrite($fh, $string);
-			fclose($fh);
-		}
-		else if($db->filter('type') == 'errorFront') {
-			$file = "../logs/errorFront_".$user->domainName.".log";
-			$fh = fopen($file, 'w');
-			$string="Error log cleaned (".date("d.m.Y H:m", time()).")\r\n\n";
+			$string="Log cleaned (".date("d.m.Y H:i", time()).")".PHP_EOL.PHP_EOL;
 			fwrite($fh, $string);
 			fclose($fh);
 		}
@@ -375,7 +368,7 @@ if($db->is('type')) {
 			$port=$db->filter('port');
 			$ftpConn = ftp_connect($url, $port);			
 			if (!$ftpConn) {
-				echo $lang->MOD_128." $ftpServer";
+				echo $lang->MOD_128." ".$url;
 				exit;
 			}
 			

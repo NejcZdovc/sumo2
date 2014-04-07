@@ -4,6 +4,15 @@
 	require_once(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'v2'.DIRECTORY_SEPARATOR.'configs'.DIRECTORY_SEPARATOR.'settings.php');
 	ini_set('log_errors',1);
 	ini_set('error_log',__DIR__.DS.'..'.DS.'v2'.DS.'logs'.DS.'errorFront_'.str_replace("www.", "", $_SERVER['HTTP_HOST']).'.log');
+	
+	function data_log($data) {
+		$file = __DIR__.DS.'..'.DS.'v2'.DS.'logs'.DS.'data_'.str_replace("www.", "", $_SERVER['HTTP_HOST']).'.log';
+		$fh = fopen($file, 'a+');
+		$string="[".date("d.m.Y H:i:s", time())."] ".$data.PHP_EOL;
+		fwrite($fh, $string);
+		fclose($fh);
+	}
+	
 	require_once(__DIR__.DS.'aes.chris.veness.class.php');	
 	require_once(__DIR__.DS.'xml.class.php');
 	require_once(__DIR__.DS.'database.class.php');
@@ -21,6 +30,7 @@
 	require_once(__DIR__.DS.'pop3.class.php');
 	require_once(__DIR__.DS.'smtp.class.php');
 	require_once(__DIR__.DS.'fields.class.php');
+	require_once(__DIR__.DS.'..'.DS.'v2'.DS.'essentials'.DS.'device.detect.class.php');
 	if($user->developer=="1") {
 		ini_set('display_errors',1);
 		ini_set('error_reporting',E_ALL);		

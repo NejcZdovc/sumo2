@@ -14,7 +14,7 @@ class Firewall {
 			fwrite($fileHandle,"[".date(DATE_RFC822)."] ".$ip."\n");
 			fclose($fileHandle);
 		} else {
-			error_log('File not found.');
+			error_log('ip.log file not found.');
 		}
 	}
 	

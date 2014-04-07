@@ -9,7 +9,7 @@
 		$query=$db->filter('query');
 	} else
 		$search='';
-	$pagging=check_pagging("SELECT ID,username,email,GroupID,name,visit,enabled FROM cms_user WHERE status='N' ".$search."", $user->items);
+	$pagging=check_pagging("SELECT ID,username,email,GroupID,name,visit,enabled,registration FROM cms_user WHERE status='N' ".$search."", $user->items);
 	$dropdown=dropdown_pagging($accordion_id, $pagging[0]);
 	echo '<div class="flt-right display">'.$dropdown.'</div>';
 ?>
@@ -28,6 +28,7 @@
 		<th scope="col" abbr="<?php echo $lang->MAIL?>"><?php echo $lang->MAIL?></th>
 		<th scope="col" abbr="<?php echo $lang->GROUP?>"><?php echo $lang->GROUP?></th>
 		<th scope="col" abbr="<?php echo $lang->LAST_VISIT?>"><?php echo $lang->LAST_VISIT?></th>
+		<th scope="col" abbr="<?php echo $lang->REGISTRATION?>"><?php echo $lang->REGISTRATION?></th>
         <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5)
 			echo '<th scope="col" abbr="'.$lang->CONTROL.'">'.$lang->CONTROL.'</th>';
 		?>
@@ -53,6 +54,7 @@
 					<td><?php echo $result['email'];?></td>
 					<td><?php echo $new_result['title'];?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['visit']));?></td>
+					<td><?php echo date($lang->DATE_1, strtotime($result['registration']));?></td>
                     <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5) {?>
 					<td width="65px">
 						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>

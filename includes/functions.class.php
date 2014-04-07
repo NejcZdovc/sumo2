@@ -185,6 +185,13 @@ class Func
 		return $url;
 	}
 	
+	function detectDevice() {
+		$detect = new Mobile_Detect();
+		$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+		
+		return $deviceType;
+	}
+	
 	function validateEmail($email)
 	{
 	   $isValid = true;

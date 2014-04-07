@@ -539,7 +539,7 @@ CREATE TABLE IF NOT EXISTS `cms_sumo_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `cms_sumo_settings` (`ID`, `version`, `FTP_user`, `FTP_pass`, `FTP_url`, `FTP_port`, `welcome`) VALUES
-(1, '1.34', NULL, NULL, NULL, '21', NULL);
+(1, '1.35', NULL, NULL, NULL, '21', NULL);
 
 
 -- --------------------------------------------------------
@@ -587,6 +587,7 @@ CREATE TABLE IF NOT EXISTS `cms_user` (
   `email` varchar(100) NOT NULL,
   `GroupID` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `registration` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `visit` datetime NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `status` enum('D','N','DD') NOT NULL DEFAULT 'N',

@@ -177,7 +177,7 @@
 		<item constant="MOD_37">Language was successfully added.</item>
 		<item constant="MOD_38">Are you sure you want to delete this template?</item>
 		<item constant="MOD_39">Template was successfully deleted.</item>
-		<item constant="MOD_40">Are you sure you want to <b>clear (delete)</b> error log?<br/><br/> Settings accordion will be refreshed, you will <b>lose all unsaved content</b>. </item>
+		<item constant="MOD_40">Are you sure you want to <b>clear (delete)</b> log?<br/><br/> Settings accordion will be refreshed, you will <b>lose all unsaved content</b>. </item>
 		<item constant="MOD_41">Prefix was successfully added.</item>
 		<item constant="MOD_42">-<b>Name</b> must be unique.</item>
 		<item constant="MOD_43">Position was successfully added.</item>
@@ -354,6 +354,7 @@
 		<item constant="MOD_214">Congratulation!<br/>You are using the latest version of SUMO2 CMS.</item>
 		<item constant="MOD_215">All modules in group</item>
 		<item constant="MOD_216">Only this module</item>
+		<item constant="MOD_217">Domain don't match. Please add domain for this user.</item>
 	</parent>	
 	<parent id="Language">
 		<item constant="LANG_WAR">Are you sure you want to change the language into </item>

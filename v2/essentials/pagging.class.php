@@ -48,7 +48,6 @@ class Pagging
     
     function init($sql) {
         global $db, $user;
-		$limit="";
 		$this->query=$sql;
         if($db->is('size')) {
             $this->pageSize=intval($db->filter('size'));
@@ -58,14 +57,24 @@ class Pagging
         }
         $current=$this->pageID*$this->pageSize;
         $next=4*$this->pageSize;
+		if (strpos($sql, '{limit}') !== false) {
+			$rowsQuery=str_replace("{limit}", "LIMIT ".$current.", ".$next."", $sql);
+		} else {
+			$rowsQuery=$sql." LIMIT ".$current.", ".$next;
+		}
     
-        $rows=$db->rows($db->query($sql." LIMIT ".$current.", ".$next));
+        $rows=$db->rows($db->query($rowsQuery));
         $this->allRows=$current + $rows;
         if($this->allRows>$this->pageSize) {
-            $limit=" LIMIT ".($this->pageID*$this->pageSize).", ".$this->pageSize."";
-        }
-		
-        $this->query.=$limit;
+			$limit=" LIMIT ".($this->pageID*$this->pageSize).", ".$this->pageSize."";
+			if (strpos($sql, '{limit}') !== false) {
+				$this->query=str_replace("{limit}", $limit, $sql);
+			} else {
+				$this->query.=$limit;
+			}
+        } else {
+			$this->query=str_replace("{limit}", "", $sql);
+		}
     }
     
     function dropDown() {        
