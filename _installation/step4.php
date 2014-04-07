@@ -265,8 +265,22 @@
 		$link->query("INSERT INTO cms_user (username, pass, email, GroupID, name, enabled, status) VALUES ('".$link->real_escape_string($username)."', '".$pass."', '".$link->real_escape_string($email)."', 1, '".$link->real_escape_string($nameA)."', 1, 'N');") or die($link->mysqli_error);
 		$userID=$link->insert_id;
 		
+		$lang=array();
+		$lang['hr']='Croatian';
+		$lang['en-gb']='English (United Kingdom)';
+		$lang['en-us']='English (United States)';
+		$lang['en']='English';
+		$lang['de']='German';
+		$lang['de-lu']='German (Austria)';
+		$lang['it']='Italian';
+		$lang['ru']='Russian';
+		$lang['sr']='Serbian (Latin)';
+		$lang['sh']='Serbo-Croatian';
+		$lang['sl']='Slovenian';
+		$lang['es']='Spanish (Spain)-ES';
+		
 		//add language
-		$link->query("INSERT INTO cms_language_front (name,short) VALUES ('Main language', '".$link->real_escape_string($_REQUEST['language'])."')") or die($link->mysqli_error);
+		$link->query("INSERT INTO cms_language_front (name,short) VALUES ('".$lang[$_REQUEST['language']]."', '".$link->real_escape_string($_REQUEST['language'])."')") or die($link->mysqli_error);
 		$languageID=$link->insert_id;
 		
 		//add domain		

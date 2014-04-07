@@ -30,7 +30,9 @@
 		while(($file=readdir($dir)) !== false) {
 			$path = $db->filter('path').$file;
 			if(is_file($path)) {
-				$extension = strtolower(end(explode('.',$file)));
+				$end=explode('.',$file);
+				$end=end($end);
+				$extension = strtolower($end);
 				$fileName = str_replace('.'.$extension,'',$file);
 				$stat = stat($path);
 				$size = $stat['size'];

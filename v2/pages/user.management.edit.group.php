@@ -96,7 +96,7 @@
         <div class="title_form_big"><?php echo $lang->MOD_225?>:</div><div class="title_form_small"><?php echo $lang->MOD_226?></div>
         </td>
         <td class="right_td">
-        	<?
+        	<?php
 				$domain=array();
 				$query=$db->query('SELECT domainID FROM cms_domains_ids WHERE type="group" AND elementID="'.$id.'"');
 				while($result=$db->fetch($query)) {

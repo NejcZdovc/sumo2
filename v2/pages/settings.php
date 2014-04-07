@@ -20,6 +20,7 @@
                     <?php } ?>
                     <li id="errortab"><a href="#error"><?php echo $lang->SETTINGS_51?></a></li>
                     <li id="errorFronttab"><a href="#errorFront"><?php echo $lang->SETTINGS_62?></a></li>
+					<li id="datatab"><a href="#data"><?php echo $lang->SETTINGS_66?></a></li>
                      <?php if($user->getAuth('FAV_SITE_3') == 5) {?>
                     	<li id="welcometab"><a href="#welcome"><?php echo $lang->SETTINGS_52?></a></li>
                     <?php } ?>
@@ -52,6 +53,9 @@
                     </div>
                     <div id="errorFront" class="tab_content" style="overflow:auto;">
                         <?php include("settings_errorFront.php") ?>
+                    </div>
+					<div id="data" class="tab_content" style="overflow:auto;">
+                        <?php include("settings_dataLog.php") ?>
                     </div>
                     <?php if($user->getAuth('FAV_SITE_3') == 5) {?>
                         <div id="welcome" class="tab_content" style="overflow:auto;">

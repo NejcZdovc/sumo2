@@ -162,7 +162,7 @@ if($db->is('type')) {
 				$filName = $db->filterVar($name);
 				$filEmail = $db->filterVar($email);
 				$filPass = $crypt->passwordHash($newpassword,$result['username']);
-				$db->query("UPDATE cms_user SET pass='".$filPass."',email='".$filEmail."',GroupID='".$group."',name='".$filName."' WHERE ID='".$id."'");
+				$db->query("UPDATE cms_user SET pass='".$filPass."', email='".$filEmail."', GroupID='".$group."', name='".$filName."' WHERE ID='".$id."'");
 			} else {
 				echo 'id';
 				exit;

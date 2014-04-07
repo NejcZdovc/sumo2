@@ -61,7 +61,7 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
         </td>
         <td class="right_td">
             <select id="domain" class="input" multiple="multiple" style="height:60px;">
-                <?
+                <?php
                     $query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
                     while($result=$db->fetch($query)) {
                         echo '<option value="'.$result['ID'].'">'.$result['name'].'</option>';

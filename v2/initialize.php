@@ -24,6 +24,7 @@ require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'update.clas
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'phpmailer.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'pop3.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'pagging.class.php');
+require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'device.detect.class.php');
 
 $setLocaleLang['hr']='';
 $setLocaleLang['en-gb']='en_UK';

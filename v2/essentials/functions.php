@@ -133,6 +133,9 @@ function getBrowser()
     elseif (preg_match('/windows|win32/i', $u_agent)) {
         $platform = 'windows';
     }
+	
+	$bname="Unknown";
+	$ub="Unknown";
    
     // Next get the name of the useragent yes seperately and for good reason
     if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent))
@@ -198,7 +201,14 @@ function getBrowser()
         'platform'  => $platform,
         'pattern'    => $pattern
     );
-} 
+}
+
+function detectDevice() {
+	$detect = new Mobile_Detect();
+	$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
+	
+	return $deviceType;
+}
 
 function checkTemplate($ID) {
 	global $db;
@@ -434,5 +444,14 @@ function getSpaces($level) {
 		$spaces .= '&nbsp;&nbsp;';
 	}
 	return $spaces;
+}
+
+function data_log($data) {
+	global $user;
+	$file = "..".DS."logs".DS."data_".$user->domainName.".log";
+	$fh = fopen($file, 'a+');
+	$string="[".date("d.m.Y H:i:s", time())."] ".$data.PHP_EOL;
+	fwrite($fh, $string);
+	fclose($fh);
 }
 ?>

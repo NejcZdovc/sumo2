@@ -17,10 +17,7 @@ class Fields
             } else {
                $this->javascript.="var element=document.getElementById('".$fieldId."');"; 
             }
-            $this->javascript.="if (element)  {
-             if(element.value.length<".$min." || element.value.length>".$max.") {ok=false;element.className=element.className.replace('error','');element.className+='error';} 
-             else
-              {element.className=element.className.replace('error','');}}";
+            $this->javascript.="if (element) { if(element.value.length<".$min." || element.value.length>".$max.") {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		}
 		if($dynamic && $db->is($fieldId))
 			return '<input type="text" maxlength="'.$max.'" value="'.$db->filter($fieldId).'" name="'.$fieldId.'" id="'.$fieldId.'" />';		
@@ -38,11 +35,9 @@ class Fields
             $this->javascript.="var element=document.getElementById('".$fieldId."'); var reg = /^([a-zA-Z0-9\u00A1-\uFFFF]+([\.+_-][a-zA-Z0-9\u00A1-\uFFFF]+)*)@(([a-zA-Z0-9]+((\.|[-]{1,2})[a-zA-Z0-9]+)*)\.[a-zA-Z]{2,6})$/;";
         }
 		if($required=="0") {
-			$this->javascript.="{
-			if(element.value.length>0 && !reg.test(element.value)) {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
+			$this->javascript.="if (element) { if(element.value.length>0 && !reg.test(element.value))  {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		} else {
-			$this->javascript.=" if (element)  {
-			if(!reg.test(element.value)) {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
+			$this->javascript.=" if (element)  { if(!reg.test(element.value)) {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		}
 		if($dynamic && $db->is($fieldId))		
 			return '<input type="text" name="'.$fieldId.'" id="'.$fieldId.'" value="'.$db->filter($fieldId).'" />';
@@ -81,7 +76,7 @@ class Fields
             } else {
                 $this->javascript.="var element=document.getElementsByName('".$fieldId."[]');";
             }
-             $this->javascript.="if (element)  {var napaka=true; for (i = 0; i < element.length; i++) {if(element[i].checked) {napaka=false;}} if(napaka){ok=false;for (i = 0; i < element.length; i++) {document.getElementById(element[i].id+'_label').className=element[i].className.replace('error_text','');document.getElementById(element[i].id+'_label').className+=' error_text';}} else {for (i = 0; i < element.length; i++) {document.getElementById(element[i].id+'_label').className=document.getElementById(element[i].id+'_label').className.replace('error_text','');}}}";	
+             $this->javascript.="if (element)  {var napaka=true; for (i = 0; i < element.length; i++) {if(element[i].checked) {napaka=false;}} if(napaka){ok=false;for (i = 0; i < element.length; i++) { var temp=document.getElementById(element[i].id+'_label'); if(temp) { document.getElementById(element[i].id+'_label').className=document.getElementById(element[i].id+'_label').className.replace('error_text',''); document.getElementById(element[i].id+'_label').className+=' error_text';}}} else {for (i = 0; i < element.length; i++) { var temp=document.getElementById(element[i].id+'_label'); if(temp) { document.getElementById(element[i].id+'_label').className=document.getElementById(element[i].id+'_label').className.replace('error_text','');}}}}";	
 		}
 		foreach($options as $i) {
 			if($dynamic && isset($_REQUEST[$fieldId]) && in_array($i, $_REQUEST[$fieldId]))	{	
@@ -111,10 +106,7 @@ class Fields
             } else {
                $this->javascript.="var element=document.getElementById('".$fieldId."');"; 
             }
-            $this->javascript.="if (element)  {
-             if(element.value.length<".$min." || element.value.length>".$max.") {ok=false;element.className=element.className.replace('error','');element.className+='error';} 
-             else
-              {element.className=element.className.replace('error','');}}";
+            $this->javascript.="if (element)  { if(element.value.length<".$min." || element.value.length>".$max.") {ok=false;element.className=element.className.replace('error','');element.className+='error';} else {element.className=element.className.replace('error','');}}";
 		}
 		if($dynamic && $db->is($fieldId))
 			return '<textarea maxlength="'.$max.'" name="'.$fieldId.'" id="'.$fieldId.'">'.$db->filter($fieldId).'"</textarea>';		

@@ -261,28 +261,28 @@ sumo2.AddLoadEvent(function() {
 <?php
 $ua=getBrowser();
 if(strtolower($ua['name']) == strtolower("Google Chrome")) {
-	if($ua['version'] < 21.0) {
+	if($ua['version'] < 30.0) {
 		echo "<script type=\"text/javascript\">
 			setTimeout('sumo2.dialog.NewDialog(\'d_out_of_date\')', 3000);
 			</script>";
 	}
 }
 else if(strtolower($ua['name']) == strtolower("Mozilla Firefox")) {
-	if($ua['version'] < 14.0) {
+	if($ua['version'] < 25.0) {
 		echo "<script type=\"text/javascript\">
 			setTimeout('sumo2.dialog.NewDialog(\'d_out_of_date\')', 3000);
 			</script>";
 	}
 } 
 else if(strtolower($ua['name']) == strtolower("Internet Explorer")) {
-	if($ua['version'] < 9.0) {
+	if($ua['version'] < 10.0) {
 		echo "<script type=\"text/javascript\">
 			setTimeout('sumo2.dialog.NewDialog(\'d_out_of_date\')', 3000);
 			</script>";
 	}
 }
 else if(strtolower($ua['name']) == strtolower("Opera")) {
-	if($ua['version'] < 12) {
+	if($ua['version'] < 18) {
 		echo "<script type=\"text/javascript\">
 			setTimeout('sumo2.dialog.NewDialog(\'d_out_of_date\')', 3000);
 			</script>";

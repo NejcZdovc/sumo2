@@ -1836,7 +1836,7 @@ sumo2.sumoSettings = {
 				sumo2.message.NewMessage(problem,3);
 			} else {
 				if(oldpassword == "") {
-					var params = "type=edit$!$id="+id+"$!$name="+name+"$!$email="+email+"$!$group="+group.options[group.selectedIndex].value;
+					var params = "type=edit$!$id="+id+"$!$name="+name+"$!$group="+group.options[group.selectedIndex].value;
 				} else {
 					var params = "type=edit$!$oldpassword="+oldpassword+"$!$id="+id+"$!$newpassword="+password+"$!$name="+name+"$!$email="+email+"$!$group="+group.options[group.selectedIndex].value;
 				}
@@ -2122,17 +2122,9 @@ sumo2.sumoSettings = {
 		else if(WM=='1') 
 			document.a_settings_global.WM_ID.disabled=false;
 	},
-	Error : function() {
+	CleanLog: function(id) {
 		sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_40,300,250,function() {
-			sumo2.ajax.SendPost("includes/settings.php","type=error",function(data) {
-
-				 sumo2.accordion.ReloadAccordion('a_settings')
-			});
-		});
-	},
-	ErrorFront : function() {
-		sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_40,300,250,function() {
-			sumo2.ajax.SendPost("includes/settings.php","type=errorFront",function(data) {
+			sumo2.ajax.SendPost("includes/settings.php","type=cleanLog$!$id="+id,function(data) {
 				 sumo2.accordion.ReloadAccordion('a_settings')
 			});
 		});
@@ -2932,10 +2924,11 @@ sumo2.login= {
 	Check : function() {
 		var username = document.d_relogin.username.value;
 		var password = document.d_relogin.password.value;
+		var oldUserID = document.d_relogin.oldUserID.value;
 		var token = document.d_relogin.token.value;
 		var remember=true;
-		var params = "username=" + username + "$!$password=" + password + "$!$remember=" + remember + "$!$token=" + token;
-		sumo2.ajax.SendPost("includes/login.php", params, function (data) {
+		var params = "username=" + username + "$!$password=" + password + "$!$remember=" + remember + "$!$token=" + token + "$!$oldUserID=" + oldUserID;
+		sumo2.ajax.SendPost("includes/login.php", params, function (data) {			
 			if (data == "token") {
 				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_175,3);
 				sumo2.dialog.ReloadDialog ('d_relogin');
@@ -2943,6 +2936,10 @@ sumo2.login= {
 				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_176,3);				
 			} else if (data == "ip") {
 				window.location="/block/";
+			} else if (data == "refresh") {
+				window.location.reload();
+			} else if (data == "domain") {
+				sumo2.message.NewMessage(sumo2.language.VARIABLES.MOD_217,3);
 			} else if (data == "ok") {
 				sumo2.preview.Update();
 				sumo2.dialog.CloseDialog('d_relogin');

@@ -13,6 +13,7 @@
 		<item constant="GROUP">Skupina</item>
 		<item constant="TITLE">Naslov</item>
 		<item constant="LAST_VISIT">Zadnji obisk</item>
+		<item constant="REGISTRATION">Registracija</item>
 		<item constant="CREATE_DATE">Datum nastanka</item>
 		<item constant="ALL">Vse</item>
 	</parent>
@@ -225,6 +226,7 @@
 		<item constant="SETTINGS_63">Posodobi pomnilnik</item>
 		<item constant="SETTINGS_64">Posodobi številko pomnilnika za CSS in JS, kar bo prisililo brskalnik, da jih posodobi.</item>
 		<item constant="SETTINGS_65">Posodobi</item>
+		<item constant="SETTINGS_66">Zgodovina podatkov</item>
 	</parent>	
 	<parent id="Menus">
 		<item constant="MENU_1">Prosim vnesite ime menija, da ga opredelite.</item>
