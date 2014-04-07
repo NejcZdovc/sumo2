@@ -139,7 +139,7 @@ $langDomainAuth = $user->checkLang();
                     <div class="lang-bottom"></div>
                 </div>
             </div>
-            | <a href="http://dev.3zsistemi.si/thebuggenie/sumo2cms/issues/new" target="_blank"><?php echo $lang->MOD_2?></a> | <a href="#" onclick="sumo2.Logout()"><?php echo $lang->INDEX_LOGOUT?></a></div>
+            | <a href="mailto:support@3zsistemi.si?subject=Report for bug (<?php echo $user->domainName; ?>)"><?php echo $lang->MOD_2?></a> | <a href="#" onclick="sumo2.Logout()"><?php echo $lang->INDEX_LOGOUT?></a></div>
             <div class="tpmnu-right flt-left"></div>
             <div id="sumo2-main-version">
         		<?php echo $lang->MOD_39?> <?php echo $globals->version?> &copy; <a style="color:#e3e3e3;" href="http://www.3zsistemi.si" target="_blank" >3Z Sistemi</a>
