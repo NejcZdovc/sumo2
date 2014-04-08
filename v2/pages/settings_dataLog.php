@@ -11,8 +11,10 @@
 	if(is_file($file)) {
 		$file = file($file, FILE_SKIP_EMPTY_LINES);
 		if(count($file)>500) {
-			$array=array_slice($file, 0, 500);
-			array_push($array, PHP_EOL."Error log is longer then 500 lines. Please open detailed view of log.");
+			$array=array_slice($file, (count($file)-500), count($file));
+			$array=array_reverse($array);
+			array_unshift($array, $file[0].PHP_EOL);
+			array_push($array, PHP_EOL.PHP_EOL."Error log is longer then 500 lines. Please open detailed view of log.");
 			$data=implode("", $array);
 		} else {
 			$data=implode("", $file);
