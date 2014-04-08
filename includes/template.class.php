@@ -201,12 +201,12 @@ class Template {
         $title="";
 		$result_lang = $db->get($db->query("SELECT * FROM cms_language_front WHERE ID='".$this->langID."'"));
 		$result_page = $db->get($db->query("SELECT * FROM cms_menus_items WHERE ID='".$this->pageID."'"));
-		$description = $result_page['description'];
-		$keywords = $result_page['keyword'];
 		$result_glob = $db->get($db->query("SELECT * FROM cms_global_settings WHERE domain='".$globals->domainID."'"));
 		$keywords="";
 		$description="";
 		$customHead="";
+        $keywordsH="";
+        $descriptionH="";
 		$customModuleID=$db->get($db->query('SELECT moduleID FROM cms_menus_items WHERE ID="'.$this->pageID.'"'));
 		if($db->is('spPage') || ($customModuleID && $customModuleID['moduleID']!="-1")) {
 			$spID=$db->filter('spRID');
@@ -244,8 +244,8 @@ class Template {
 		} 
 		$homepageTitle = $db->get($db->query("SELECT altTitle, title, keyword, description FROM cms_homepage WHERE lang='".$this->langID."' AND domain='".$globals->domainID."'"));
         if($homepageTitle) {
-            $keywords=$homepageTitle['keyword'];
-            $description=$homepageTitle['description'];
+            $keywordsH=$homepageTitle['keyword'];
+            $descriptionH=$homepageTitle['description'];
             $title=$homepageTitle['altTitle'];
         }
         
@@ -253,12 +253,27 @@ class Template {
 			$title = $result_glob['title'];
 		}
 		if(strlen($keywords)<2) {
-			$keywords=$result_glob['keywords'];
+			if(strlen($result_page['keyword'])<2) {
+				if(strlen($keywordsH)<2) {
+					$keywords=$result_glob['keywords'];
+				} else {
+				   $keywords=$keywordsH;
+				}
+			} else {
+				$keywords = $result_page['keyword'];
+			}
 		}
 		if(strlen($description)<2) {
-			$description=$result_glob['description'];
+			if(strlen($result_page['description'])<2) {
+				if(strlen($descriptionH)<2) {
+					$description=$result_glob['description'];
+				} else {
+					$description=$descriptionH;
+				}
+			} else {
+				$description = $result_page['description'];
+			}
 		}
-            
 		$result.="<meta name=\"description\" content=\"".$description."\" />\n<meta name=\"keywords\" content=\"".$keywords."\" />\n<meta name=\"author\" content=\"3Z Sistemi\"/>\n<meta name=\"robots\" content=\"index, follow\"/>\n<meta name=\"revisit-after\" content=\"1 days\"/>\n<meta name=\"language\" content=\"".$result_lang['name']."\" />\n<meta http-equiv=\"Content-Language\" content=\"".$result_lang['short']."\"/>\n<meta name=\"copyright\" content=\"3Z Sistemi\" />\n<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n<meta name=\"generator\" content=\"SUMO 2 CMS\" />\n";
 		if($result_glob['WM_enabled'] == 1) {
 			$result.= "<meta name=\"google-site-verification\" content=\"".$result_glob['WM_ID']."\" />\n";
