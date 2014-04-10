@@ -95,12 +95,19 @@ $langDomainAuth = $user->checkLang();
 			if($user->preview != 2) {
 				$preview_url='';
 				if(isset($globals->offline)) {
+					$dd=$user->domainName;
+					if($user->domainName!=$_SERVER['HTTP_HOST']) {
+						$alias=$db->get($db->query('SELECT name FROM cms_domains WHERE name="'.$_SERVER['HTTP_HOST'].'" AND alias="1" AND parentID="'.$user->domain.'"'));
+						if($alias) {
+							$dd=$alias['name'];
+						}
+					}
 					if($globals->offline=="Y") {
 						$off=$shield->protect('offline=true&user='.$user->id.'&username='.$user->username.'&date='.time().'');
-						$preview_url='href="http://'.$user->domainName.'/index.php?'.$off.'"';
+						$preview_url='href="http://'.$dd.'/index.php?'.$off.'"';
 					}
 					else
-						$preview_url='href="http://'.$user->domainName.'/index.php"';
+						$preview_url='href="http://'.$dd.'/index.php"';
 					if($user->preview == 1)
 						$preview_url.=' target="_blank"';
 					if($user->preview == 3)
@@ -108,8 +115,9 @@ $langDomainAuth = $user->checkLang();
 					if($user->preview == 4)
 						$preview_url.='';
 				}
-			} else
+			} else {
 				$preview_url=' onclick="sumo2.dialog.NewDialog(\'d_preview\')"';
+			}
 			
 			if(is_file('images/icons/flags/'.$user->langshort($user->translate_lang).'.png')) {
 					$img = 'images/icons/flags/'.$user->langshort($user->translate_lang).'.png';

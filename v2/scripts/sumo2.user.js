@@ -3070,9 +3070,9 @@ sumo2.domains= {
 		this.TIMEOUT = null;
     },
 	
-	Select : function(id, lang) {
+	Select : function(id) {
 		sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
-			sumo2.ajax.SendPost("includes/domains.php","type=saveSelection$!$id="+id+"$!$lang="+lang,function(data) {
+			sumo2.ajax.SendPost('includes/domains.php','type=saveSelection$!$id='+id,function(data) {
 				sumo2.accordion.DeleteParameters('a_sitetree');
 				sumo2.accordion.DeleteParameters('a_domains');
 				setTimeout("window.location.reload()", 2000);

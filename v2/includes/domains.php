@@ -1,8 +1,10 @@
-<?	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 exit;
-	}
-if(ob_get_length()>0) { ob_end_clean(); }
+<?php	require_once('../initialize.php');
+if(!$session->isLogedIn() || !$security->checkURL()) {
+	exit;
+}
+if(ob_get_length()>0) {
+	ob_end_clean();
+}
 if($db->is('type')) {
 	if($db->filter('type') == 'add') {
 		$name = $db->filter('name');
@@ -189,7 +191,7 @@ if($db->is('type')) {
 		}
 		echo 'ok';
 		exit;
-	} else if($db->filter('type')=="saveSelection") {
+	} else if($db->filter('type')=="saveSelection") {		
 		$id=$crypt->decrypt($db->filter('id'));
 		$domains=$db->get($db->query('SELECT value FROM cms_domains_ids WHERE type="lang" AND domainID="'.$id.'" LIMIT 1'));
 		$lang=$db->get($db->query('SELECT ID FROM cms_language_front WHERE short="'.$domains['value'].'" LIMIT 1'));
