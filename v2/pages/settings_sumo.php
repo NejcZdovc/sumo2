@@ -161,7 +161,7 @@
                 <div class="title_form_big"><?php echo $lang->MOD_242?>:</div><div class="title_form_small"><?php echo $lang->MOD_243?></div>
                 </td>
                 <td class="right_td">
-                    <input value="<?php echo  PER_FILE?>" disabled="disabled" class="input" style="margin-left:5%; margin-right:5%; width:90%;" />
+                    <input value="<?php echo decoct(PER_FILE) ?>" disabled="disabled" class="input" style="margin-left:5%; margin-right:5%; width:90%;" />
                 </td>
             </tr>
             <tr style="margin-bottom:20px;">
@@ -169,7 +169,7 @@
                 <div class="title_form_big"><?php echo $lang->MOD_244?>:</div><div class="title_form_small"><?php echo $lang->MOD_245?></div>
                 </td>
                 <td class="right_td">
-                   <input value="<?php echo  PER_FOLDER?>" disabled="disabled" class="input" style="margin-left:5%; margin-right:5%; width:90%;" />
+                   <input value="<?php echo decoct(PER_FOLDER)?>" disabled="disabled" class="input" style="margin-left:5%; margin-right:5%; width:90%;" />
                 </td>
             </tr>
         <?php } else { ?>
