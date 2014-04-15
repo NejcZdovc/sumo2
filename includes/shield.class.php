@@ -42,6 +42,23 @@ class Shield {
 		if($_SERVER["REQUEST_URI"]!="/" && $_SERVER["REQUEST_URI"]!="/index.php")
 			return;
 		
+		$CountryName=$this->getCountry();
+		
+		if($CountryName!="") {	
+			if($globals->domainParent=="-1") {
+				$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainID.'" OR cms_domains.ID="'.$globals->domainID.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
+			} else {			
+				$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainParent.'" OR cms_domains.ID="'.$globals->domainParent.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
+			}	
+			if(isset($found['name']) && $found['name']!=$globals->domainName)
+				header("Location: http://".$found['name']);
+		}
+	}
+	
+	public function getCountry() {
+		global $db, $user;
+		$CountryName="";
+		
 		$ipQ=$db->get($db->query('SELECT country FROM cms_ip_locator WHERE IP="'.$user->IP.'"'));
 		if(!$ipQ) {
 			/*http://ip.codehelper.io/*/
@@ -50,9 +67,8 @@ class Shield {
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			$json = json_decode(curl_exec($ch));
-			curl_close($ch);			
+			curl_close($ch);
 			
-			$CountryName="";
 			if(isset($json->CountryName))
 				$CountryName=$json->CountryName;
 			elseif(isset($json->countryName))
@@ -68,15 +84,8 @@ class Shield {
 		} else {
 			$CountryName = $ipQ['country'];
 		}
-		if($CountryName!="") {	
-			if($globals->domainParent=="-1") {
-				$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainID.'" OR cms_domains.ID="'.$globals->domainID.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
-			} else {			
-				$found=$db->get($db->query('SELECT cms_domains.name FROM cms_domains_countries, cms_domains WHERE (cms_domains.parentID="'.$globals->domainParent.'" OR cms_domains.ID="'.$globals->domainParent.'") AND cms_domains_countries.domainID=cms_domains.ID AND cms_domains_countries.value="'.$CountryName.'"'));
-			}	
-			if(isset($found['name']) && $found['name']!=$globals->domainName)
-				header("Location: http://".$found['name']);
-		}
+		
+		return $CountryName;
 	}
 }
 
