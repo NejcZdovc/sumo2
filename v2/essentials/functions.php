@@ -184,7 +184,11 @@ function getBrowser()
             $version= $matches['version'][0];
         }
         else {
-            $version= $matches['version'][1];
+			if ($i > 1) {
+				$version= $matches['version'][1];
+			} else {
+				$version= $matches['version'][0];
+			}
         }
     }
     else {
