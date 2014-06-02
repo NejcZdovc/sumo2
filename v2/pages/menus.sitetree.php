@@ -3,7 +3,7 @@
 	$second=0;
 	$third=0;
 	$fourth=0;
-	if(!$session->isLogedIn() && !$security->checkURL()) {
+	if(!$session->isLogedIn() || !$security->checkURL()) {
 		exit;
 	}
 	if($db->is('sel')) {

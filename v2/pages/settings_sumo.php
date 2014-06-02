@@ -69,8 +69,8 @@
 			</td>
 			<td class="right_td">
 			<select class="input" id="view" style="margin-left:5%; margin-right:5%; width:90%;">
-				<option value="L" <?php if($user->view == "L") echo 'selected="selected"'; ?>>Layout</option>
-				<option value="T" <?php if($user->view == "T") echo 'selected="selected"'; ?>>Template</option>
+				<option value="L" <?php if($user->view == "L") echo 'selected="selected"'; ?>><?php echo $lang->SETTINGS_67?></option>
+				<option value="T" <?php if($user->view == "T") echo 'selected="selected"'; ?>><?php echo $lang->MENU_22?></option>
 			</select>
 			</td>
 		</tr>

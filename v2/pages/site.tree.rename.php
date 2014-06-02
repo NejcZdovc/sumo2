@@ -1,5 +1,5 @@
 <?php require_once('../initialize.php');
-if(!$session->isLogedIn() && !$security->checkURL()) {
+if(!$session->isLogedIn() || !$security->checkURL()) {
 		exit;
 	}
 $query = $db->fetch($db->query("SELECT * FROM cms_panel_".$db->filter('layout')." WHERE ID='".$db->filter('panel')."'"));

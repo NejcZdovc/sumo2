@@ -2,7 +2,7 @@
 	require_once('../initialize.php');
     require_once('../configs/settings.php');
 	
-	if(!$session->isLogedIn() && !$security->checkURL()) {
+	if(!$session->isLogedIn() || !$security->checkURL()) {
 		exit;
 	}
 ?>

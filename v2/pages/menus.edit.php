@@ -1,5 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() && !$security->checkURL()) {
+	if(!$session->isLogedIn() || !$security->checkURL()) {
 		exit;
 	}
 	$results=$db->fetch($db->query('SELECT ID,title,description FROM cms_menus  WHERE ID='.$crypt->decrypt($db->filter('id')).''));
