@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+$security->checkFull();
 $folder = explode("/", $db->filter('id'));
 $name=end($folder);
 $type=explode('.', $name);

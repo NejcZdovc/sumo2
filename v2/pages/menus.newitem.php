@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 ?>
 <form action="" name="d_menus_new_i" method="post" class="form2">
 <?php if($db->filter('mode')!='sp') { ?>

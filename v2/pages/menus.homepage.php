@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$id=$db->filter('id');
 	$results=$db->fetch($db->query('SELECT ID, title, keyword, description, template, selection, link, altPrefix, altTitle FROM cms_homepage WHERE ID='.$id.''));
 ?>

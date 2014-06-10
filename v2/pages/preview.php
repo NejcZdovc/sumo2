@@ -1,8 +1,6 @@
 <?php
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$off=$shield->protect('offline=true&user='.$user->id.'&username='.$user->username.'&date='.time().'');
 ?>
 

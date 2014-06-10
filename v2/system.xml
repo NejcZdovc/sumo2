@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <system>
-	<dialog>
+	<dialog>		
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
@@ -37,42 +37,7 @@
 					</func>
 				</button>
 			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>false</close>
-			<uniqueId>d_favorites</uniqueId>
-			<title>sumo2.language.VARIABLES.SET_FAVORITES</title>
-			<page>pages/favorites.edit.php</page>
-			<params/>
-			<height>300</height>
-			<width>450</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.CANCEL</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-540px -1693px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.dialog.CloseDialog('d_favorites');
-						]]>
-					</func>
-				</button>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.favorites.SaveFavorites();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
+		</item>		
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
@@ -109,7 +74,7 @@
 					</func>
 				</button>
 			</buttons>
-		</item>
+		</item>		
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
@@ -117,7 +82,7 @@
 			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_5</title>
 			<page>pages/user.management.add.group.php</page>
 			<params/>
-			<height>450</height>
+			<height>370</height>
 			<width>550</width>
 			<end>
 				<![CDATA[  
@@ -139,12 +104,12 @@
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
-			<uniqueId>d_user_edit_group</uniqueId>
-			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_7</title>
-			<page>pages/user.management.edit.group.php</page>
+			<uniqueId>d_user_add_fields</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.MOD_179</title>
+			<page>pages/user.add.field.php</page>
 			<params/>
-			<height>450</height>
-			<width>550</width>
+			<height>420</height>
+			<width>750</width>
 			<end>
 				<![CDATA[  
 						
@@ -156,7 +121,7 @@
 					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
 					<func>
 						<![CDATA[  
-							sumo2.user.UpdateGroup();
+							sumo2.user.AddField();
 						]]>
 					</func>
 				</button>
@@ -165,8 +130,34 @@
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
+			<uniqueId>d_user_edit_fields</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.MOD_180</title>
+			<page>pages/user.edit.field.php</page>
+			<params/>
+			<height>420</height>
+			<width>700</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.EditField();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>	
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
 			<uniqueId>d_article_new_c</uniqueId>
-			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - Add category'</title>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.MOD_220</title>
 			<page>pages/article.new.category.php</page>
 			<params/>
 			<height>350</height>
@@ -192,7 +183,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_article_cat</uniqueId>
-			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - Izberite kategorije'</title>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.MOD_219</title>
 			<page>pages/article.select.category.php</page>
 			<params/>
 			<height>350</height>
@@ -239,7 +230,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_article_edit_c</uniqueId>
-			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - Edit category'</title>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.MOD_218</title>
 			<page>pages/article.edit.category.php</page>
 			<params/>
 			<height>350</height>
@@ -264,12 +255,12 @@
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
-			<uniqueId>d_ftp_file_rename</uniqueId>
-			<title>sumo2.language.VARIABLES.FILE_1</title>
-			<page>pages/file.manager.rename.php</page>
+			<uniqueId>d_article_c_translate</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SETTINGS_16</title>
+			<page>pages/article.category.translate.php</page>
 			<params/>
-			<height>55</height>
-			<width>300</width>
+			<height>450</height>
+			<width>600</width>
 			<end>
 				<![CDATA[  
 						
@@ -277,11 +268,11 @@
 			</end>
 			<buttons>
 				<button>
-					<title>sumo2.language.VARIABLES.FILE_2</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-556px -1645px;width:16px;height:16px;</icon>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
 					<func>
-						<![CDATA[  
-							sumo2.ftp.RenameFile();
+						<![CDATA[
+							sumo2.article.Translate_Category();
 						]]>
 					</func>
 				</button>
@@ -291,7 +282,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_article_image_rename</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_59</title>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.MOD_59</title>
 			<page>pages/article.image.rename.php</page>
 			<params/>
 			<height>55</height>
@@ -316,8 +307,34 @@
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
+			<uniqueId>d_ftp_file_rename</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_18+' - '+sumo2.language.VARIABLES.FILE_1</title>
+			<page>pages/file.manager.rename.php</page>
+			<params/>
+			<height>55</height>
+			<width>300</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.FILE_2</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-556px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.ftp.RenameFile();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
 			<uniqueId>d_ftp_folder_rename</uniqueId>
-			<title>sumo2.language.VARIABLES.FILE_3</title>
+			<title>sumo2.language.VARIABLES.SETTINGS_18+' - '+sumo2.language.VARIABLES.FILE_3</title>
 			<page>pages/file.manager.rename.php</page>
 			<params/>
 			<height>55</height>
@@ -343,7 +360,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_ftp_new_folder</uniqueId>
-			<title>sumo2.language.VARIABLES.FILE_4</title>
+			<title>sumo2.language.VARIABLES.SETTINGS_18+' - '+sumo2.language.VARIABLES.FILE_4</title>
 			<page>pages/file.manager.new.php</page>
 			<params/>
 			<height>55</height>
@@ -369,7 +386,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_ftp_upload</uniqueId>
-			<title>sumo2.language.VARIABLES.FILE_6</title>
+			<title>sumo2.language.VARIABLES.SETTINGS_18+' - '+sumo2.language.VARIABLES.FILE_6</title>
 			<page>pages/file.manager.upload.php</page>
 			<params/>
 			<height>300</height>
@@ -461,7 +478,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_menus_edit_m</uniqueId>
-			<title>sumo2.language.VARIABLES.MENU_1+' - Edit'</title>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.EDIT</title>
 			<page>pages/menus.edit.php</page>
 			<params/>
 			<height>335</height>
@@ -487,7 +504,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_menus_edit_h</uniqueId>
-			<title>sumo2.language.VARIABLES.MENU_1+' - Homepage'</title>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MOD_222</title>
 			<page>pages/menus.homepage.php</page>
 			<params/>
 			<height>635</height>
@@ -744,7 +761,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_menus_new_s</uniqueId>
-			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_7</title>
+			<title>sumo2.language.VARIABLES.MENU_1+' - '+sumo2.language.VARIABLES.MENU_13</title>
 			<page>pages/menus.newitem.special.php</page>
 			<params/>
 			<height>480</height>
@@ -787,154 +804,6 @@
 					<func>
 						<![CDATA[  
 							sumo2.menu.EditItem();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_settings_add_t</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_2</title>
-			<page>pages/settings.addtemplate.php</page>
-			<params/>
-			<height>250</height>
-			<width>600</width>
-			<end>
-				<![CDATA[  
-					var randomnumber=sumo2.RandomString(30);
-					document.a_settings_add_t.random_number.value=randomnumber;
-					$("#uploadify2").uploadify({
-						'swf'             : 'swf/uploadify.swf',
-						'uploader'        : 'includes/uploadify_s.php',
-						'multi'           : false,
-						'queueID'         : 'fileq',
-						'fileSizeLimit'   : '15MB',
-						'fileTypeDesc'	  : 'WinZip files (.zip)',
-						'fileTypeExts'	  : '*.zip',
-						'auto'            : false,
-						'method'          : 'post',
-						'queueSizeLimit'  : 1,
-						'uploadLimit'	  : 1,
-						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
-						'formData' 	      : {'randnum' : randomnumber},
-						'onQueueComplete' : function(queueData) {
-							sumo2.sumoSettings.SaveTemplate('y');
-						},
-						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
-							sumo2.message.NewMessage(file.name+": "+errorString,3);
-						}
-					});	
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.sumoSettings.SaveTemplate('n');
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_settings_add_lf</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_3</title>
-			<page>pages/settings.addlang.front.php</page>
-			<params/>
-			<height>130</height>
-			<width>500</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.sumoSettings.SaveLangF();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_settings_add_lb</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_4</title>
-			<page>pages/settings.addlang.back.php</page>
-			<params/>
-			<height>250</height>
-			<width>650</width>
-			<end>
-				<![CDATA[  
-					var randomnumber=sumo2.RandomString(30);
-					document.a_settings_add_lb.random_number.value=randomnumber;
-					$("#uploadify3").uploadify({
-						'swf'             : 'swf/uploadify.swf',
-						'uploader'        : 'includes/uploadify_s.php',
-						'multi'           : false,
-						'queueID'         : 'fileq',
-						'fileSizeLimit'   : '1MB',
-						'fileTypeDesc'	  : 'WinZip files (.zip)',
-						'fileTypeExts'	  : '*.zip',
-						'auto'            : false,
-						'method'          : 'post',
-						'queueSizeLimit'  : 1,
-						'uploadLimit'	  : 1,
-						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
-						'formData' 	      : {'randnum' : randomnumber},
-						'onQueueComplete' : function(queueData) {
-							sumo2.sumoSettings.SaveLangB('y');
-						},
-						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
-							sumo2.message.NewMessage(file.name+": "+errorString,3);
-						}
-					});
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.sumoSettings.SaveLangB('n');
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_settings_edit_t</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_5</title>
-			<page>pages/settings.edittemplate.php</page>
-			<params/>
-			<height>70</height>
-			<width>430</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.sumoSettings.EditT();
 						]]>
 					</func>
 				</button>
@@ -1175,20 +1044,151 @@
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
-			<uniqueId>h_GA</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_6</title>
-			<page>pages/help.ga.php</page>
+			<uniqueId>d_settings_add_t</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_2</title>
+			<page>pages/settings.addtemplate.php</page>
 			<params/>
-			<height>450</height>
-			<width>800</width>
+			<height>250</height>
+			<width>600</width>
+			<end>
+				<![CDATA[  
+					var randomnumber=sumo2.RandomString(30);
+					document.a_settings_add_t.random_number.value=randomnumber;
+					$("#uploadify2").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_s.php',
+						'multi'           : false,
+						'queueID'         : 'fileq',
+						'fileSizeLimit'   : '15MB',
+						'fileTypeDesc'	  : 'WinZip files (.zip)',
+						'fileTypeExts'	  : '*.zip',
+						'auto'            : false,
+						'method'          : 'post',
+						'queueSizeLimit'  : 1,
+						'uploadLimit'	  : 1,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'formData' 	      : {'randnum' : randomnumber},
+						'onQueueComplete' : function(queueData) {
+							sumo2.sumoSettings.SaveTemplate('y');
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}
+					});	
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.SaveTemplate('n');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_settings_add_lf</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_3</title>
+			<page>pages/settings.addlang.front.php</page>
+			<params/>
+			<height>130</height>
+			<width>500</width>
 			<end>
 				<![CDATA[  
 						
 				]]>
 			</end>
 			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.SaveLangF();
+						]]>
+					</func>
+				</button>
 			</buttons>
 		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_settings_add_lb</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_4</title>
+			<page>pages/settings.addlang.back.php</page>
+			<params/>
+			<height>250</height>
+			<width>650</width>
+			<end>
+				<![CDATA[  
+					var randomnumber=sumo2.RandomString(30);
+					document.a_settings_add_lb.random_number.value=randomnumber;
+					$("#uploadify3").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_s.php',
+						'multi'           : false,
+						'queueID'         : 'fileq',
+						'fileSizeLimit'   : '1MB',
+						'fileTypeDesc'	  : 'WinZip files (.zip)',
+						'fileTypeExts'	  : '*.zip',
+						'auto'            : false,
+						'method'          : 'post',
+						'queueSizeLimit'  : 1,
+						'uploadLimit'	  : 1,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'formData' 	      : {'randnum' : randomnumber},
+						'onQueueComplete' : function(queueData) {
+							sumo2.sumoSettings.SaveLangB('y');
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}
+					});
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.SaveLangB('n');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_settings_edit_t</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_5</title>
+			<page>pages/settings.edittemplate.php</page>
+			<params/>
+			<height>70</height>
+			<width>430</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-636px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.sumoSettings.EditT();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>		
 		<item>
 			<refresh>false</refresh>
 			<close>true</close>
@@ -1245,7 +1245,7 @@
 			<refresh>false</refresh>
 			<close>true</close>
 			<uniqueId>d_logo</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_11</title>
+			<title>sumo2.language.VARIABLES.SETTINGS_1+' - '+sumo2.language.VARIABLES.SETTINGS_11</title>
 			<page>pages/settings.logo.php</page>
 			<params/>
 			<height>150</height>
@@ -1285,6 +1285,267 @@
 						]]>
 					</func>
 				</button>
+			</buttons>
+		</item>
+		
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_seo_redirect_add</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_208</title>
+			<page>pages/seo.urls.add.php</page>
+			<params/>
+			<height>430</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.seo.addRedirect();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_seo_redirect_edit</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_209</title>
+			<page>pages/seo.urls.edit.php</page>
+			<params/>
+			<height>430</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.seo.editRedirect();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_module_install</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_25+' - '+sumo2.language.VARIABLES.SETTINGS_15</title>
+			<page>pages/module.install.php</page>
+			<params/>
+			<height>250</height>
+			<width>450</width>
+			<end>
+				<![CDATA[  
+					var randomnumber=sumo2.RandomString(30);
+					document.d_module_install.random_number.value=randomnumber;
+					$("#uploadify_module_install").uploadify({
+						'swf'             : 'swf/uploadify.swf',
+						'uploader'        : 'includes/uploadify_mi.php',
+						'multi'           : false,
+						'queueID'         : 'fileq_mi',
+						'fileSizeLimit'   : '5MB',
+						'fileTypeDesc'	  : 'WinZip files (.zip)',
+						'fileTypeExts'	  : '*.zip',
+						'auto'            : false,
+						'method'          : 'post',
+						'queueSizeLimit'  : 1,
+						'uploadLimit'	  : 1,
+						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
+						'formData' 	      : {'randnum' : randomnumber},
+						'onQueueComplete' : function(queueData) {
+							sumo2.moduleManager.Install('y');
+						},
+						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+							sumo2.message.NewMessage(file.name+": "+errorString,3);
+						}	
+					});
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SETTINGS_15</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.moduleManager.Install('n');
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<close>true</close>
+			<uniqueId>d_module_edit</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_25+' - '+sumo2.language.VARIABLES.MOD_201</title>
+			<page>pages/module.edit.php</page>
+			<params/>
+			<height>150</height>
+			<width>450</width>
+			<end>
+				<![CDATA[  
+					
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.moduleManager.ChangeDomain();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>h_GA</uniqueId>
+			<title>sumo2.language.VARIABLES.SETTINGS_6</title>
+			<page>pages/help.ga.php</page>
+			<params/>
+			<height>450</height>
+			<width>800</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_site_tree_rename</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_178</title>
+			<page>pages/site.tree.rename.php</page>
+			<params/>
+			<height>300</height>
+			<width>300</width>
+			<end>
+				<![CDATA[  
+						$('#tree-menu-rename').quickTree();
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-572px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.siteTree.Rename();
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_161</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-572px -1645px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.siteTree.SaveAll();
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_162</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-604px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.siteTree.ClearCache(sumo2.dialog.GetParamFromDialog('d_site_tree_rename', 'layout'), sumo2.dialog.GetParamFromDialog('d_site_tree_rename', 'panel'));
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>			
+		<item>
+			<refresh>true</refresh>
+			<close>false</close>
+			<uniqueId>d_relogin</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_182</title>
+			<page>pages/relogin.php</page>
+			<params/>
+			<height>160</height>
+			<width>350</width>
+			<end>
+				<![CDATA[  
+					$('form[name="d_relogin"] input[name="password"]').keydown(function(e) {
+						if(e.which=="13") {
+							sumo2.login.Check();
+						}
+					});
+				]]>
+			</end>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_183</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1709px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.login.Check();
+						]]>
+					</func>
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_184</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-556px -1725px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							window.location.reload();
+						]]>
+					</func>
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_update_text</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_221</title>
+			<page>pages/update.warning.php</page>
+			<params/>
+			<height>400</height>
+			<width>400</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>				
+			</buttons>
+		</item>		
+		<item>
+			<refresh>false</refresh>
+			<close>true</close>
+			<uniqueId>d_out_of_date</uniqueId>
+			<title>sumo2.language.VARIABLES.MOD_181</title>
+			<page>pages/out.of.date.php</page>
+			<params/>
+			<height>250</height>
+			<width>730</width>
+			<end>
+				<![CDATA[  
+						
+				]]>
+			</end>
+			<buttons>
 			</buttons>
 		</item>
 		<item>
@@ -1344,321 +1605,34 @@
 		</item>
 		<item>
 			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_module_install</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_14</title>
-			<page>pages/module.install.php</page>
-			<params/>
-			<height>250</height>
-			<width>450</width>
-			<end>
-				<![CDATA[  
-					var randomnumber=sumo2.RandomString(30);
-					document.d_module_install.random_number.value=randomnumber;
-					$("#uploadify_module_install").uploadify({
-						'swf'             : 'swf/uploadify.swf',
-						'uploader'        : 'includes/uploadify_mi.php',
-						'multi'           : false,
-						'queueID'         : 'fileq_mi',
-						'fileSizeLimit'   : '5MB',
-						'fileTypeDesc'	  : 'WinZip files (.zip)',
-						'fileTypeExts'	  : '*.zip',
-						'auto'            : false,
-						'method'          : 'post',
-						'queueSizeLimit'  : 1,
-						'uploadLimit'	  : 1,
-						'buttonText'	  : sumo2.language.VARIABLES.BROWSE,
-						'formData' 	      : {'randnum' : randomnumber},
-						'onQueueComplete' : function(queueData) {
-							sumo2.moduleManager.Install('y');
-						},
-						'onUploadError' : function(file, errorCode, errorMsg, errorString) {
-							sumo2.message.NewMessage(file.name+": "+errorString,3);
-						}	
-					});
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SETTINGS_15</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.moduleManager.Install('n');
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<close>true</close>
-			<uniqueId>d_module_edit</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_201</title>
-			<page>pages/module.edit.php</page>
-			<params/>
-			<height>150</height>
-			<width>450</width>
-			<end>
-				<![CDATA[  
-					
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.moduleManager.ChangeDomain();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_article_c_translate</uniqueId>
-			<title>sumo2.language.VARIABLES.SETTINGS_16</title>
-			<page>pages/article.category.translate.php</page>
-			<params/>
-			<height>450</height>
-			<width>600</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[
-							sumo2.article.Translate_Category();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_site_tree_rename</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_178</title>
-			<page>pages/site.tree.rename.php</page>
+			<close>false</close>
+			<uniqueId>d_favorites</uniqueId>
+			<title>sumo2.language.VARIABLES.SET_FAVORITES</title>
+			<page>pages/favorites.edit.php</page>
 			<params/>
 			<height>300</height>
-			<width>300</width>
-			<end>
-				<![CDATA[  
-						$('#tree-menu-rename').quickTree();
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-572px -1645px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.siteTree.Rename();
-						]]>
-					</func>
-				</button>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_161</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-572px -1645px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.siteTree.SaveAll();
-						]]>
-					</func>
-				</button>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_162</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-604px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.siteTree.ClearCache(sumo2.dialog.GetParamFromDialog('d_site_tree_rename', 'layout'), sumo2.dialog.GetParamFromDialog('d_site_tree_rename', 'panel'));
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_user_add_fields</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_179</title>
-			<page>pages/user.add.field.php</page>
-			<params/>
-			<height>420</height>
-			<width>750</width>
+			<width>450</width>
 			<end>
 				<![CDATA[  
 						
 				]]>
 			</end>
 			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.CANCEL</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-540px -1693px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.CloseDialog('d_favorites');
+						]]>
+					</func>
+				</button>
 				<button>
 					<title>sumo2.language.VARIABLES.SAVE</title>
 					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
 					<func>
 						<![CDATA[  
-							sumo2.user.AddField();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_user_edit_fields</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_180</title>
-			<page>pages/user.edit.field.php</page>
-			<params/>
-			<height>420</height>
-			<width>700</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.user.EditField();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_out_of_date</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_181</title>
-
-			<page>pages/out.of.date.php</page>
-			<params/>
-			<height>250</height>
-			<width>730</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<close>false</close>
-			<uniqueId>d_relogin</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_182</title>
-			<page>pages/relogin.php</page>
-			<params/>
-			<height>160</height>
-			<width>350</width>
-			<end>
-				<![CDATA[  
-					$('form[name="d_relogin"] input[name="password"]').keydown(function(e) {
-						if(e.which=="13") {
-							sumo2.login.Check();
-						}
-					});
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_183</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1709px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.login.Check();
-						]]>
-					</func>
-				</button>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_184</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-556px -1725px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							window.location.reload();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_update_text</uniqueId>
-			<title>sumo2.language.VARIABLES.WARNING</title>
-			<page>pages/update.warning.php</page>
-			<params/>
-			<height>400</height>
-			<width>400</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>				
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_seo_redirect_add</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_208</title>
-			<page>pages/seo.urls.add.php</page>
-			<params/>
-			<height>430</height>
-			<width>400</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.seo.addRedirect();
-						]]>
-					</func>
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<close>true</close>
-			<uniqueId>d_seo_redirect_edit</uniqueId>
-			<title>sumo2.language.VARIABLES.MOD_209</title>
-			<page>pages/seo.urls.edit.php</page>
-			<params/>
-			<height>430</height>
-			<width>400</width>
-			<end>
-				<![CDATA[  
-						
-				]]>
-			</end>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.seo.editRedirect();
+							sumo2.favorites.SaveFavorites();
 						]]>
 					</func>
 				</button>
@@ -1736,6 +1710,68 @@
 		</item>
 		<item>
 			<refresh>true</refresh>
+			<uniqueId>a_user_group_vd</uniqueId>
+			<page>pages/user.management.view.group.details.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+						sumo2.tooltip.FindTooltips(document.getElementById('a_user_group_vd'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_8</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_user_edit_group</uniqueId>
+			<page>pages/user.management.edit.group.php</page>
+			<params/>
+			<func>
+				<![CDATA[
+					$("#a_user_edit_group .group_tab_content").hide();
+					var tabVal = sumo2.accordion.GetParamFromAccordion("a_user_edit_group","tab_val");
+					var endTab = "";
+					if(tabVal === false) {
+						document.getElementById('group_current_tab').value="#group1";
+						endTab = "#group1";
+					} else {
+						document.getElementById('group_current_tab').value="#"+tabVal;
+						endTab = "#"+tabVal;
+					}
+					$(endTab+"tab").addClass("active").show();
+					$(endTab).fadeIn();	
+					
+					$("#a_user_edit_group ul.group_tab li").click(function() {
+						$("#a_user_edit_group ul.group_tab li").removeClass("active");
+						$(this).addClass("active"); 
+						$("#a_user_edit_group .group_tab_content").hide();
+						var activeTab = $(this).find("a").attr("href");
+						var paramVal = activeTab.replace("#","");
+						sumo2.accordion.SetParamForAccordion("a_user_edit_group","tab_val="+paramVal);
+						document.getElementById('group_current_tab').value=activeTab;
+						$(activeTab).fadeIn();
+						return false;
+					});
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_7</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.user.UpdateGroup();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
 			<uniqueId>a_user_view_f</uniqueId>
 			<page>pages/user.view.fields.php</page>
 			<params/>
@@ -1756,117 +1792,6 @@
 						]]>
 					</func>				
 				</button>
-			</buttons>
-		</item>
-
-
-		<item>
-			<refresh>false</refresh>
-			<uniqueId>a_article_new_a</uniqueId>
-			<page>pages/article.new.article.php</page>
-			<params/>
-			<func>
-				<![CDATA[  
-					if(CKEDITOR.instances['editor2']) {
-						CKEDITOR.remove(CKEDITOR.instances['editor2']);
-					}
-					CKEDITOR.replace( 'editor2');
-					$('#date-start-a').datetime({
-							userLang	: 'si',
-							americanMode: false
-					});
-					$('#date-end-a').datetime({
-							userLang	: 'si',
-							americanMode: false
-					});
-					
-					$('#article_newTags').tagit({sortable:true, triggerKeys:['enter']});
-					$('#article_newTags').tagit("reset");
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SET_ARTICLE_2</title>
-			<minWidth>200</minWidth>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.article.SaveArticle();
-						]]>
-					</func>				
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>false</refresh>
-			<uniqueId>a_mail_new</uniqueId>
-			<page>pages/mail.new.mail.php</page>
-			<params/>
-			<func>
-				<![CDATA[  
-					if(CKEDITOR.instances['editor1']) {
-			            CKEDITOR.remove(CKEDITOR.instances['editor1']);
-			        }
-					CKEDITOR.replace( 'editor1');
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_1</title>
-			<minWidth>200</minWidth>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SEND</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-540px -1677px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.mail.Check();
-						]]>
-					</func>				
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<uniqueId>a_mail_inbox</uniqueId>
-			<page>pages/mail.inbox.php</page>
-			<params/>
-			<func>
-				<![CDATA[  
-					sumo2.tooltip.FindTooltips(document.getElementById('a_mail_inbox_table'));
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_3</title>
-			<minWidth>200</minWidth>
-			<buttons/>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<uniqueId>a_mail_sent</uniqueId>
-			<page>pages/mail.sent.items.php</page>
-			<params/>
-			<func>
-				<![CDATA[  
-					sumo2.tooltip.FindTooltips(document.getElementById('a_mail_sent_table'));
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_4</title>
-			<minWidth>200</minWidth>
-			<buttons>
-			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<uniqueId>a_user_group_vd</uniqueId>
-			<page>pages/user.management.view.group.details.php</page>
-			<params/>
-			<func>
-				<![CDATA[  
-						sumo2.tooltip.FindTooltips(document.getElementById('a_user_group_vd'));
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SET_USER_M+' - '+sumo2.language.VARIABLES.SET_USER_M_4</title>
-			<minWidth>200</minWidth>
-			<buttons>
 			</buttons>
 		</item>
 		<item>
@@ -1897,79 +1822,6 @@
 					<func>
 						<![CDATA[  
 							sumo2.accordion.NewPanel('a_article_new_a');
-						]]>
-					</func>				
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<uniqueId>a_ftp</uniqueId>
-			<page>pages/file.manager.php</page>
-			<params/>
-			<func>
-				<![CDATA[  
-					$('#file-manager-treeview').quickTree();					
-					$('.conMenu').contextMenu('myMenu1', {
-					  bindings: {
-						'rename': function(t) {
-						  sumo2.ftp.PATH = t.id;
-							sumo2.dialog.NewDialog('d_ftp_folder_rename', 'ID='+t.id);
-						},
-						'delete': function(t) {
-								sumo2.ftp.PATH = t.id;
-							  sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.SETTINGS_17,250,200,function() {
-								  sumo2.ftp.DeleteFolder();
-							  });
-						},
-						'new': function(t) {
-						  sumo2.ftp.PATH = t.id;
-								sumo2.dialog.NewDialog('d_ftp_new_folder');
-						}
-					  }
-					});
-					$('.file-tree').contextMenu('myMenu3', {
-					  bindings: {
-						'new': function(t) {
-								sumo2.ftp.PATH = t.id;
-								sumo2.dialog.NewDialog('d_ftp_new_folder');
-						}
-					  }
-					});
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SETTINGS_18</title>
-			<minWidth>200</minWidth>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_164</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-508px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.dialog.NewDialog('d_ftp_upload');
-						]]>
-					</func>				
-				</button>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_165</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-668px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[ 
-							if(sumo2.accordion.GetParamFromAccordion("a_ftp", "view")==='image' || sumo2.accordion.GetParamFromAccordion("a_ftp", "view")==false) {
-								sumo2.accordion.SetParamForAccordion("a_ftp","view=data");
-							} else {
-								sumo2.accordion.SetParamForAccordion("a_ftp","view=image");
-							}
-							sumo2.ftp.RefreshFileView(document.getElementById("file_manager_path").value);
-						]]>
-					</func>				
-				</button>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_166</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.ftp.DeleteSelected();
 						]]>
 					</func>				
 				</button>
@@ -2025,30 +1877,6 @@
 		</item>
 		<item>
 			<refresh>true</refresh>
-			<uniqueId>a_menus</uniqueId>
-			<page>pages/menus.php</page>
-			<params/>
-			<func>
-				<![CDATA[  
-					sumo2.tooltip.FindTooltips(document.getElementById('a_menus_table'));
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SETTINGS_20</title>
-			<minWidth>200</minWidth>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.MENU_2</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1677px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.dialog.NewDialog('d_menus_new_m');
-						]]>
-					</func>				
-				</button>
-			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
 			<uniqueId>a_article_view_a</uniqueId>
 			<page>pages/article.view.articles.php</page>
 			<params/>
@@ -2092,6 +1920,44 @@
 					<func>
 						<![CDATA[  
 							sumo2.accordion.NewPanel('a_article_new_a');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<uniqueId>a_article_new_a</uniqueId>
+			<page>pages/article.new.article.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					if(CKEDITOR.instances['editor2']) {
+						CKEDITOR.remove(CKEDITOR.instances['editor2']);
+					}
+					CKEDITOR.replace( 'editor2');
+					$('#date-start-a').datetime({
+							userLang	: 'si',
+							americanMode: false
+					});
+					$('#date-end-a').datetime({
+							userLang	: 'si',
+							americanMode: false
+					});
+					
+					$('#article_newTags').tagit({sortable:true, triggerKeys:['enter']});
+					$('#article_newTags').tagit("reset");
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_ARTICLE+' - '+sumo2.language.VARIABLES.SET_ARTICLE_2</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.SaveArticle();
 						]]>
 					</func>				
 				</button>
@@ -2175,6 +2041,221 @@
 				</button>
 			</buttons>
 		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_article_a_translate</uniqueId>
+			<page>pages/article.article.translate.php</page>
+			<params/>
+			<func>
+				<![CDATA[ 
+					$('#date_start_t').datetime({
+							userLang	: 'en',
+							americanMode: false
+					});
+					$('#date_end_t').datetime({
+							userLang	: 'en',
+							americanMode: false
+					});
+					if(CKEDITOR.instances['editor6']) {
+						CKEDITOR.remove(CKEDITOR.instances['editor6']);
+					}
+					CKEDITOR.replace( 'editor6'); 
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_26</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SAVE</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.article.Translate_Article();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_mail_inbox</uniqueId>
+			<page>pages/mail.inbox.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_mail_inbox_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_3</title>
+			<minWidth>200</minWidth>
+			<buttons/>
+		</item>
+		<item>
+			<refresh>false</refresh>
+			<uniqueId>a_mail_new</uniqueId>
+			<page>pages/mail.new.mail.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					if(CKEDITOR.instances['editor1']) {
+			            CKEDITOR.remove(CKEDITOR.instances['editor1']);
+			        }
+					CKEDITOR.replace( 'editor1');
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_1</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.SEND</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-540px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.mail.Check();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>		
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_mail_sent</uniqueId>
+			<page>pages/mail.sent.items.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_mail_sent_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SET_MAIL+' - '+sumo2.language.VARIABLES.SET_MAIL_4</title>
+			<minWidth>200</minWidth>
+			<buttons>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_seo_redirect_view</uniqueId>
+			<page>pages/seo.urls.view.php</page>
+			<params/>
+			<func>
+				<![CDATA[ 
+					$('#a_seo_redirect_view_table_id_search').quicksearch('#a_seo_redirect_view_table tbody tr', {
+						noResults: '#noresults'		
+					});
+					sumo2.tooltip.FindTooltips(document.getElementById('a_seo_redirect_view_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.MOD_206</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_207</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-509px -1692px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_seo_redirect_add');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_ftp</uniqueId>
+			<page>pages/file.manager.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					$('#file-manager-treeview').quickTree();					
+					$('.conMenu').contextMenu('myMenu1', {
+					  bindings: {
+						'rename': function(t) {
+						  sumo2.ftp.PATH = t.id;
+							sumo2.dialog.NewDialog('d_ftp_folder_rename', 'ID='+t.id);
+						},
+						'delete': function(t) {
+								sumo2.ftp.PATH = t.id;
+							  sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.SETTINGS_17,250,200,function() {
+								  sumo2.ftp.DeleteFolder();
+							  });
+						},
+						'new': function(t) {
+						  sumo2.ftp.PATH = t.id;
+								sumo2.dialog.NewDialog('d_ftp_new_folder');
+						}
+					  }
+					});
+					$('.file-tree').contextMenu('myMenu3', {
+					  bindings: {
+						'new': function(t) {
+								sumo2.ftp.PATH = t.id;
+								sumo2.dialog.NewDialog('d_ftp_new_folder');
+						}
+					  }
+					});
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_18</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_164</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-508px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_ftp_upload');
+						]]>
+					</func>				
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_165</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-668px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[ 
+							if(sumo2.accordion.GetParamFromAccordion("a_ftp", "view")==='image' || sumo2.accordion.GetParamFromAccordion("a_ftp", "view")==false) {
+								sumo2.accordion.SetParamForAccordion("a_ftp","view=data");
+							} else {
+								sumo2.accordion.SetParamForAccordion("a_ftp","view=image");
+							}
+							sumo2.ftp.RefreshFileView(document.getElementById("file_manager_path").value);
+						]]>
+					</func>				
+				</button>
+				<button>
+					<title>sumo2.language.VARIABLES.MOD_166</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-620px -1629px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.ftp.DeleteSelected();
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>		
+		<item>
+			<refresh>true</refresh>
+			<uniqueId>a_menus</uniqueId>
+			<page>pages/menus.php</page>
+			<params/>
+			<func>
+				<![CDATA[  
+					sumo2.tooltip.FindTooltips(document.getElementById('a_menus_table'));
+				]]>
+			</func>
+			<title>sumo2.language.VARIABLES.SETTINGS_20</title>
+			<minWidth>200</minWidth>
+			<buttons>
+				<button>
+					<title>sumo2.language.VARIABLES.MENU_2</title>
+					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1677px;width:16px;height:16px;</icon>
+					<func>
+						<![CDATA[  
+							sumo2.dialog.NewDialog('d_menus_new_m');
+						]]>
+					</func>				
+				</button>
+			</buttons>
+		</item>		
 		<item>
 			<refresh>true</refresh>
 			<uniqueId>a_settings</uniqueId>
@@ -2400,42 +2481,7 @@
 			<minWidth>200</minWidth>
 			<buttons>
 			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<uniqueId>a_article_a_translate</uniqueId>
-			<page>pages/article.article.translate.php</page>
-			<params/>
-			<func>
-				<![CDATA[ 
-					$('#date_start_t').datetime({
-							userLang	: 'en',
-							americanMode: false
-					});
-					$('#date_end_t').datetime({
-							userLang	: 'en',
-							americanMode: false
-					});
-					if(CKEDITOR.instances['editor6']) {
-						CKEDITOR.remove(CKEDITOR.instances['editor6']);
-					}
-					CKEDITOR.replace( 'editor6'); 
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.SETTINGS_26</title>
-			<minWidth>200</minWidth>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.SAVE</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-652px -1629px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.article.Translate_Article();
-						]]>
-					</func>				
-				</button>
-			</buttons>
-		</item>
+		</item>		
 		<item>
 			<refresh>true</refresh>
 			<uniqueId>a_domains</uniqueId>
@@ -2496,33 +2542,6 @@
 					</func>				
 				</button>
 			</buttons>
-		</item>
-		<item>
-			<refresh>true</refresh>
-			<uniqueId>a_seo_redirect_view</uniqueId>
-			<page>pages/seo.urls.view.php</page>
-			<params/>
-			<func>
-				<![CDATA[ 
-					$('#a_seo_redirect_view_table_id_search').quicksearch('#a_seo_redirect_view_table tbody tr', {
-						noResults: '#noresults'		
-					});
-					sumo2.tooltip.FindTooltips(document.getElementById('a_seo_redirect_view_table'));
-				]]>
-			</func>
-			<title>sumo2.language.VARIABLES.MOD_206</title>
-			<minWidth>200</minWidth>
-			<buttons>
-				<button>
-					<title>sumo2.language.VARIABLES.MOD_207</title>
-					<icon>background-image:url(images/css_sprite.png);background-position:-509px -1692px;width:16px;height:16px;</icon>
-					<func>
-						<![CDATA[  
-							sumo2.dialog.NewDialog('d_seo_redirect_add');
-						]]>
-					</func>				
-				</button>
-			</buttons>
-		</item>
+		</item>		
 	</accordion>
 </system>

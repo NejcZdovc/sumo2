@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 ?>
 <form action="" name="d_article_new_c" method="post" class="form2">
 	<div class="">

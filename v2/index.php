@@ -43,32 +43,34 @@ $langDomainAuth = $user->checkLang();
         <div class="message" id="sumo2-main-message"></div>
         <div class="top-menu">
         	<div class="tpmnu-left flt-left"></div>
-            <div class="tpmnu-main flt-left">
-                 <div onmouseout="sumo2.cacheSelection.Hide()" onmouseover="sumo2.cacheSelection.Show()" id="tpmenuCache">
-                    <div class="cache-hover hide" id="sumo2-cache-wrapper">
-                        <div class="lang-top"></div>
-                        <div class="lang-middle" id="sumo2-cache-text">
-                        	<?php echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt('All').'\');" class="cache-item"><span class="icon"></span><span class="item">'.$lang->MOD_187.'</span></div>';
-                            $query = $db->query("SELECT def.moduleName, def.name FROM cms_modules_def as def, cms_domains_ids as di WHERE def.status='N' AND di.elementID=def.ID AND di.type='mod' AND di.domainID='".$user->domain."' ORDER BY def.name asc");
-                            while($result = $db->fetch($query)) {
-                                if(file_exists('modules/'.$result['moduleName'].'/small.png')) {
-                                    $img = 'modules/'.$result['moduleName'].'/small.png';
-                                } else {
-                                    $img = 'images/icons/flags/s2-S2.png';
-                                }
-                                if(strlen($result['name'])>14) {
-                                    $name=substr($result['name'], 0, 10).'...';
-                                } else {
-                                    $name=$result['name'];
-                                }
-                                    
-                                echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt($result['moduleName']).'\');" class="cache-item"><span class="icon"><img src="'.$img.'" alt="'.$result['name'].'" /></span><span class="item">'.$name.'</span></div>';
-                            }?>
-                        </div>
-                        <div class="lang-bottom"></div>
-                    </div>
-             	</div>&nbsp;| 
-             </div>
+			<?php if($user->cache=="1") { ?>
+				<div class="tpmnu-main flt-left">
+					 <div onmouseout="sumo2.cacheSelection.Hide()" onmouseover="sumo2.cacheSelection.Show()" id="tpmenuCache">
+						<div class="cache-hover hide" id="sumo2-cache-wrapper">
+							<div class="lang-top"></div>
+							<div class="lang-middle" id="sumo2-cache-text">
+								<?php echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt('All').'\');" class="cache-item"><span class="icon"></span><span class="item">'.$lang->MOD_187.'</span></div>';
+								$query = $db->query("SELECT def.moduleName, def.name FROM cms_modules_def as def, cms_domains_ids as di WHERE def.status='N' AND di.elementID=def.ID AND di.type='mod' AND di.domainID='".$user->domain."' ORDER BY def.name asc");
+								while($result = $db->fetch($query)) {
+									if(file_exists('modules/'.$result['moduleName'].'/small.png')) {
+										$img = 'modules/'.$result['moduleName'].'/small.png';
+									} else {
+										$img = 'images/icons/flags/s2-S2.png';
+									}
+									if(strlen($result['name'])>14) {
+										$name=substr($result['name'], 0, 10).'...';
+									} else {
+										$name=$result['name'];
+									}
+										
+									echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt($result['moduleName']).'\');" class="cache-item"><span class="icon"><img src="'.$img.'" alt="'.$result['name'].'" /></span><span class="item">'.$name.'</span></div>';
+								}?>
+							</div>
+							<div class="lang-bottom"></div>
+						</div>
+					</div>&nbsp;| 
+				</div>
+			<?php } ?>
              <div class="tpmnu-main flt-left">
              	<div onmouseout="sumo2.domains.Hide()" onmouseover="sumo2.domains.Show()" id="tpmenuDomain">
                     <div class="domain-hover hide" id="sumo2-domain-wrapper">
@@ -90,7 +92,7 @@ $langDomainAuth = $user->checkLang();
                     </div>
              	</div>&nbsp;|
             </div>             
-            <div class="tpmnu-main flt-left"><?php if($user->isAuth('FAV_MAIL_2')) { ?><div style="float:left; cursor:pointer;" onclick="sumo2.accordion.NewPanel('a_mail_inbox');sumo2.accordion.ReloadAccordion('a_mail_inbox');"><div id="tpmenuMail"></div>(<span id="mail_number"> 0 </span>) |</div><?php } ?>
+            <div class="tpmnu-main flt-left"><?php if($user->isAuth('a_mail_inbox')) { ?><div style="float:left; cursor:pointer;" onclick="sumo2.accordion.NewPanel('a_mail_inbox');sumo2.accordion.ReloadAccordion('a_mail_inbox');"><div id="tpmenuMail"></div>(<span id="mail_number"> 0 </span>) |</div><?php } ?>
             <?php
 			if($user->preview != 2) {
 				$preview_url='';
@@ -178,9 +180,9 @@ $langDomainAuth = $user->checkLang();
 	                $class = ' class="sumo2-navigation-title"';
 	            }
                 $content .= '<li'.$class.'><span>'.$lang->$result1['title'].'</span><ul class="hide">';
-                    $query2 = $db->query("SELECT subtitle,click FROM cms_favorites_def WHERE title='".$result1['title']."' AND statusID='N' ORDER BY ID ASC");
+                    $query2 = $db->query("SELECT subtitle,click, itemID FROM cms_favorites_def WHERE title='".$result1['title']."' AND statusID='N' ORDER BY ID ASC");
                     while($result2 = $db->fetch($query2)) {
-						if($user->isAuth($result2['subtitle'])) {
+						if($user->isAuth($result2['itemID'])) {
 							$exists = true;
 							if($langDomainAuth=="ok") {
 								$alert = $result2['click'];
@@ -208,9 +210,9 @@ $langDomainAuth = $user->checkLang();
     	<ul>
            <?php
 		   if($firstTitle != NULL) {
-				$query3 = $db->query("SELECT subtitle,click FROM cms_favorites_def WHERE title='".$firstTitle."' ORDER BY ID ASC");
+				$query3 = $db->query("SELECT subtitle,click, itemID FROM cms_favorites_def WHERE title='".$firstTitle."' ORDER BY ID ASC");
 				while($result3 = $db->fetch($query3)) {
-					if($user->isAuth($result3['subtitle'])) {
+					if($user->isAuth($result3['itemID'])) {
 						if($langDomainAuth=="ok") {
 							$alert = $result3['click'];
 						} else if($langDomainAuth=="lang") {

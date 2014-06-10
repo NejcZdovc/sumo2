@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$id = $crypt->encrypt($user->id);
 ?>
 <div id="trash_container">

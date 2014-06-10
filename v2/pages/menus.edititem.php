@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$id=$db->filter('id');
 	$id=explode("#", $id);
 	$results=$db->fetch($db->query('SELECT title, keyword, restriction, description, template, target, selection, link, alias, parentID, altPrefix, moduleID FROM cms_menus_items WHERE ID='.$id[0].''));

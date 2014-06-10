@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 ?>
 <div class="flt-right display"><span style="cursor:pointer;margin:6px 2px;display:inline-block;" onclick="sumo2.moduleManager.Reload('com')"><?php echo $lang->MOD_115?></span></div>
 <div class="flt-right display"><span style="margin:6px 2px;display:inline-block;cursor:pointer;" onclick="sumo2.moduleManager.Reload('mod')"><?php echo $lang->MOD_116?></span></div>

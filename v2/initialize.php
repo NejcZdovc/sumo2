@@ -5,10 +5,10 @@ define('code_hidden_full', 'ted_wu9ruxeh2chesp2g*mAmu=u6Hazaq=fuf6ud+&*h_dequ$5p
 define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
 require_once('configs'.DIRECTORY_SEPARATOR.'settings.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'includes'.DS.'errors.php');
-require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'security.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'xml.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'aes.chris.veness.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'functions.php');
+require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'security.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'validation.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'firewall.class.php');
 require_once(SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'essentials'.DS.'cryptography.class.php');

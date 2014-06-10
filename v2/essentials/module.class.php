@@ -228,13 +228,6 @@ class Module {
 						$this->error[] = $lang->MOD_152.': '.$fSub;
 					} else {
 						$this->insertTable[] = array('cms_favorites_def',$db->getLastId());
-						$admin=$db->get($db->query('SELECT access FROM cms_user_groups WHERE ID="1" AND title="Super administrator"'));
-						$access = unserialize(urldecode($admin['access']));
-						if(!array_key_exists($fSub,$access)) {
-							$access[$fSub] = 5;
-							$ser_array = urlencode(serialize($access));
-							$db->query('UPDATE cms_user_groups SET access="'.$ser_array.'" WHERE ID="1" AND title="Super administrator"');
-						}
 					}
 				}
 			} else {

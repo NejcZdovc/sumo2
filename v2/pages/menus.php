@@ -1,8 +1,6 @@
 <?php 
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 exit;
-	}
+	$security->checkFull();
 	$accordion_id='a_menus';
 	$selected_lang_menus=1;
 	if($db->is('lang_menus'))
@@ -33,7 +31,7 @@
 		<th><?php echo $lang->MENU_12?></th>
 		<th><?php echo $lang->CREATE_DATE?></th>
         
-        <?php if($user->getAuth('FAV_SITE_5') == 2 || $user->getAuth('FAV_SITE_5') == 4 || $user->getAuth('FAV_SITE_5') == 5)
+        <?php if($user->getAuth('a_menus') == 2 || $user->getAuth('a_menus') == 4 || $user->getAuth('a_menus') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
         <?php if($user->translate_state=="ON")
@@ -85,7 +83,7 @@
 					<td><div class="sumo2-tooltip" title="<?php echo $result['description']; ?>"><?php echo $description;?></div></td>
 					<td width="200px;"><?php echo $rows?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['date']));?></td>
-                    <?php if($user->getAuth('FAV_SITE_5') == 2 || $user->getAuth('FAV_SITE_5') == 4 || $user->getAuth('FAV_SITE_5') == 5) {?>
+                    <?php if($user->getAuth('a_menus') == 2 || $user->getAuth('a_menus') == 4 || $user->getAuth('a_menus') == 5) {?>
 					<td width="100px">
 						<div title="<?php echo $lang->MENU_13?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.menu.Status('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
                         <div title="<?php echo $lang->MENU_14?>" class="add sumo2-tooltip" onclick="sumo2.dialog.NewDialog('<?php echo $dialog?>','id=<?php echo  $crypt->encrypt($result['ID']); ?>$!$items=<?php echo  $crypt->encrypt($items) ?>$!$choos=-666$!$current=<?php echo $crypt->encrypt($selected_lang_menus)?>');"></div>

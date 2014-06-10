@@ -1,8 +1,6 @@
 <?php 
 require_once('../initialize.php'); 
-if(!$session->isLogedIn() || !$security->checkURL()) {
- exit;
-}
+$security->checkMin();
 $session->logout();
 echo 'ok';
 ?>

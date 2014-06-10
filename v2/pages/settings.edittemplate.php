@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+$security->checkFull();
 $id = $crypt->decrypt($db->filter('ID'));
 $new_query = $db->get($db->query("SELECT name FROM cms_template WHERE ID='".$id."'"));
 

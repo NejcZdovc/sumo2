@@ -1,8 +1,5 @@
-
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$id = $crypt->decrypt($db->filter('gid'));
 	$accordion_id='a_user_group_vd'.$id;
 	$pagging=check_pagging("SELECT ID,username,email,GroupID,name,visit,enabled FROM cms_user WHERE GroupID='".$id."' AND status='N'", $user->items);
@@ -17,7 +14,7 @@
 		<th><?php echo $lang->MAIL?></th>
 		<th><?php echo $lang->GROUP?></th>
 		<th><?php echo $lang->LAST_VISIT?></th>
-		<?php if($user->getAuth('FAV_USER_4') == 2 || $user->getAuth('FAV_USER_4') == 4 || $user->getAuth('FAV_USER_4') == 5)
+		<?php if($user->getAuth('a_user_group_vd') == 2 || $user->getAuth('a_user_group_vd') == 4 || $user->getAuth('a_user_group_vd') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
@@ -40,7 +37,7 @@
 					<td><?php echo $result['email'];?></td>
 					<td><?php echo $new_result['title'];?></td>
 					<td><?php echo $result['visit'];?></td>
-                    <?php if($user->getAuth('FAV_USER_4') == 2 || $user->getAuth('FAV_USER_4') == 4 || $user->getAuth('FAV_USER_4') == 5) {?>
+                    <?php if($user->getAuth('a_user_group_vd') == 2 || $user->getAuth('a_user_group_vd') == 4 || $user->getAuth('a_user_group_vd') == 5) {?>
 					<td width="65px">
 						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>','<?php echo $accordion_id?>')"></div>
 						<div title="<?php echo $lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>','<?php echo $accordion_id?>')"></div>

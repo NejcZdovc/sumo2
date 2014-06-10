@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+	$security->checkFull();
 	$id=$crypt->decrypt($db->filter('id'));
 	$results_basic=$db->fetch($db->query('SELECT title, galleryCat, content, stub, category, dateStart, dateEnd, author, authorAlias, published, image, keywords, description, date, altPrefix FROM cms_article WHERE ID="'.$id.'"'));
 ?>

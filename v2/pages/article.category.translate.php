@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+	$security->checkFull();
 	$language= $crypt->decrypt($db->filter('lang'));
 	$cat= $crypt->decrypt($db->filter('cat'));
 	$short_old=lang_name_front($crypt->decrypt($db->filter('current')));

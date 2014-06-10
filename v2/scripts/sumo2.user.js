@@ -591,31 +591,37 @@ sumo2.user = {
 		});
 	},
 	
-	SelectAll : function(type) {
-		var obj = document.getElementById('sumo2-user-group-permission').getElementsByTagName('input');
+	ToggleCheckbox : function(type) {
+		var obj = document.getElementById('sumo2-user-group-permission-'+type).getElementsByTagName('input');
 		var len = obj.length;
 		var secondary = len;
-		var i = null;
+		var i = len - secondary;
+		var check=false;
+		if(!obj[i].checked) {
+			check=true;
+		}
+		
 		do {
 			i = len - secondary;
 			if(i == len) break;
-			var chkBox = obj[i];
-			if(type === 1) {
-				chkBox.checked = true;
-				chkBox.parentNode.parentNode.style.background = '#efefef';	
-			} else {
-				chkBox.checked = false;
-				chkBox.parentNode.parentNode.style.background = '#ffffff';
-			}
+			obj[i].checked = check;
 		} while(--secondary);
 	},
 	
-	ToggleRow : function(obj) {
-	    if(obj.checked) {
-	        obj.parentNode.parentNode.style.background = '#efefef';
-	   } else {
-	        obj.parentNode.parentNode.style.background = '#ffffff';
-	    }
+	TogglePerm : function(type, max) {
+	    var obj = document.getElementById('sumo2-user-group-permission-'+type).getElementsByTagName('select');
+		var len = obj.length;
+		var secondary = len;
+		var i = len - secondary;
+		var value=max;
+		if(obj[i].value>1) {
+			value=1;
+		}
+		do {
+			i = len - secondary;
+			if(i == len) break;
+			obj[i].value = value;
+		} while(--secondary);
 	},
 	
 	GetJSONPermission : function() {
@@ -623,8 +629,7 @@ sumo2.user = {
 		var len = obj.length;
 		var secondary = len;
 		var i = null;
-		var JSONobject = new Object();
-		JSONobject.access = new Array();
+		var json='{';
 		do {
 			i = len - secondary;
 			if(i == len) break;
@@ -632,18 +637,17 @@ sumo2.user = {
 			if(chkBox.checked) {
 				var sel = document.getElementById(chkBox.value).value;
 				var id = chkBox.value.replace('sumo2-user-group-sel-','');
-				JSONobject.access.push({id:id,level:sel});
+				json+='"'+id+'":"'+sel+'", ';
 			}
-		} while(--secondary);
-		JSONstring = JSON.stringify(JSONobject);
-		return JSONstring;
+		} while(--secondary);		
+		json=json.substring(0, json.length - 2)+"}";
+		return json;
 	},
 	
 	SaveGroup : function() {
 		var problem = "";
 		var name = document.d_user_add_group.name.value;
 		var description = document.d_user_add_group.description.value;
-		var access = this.GetJSONPermission();
 		var domains="";
 		$("#d_user_add_group #domain :selected").each(function () {
 			domains += $(this).val() + "*/*";
@@ -658,12 +662,12 @@ sumo2.user = {
 		if(problem !== "") {
 			sumo2.message.NewMessage(problem,3);
 		} else {
-			var params = "type=addgroup$!$name="+name+"$!$description="+description+"$!$access="+access+"$!$domains="+domains;
+			var params = "type=addgroup$!$name="+name+"$!$description="+description+"$!$domains="+domains;
 			sumo2.ajax.SendPost("includes/user.management.php",params,function(data) {
 	           	if(data == 'ok') {
 	           		sumo2.message.NewMessage(sumo2.language.VARIABLES.USER_EDIT_SUCC_2,1);
 		       		sumo2.accordion.ReloadAccordion('a_user_view_g');
-					sumo2.dialog.ReloadDialog('d_user_add_group');
+					sumo2.dialog.CloseDialog('d_user_add_group');
 				} else {
 					sumo2.message.NewMessage(data, 3);	
 				}
@@ -671,36 +675,37 @@ sumo2.user = {
 		}
 	},
 	
-	EditGroup : function(id) {
-		sumo2.dialog.NewDialog('d_user_edit_group',"id="+id);
-	},
-	
 	UpdateGroup : function() {
 		var problem = "";
-		var name = document.d_user_edit_group.name.value;
-		var description = document.d_user_edit_group.description.value;
+		var name = document.a_user_edit_group.title.value;
+		var description = document.a_user_edit_group.description.value;
+		var cache = document.a_user_edit_group.cache.value;
+		var errorLog = document.a_user_edit_group.errorLog.value;
+		var dataLog = document.a_user_edit_group.dataLog.value;
+		var backendLogin = document.a_user_edit_group.backendLogin.value;
+		var id = document.a_user_edit_group.verify.value;
 		var access = this.GetJSONPermission();
-		var id = document.d_user_edit_group.verify.value;
 		var domains="";
-		$("#d_user_edit_group #domain :selected").each(function () {
+		$("#a_user_edit_group #domain :selected").each(function () {
 			domains += $(this).val() + "*/*";
 		});
 		domains=domains.slice(0,domains.length-3);
-		if(!sumo2.validate.IsAlpha(name,3,20)) {
+		if(!sumo2.validate.IsAlphaNumerical(name,3,20)) {
 			problem += '-'+sumo2.language.VARIABLES.USER_CHECK_NAME+'<br />';
 		}
 		if(domains.length==0) {
 			problem += '-'+sumo2.language.VARIABLES.MOD_199;
 		}
 		if(problem !== "") {
-			sumo2.message.NewMessage(problem,200,200);
+			sumo2.message.NewMessage(problem,3);
 		} else {
-			var obj = this;
-			var params = "type=editgroup$!$id="+id+"$!$name="+name+"$!$description="+description+"$!$access="+access+"$!$domains="+domains;
+			var params = "type=editgroup$!$id="+id+"$!$name="+name+"$!$description="+description+"$!$access="+access+"$!$domains="+domains+"$!$cache="+cache+"$!$errorLog="+errorLog+"$!$dataLog="+dataLog+"$!$backendLogin="+backendLogin;
 			sumo2.dialog.NewConfirmation(sumo2.language.VARIABLES.WARNING,sumo2.language.VARIABLES.MOD_6,250,250,function() {
 				sumo2.ajax.SendPost("includes/user.management.php",params,function(data) {
 					if(data == 'ok') {
 						setTimeout("window.location.reload()", 2000);
+					} else {
+						sumo2.message.NewMessage(data,3);
 					}
 				});
 			});

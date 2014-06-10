@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+$security->checkFull();
 $query = $db->fetch($db->query("SELECT * FROM cms_panel_".$db->filter('layout')." WHERE ID='".$db->filter('panel')."'"));
 $layoutName = "cms_panel_".$db->filter('layout');
 $tableName = $db->get($db->query("SELECT * FROM cms_modules_def WHERE ID='".$query['modulID']."'"));

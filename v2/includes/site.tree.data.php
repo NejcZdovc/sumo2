@@ -1,8 +1,6 @@
 <?php
 	require_once('../initialize.php');
-	if(($db->is('page') && ($db->filter('page')!='C3GH64v8A5UcJ' || !$session->isLogedIn())) && (!$session->isLogedIn() || !$security->checkURL())) {
-	 exit;
-	}
+	$security->checkMin();
 	if (ob_get_length() > 0) { ob_end_clean(); }
 		if($db->is('type')) {
 			if($db->filter('type') == "moveInner") {

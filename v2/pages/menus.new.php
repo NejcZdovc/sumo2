@@ -1,5 +1,4 @@
-<?php require_once('../initialize.php'); 
-?>
+<?php require_once('../initialize.php'); $security->checkFull(); ?>
 <form action="" name="d_menus_new_m" method="post" class="form2">
 	<input value="" id="lang_id" type="hidden" />
 	<div class="">

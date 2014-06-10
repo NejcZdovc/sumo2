@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 ?>
 <form action="" name="d_menus_new_s" method="post" class="form2">
 	<input type="hidden" value="<?php echo $db->filter('id')?>" name="lang" />

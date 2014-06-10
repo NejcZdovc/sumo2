@@ -1,8 +1,6 @@
 <?php 
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 ?>
 <form action="" name="d_article_cat" id="d_article_cat_id" method="post" class="form2">
 <input type="hidden" id="edit_id_cat" value="<?php echo $db->filter('cat')?>" />

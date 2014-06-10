@@ -50,8 +50,11 @@ if(file_exists("../system.xml")) {
 			echo "\n";
 			echo "end:function(data){".$dialog->end."},";
 			echo "\n";
-			echo "buttons:Array(";
-			echo "\n";
+			if($dialog->uniqueId && $user->getAuth($dialog->uniqueId) < 2) {
+				echo "buttons:Array()";
+			} else {
+				echo "buttons:Array(";
+				echo "\n";
 				foreach($dialog->buttons->button as $button) {
 					echo "{";
 					echo "\n";
@@ -69,7 +72,8 @@ if(file_exists("../system.xml")) {
 					echo "\n";
 					$counter2++;
 				}
-			echo ")";
+				echo ")";
+			}
 			echo "\n";
 			echo "}".(($counter1 == count($xml->dialog->item) && count($modXml->dialog->item) == 0)?"":",")."";
 			echo "\n";
@@ -99,8 +103,11 @@ if(file_exists("../system.xml")) {
 			echo "\n";
 			echo "end:function(data){".$dialog->end."},";
 			echo "\n";
-			echo "buttons:Array(";
-			echo "\n";
+			if($dialog->uniqueId && $user->getAuth($dialog->uniqueId) < 2) {
+				echo "buttons:Array()";
+			} else {
+				echo "buttons:Array(";
+				echo "\n";
 				foreach($dialog->buttons->button as $button) {
 					echo "{";
 					echo "\n";
@@ -118,7 +125,8 @@ if(file_exists("../system.xml")) {
 					echo "\n";
 					$counter2++;
 				}
-			echo ")";
+				echo ")";
+			}
 			echo "\n";
 			echo "}".(($counter1 == count($modXml->dialog->item))?"":",")."";
 			echo "\n";
@@ -154,31 +162,31 @@ if(file_exists("../system.xml")) {
 			echo "\n";
 			echo "func:function(data){".$accordion->func."},";
 			echo "\n";
-			if($accordion->accessId && $user->getAuth($accordion->accessId."") < 3) {
-			echo "buttons:Array()";
-			echo "\n";
+			if($accordion->uniqueId && $user->getAuth($accordion->uniqueId) < 3) {
+				echo "buttons:Array()";
+				echo "\n";
 			} else {
-			echo "buttons:Array(";
-			echo "\n";
-				foreach($accordion->buttons->button as $button) {
-					echo "{";
-					echo "\n";
-					echo "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
-					echo "\n";
-					echo "icon:\"".$button->icon."\",";
-					echo "\n";
-					echo "func:function(){";
-					echo "\n";
-					echo "".$button->func."";
-					echo "\n";
-					echo "}";
-					echo "\n";
-					echo "}".(($counter2 == count($accordion->buttons->button))?"":",")."";
-					echo "\n";
-					$counter2++;
-				}
-			echo ")";
-			echo "\n";
+				echo "buttons:Array(";
+				echo "\n";
+					foreach($accordion->buttons->button as $button) {
+						echo "{";
+						echo "\n";
+						echo "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
+						echo "\n";
+						echo "icon:\"".$button->icon."\",";
+						echo "\n";
+						echo "func:function(){";
+						echo "\n";
+						echo "".$button->func."";
+						echo "\n";
+						echo "}";
+						echo "\n";
+						echo "}".(($counter2 == count($accordion->buttons->button))?"":",")."";
+						echo "\n";
+						$counter2++;
+					}
+				echo ")";
+				echo "\n";
 			}
 			echo "}".(($counter1 == count($xml->accordion->item) && count($modXml->accordion->item) == 0)?"":",")."";
 			echo "\n";
@@ -210,31 +218,31 @@ if(file_exists("../system.xml")) {
 			echo "\n";
 			echo "func:function(data){".$accordion->func."},";
 			echo "\n";
-			if($accordion->accessId && $user->getAuth($accordion->accessId."") < 3) {
-			echo "buttons:Array()";
-			echo "\n";
+			if($accordion->uniqueId && $user->getAuth($accordion->uniqueId) < 3) {
+				echo "buttons:Array()";
+				echo "\n";
 			} else {
-			echo "buttons:Array(";
-			echo "\n";
-				foreach($accordion->buttons->button as $button) {
-					echo "{";
-					echo "\n";
-					echo "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
-					echo "\n";
-					echo "icon:\"".$button->icon."\",";
-					echo "\n";
-					echo "func:function(){";
-					echo "\n";
-					echo "".$button->func."";
-					echo "\n";
-					echo "}";
-					echo "\n";
-					echo "}".(($counter2 == count($accordion->buttons->button))?"":",")."";
-					echo "\n";
-					$counter2++;
-				}
-			echo ")";
-			echo "\n";
+				echo "buttons:Array(";
+				echo "\n";
+					foreach($accordion->buttons->button as $button) {
+						echo "{";
+						echo "\n";
+						echo "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
+						echo "\n";
+						echo "icon:\"".$button->icon."\",";
+						echo "\n";
+						echo "func:function(){";
+						echo "\n";
+						echo "".$button->func."";
+						echo "\n";
+						echo "}";
+						echo "\n";
+						echo "}".(($counter2 == count($accordion->buttons->button))?"":",")."";
+						echo "\n";
+						$counter2++;
+					}
+				echo ")";
+				echo "\n";
 			}
 			echo "}".(($counter1 == count($modXml->accordion->item))?"":",")."";
 			echo "\n";
@@ -305,7 +313,10 @@ if(file_exists("../system.xml")) {
 			$output .= "height:".$dialog->height.",";
 			$output .= "width:".$dialog->width.",";
 			$output .= "end:function(data){".$dialog->end."},";
-			$output .= "buttons:Array(";
+			if($dialog->uniqueId && $user->getAuth($dialog->uniqueId) < 2) {
+				$output .= "buttons:Array()";
+			} else {
+				$output .= "buttons:Array(";
 				foreach($dialog->buttons->button as $button) {
 					$output .= "{";
 					$output .= "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
@@ -316,7 +327,8 @@ if(file_exists("../system.xml")) {
 					$output .= "}".(($counter2 == count($dialog->buttons->button))?"":",")."";
 					$counter2++;
 				}
-			$output .= ")";
+				$output .= ")";
+			}
 			$output .= "}".(($counter1 == count($xml->dialog->item) && count($modXml->dialog->item) == 0)?"":",")."";
 			$counter1++;	
 		}
@@ -334,7 +346,10 @@ if(file_exists("../system.xml")) {
 			$output .= "height:".$dialog->height.",";
 			$output .= "width:".$dialog->width.",";
 			$output .= "end:function(data){".$dialog->end."},";
-			$output .= "buttons:Array(";
+			if($dialog->uniqueId && $user->getAuth($dialog->uniqueId) < 2) {
+				$output .= "buttons:Array()";
+			} else {
+				$output .= "buttons:Array(";
 				foreach($dialog->buttons->button as $button) {
 					$output .= "{";
 					$output .= "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
@@ -345,7 +360,8 @@ if(file_exists("../system.xml")) {
 					$output .= "}".(($counter2 == count($dialog->buttons->button))?"":",")."";
 					$counter2++;
 				}
-			$output .= ")";
+				$output .= ")";
+			}
 			$output .= "}".(($counter1 == count($modXml->dialog->item))?"":",")."";
 			$counter1++;	
 		}
@@ -368,10 +384,10 @@ if(file_exists("../system.xml")) {
 			$output .= "params:\"".$accordion->params."\",";
 			$output .= "minWidth:".$accordion->minWidth.",";
 			$output .= "func:function(data){".$accordion->func."},";
-			if($accordion->accessId && $user->getAuth($accordion->accessId."") < 3) {
-			$output .= "buttons:Array()";
+			if($accordion->uniqueId && $user->getAuth($accordion->uniqueId) < 3) {
+				$output .= "buttons:Array()";
 			} else {
-			$output .= "buttons:Array(";
+				$output .= "buttons:Array(";
 				foreach($accordion->buttons->button as $button) {
 					$output .= "{";
 					$output .= "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
@@ -382,7 +398,7 @@ if(file_exists("../system.xml")) {
 					$output .= "}".(($counter2 == count($accordion->buttons->button))?"":",")."";
 					$counter2++;
 				}
-			$output .= ")";
+				$output .= ")";
 			}
 			$output .= "}".(($counter1 == count($xml->accordion->item) && count($modXml->accordion->item) == 0)?"":",")."";
 			$counter1++;
@@ -404,10 +420,10 @@ if(file_exists("../system.xml")) {
 			$output .= "params:\"".$accordion->params."\",";
 			$output .= "minWidth:".$accordion->minWidth.",";
 			$output .= "func:function(data){".$accordion->func."},";
-			if($accordion->accessId && $user->getAuth($accordion->accessId."") < 3) {
-			$output .= "buttons:Array()";
+			if($accordion->uniqueId && $user->getAuth($accordion->uniqueId) < 3) {
+				$output .= "buttons:Array()";
 			} else {
-			$output .= "buttons:Array(";
+				$output .= "buttons:Array(";
 				foreach($accordion->buttons->button as $button) {
 					$output .= "{";
 					$output .= "title:".((strpos($button->title,"sumo2.language") === false)?"\"".$button->title."\"":$button->title).",";
@@ -418,7 +434,7 @@ if(file_exists("../system.xml")) {
 					$output .= "}".(($counter2 == count($accordion->buttons->button))?"":",")."";
 					$counter2++;
 				}
-			$output .= ")";
+				$output .= ")";
 			}
 			$output .= "}".(($counter1 == count($modXml->accordion->item))?"":",")."";
 			$counter1++;

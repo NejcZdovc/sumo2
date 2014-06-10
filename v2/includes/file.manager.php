@@ -1,8 +1,6 @@
 <?php
 require_once('../configs/settings.php');
-if(!$session->isLogedIn() || !$security->checkURL()) {
- exit;
-}
+$security->checkMin();
 if(ob_get_length()>0) {	ob_end_clean(); }
 if($db->is('path') && strpos($db->filter('path'),'/storage/') !== false) {
 	if($db->is('rename')) {

@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+		$security->checkFull();
 ?>
 <form action="" name="d_user_add_group" id="d_user_add_group" method="post" class="form2">
     <table cellpadding="0" cellspacing="4" border="0" width="99%" >
@@ -14,7 +12,6 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
         <input type="text" name="enterfix" style="display:none;" />
         </td>
     </tr>
-    <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
         <div class="title_form_big"><?php echo $lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_D_2?></div>
@@ -22,45 +19,15 @@ if(!$session->isLogedIn() && !$security->checkURL()) {
     </tr>
     <tr>
     	<td colspan="2" class="right_td" style="padding:5px;">
-			<textarea  id="description" name="content" rows="10" class="input-area" cols="50">&nbsp;</textarea>
-        </td>
-    
-    </tr>
-    <tr><td height="10px" width="100%" colspan="2"></td></tr>
-    <tr>
-        <td class="left_td"  style="width:100px;" valign="top">
-        <div class="title_form_big"><?php echo $lang->USER_ADD_A_1?>:</div>
-        <div class="title_form_small">
-		<?php echo $lang->USER_ADD_A_2?>
-        </div>
- 
-        </td>
-        <td class="right_td" style="padding:10px;">
-        <div style="float:left; margin-right:15px; cursor:pointer;"><a onclick="sumo2.user.SelectAll(1);"><?php echo $lang->SELECT_ALL?></a></div> <div style="float:left; cursor:pointer;"><a onclick="sumo2.user.SelectAll(2);"><?php echo $lang->MANUAL_SEL?></a></div><div style="clear:both; margin-bottom:10px;"></div>
-           <div class="group-permission-wrapper">
-                <table width="100%" cellspacing="0" id="sumo2-user-group-permission">
-                    <?php
-                        $query = $db->query("SELECT ID,title,subtitle FROM cms_favorites_def ORDER BY ID ASC");
-                        while($result = $db->fetch($query)) {
-                            ?>
-                            <tr>
-                                <td><input onclick="sumo2.user.ToggleRow(this)" value="sumo2-user-group-sel-<?php echo $result['ID']?>" type="checkbox" name="select" /></td>
-                                <td><?php echo $lang->$result['title']?> - <?php echo $lang->$result['subtitle']?></td>
-                                <td><select id="sumo2-user-group-sel-<?php echo $result['ID']?>"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option selected="selected" value="5">5</option></select></td>
-                            </tr>
-                            <?php
-                        }
-                    ?>
-                </table>
-           </div>
-        </td>
+			<textarea  id="description" name="content" rows="5" class="input-area" style="width: 99%">&nbsp;</textarea>
+        </td>    
     </tr>
     <tr>
         <td class="left_td" valign="top">
         <div class="title_form_big"><?php echo $lang->MOD_225?>:</div><div class="title_form_small"><?php echo $lang->MOD_226?></div>
         </td>
         <td class="right_td">
-            <select id="domain" class="input" multiple="multiple" style="height:60px;">
+            <select id="domain" class="input" multiple="multiple" style="height:100px;">
                 <?php
                     $query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
                     while($result=$db->fetch($query)) {

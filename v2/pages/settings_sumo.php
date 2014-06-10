@@ -114,7 +114,7 @@
 			</td>
 		</tr>
 		<?php } ?>
-        <?php if($user->getAuth('FAV_SITE_3')==5) {?>
+        <?php if($user->getAuth('a_settings')==5) {?>
             <tr style="margin-bottom:20px;">
                 <td class="left_td" valign="top">
                 <div class="title_form_big"><?php echo $lang->MOD_176?>:</div><div class="title_form_small"><?php echo $lang->MOD_177?></div>

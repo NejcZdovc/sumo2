@@ -122,7 +122,8 @@
 		<item constant="USER_ADD_D_1">Opis</item>
 		<item constant="USER_ADD_D_2">Prosim opišite skupino, njene naloge in pravila, itd.</item>
 		<item constant="USER_ADD_A_1">Dostop</item>
-		<item constant="USER_ADD_A_2">Prosim izberite skupini pravice za dostopanje do vsebin.<br/>Za izbiro večih strani držite Ctrl.<br/><br/>1. Samo vsebina<br/>2. Vsebina + kontrole<br/>3. Vsebina + zgornji gumb<br/>4. Vsebina + kontrole + zgornji gumb<br/>5. Polni dostop</item>
+		<item constant="USER_ADD_A_2">1. Samo vsebina<br/>2. Vsebina + kontrole<br/>3. Vsebina + zgornji gumbi<br/>4. Vsebina + kontrole + zgornji gumbi<br/>5. Polni dostop</item>
+		<item constant="USER_ADD_A_3">1. Samo vsebina<br/>2. Polni dostop</item>
 		<item constant="USER_ADDU_N_1">Prosim vnesite vaše ime in priimek.</item>
 		<item constant="USER_ADDU_U_1">To je uporabniško ime, ki ga boste uporabljali pri vpisu v administracijo strani.</item>
 		<item constant="USER_ADDU_U_2">Uporabniška skupina</item>
@@ -211,7 +212,7 @@
 		<item constant="SETTINGS_48">Sumo nastavitve</item>
 		<item constant="SETTINGS_49">Nastavitve strani</item>
 		<item constant="SETTINGS_50">Globalne nastavitve</item>
-		<item constant="SETTINGS_51">Zgodovina napak</item>
+		<item constant="SETTINGS_51">Napake</item>
 		<item constant="SETTINGS_52">Pozdravna stran</item>
 		<item constant="SETTINGS_53">Nalagalec</item>
 		<item constant="SETTINGS_54">Prosim naložite logo vašega podjetja tukaj. Dovoljene so samo <b>.png</b> slike. (max. 90x300)</item>
@@ -222,11 +223,12 @@
 		<item constant="SETTINGS_59">Izberite kratko ime tega jezika.</item>
 		<item constant="SETTINGS_60">Kopirajte "Web Property ID" iz Google Analytics v globalne nastavitve ter shranite in zaključite postopek v Google Analytics, mi bomo medtem naredili preostalo.</item>
 		<item constant="SETTINGS_61">Kopirajte vsebino meta tag-a brez narekovajev iz globalnih nastavitev.	</item>
-		<item constant="SETTINGS_62">Zgodovina napak - spletna stran</item>
+		<item constant="SETTINGS_62">Napake spletna stran</item>
 		<item constant="SETTINGS_63">Posodobi pomnilnik</item>
 		<item constant="SETTINGS_64">Posodobi številko pomnilnika za CSS in JS, kar bo prisililo brskalnik, da jih posodobi.</item>
 		<item constant="SETTINGS_65">Posodobi</item>
 		<item constant="SETTINGS_66">Zgodovina podatkov</item>
+		<item constant="SETTINGS_67">Preprost pogled</item>
 	</parent>	
 	<parent id="Menus">
 		<item constant="MENU_1">Prosim vnesite ime menija, da ga opredelite.</item>
@@ -541,6 +543,19 @@
 		<item constant="MOD_245">Izberite kakšne pravice bodo imele mape na steržniku.</item>
 		<item constant="MOD_246">Izbriši pomnilnik</item>
 		<item constant="MOD_247">Izberite modul, iz katerega se bodo črpali SEO podatki za to stran.</item>
-		<item constant="MOD_248">Nobeden</item>
+		<item constant="MOD_248">Nobeden</item>		
+		<item constant="MOD_249">Osnovne nastavitve</item>
+		<item constant="MOD_250">Pravice</item>
+		<item constant="MOD_251">Ali lahko ta skupina briše pomnilnik?</item>
+		<item constant="MOD_252">Ali lahko ta skupina preglejuje in briše dnevnik napak?</item>
+		<item constant="MOD_253">Ali lahko ta skupina preglejuje in briše dnevnik podatkov?</item>
+		<item constant="MOD_254">Prijava v administracijo</item>
+		<item constant="MOD_255">Ali se lahko ta skupina prijavi v administracijo SUMO2</item>
+		<item constant="MOD_256">Zavihki</item>
+		<item constant="MOD_257">Okna</item>
+		<item constant="MOD_258">Sistem</item>
+		<item constant="MOD_259">Preklopi polje</item>
+		<item constant="MOD_260">Preklopi pravice</item>
+		<item constant="MOD_261">Za sledečo akcijo nimate zadostnih pravic!</item>
 	</parent>
 </language>

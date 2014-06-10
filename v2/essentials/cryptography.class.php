@@ -75,7 +75,7 @@ class Cryptography {
     
     public function encodeParams($params) {
     	
-    }    
+    }
 }
 $crypt = new Cryptography();
 ?>

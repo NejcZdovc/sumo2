@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, 'http://3zsistemi.eu/update/'.$_SESSION['valArray'].'.txt');
 	curl_setopt($ch, CURLOPT_FAILONERROR,1);

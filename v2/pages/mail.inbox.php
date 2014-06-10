@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$accordion_id='a_mail_inbox';
 	$pagging=check_pagging("SELECT ID, mainID, date, status FROM cms_mail_sent WHERE recipientID='".$user->id."' and status!='D' and status!='DD' ORDER BY status desc, date desc ", $user->items);
 	$dropdown=dropdown_pagging($accordion_id, $pagging[0]);
