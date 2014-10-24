@@ -1,4 +1,4 @@
-<?php require_once('../initialize.php'); 
+<?php require_once('../initialize.php');
 	$security->checkFull();
 ?>
 <form action="" name="d_menus_new_i" method="post" class="form2">
@@ -24,15 +24,14 @@
         </td>
         <td class="right_td">
         <select id="template" style="width:100%;">
-        <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
-        	while($results=$db->fetch($query)) {
-			if($results['ID']==$globals->template)
-				echo '<option value="'.$results['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results['name'].'</option>';
-			else
-				echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
-				
-			}        
-		?>
+            <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
+            	while($results=$db->fetch($query)) {
+    			if($results['ID']==$globals->template)
+    				echo '<option value="'.$results['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results['name'].'</option>';
+    			else
+    				echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
+    			}
+    		?>
         </select>
         </td>
     </tr>
@@ -60,7 +59,7 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="keywords" class="input-area" name="content" rows="5" cols="54"></textarea>
         </td>
-    
+
     </tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
@@ -71,7 +70,7 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="description" class="input-area" name="content" rows="5" cols="54"></textarea>
         </td>
-    
+
     </tr>
     <tr>
         <td class="left_td" valign="top">
@@ -141,9 +140,9 @@
 							}
 							echo '</optgroup>';
 						}
-                	echo '</optgroup>';						
+                	echo '</optgroup>';
 					}
-				?>             
+				?>
                 </select>
         </td>
     </tr>
@@ -155,7 +154,7 @@
         <tr>
             <td class="left_td" valign="top" colspan="2">
                 <div class="title_form_big"><?php echo $lang->MOD_16?>:</div><div class="title_form_small"><?php echo $lang->MOD_17?></div>
-            </td>        
+            </td>
         </tr>
         <tr>
             <td class="right_td" valign="top" colspan="2" style="padding:5px;">
@@ -184,11 +183,11 @@
 							}
 							echo '</optgroup>';
 						}
-                	echo '</optgroup>';						
+                	echo '</optgroup>';
 					}
-				?>              
+				?>
                 </select>
-            </td>        
+            </td>
         </tr>
         </table>
     </div>
@@ -200,7 +199,7 @@
             </td>
             <td class="right_td">
                 <input name="extra_link" id="extra_link" value="http://" type="text" maxlength="50" class="input" />
-            </td>        
+            </td>
         </tr>
         <tr>
             <td class="left_td" valign="top">
@@ -209,8 +208,8 @@
             <td class="right_td">
               	<input type="radio" checked="checked" id="same" name="target" value="1" /><label for="same"><?php echo $lang->MOD_22?></label><br/>
                 <input type="radio" id="blank" name="target" value="2" /><label for="blank"><?php echo $lang->MOD_23?></label><br/>
-           		<input type="radio" id="new_w" name="target" value="3" /><label for="new_w"><?php echo $lang->MOD_24?></label>  
-            </td>        
+           		<input type="radio" id="new_w" name="target" value="3" /><label for="new_w"><?php echo $lang->MOD_24?></label>
+            </td>
         </tr>
         </table>
     </div>

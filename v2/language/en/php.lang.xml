@@ -229,7 +229,7 @@
 		<item constant="SETTINGS_65">Update</item>
 		<item constant="SETTINGS_66">Data log</item>
 		<item constant="SETTINGS_67">Layout</item>
-	</parent>	
+	</parent>
 	<parent id="Menus">
 		<item constant="MENU_1">Please enter menu name to identify it</item>
 		<item constant="MENU_2">Version</item>
@@ -557,5 +557,6 @@
 		<item constant="MOD_259">Toggle checkbox</item>
 		<item constant="MOD_260">Toggle permissions</item>
 		<item constant="MOD_261">You don't have permission to execute this command!</item>
+        <item constant="MOD_262">Select template</item>
 	</parent>
 </language>

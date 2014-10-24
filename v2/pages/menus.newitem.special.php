@@ -1,4 +1,4 @@
-<?php require_once('../initialize.php'); 
+<?php require_once('../initialize.php');
 	$security->checkFull();
 ?>
 <form action="" name="d_menus_new_s" method="post" class="form2">
@@ -19,15 +19,14 @@
         </td>
         <td class="right_td">
         <select id="template" style="width:100%;">
-        <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
-        	while($results=$db->fetch($query)) {
-			if($results['ID']==$globals->template)
-				echo '<option value="'.$results['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results['name'].'</option>';
-			else
-				echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
-				
-			}        
-		?>
+            <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
+            	while($results=$db->fetch($query)) {
+    			if($results['ID']==$globals->template)
+    				echo '<option value="'.$results['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results['name'].'</option>';
+    			else
+    				echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
+    			}
+    		?>
         </select>
         </td>
     </tr>
@@ -55,7 +54,7 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="keywords" class="input-area" name="content" rows="5" cols="54"></textarea>
         </td>
-    
+
     </tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
@@ -66,7 +65,7 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="description" class="input-area" name="content" rows="5" cols="54"></textarea>
         </td>
-    
+
     </tr>
     <tr>
         <td class="left_td" valign="top">
@@ -124,9 +123,9 @@
 							}
 							echo '</optgroup>';
 						}
-                	echo '</optgroup>';						
+                	echo '</optgroup>';
 					}
-				?>             
+				?>
                 </select>
         </td>
     </tr>

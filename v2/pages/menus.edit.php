@@ -1,4 +1,4 @@
-<?php require_once('../initialize.php'); 
+<?php require_once('../initialize.php');
 	$security->checkFull();
 	$results=$db->fetch($db->query('SELECT ID,title,description FROM cms_menus  WHERE ID='.$crypt->decrypt($db->filter('id')).''));
 ?>
@@ -25,7 +25,6 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="contentd" class="input-area" name="content" rows="10" cols="50"><?php echo $results['description']?></textarea>
         </td>
-    
     </tr>
     </table>
     </div>

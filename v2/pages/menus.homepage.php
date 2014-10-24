@@ -1,4 +1,4 @@
-<?php require_once('../initialize.php'); 
+<?php require_once('../initialize.php');
 	$security->checkFull();
 	$id=$db->filter('id');
 	$results=$db->fetch($db->query('SELECT ID, title, keyword, description, template, selection, link, altPrefix, altTitle FROM cms_homepage WHERE ID='.$id.''));
@@ -30,29 +30,29 @@
         </td>
         <td class="right_td">
         <select id="template" style="width:100%;">
-        <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
-        	while($results1=$db->fetch($query)) {
-			if($results1['ID']==$results['template'])
-				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
-			else
-				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
-				
-			}        
-		?>
+            <option value="-1">-- <?php echo $lang->MOD_262?> --</option>
+            <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
+            	while($results1=$db->fetch($query)) {
+    			if($results1['ID']==$results['template'])
+    				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
+    			else
+    				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
+    			}
+    		?>
         </select>
         </td>
     </tr>
     <tr><td height="10px" width="100%" colspan="2"></td></tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
-        <div class="title_form_big"><?php echo $lang->MENU_24?>:</div><div class="title_form_small"><?php echo $lang->MENU_25?></div>
+            <div class="title_form_big"><?php echo $lang->MENU_24?>:</div><div class="title_form_small"><?php echo $lang->MENU_25?></div>
         </td>
     </tr>
     <tr>
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="keywords" class="input-area" name="content" rows="5" cols="50"><?php echo  $results['keyword'] ?></textarea>
         </td>
-    
+
     </tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
@@ -63,9 +63,9 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="description" class="input-area" name="content"  rows="5" cols="50"><?php echo  $results['description'] ?></textarea>
         </td>
-    
+
     </tr>
- <tr>
+    <tr>
         <td class="left_td" valign="top">
             <div class="title_form_big"><?php echo $lang->MOD_11?>:</div><div class="title_form_small"><?php echo $lang->MOD_12?></div>
         </td>
@@ -81,7 +81,7 @@
         <tr>
             <td class="left_td" valign="top" colspan="2">
                 <div class="title_form_big"><?php echo $lang->MOD_16?>:</div><div class="title_form_small"><?php echo $lang->MOD_17?></div>
-            </td>        
+            </td>
         </tr>
         <tr>
             <td class="right_td" valign="top" colspan="2" style="padding:5px;">
@@ -128,11 +128,11 @@
 						}
 						echo '</optgroup>';
 					}
-                	echo '</optgroup>';						
+                	echo '</optgroup>';
 					}
-				?>             
+				?>
                 </select>
-            </td>        
+            </td>
         </tr>
         </table>
     </div>

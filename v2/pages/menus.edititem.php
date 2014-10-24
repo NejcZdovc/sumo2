@@ -1,4 +1,4 @@
-<?php require_once('../initialize.php'); 
+<?php require_once('../initialize.php');
 	$security->checkFull();
 	$id=$db->filter('id');
 	$id=explode("#", $id);
@@ -23,15 +23,15 @@
         </td>
         <td class="right_td">
         <select id="template" style="width:100%;">
-        <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
-        	while($results1=$db->fetch($query)) {
-			if($results1['ID']==$results['template'])
-				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
-			else
-				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
-				
-			}        
-		?>
+            <option value="-1">-- <?php echo $lang->MOD_262?> --</option>
+            <?php $query=$db->query('SELECT ID, name FROM cms_template WHERE enabled=1 AND status="N" AND domain="'.$user->domain.'"');
+            	while($results1=$db->fetch($query)) {
+    			if($results1['ID']==$results['template'])
+    				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
+    			else
+    				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
+    			}
+    		?>
         </select>
         </td>
     </tr>
@@ -48,8 +48,7 @@
 				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
 			else
 				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
-				
-			}        
+			}
 		?>
         </select>
         </td>
@@ -64,7 +63,7 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="keywords" class="input-area" name="content" rows="5" cols="54"><?php echo  $results['keyword'] ?></textarea>
         </td>
-    
+
     </tr>
     <tr>
         <td colspan="2" class="left_td" valign="top">
@@ -75,9 +74,9 @@
     	<td colspan="2" class="right_td" style="padding:5px;">
 			<textarea  id="description" class="input-area" name="content"  rows="5" cols="54"><?php echo  $results['description'] ?></textarea>
         </td>
-    
+
     </tr>
-   
+
     <tr>
         <td class="left_td" valign="top">
             <div class="title_form_big"><?php echo $lang->MOD_174?>:</div><div class="title_form_small"><?php echo $lang->MOD_175?></div>
@@ -133,7 +132,7 @@
 					echo '<option value="-1" selected="selected"><b>'.$lang->ARTICLE_20.'</b></option>';
 				else
 					echo '<option value="-1"><b>'.$lang->ARTICLE_20.'</b></option>';
-				
+
 				 $query=$db->query('SELECT ID, name FROM cms_language_front WHERE enabled=1');
 					while($resultsF=$db->fetch($query)) {
 					echo '<optgroup label="'.$resultsF['name'].'">';
@@ -176,9 +175,9 @@
 						}
 						echo '</optgroup>';
 					}
-                	echo '</optgroup>';						
+                	echo '</optgroup>';
 					}
-				?>         
+				?>
                 </select>
         </td>
     </tr>
@@ -190,7 +189,7 @@
         <tr>
             <td class="left_td" valign="top" colspan="2">
                 <div class="title_form_big"><?php echo $lang->MOD_16?>:</div><div class="title_form_small"><?php echo $lang->MOD_17?></div>
-            </td>        
+            </td>
         </tr>
         <tr>
             <td class="right_td" valign="top" colspan="2" style="padding:5px;">
@@ -237,11 +236,11 @@
 						}
 						echo '</optgroup>';
 					}
-                	echo '</optgroup>';						
+                	echo '</optgroup>';
 					}
-				?>              
+				?>
                 </select>
-            </td>        
+            </td>
         </tr>
         </table>
     </div>
@@ -253,7 +252,7 @@
             </td>
             <td class="right_td">
                 <input name="extra_link" id="extra_link" type="text" maxlength="50" value="<?php echo $results['link']?>" class="input" />
-            </td>        
+            </td>
         </tr>
         <tr>
             <td class="left_td" valign="top">
@@ -262,8 +261,8 @@
             <td class="right_td">
               	<input type="radio" <?php if($results['target']==1) echo 'checked="checked"'; ?> id="same" name="target" value="1" /><label for="same"><?php echo $lang->MOD_22?></label><br/>
                 <input type="radio" <?php if($results['target']==2) echo 'checked="checked"'; ?> id="blank" name="target" value="2" /><label for="blank"><?php echo $lang->MOD_23?></label><br/>
-           		<input type="radio" <?php if($results['target']==3) echo 'checked="checked"'; ?> id="new_w" name="target" value="3" /><label for="new_w"><?php echo $lang->MOD_24?></label>  
-            </td>        
+           		<input type="radio" <?php if($results['target']==3) echo 'checked="checked"'; ?> id="new_w" name="target" value="3" /><label for="new_w"><?php echo $lang->MOD_24?></label>
+            </td>
         </tr>
         </table>
     </div>
