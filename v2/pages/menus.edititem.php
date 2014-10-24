@@ -2,7 +2,7 @@
 	$security->checkFull();
 	$id=$db->filter('id');
 	$id=explode("#", $id);
-	$results=$db->fetch($db->query('SELECT title, keyword, restriction, description, template, target, selection, link, alias, parentID, altPrefix, moduleID FROM cms_menus_items WHERE ID='.$id[0].''));
+	$results=$db->fetch($db->query('SELECT title, keyword, restriction, description, template, target, selection, link, alias, parentID, altPrefix, menuID FROM cms_menus_items WHERE ID='.$id[0].''));
 ?>
 <form action="" name="d_menus_edit_i" method="post" class="form2">
 <input type="hidden" name="id" id="id" value="<?php echo  $id[0] ?>" />
@@ -42,12 +42,14 @@
         <td class="right_td">
         <select id="moduleID" style="width:100%;">
 			<option value="-1"><?php echo $lang->MOD_248 ?></option>
-        <?php $query=$db->query('SELECT md.ID, md.name FROM cms_modules_def as md LEFT JOIN cms_domains_ids as di ON md.ID=di.elementID WHERE md.enabled=1 AND md.status="N" AND di.domainID="'.$user->domain.'" AND di.type="mod"');
+            <?php
+            $query=$db->query('SELECT md.ID, md.name FROM cms_modules_def as md LEFT JOIN cms_domains_ids as di ON md.ID=di.elementID WHERE md.enabled=1 AND md.status="N" AND di.domainID="'.$user->domain.'" AND di.type="mod"');
         	while($results1=$db->fetch($query)) {
-			if($results1['ID']==$results['moduleID'])
-				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
-			else
-				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
+    			if($results1['ID']==$results['menuID']) {
+    				echo '<option value="'.$results1['ID'].'" selected="Selected" style="font-weight:bolder;">'.$results1['name'].'</option>';
+                } else {
+    				echo '<option value="'.$results1['ID'].'">'.$results1['name'].'</option>';
+                }
 			}
 		?>
         </select>
