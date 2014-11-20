@@ -14,15 +14,15 @@ class Security {
 		ini_set('allow_url_include',0);
 		ini_set('session.cookie_httponly',true);
 	}
-	
+
 	public function checkFull($file=false) {
 		global $session, $lang, $db, $user;
-		
+
 		$return=$session->isLogedIn();
 		if($return) {
 			$return=$this->checkURL();
 			if($return) {
-				$return=$this->checkFile($file);				
+				$return=$this->checkFile($file);
 			}
 			if(!$return) {
 				$db->query('UPDATE cms_state SET state="error" WHERE userID="'.$user->ID.'"');
@@ -34,15 +34,15 @@ class Security {
 			echo $lang->MOD_261;
 			exit();
 		}
-		
+
 	}
-	
+
 	public function checkMin() {
 		global $session, $lang, $db, $user;
 		$return=$session->isLogedIn();
 		if($return) {
 			$return=$this->checkURL();
-			if(!$return) {				
+			if(!$return) {
 				$db->query('UPDATE cms_state SET state="error" WHERE userID="'.$user->ID.'"');
 				echo $lang->MOD_261;
 				exit();
@@ -53,7 +53,7 @@ class Security {
 			exit();
 		}
 	}
-	
+
 	public function checkURL() {
 		if(IS_AJAX) {
 			return true;
@@ -66,28 +66,29 @@ class Security {
 			header( 'Location: http://'.$_SERVER['HTTP_HOST'].'/v2/');
 			return false;
 		}
-	}	
-	
+	}
+
 	public function checkFile($file=false) {
 		global $db, $user, $lang;
 		$return=false;
 		if(!$file) {
-			$fileArray=explode("v2".DS, get_included_files()[0]);
+            $included_files=get_included_files();
+			$fileArray=explode("v2".DS, $included_files[0]);
 			if(isset($fileArray[1])) {
 				$file=$fileArray[1];
-			}		
+			}
 		}
-		
+
 		$file=str_replace(array("\\", "/"), "@", $file);
-		
+
 		$result=$db->get($db->query('SELECT permission, enabled FROM cms_user_groups_permissions WHERE file="'.$db->filterVar($file).'" '));
 		if($result) {
 			if($result['enabled']=="1" && (int)$result['permission']>0) {
 				return true;
 			}
-		}		
+		}
 		return false;
-		
+
 	}
 }
 
