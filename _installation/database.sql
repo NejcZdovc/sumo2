@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `cms_favorites` (
   `option10` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   KEY `UserID` (`UserID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -219,36 +219,35 @@ CREATE TABLE IF NOT EXISTS `cms_favorites_def` (
   `click` varchar(100) NOT NULL,
   `comID` int(11) NOT NULL,
   `statusID` enum('N','D') NOT NULL DEFAULT 'N',
+  `itemID` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21;
 
 --
 -- Dumping data for table `cms_favorites_def`
 --
 
-INSERT INTO `cms_favorites_def` (`ID`, `title`, `subtitle`, `img`, `click`, `comID`, `statusID`) VALUES
-(1, 'FAV_SITE', 'FAV_SITE_2', 'background-image:url(images/css_sprite.png);background-position:-194px -1628px;height:48px;width:48px;', 'a_ftp', 0, 'N'),
-(2, 'FAV_SITE', 'FAV_SITE_5', 'background-image:url(images/css_sprite.png);background-position:-434px -1628px;height:48px;width:48px;', 'a_menus', 0, 'N'),
-(3, 'FAV_SITE', 'FAV_SITE_3', 'background-image:url(images/css_sprite.png);background-position:-193px -1676px;height:48px;width:48px;', 'a_settings', 0, 'N'),
-(4, 'FAV_SITE', 'FAV_SITE_4', 'background-image:url(images/css_sprite.png);background-position:-289px -1676px;height:48px;width:48px;', 'a_trash', 0, 'N'),
-(5, 'FAV_USER', 'FAV_USER_1', 'background-image:url(images/css_sprite.png);background-position:-334px -1676px;height:48px;width:48px;', 'd_user_add_user', 0, 'N'),
-(6, 'FAV_USER', 'FAV_USER_2', 'background-image:url(images/css_sprite.png);background-position:-382px -1676px;height:48px;width:48px;', 'a_user_view_u', 0, 'N'),
-(7, 'FAV_USER', 'FAV_USER_3', 'background-image:url(images/css_sprite.png);background-position:-241px -1628px;height:48px;width:48px;', 'd_user_add_group', 0, 'N'),
-(8, 'FAV_USER', 'FAV_USER_4', 'background-image:url(images/css_sprite.png);background-position:-290px -1628px;height:48px;width:48px;', 'a_user_view_g', 0, 'N'),
-(9, 'FAV_MODULES', 'FAV_MODULES_2', 'background-image:url(images/css_sprite.png);background-position:-96px -1676px;height:48px;width:48px;', 'a_module_view', 0, 'N'),
-(10, 'FAV_MODULES', 'FAV_MODULES_3', 'background-image:url(images/css_sprite.png);background-position:-50px -1676px;height:48px;width:48px;', 'd_module_install', 0, 'N'),
-(11, 'FAV_MAIL', 'FAV_MAIL_1', 'background-image:url(images/css_sprite.png);background-position:-385px -1628px;height:48px;width:48px;', 'a_mail_new', 0, 'N'),
-(12, 'FAV_MAIL', 'FAV_MAIL_2', 'background-image:url(images/css_sprite.png);background-position:-337px -1628px;height:48px;width:48px;', 'a_mail_inbox', 0, 'N'),
-(13, 'FAV_MAIL', 'FAV_MAIL_3', 'background-image:url(images/css_sprite.png);background-position:-145px -1676px;height:48px;width:48px;', 'a_mail_sent', 0, 'N'),
-(14, 'FAV_ARTICLES', 'FAV_ARTICLES_1', 'background-image:url(images/css_sprite.png);background-position:0px -1628px;height:48px;width:48px;', 'a_article_new_a', 0, 'N'),
-(15, 'FAV_ARTICLES', 'FAV_ARTICLES', 'background-image:url(images/css_sprite.png);background-position:-49px -1628px;height:48px;width:48px;', 'a_article_view_a', 0, 'N'),
-(16, 'FAV_ARTICLES', 'FAV_ARTICLES_2', 'background-image:url(images/css_sprite.png);background-position:-97px -1628px;height:48px;width:48px;', 'd_article_new_c', 0, 'N'),
-(17, 'FAV_ARTICLES', 'FAV_ARTICLES_3', 'background-image:url(images/css_sprite.png);background-position:-143px -1628px;height:48px;width:48px;', 'a_article_view_c', 0, 'N'),
-(18, 'FAV_SITE', 'FAV_SITE_6', 'background-image:url(images/css_sprite.png);background-position:-241px -1676px;height:48px;width:48px;', 'a_sitetree', 0, 'N'),
-(19, 'FAV_USER', 'FAV_USER_5', 'background-image:url(images/css_sprite.png);background-position:-434px -1676px;height:48px;width:48px;', 'a_user_view_f', 0, 'N'),
-(20, 'FAV_SITE', 'FAV_SITE_7', 'background-image:url(images/css_sprite.png);background-position:-701px -1708px;height:48px;width:48px;', 'a_domains', 0, 'N'),
-(21, 'FAV_SITE', 'FAV_SITE_8', 'background-image:url(images/css_sprite.png);background-position:-746px -1708px;height:48px;width:48px;', 'a_seo_redirect_view', 0, 'N');
-
+INSERT INTO `cms_favorites_def` VALUES 
+(1,'FAV_SITE','FAV_SITE_2','background-image:url(images/css_sprite.png);background-position:-194px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_ftp\')',0,'N','a_ftp'),
+(2,'FAV_SITE','FAV_SITE_5','background-image:url(images/css_sprite.png);background-position:-434px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_menus\')',0,'N','a_menus'),
+(3,'FAV_SITE','FAV_SITE_3','background-image:url(images/css_sprite.png);background-position:-193px -1676px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_settings\')',0,'N','a_settings'),
+(4,'FAV_SITE','FAV_SITE_4','background-image:url(images/css_sprite.png);background-position:-289px -1676px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_trash\')',0,'N','a_trash'),
+(5,'FAV_USER','FAV_USER_1','background-image:url(images/css_sprite.png);background-position:-334px -1676px;height:48px;width:48px;','sumo2.dialog.NewDialog(\'d_user_add_user\')',0,'N','d_user_add_user'),
+(6,'FAV_USER','FAV_USER_2','background-image:url(images/css_sprite.png);background-position:-382px -1676px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_user_view_u\')',0,'N','a_user_view_u'),
+(7,'FAV_USER','FAV_USER_3','background-image:url(images/css_sprite.png);background-position:-241px -1628px;height:48px;width:48px;','sumo2.dialog.NewDialog(\'d_user_add_group\')',0,'N','d_user_add_group'),
+(8,'FAV_USER','FAV_USER_4','background-image:url(images/css_sprite.png);background-position:-290px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_user_view_g\')',0,'N','a_user_view_g'),
+(9,'FAV_MODULES','FAV_MODULES_2','background-image:url(images/css_sprite.png);background-position:-96px -1676px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_module_view\')',0,'N','a_module_view'),
+(10,'FAV_MODULES','FAV_MODULES_3','background-image:url(images/css_sprite.png);background-position:-50px -1676px;height:48px;width:48px;','sumo2.dialog.NewDialog(\'d_module_install\')',0,'N','d_module_install'),
+(11,'FAV_MAIL','FAV_MAIL_1','background-image:url(images/css_sprite.png);background-position:-385px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_mail_new\')',0,'N','a_mail_new'),
+(12,'FAV_MAIL','FAV_MAIL_2','background-image:url(images/css_sprite.png);background-position:-337px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_mail_inbox\')',0,'N','a_mail_inbox'),
+(13,'FAV_MAIL','FAV_MAIL_3','background-image:url(images/css_sprite.png);background-position:-145px -1676px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_mail_sent\')',0,'N','a_mail_sent'),
+(14,'FAV_ARTICLES','FAV_ARTICLES_1','background-image:url(images/css_sprite.png);background-position:0px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_article_new_a\')',0,'N','a_article_new_a'),
+(15,'FAV_ARTICLES','FAV_ARTICLES','background-image:url(images/css_sprite.png);background-position:-49px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_article_view_a\')',0,'N','a_article_view_a'),
+(16,'FAV_ARTICLES','FAV_ARTICLES_2','background-image:url(images/css_sprite.png);background-position:-97px -1628px;height:48px;width:48px;','sumo2.dialog.NewDialog(\'d_article_new_c\')',0,'N','d_article_new_c'),
+(17,'FAV_ARTICLES','FAV_ARTICLES_3','background-image:url(images/css_sprite.png);background-position:-143px -1628px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_article_view_c\')',0,'N','a_article_view_c'),
+(18,'FAV_SITE','FAV_SITE_6','background-image:url(images/css_sprite.png);background-position:-241px -1676px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_sitetree\')',0,'N','a_sitetree'),
+(19,'FAV_USER','FAV_USER_5','background-image:url(images/css_sprite.png);background-position:-434px -1676px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_user_view_f\')',0,'N','a_user_view_f'),
+(20,'FAV_SITE','FAV_SITE_7','background-image:url(images/css_sprite.png);background-position:-701px -1708px;height:48px;width:48px;','sumo2.accordion.NewPanel(\'a_domains\')',0,'N','a_domains');
 
 -- --------------------------------------------------------
 
@@ -486,7 +485,7 @@ CREATE TABLE IF NOT EXISTS `cms_modul_prefix` (
   `prefix` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `domain` (`domain`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -519,7 +518,7 @@ CREATE TABLE IF NOT EXISTS `cms_state` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID`),
   KEY `userID` (`userID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
@@ -594,7 +593,7 @@ CREATE TABLE IF NOT EXISTS `cms_user` (
   `status` enum('D','N','DD') NOT NULL DEFAULT 'N',
   PRIMARY KEY (`ID`),
   KEY `GroupID` (`GroupID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -773,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `cms_user_settings` (
   PRIMARY KEY (`ID`),
   KEY `userID` (`userID`),
   KEY `domain` (`domain`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 
 -- --------------------------------------------------------
