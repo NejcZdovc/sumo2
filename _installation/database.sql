@@ -227,27 +227,28 @@ CREATE TABLE IF NOT EXISTS `cms_favorites_def` (
 --
 
 INSERT INTO `cms_favorites_def` (`ID`, `title`, `subtitle`, `img`, `click`, `comID`, `statusID`) VALUES
-(1, 'FAV_SITE', 'FAV_SITE_2', 'background-image:url(images/css_sprite.png);background-position:-194px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_ftp'')', 0, 'N'),
-(2, 'FAV_SITE', 'FAV_SITE_5', 'background-image:url(images/css_sprite.png);background-position:-434px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_menus'')', 0, 'N'),
-(3, 'FAV_SITE', 'FAV_SITE_3', 'background-image:url(images/css_sprite.png);background-position:-193px -1676px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_settings'')', 0, 'N'),
-(4, 'FAV_SITE', 'FAV_SITE_4', 'background-image:url(images/css_sprite.png);background-position:-289px -1676px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_trash'')', 0, 'N'),
-(5, 'FAV_USER', 'FAV_USER_1', 'background-image:url(images/css_sprite.png);background-position:-334px -1676px;height:48px;width:48px;', 'sumo2.dialog.NewDialog(''d_user_add_user'')', 0, 'N'),
-(6, 'FAV_USER', 'FAV_USER_2', 'background-image:url(images/css_sprite.png);background-position:-382px -1676px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_user_view_u'')', 0, 'N'),
-(7, 'FAV_USER', 'FAV_USER_3', 'background-image:url(images/css_sprite.png);background-position:-241px -1628px;height:48px;width:48px;', 'sumo2.dialog.NewDialog(''d_user_add_group'')', 0, 'N'),
-(8, 'FAV_USER', 'FAV_USER_4', 'background-image:url(images/css_sprite.png);background-position:-290px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_user_view_g'')', 0, 'N'),
-(9, 'FAV_MODULES', 'FAV_MODULES_2', 'background-image:url(images/css_sprite.png);background-position:-96px -1676px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_module_view'')', 0, 'N'),
-(10, 'FAV_MODULES', 'FAV_MODULES_3', 'background-image:url(images/css_sprite.png);background-position:-50px -1676px;height:48px;width:48px;', 'sumo2.dialog.NewDialog(''d_module_install'')', 0, 'N'),
-(11, 'FAV_MAIL', 'FAV_MAIL_1', 'background-image:url(images/css_sprite.png);background-position:-385px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_mail_new'')', 0, 'N'),
-(12, 'FAV_MAIL', 'FAV_MAIL_2', 'background-image:url(images/css_sprite.png);background-position:-337px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_mail_inbox'')', 0, 'N'),
-(13, 'FAV_MAIL', 'FAV_MAIL_3', 'background-image:url(images/css_sprite.png);background-position:-145px -1676px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_mail_sent'')', 0, 'N'),
-(14, 'FAV_ARTICLES', 'FAV_ARTICLES_1', 'background-image:url(images/css_sprite.png);background-position:0px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_article_new_a'')', 0, 'N'),
-(15, 'FAV_ARTICLES', 'FAV_ARTICLES', 'background-image:url(images/css_sprite.png);background-position:-49px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_article_view_a'')', 0, 'N'),
-(16, 'FAV_ARTICLES', 'FAV_ARTICLES_2', 'background-image:url(images/css_sprite.png);background-position:-97px -1628px;height:48px;width:48px;', 'sumo2.dialog.NewDialog(''d_article_new_c'')', 0, 'N'),
-(17, 'FAV_ARTICLES', 'FAV_ARTICLES_3', 'background-image:url(images/css_sprite.png);background-position:-143px -1628px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_article_view_c'')', 0, 'N'),
-(18, 'FAV_SITE', 'FAV_SITE_6', 'background-image:url(images/css_sprite.png);background-position:-241px -1676px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_sitetree'')', 0, 'N'),
-(19, 'FAV_USER', 'FAV_USER_5', 'background-image:url(images/css_sprite.png);background-position:-434px -1676px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_user_view_f'')', 0, 'N'),
-(20, 'FAV_SITE', 'FAV_SITE_7', 'background-image:url(images/css_sprite.png);background-position:-701px -1708px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_domains'')', 0, 'N'),
-(21, 'FAV_SITE', 'FAV_SITE_8', 'background-image:url(images/css_sprite.png);background-position:-746px -1708px;height:48px;width:48px;', 'sumo2.accordion.NewPanel(''a_seo_redirect_view'')', 0, 'N');
+(1, 'FAV_SITE', 'FAV_SITE_2', 'background-image:url(images/css_sprite.png);background-position:-194px -1628px;height:48px;width:48px;', 'a_ftp', 0, 'N'),
+(2, 'FAV_SITE', 'FAV_SITE_5', 'background-image:url(images/css_sprite.png);background-position:-434px -1628px;height:48px;width:48px;', 'a_menus', 0, 'N'),
+(3, 'FAV_SITE', 'FAV_SITE_3', 'background-image:url(images/css_sprite.png);background-position:-193px -1676px;height:48px;width:48px;', 'a_settings', 0, 'N'),
+(4, 'FAV_SITE', 'FAV_SITE_4', 'background-image:url(images/css_sprite.png);background-position:-289px -1676px;height:48px;width:48px;', 'a_trash', 0, 'N'),
+(5, 'FAV_USER', 'FAV_USER_1', 'background-image:url(images/css_sprite.png);background-position:-334px -1676px;height:48px;width:48px;', 'd_user_add_user', 0, 'N'),
+(6, 'FAV_USER', 'FAV_USER_2', 'background-image:url(images/css_sprite.png);background-position:-382px -1676px;height:48px;width:48px;', 'a_user_view_u', 0, 'N'),
+(7, 'FAV_USER', 'FAV_USER_3', 'background-image:url(images/css_sprite.png);background-position:-241px -1628px;height:48px;width:48px;', 'd_user_add_group', 0, 'N'),
+(8, 'FAV_USER', 'FAV_USER_4', 'background-image:url(images/css_sprite.png);background-position:-290px -1628px;height:48px;width:48px;', 'a_user_view_g', 0, 'N'),
+(9, 'FAV_MODULES', 'FAV_MODULES_2', 'background-image:url(images/css_sprite.png);background-position:-96px -1676px;height:48px;width:48px;', 'a_module_view', 0, 'N'),
+(10, 'FAV_MODULES', 'FAV_MODULES_3', 'background-image:url(images/css_sprite.png);background-position:-50px -1676px;height:48px;width:48px;', 'd_module_install', 0, 'N'),
+(11, 'FAV_MAIL', 'FAV_MAIL_1', 'background-image:url(images/css_sprite.png);background-position:-385px -1628px;height:48px;width:48px;', 'a_mail_new', 0, 'N'),
+(12, 'FAV_MAIL', 'FAV_MAIL_2', 'background-image:url(images/css_sprite.png);background-position:-337px -1628px;height:48px;width:48px;', 'a_mail_inbox', 0, 'N'),
+(13, 'FAV_MAIL', 'FAV_MAIL_3', 'background-image:url(images/css_sprite.png);background-position:-145px -1676px;height:48px;width:48px;', 'a_mail_sent', 0, 'N'),
+(14, 'FAV_ARTICLES', 'FAV_ARTICLES_1', 'background-image:url(images/css_sprite.png);background-position:0px -1628px;height:48px;width:48px;', 'a_article_new_a', 0, 'N'),
+(15, 'FAV_ARTICLES', 'FAV_ARTICLES', 'background-image:url(images/css_sprite.png);background-position:-49px -1628px;height:48px;width:48px;', 'a_article_view_a', 0, 'N'),
+(16, 'FAV_ARTICLES', 'FAV_ARTICLES_2', 'background-image:url(images/css_sprite.png);background-position:-97px -1628px;height:48px;width:48px;', 'd_article_new_c', 0, 'N'),
+(17, 'FAV_ARTICLES', 'FAV_ARTICLES_3', 'background-image:url(images/css_sprite.png);background-position:-143px -1628px;height:48px;width:48px;', 'a_article_view_c', 0, 'N'),
+(18, 'FAV_SITE', 'FAV_SITE_6', 'background-image:url(images/css_sprite.png);background-position:-241px -1676px;height:48px;width:48px;', 'a_sitetree', 0, 'N'),
+(19, 'FAV_USER', 'FAV_USER_5', 'background-image:url(images/css_sprite.png);background-position:-434px -1676px;height:48px;width:48px;', 'a_user_view_f', 0, 'N'),
+(20, 'FAV_SITE', 'FAV_SITE_7', 'background-image:url(images/css_sprite.png);background-position:-701px -1708px;height:48px;width:48px;', 'a_domains', 0, 'N'),
+(21, 'FAV_SITE', 'FAV_SITE_8', 'background-image:url(images/css_sprite.png);background-position:-746px -1708px;height:48px;width:48px;', 'a_seo_redirect_view', 0, 'N');
+
 
 -- --------------------------------------------------------
 
@@ -636,25 +637,118 @@ CREATE TABLE IF NOT EXISTS `cms_user_fields` (
 -- Table structure for table `cms_user_groups`
 --
 
-CREATE TABLE IF NOT EXISTS `cms_user_groups` (
+CREATE TABLE `cms_user_groups` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `access` text NOT NULL,
   `creation` datetime NOT NULL,
   `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `status` enum('D','N','DD') NOT NULL DEFAULT 'N',
+  `cache` tinyint(1) NOT NULL DEFAULT '1',
+  `errorLog` tinyint(1) NOT NULL DEFAULT '1',
+  `dataLog` tinyint(1) NOT NULL DEFAULT '1',
+  `login` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
 
 --
 -- Dumping data for table `cms_user_groups`
 --
 
-INSERT INTO `cms_user_groups` (`ID`, `title`, `description`, `access`, `creation`, `enabled`, `status`) VALUES
-(1, 'Super administrator', 'Super administrators have all the necessary permissions to operate the CMS and all other backend services like server and database.', 'a%3A26%3A%7Bs%3A10%3A%22FAV_SITE_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_5%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_4%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_USER_1%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_USER_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_USER_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_USER_4%22%3Bs%3A1%3A%225%22%3Bs%3A13%3A%22FAV_MODULES_2%22%3Bs%3A1%3A%225%22%3Bs%3A13%3A%22FAV_MODULES_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_1%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_3%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_1%22%3Bs%3A1%3A%225%22%3Bs%3A12%3A%22FAV_ARTICLES%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_2%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_6%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_USER_5%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_7%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SHOP_1%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SHOP_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SHOP_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SHOP_4%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SHOP_5%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SHOP_6%22%3Bs%3A1%3A%225%22%3B%7D', '2010-07-16 12:08:31', 1, 'N'),
-(2, 'Administrator', 'Administrators are the ones responsible so that the site runs uninterrupted and within the rules they create, they have all the necessary permissions.', 'a%3A18%3A%7Bs%3A10%3A%22FAV_SITE_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_5%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_3%22%3Bs%3A1%3A%221%22%3Bs%3A10%3A%22FAV_SITE_4%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_1%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_3%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_1%22%3Bs%3A1%3A%225%22%3Bs%3A12%3A%22FAV_ARTICLES%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_2%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_SITE_6%22%3Bs%3A1%3A%223%22%3Bs%3A10%3A%22FAV_GALL_1%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_GALL_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_GALL_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_GALL_4%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_GALL_5%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_GALL_6%22%3Bs%3A1%3A%225%22%3B%7D', '2010-07-16 12:11:02', 1, 'N'),
-(3, 'User', 'Users have the least permissions, they can only do the most basic operations and use only a few of the services the system offers.', 'a%3A14%3A%7Bs%3A10%3A%22FAV_USER_1%22%3Bs%3A1%3A%221%22%3Bs%3A10%3A%22FAV_USER_2%22%3Bs%3A1%3A%221%22%3Bs%3A10%3A%22FAV_USER_3%22%3Bs%3A1%3A%221%22%3Bs%3A10%3A%22FAV_USER_4%22%3Bs%3A1%3A%221%22%3Bs%3A13%3A%22FAV_MODULES_1%22%3Bs%3A1%3A%225%22%3Bs%3A13%3A%22FAV_MODULES_2%22%3Bs%3A1%3A%225%22%3Bs%3A13%3A%22FAV_MODULES_3%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_1%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_2%22%3Bs%3A1%3A%225%22%3Bs%3A10%3A%22FAV_MAIL_3%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_1%22%3Bs%3A1%3A%225%22%3Bs%3A12%3A%22FAV_ARTICLES%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_2%22%3Bs%3A1%3A%225%22%3Bs%3A14%3A%22FAV_ARTICLES_3%22%3Bs%3A1%3A%225%22%3B%7D', '2010-07-16 12:13:29', 1, 'N');
+INSERT INTO `cms_user_groups` VALUES 
+(1,'Super administrator','Super administrators have all the necessary permissions to operate the CMS and all other backend services like server and database.','2010-07-16 12:08:31',1,'N',1,1,1,1),
+(2,'Administrator','Administrators are the ones responsible so that the site runs uninterrupted and within the rules they create, they have all the necessary permissions.','2010-07-16 12:11:02',1,'N',1,1,1,0),
+(3,'User','Users have the least permissions, they can only do the most basic operations and use only a few of the services the system offers.','2010-07-16 12:13:29',1,'N',1,1,1,0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cms_user_groups_permissions`
+--
+
+CREATE TABLE `cms_user_groups_permissions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `groupID` int(11) NOT NULL,
+  `objectID` varchar(200) NOT NULL,
+  `permission` int(1) NOT NULL DEFAULT '1',
+  `file` varchar(100) NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID`),
+  KEY `groupID` (`groupID`)
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
+
+
+--
+-- Dumping data for table `cms_user_groups_permissions`
+--
+
+INSERT INTO `cms_user_groups_permissions` VALUES 
+(1,1,'a_welcome',5,'pages@welcome.php',1),
+(2,1,'a_user_view_u',5,'pages@user.management.view.users.php',1),
+(3,1,'a_user_view_g',5,'pages@user.management.view.groups.php',1),
+(4,1,'a_user_group_vd',5,'pages@user.management.view.group.details.php',1),
+(5,1,'a_user_edit_group',5,'pages@user.management.edit.group.php',1),
+(6,1,'a_user_view_f',5,'pages@user.view.fields.php',1),
+(7,1,'a_article_view_c',5,'pages@article.view.categories.php',1),
+(8,1,'a_article_view_cd',5,'pages@article.view.categories.details.php',1),
+(9,1,'a_article_view_a',5,'pages@article.view.articles.php',1),
+(10,1,'a_article_new_a',5,'pages@article.new.article.php',1),
+(11,1,'a_article_edit_a',5,'pages@article.edit.article.php',1),
+(12,1,'a_article_a_translate',5,'pages@article.article.translate.php',1),
+(13,1,'a_mail_inbox',0,'pages@mail.inbox.php',0),
+(14,1,'a_mail_new',0,'pages@mail.new.mail.php',0),
+(15,1,'a_mail_sent',0,'pages@mail.sent.items.php',0),
+(16,1,'a_seo_redirect_view',5,'pages@seo.urls.view.php',1),
+(17,1,'a_ftp',5,'pages@file.manager.php',1),
+(18,1,'a_menus',5,'pages@menus.php',1),
+(19,1,'a_settings',5,'pages@settings.php',1),
+(20,1,'a_sitetree',5,'pages@site.tree.php',1),
+(21,1,'a_trash',5,'pages@trash.php',1),
+(22,1,'a_module_view',5,'pages@module.view.php',1),
+(23,1,'a_domains',5,'pages@domains.php',1),
+(24,1,'d_user_add_user',2,'pages@user.management.add.user.php',1),
+(25,1,'d_user_edit_user',2,'pages@user.management.edit.user.php',1),
+(26,1,'d_user_add_group',2,'pages@user.management.add.group.php',1),
+(27,1,'d_user_add_fields',2,'pages@user.add.field.php',1),
+(28,1,'d_user_edit_fields',2,'pages@user.edit.field.php',1),
+(29,1,'d_article_new_c',2,'pages@article.new.category.php',1),
+(30,1,'d_article_cat',2,'pages@article.select.category.php',1),
+(31,1,'d_article_edit_c',2,'pages@article.edit.category.php',1),
+(32,1,'d_article_c_translate',2,'pages@article.category.translate.php',1),
+(33,1,'d_article_image_rename',2,'pages@article.image.rename.php',1),
+(34,1,'d_ftp_file_rename',2,'pages@file.manager.rename.php',1),
+(35,1,'d_ftp_folder_rename',2,'pages@file.manager.rename.php',1),
+(36,1,'d_ftp_new_folder',2,'pages@file.manager.new.php',1),
+(37,1,'d_ftp_upload',2,'pages@file.manager.upload.php',1),
+(38,1,'d_menus_new_m',2,'pages@menus.new.php',1),
+(39,1,'d_menus_edit_m',2,'pages@menus.edit.php',1),
+(40,1,'d_menus_edit_h',2,'pages@menus.homepage.php',1),
+(41,1,'d_menus_sitetree',2,'pages@menus.sitetree.php',1),
+(42,1,'d_menus_new_i',2,'pages@menus.newitem.php',1),
+(43,1,'d_menus_new_s',2,'pages@menus.newitem.special.php',1),
+(44,1,'d_menus_edit_i',2,'pages@menus.edititem.php',1),
+(45,1,'d_menues_trans',2,'pages@menus.translate.php',1),
+(46,1,'d_menus_sitetree_trans',2,'pages@menus.sitetree.translate.php',1),
+(47,1,'d_settings_add_t',2,'pages@settings.addtemplate.php',1),
+(48,1,'d_settings_add_lf',2,'pages@settings.addlang.front.php',1),
+(49,1,'d_settings_add_lb',2,'pages@settings.addlang.back.php',1),
+(50,1,'d_settings_edit_t',2,'pages@settings.edittemplate.php',1),
+(51,1,'a_settings_add_p',2,'pages@settings.prefix.php',1),
+(52,1,'a_settings_add_tp',2,'pages@settings.position.php',1),
+(53,1,'d_logo',2,'pages@settings.logo.php',1),
+(54,1,'d_seo_redirect_add',2,'pages@seo.urls.add.php',1),
+(55,1,'d_seo_redirect_edit',2,'pages@seo.urls.edit.php',1),
+(56,1,'d_module_install',2,'pages@module.install.php',1),
+(57,1,'d_module_edit',2,'pages@module.edit.php',1),
+(58,1,'h_GA',2,'pages@help.ga.php',1),
+(59,1,'d_site_tree_rename',2,'pages@site.tree.rename.php',1),
+(60,1,'d_relogin',2,'pages@relogin.php',1),
+(61,1,'d_update_text',2,'pages@update.warning.php',1),
+(62,1,'d_out_of_date',2,'pages@out.of.date.php',1),
+(63,1,'d_preview',2,'pages@preview.php',1),
+(64,1,'d_layoutmodule',2,'pages@site.tree.module.php',1),
+(65,1,'d_favorites',2,'pages@favorites.edit.php',1);
 
 -- --------------------------------------------------------
 
