@@ -20,7 +20,7 @@ he.js      Found: 193 Missing: 0
 hi.js      Found: 169 Missing: 24
 hr.js      Found: 169 Missing: 24
 hu.js      Found: 193 Missing: 0
-it.js      Found: 169 Missing: 24
+it.js      Found: 192 Missing: 1
 ja.js      Found: 177 Missing: 16
 lt.js      Found: 169 Missing: 24
 lv.js      Found: 98 Missing: 95
@@ -36,7 +36,7 @@ sk.js      Found: 169 Missing: 24
 sl.js      Found: 169 Missing: 24
 sr.js      Found: 169 Missing: 24
 sv.js      Found: 169 Missing: 24
-tr.js      Found: 169 Missing: 24
+tr.js      Found: 193 Missing: 0
 vi.js      Found: 169 Missing: 24
 zh-cn.js   Found: 169 Missing: 24
 zh-tw.js   Found: 85 Missing: 108
