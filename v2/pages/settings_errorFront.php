@@ -5,13 +5,13 @@
 		$domain=$alias['name'];
 	}
 	$fileName=str_replace(array("www.", ":"), "", $domain);
-	
+
 	$file = "../logs/errorFront_".$fileName.".log";
 	$data="";
     if(!is_file($file)) {
         fopen($file, 'w');
     }
-    
+
 	if(is_file($file)) {
 		$file = file($file, FILE_SKIP_EMPTY_LINES);
 		if(count($file)>500) {
@@ -21,7 +21,11 @@
 			array_push($array, PHP_EOL.PHP_EOL."Error log is longer then 500 lines. Please open detailed view of log.");
 			$data=implode("", $array);
 		} else {
-			$data=implode("", $file);
+			$array=$file;
+            array_shift($array);
+            $array=array_reverse($array);
+            array_unshift($array, $file[0].PHP_EOL);
+            $data=implode("", $array);
 		}
 	} else {
 		error_log("Error log doesn't existst: errorFront_".$user->domainName.".log");

@@ -1,22 +1,26 @@
 <?php
-	$file = "../logs/error.log";
-	$data="";
+    $file = "../logs/error.log";
+    $data="";
     if(!is_file($file)) {
         fopen($file, 'w');
     }
-    
-	if(is_file($file)) {
-		$file = file($file, FILE_SKIP_EMPTY_LINES);
-		if(count($file)>500) {
-			$array=array_slice($file, (count($file)-500), count($file));
-			$array=array_reverse($array);
-			array_unshift($array, $file[0].PHP_EOL);
-			array_push($array, PHP_EOL.PHP_EOL."Error log is longer then 500 lines. Please open detailed view of log.");
-			$data=implode("", $array);
-		} else {
-			$data=implode("", $file);
-		}
-	}
+
+    if(is_file($file)) {
+        $file = file($file, FILE_SKIP_EMPTY_LINES);
+        if(count($file)>500) {
+            $array=array_slice($file, (count($file)-500), count($file));
+            $array=array_reverse($array);
+            array_unshift($array, $file[0].PHP_EOL);
+            array_push($array, PHP_EOL.PHP_EOL."Error log is longer then 500 lines. Please open detailed view of log.");
+            $data=implode("", $array);
+        } else {
+            $array=$file;
+            array_shift($array);
+            $array=array_reverse($array);
+            array_unshift($array, $file[0].PHP_EOL);
+            $data=implode("", $array);
+        }
+    }
 ?>
 <div id="a_settings_error">
 <a href="/v2/logs/error.log" target="_blank" class="sumo2-tooltip view" style="float:right; margin:0px 10px 10px;" title="<?php echo $lang->MOD_55?>"></a>
