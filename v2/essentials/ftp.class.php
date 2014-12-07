@@ -5,12 +5,12 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	exit;
 }
 class FTP
-{	
+{
 	private $username;
 	private $pass;
 	private $url;
 	private $connection;
-	
+
 	function __construct() {
 		global $globals, $crypt;
 		if(isset($globals->FTP_pass)) {
@@ -23,7 +23,7 @@ class FTP
 	}
 
 	public function Connect() {
-		$this->connection = ftp_connect($this->url) or die("Couldn't connect to $ftp_server"); 
+		$this->connection = ftp_connect($this->url) or die("Couldn't connect to $ftp_server");
 		if (@ftp_login($this->connection, $this->username, $this->pass)) {
 			return true;
 		} else {
@@ -31,19 +31,19 @@ class FTP
 			return false;
 		}
 	}
-		
+
 	public function Close() {
 		if (ftp_close($this->connection) == false) {
 			error_log('[FTP] Could not close ftp connection');
 		}
 	}
-	
+
 	public function ChangePermission($path, $permition) {
 		if (ftp_chmod($this->connection, $permition, $path) == false) {
 			error_log('[FTP] Could not chmod file: '.$path.' with '.$permition.'');
 		}
 	}
-	
+
 	public function CreateDir($path, $permition) {
 		if (ftp_mkdir($this->connection, $path) == false) {
 			error_log('[FTP] Could not create directory '.$path.'');
@@ -52,7 +52,7 @@ class FTP
 			$this->ChangePermission($path, $permition);
 		}
 	}
-	
+
 	public function SaveFileUrl($url, $file){
 		copy($url, $file);
 	}

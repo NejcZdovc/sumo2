@@ -1,10 +1,10 @@
 <?php
 $isNoUpdateFile=1;
-require_once('../initialize.php'); 
+require_once('../initialize.php');
 if(!$session->isLogedIn()) {
 	exit;
 }
-if(file_exists("../system.xml")) { 
+if(file_exists("../system.xml")) {
 	$xml = simplexml_load_file("../system.xml","SimpleXMLElement", LIBXML_NOCDATA);
 	$modXml = simplexml_load_file("../modules/system.xml","SimpleXMLElement", LIBXML_NOCDATA);
 	header('Cache-Control: max-age=2592000');
@@ -15,7 +15,7 @@ if(file_exists("../system.xml")) {
 	if($user->developer=="1") {
 		echo "sumo2.language.GetLanguage();";
 		echo "\n";
-		echo "sumo2.accordion.MAX_PANELS='".AESEncryptCtr($user->accordion, "h39oyMN9cXzKT7loxCzYIUgD4uyHt9Fvccigc39GXpTjlAfkAlPegh3lnAIqJRDnAmJwc91WtwPHSs", 256)."';"; 
+		echo "sumo2.accordion.MAX_PANELS='".AESEncryptCtr($user->accordion, "h39oyMN9cXzKT7loxCzYIUgD4uyHt9Fvccigc39GXpTjlAfkAlPegh3lnAIqJRDnAmJwc91WtwPHSs", 256)."';";
 		echo "var editor_number=\"56065605650\";";
 		echo "\n";
 		echo "sumo2.settings={";
@@ -77,7 +77,7 @@ if(file_exists("../system.xml")) {
 			echo "\n";
 			echo "}".(($counter1 == count($xml->dialog->item) && count($modXml->dialog->item) == 0)?"":",")."";
 			echo "\n";
-			$counter1++;	
+			$counter1++;
 		}
 		$counter1 = 1;
 		$counter2 = 1;
@@ -88,7 +88,7 @@ if(file_exists("../system.xml")) {
 			echo "refresh:".$dialog->refresh.",";
 			echo "\n";
 			echo "close:".$dialog->close.",";
-			echo "\n";			
+			echo "\n";
 			echo "uniqueId:\"".$dialog->uniqueId."\",";
 			echo "\n";
 			echo "title:".((strpos($dialog->title,"sumo2.language") === false)?"\"".$dialog->title."\"":$dialog->title).",";
@@ -130,7 +130,7 @@ if(file_exists("../system.xml")) {
 			echo "\n";
 			echo "}".(($counter1 == count($modXml->dialog->item))?"":",")."";
 			echo "\n";
-			$counter1++;	
+			$counter1++;
 		}
 		echo "),";
 		echo "\n";
@@ -293,7 +293,7 @@ if(file_exists("../system.xml")) {
 	} else {
 		$output = "";
 		$output .= "sumo2.language.GetLanguage();";
-		$output .= "sumo2.accordion.MAX_PANELS='".AESEncryptCtr($user->accordion, "h39oyMN9cXzKT7loxCzYIUgD4uyHt9Fvccigc39GXpTjlAfkAlPegh3lnAIqJRDnAmJwc91WtwPHSs", 256)."';"; 
+		$output .= "sumo2.accordion.MAX_PANELS='".AESEncryptCtr($user->accordion, "h39oyMN9cXzKT7loxCzYIUgD4uyHt9Fvccigc39GXpTjlAfkAlPegh3lnAIqJRDnAmJwc91WtwPHSs", 256)."';";
 		$output .= "var editor_number=\"56065605650\";";
 		$output .= "sumo2.settings={";
 		$output .= "ADMIN_ROOT:\"".ADMIN_ADDR."\",";
@@ -330,7 +330,7 @@ if(file_exists("../system.xml")) {
 				$output .= ")";
 			}
 			$output .= "}".(($counter1 == count($xml->dialog->item) && count($modXml->dialog->item) == 0)?"":",")."";
-			$counter1++;	
+			$counter1++;
 		}
 		$counter1 = 1;
 		$counter2 = 1;
@@ -363,7 +363,7 @@ if(file_exists("../system.xml")) {
 				$output .= ")";
 			}
 			$output .= "}".(($counter1 == count($modXml->dialog->item))?"":",")."";
-			$counter1++;	
+			$counter1++;
 		}
 		$output .= "),";
 		$output .= "ACCORDIONS:Array(";
@@ -474,6 +474,6 @@ if(file_exists("../system.xml")) {
 		echo $output;
 	}
 } else {
-	error_log("ERROR: System.xml file doesn\"t exsist.");	
+	error_log("ERROR: System.xml file doesn\"t exsist.");
 }
 ?>

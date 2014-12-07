@@ -9,7 +9,7 @@
     <input id="domainNameEdit" name="domainNameEdit" type="hidden" value="<?php echo $user->domainName?>" />
 	 <?php
 		if($db->is('accId')) {
-			echo '<input type="hidden" name="accid" value="'.$db->filter('accId').'" />';	
+			echo '<input type="hidden" name="accid" value="'.$db->filter('accId').'" />';
 		} else {
 			echo '<input type="hidden" name="accid" value="" />';
 		}
@@ -34,13 +34,13 @@
     <tr>
     	<td class="left_td" colspan="5">
         <div style="float:left; margin-right:5px;"><span class="title_form_big"><?php echo $lang->ARTICLE_17?> </span></div><div style="clear:both;"></div>
-        <div id="add_options_2"> 
+        <div id="add_options_2">
         	<div style="float:left; margin-right:10px; width:135px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_6?> :</span><input class="input" type="text" readonly="readonly" id="date_start_e" style="margin-left:5px; cursor:pointer;" size="16" value="<?php if($results_basic['dateStart'] != 0) echo  date('Y-m-d H:i', $results_basic['dateStart']); ?>"/></div>
             <div style="float:left; margin-right:10px; width:135px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_7?> :</span> <input class="input" type="text" readonly="readonly" id="date_end_e" style="margin-left:5px; cursor:pointer;" size="16" value="<?php if($results_basic['dateEnd'] != 0) echo date('Y-m-d H:i', $results_basic['dateEnd']); ?>"/></div>
             <div style="float:left; margin-right:10px; width:135px;"><span style="font-size:13px;"><?php echo $lang->CREATE_DATE?> :</span><input class="input" type="text" readonly="readonly" id="date_create_e" style="margin-left:5px; cursor:pointer;" size="16" value="<?php if($results_basic['date'] != 0) echo  date('Y-m-d H:i', $results_basic['date']); ?>"/></div>
             <div style="float:left; margin-right:10px; width:155px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_5?> :</span> <input class="input" type="text" id="author" style="margin-left:5px;" size="25" value="<?php echo $results_basic['author']?>"/></div>
-            <div style="float:left; margin-right:10px; width:155px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_16?> :</span> <input class="input" type="text" id="alias" style="margin-left:5px;" size="25" value="<?php echo $results_basic['authorAlias']?>"/></div> 
-            <div style="float:left; margin-right:10px; width:155px;"><span style="font-size:13px;"><?php echo $lang->SITE_TREE_4?> :</span> <input class="input" type="text" id="altPrefix" style="margin-left:5px;" size="25" value="<?php echo $results_basic['altPrefix']?>"/></div>            
+            <div style="float:left; margin-right:10px; width:155px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_16?> :</span> <input class="input" type="text" id="alias" style="margin-left:5px;" size="25" value="<?php echo $results_basic['authorAlias']?>"/></div>
+            <div style="float:left; margin-right:10px; width:155px;"><span style="font-size:13px;"><?php echo $lang->SITE_TREE_4?> :</span> <input class="input" type="text" id="altPrefix" style="margin-left:5px;" size="25" value="<?php echo $results_basic['altPrefix']?>"/></div>
             <div style="float:left; margin-right:10px;"><span style="font-size:13px; display:block; margin-bottom:6px;"><?php echo $lang->ARTICLE_18?> :</span> <input type="radio" name="published" id="yes" value="1" <?php if($results_basic['published']==1) echo 'checked="checked"' ?>><label for="yes"><?php echo $lang->ARTICLE_19?> </label><input type="radio" name="published" id="no" <?php if($results_basic['published']==0) echo 'checked="checked"' ?> value="0"><label for="no"><?php echo $lang->ARTICLE_20?> </label></div>
             <?php if ($db->rows($db->query("show tables like 'com_gallery_cat'"))>0) {
             $query=$db->query('SELECT ID, name FROM com_gallery_cat WHERE status="N"');
@@ -48,12 +48,12 @@
              <div style="float:left; margin-right:10px;"><span style="font-size:13px;">Category from gallery:</span><br/>
              	<select id="imageCat" class="input" name="imageCat" style="margin-left:5px; padding-top:3px; width:150px; height:25px;">
                  <option value="0">-- Select category --</option>
-                  <?php 
+                  <?php
                     while($results=$db->fetch($query)) {
                         if($results_basic['galleryCat']==$results['ID'])
                             echo '<option value="'.$results['ID'].'" selected="selected">'.$results['name'].'</option>';
                         else
-                            echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';	
+                            echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
                     }
                 ?>
                 </select>
@@ -65,43 +65,43 @@
             <div style="float:left; margin-right:15px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_25?>:</span><br/>
             	<select id="image" class="input" name="image" style="margin-left:5px; max-width:120px; width:auto;">
                 <option value="0">-- <?php echo $lang->MOD_47?> --</option>
-                <?php 
+                <?php
                     while($results=$db->fetch($query)) {
                         if($results_basic['image']==$results['ID'])
                             echo '<option value="'.$results['ID'].'" selected="selected">'.$results['name'].'</option>';
                         else
-                            echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';	
+                            echo '<option value="'.$results['ID'].'">'.$results['name'].'</option>';
                     }
                 ?>
-            </select>            
+            </select>
             </div>
-            <?php } ?>        
+            <?php } ?>
         	<div style="clear:both;"></div>
         </div>
-    
+
     </tr>
     <tr>
     	<td class="left_td" valign="top" style="width:25%;">
         	<div class="title_form_big"><?php echo $lang->ARTICLE_31?>:</div><div class="title_form_small"><?php echo $lang->ARTICLE_32?></div>
         </td>
-    	<td colspan="3" class="right_td">         
+    	<td colspan="3" class="right_td">
               <ul id="article_editTags" name="article_editTags">
                <?php
 			  		$q=$db->query('SELECT * FROM cms_article_tags WHERE articleID="'.$id.'"  ORDER BY ID ASC');
 					while($r=$db->fetch($q)) {
 						echo '<li data-value="'.$r['value'].'">'.$r['value'].'</li>';
-					}			  
+					}
 			  ?>
               </ul>
-        </td>    
+        </td>
     </tr>
     <tr>
         <td colspan="5" class="left_td" valign="top">
             <div>
-                <div class="title_form_big" id="articleT_summary" style="float:left; cursor:pointer; margin-right:30px;" onclick="sumo2.article.ChangeView('summary', this);"><?php echo $lang->ARTICLE_21?></div>                
+                <div class="title_form_big" id="articleT_summary" style="float:left; cursor:pointer; margin-right:30px;" onclick="sumo2.article.ChangeView('summary', this);"><?php echo $lang->ARTICLE_21?></div>
                 <div class="title_form_big" id="articleT_keywords" style="float:left; cursor:pointer; margin-right:30px; font-weight:normal;" onclick="sumo2.article.ChangeView('keywords', this);"><?php echo $lang->SETTINGS_25?></div>
                 <div class="title_form_big" id="articleT_description" style="float:left; cursor:pointer; margin-right:30px; font-weight:normal;" onclick="sumo2.article.ChangeView('description', this);"><?php echo $lang->SETTINGS_27?></div>
-                
+
             </div>
             <div style="clear:both;">
                 <div class="title_form_small" id="articleS_summary"><?php echo $lang->ARTICLE_22?></div>
@@ -140,7 +140,7 @@
         <td  class="left_td" colspan="2" style="vertical-align:top;">
         <span class="title_form_big"><?php echo $lang->ARTICLE_26?>:</span><br/><span class="title_form_small"><?php echo $lang->ARTICLE_27?></span>
         </td>
-        <td colspan="2" style="padding-left:20px; padding-top:5px; width:50%;"> 
+        <td colspan="2" style="padding-left:20px; padding-top:5px; width:50%;">
         	<div style="margin:0 auto; width:350px;">
                 <div style="float:left;"><input type="file" name="uploadify66"  id="uploadify6"  multiple="true"  /></div>
                 <div id="uploadify6_div" style="float:right; margin-right:50px; cursor:pointer; height:32px; width:111px; background: url(images/css_sprite.png) -1500px -1658px; font-family:'Myriad Pro'; line-height:32px; text-align:center; font-size:14px; color:#FFF;" ><?php echo $lang->ARTICLE_28?></div>
@@ -149,25 +149,24 @@
     </tr>
     <tr>
     	<td colspan="5" class="left_td" style="width:100%;"><div id="fileq_article"></div><div style="clear:both; margin-bottom:20px;"></div>
-        <div>
-        	<?php
-				$query_image=$db->query('SELECT * FROM cms_article_images WHERE articleID='.$id.' AND statusID="N"');
-				while($image=$db->fetch($query_image)) {
-					echo '<div style="float:left; margin-right:20px; margin-bottom:10px; width:100px; height:132px; display:block; overflow:hidden;" onmouseover="document.getElementById(\'article_image_control_'.$image['ID'].'\').style.display=\'block\'" onmouseout="document.getElementById(\'article_image_control_'.$image['ID'].'\').style.display=\'none\'">
-					<img src="../images/'.$user->domainName.'/article/'.$image['file'].'" height="100" style="float:left; width:100px; display:block;"/>
-								<div style="margin-left:5px;float:left; display:none; width: 70px; margin-left:-70px; height:20px;" id="article_image_control_'.$image['ID'].'">
-                        			<div title="'.$lang->MOD_48.'" style="margin-top:4px;  background: url(images/css_sprite.png) -652px -1661px;width:16px;height:16px;" class="delete sumo2-tooltip" onclick="sumo2.article.ShowPicture(\'../images/'.$user->domainName.'/article/'.$image['file'].'\')"></div>
-<div title="'.$lang->MOD_49.'" style="margin-top:4px; margin-left:5px; background: url(images/css_sprite.png) -572px -1645px;" class="delete sumo2-tooltip" onclick="sumo2.dialog.NewDialog(\'d_article_image_rename\',\'id='.$crypt->encrypt($image['ID']).'\')"></div>
-                        	<div title="'.$lang->MOD_50.'" style="margin-top:4px; margin-left:5px; background: url(images/css_sprite.png) -636px -1629px;" class="delete sumo2-tooltip" onclick="sumo2.article.DeletePicture(\''.$crypt->encrypt($image['ID']).'\')"></div>
-                        </div>
-						<div style="clear:both"></div>
-						<div style="width:100%; text-align:center; font-weight:bold; margin-top:5px;">'.$image['name'].'</div>
-</div>';
-				}
-			?>
-            <div style="clear:both;"></div>
-        </div>
-        
+            <div>
+            	<?php
+    				$query_image=$db->query('SELECT * FROM cms_article_images WHERE articleID='.$id.' AND statusID="N"');
+    				while($image=$db->fetch($query_image)) {
+    					echo '<div style="float:left; margin-right:20px; margin-bottom:10px; width:100px; height:132px; display:block; overflow:hidden;" onmouseover="document.getElementById(\'article_image_control_'.$image['ID'].'\').style.display=\'block\'" onmouseout="document.getElementById(\'article_image_control_'.$image['ID'].'\').style.display=\'none\'">
+    					<img src="../images/'.$user->domainName.'/article/'.$image['file'].'" height="100" style="float:left; width:100px; display:block;"/>
+    								<div style="margin-left:5px;float:left; display:none; width: 70px; margin-left:-70px; height:20px;" id="article_image_control_'.$image['ID'].'">
+                            			<div title="'.$lang->MOD_48.'" style="margin-top:4px;  background: url(images/css_sprite.png) -652px -1661px;width:16px;height:16px;" class="delete sumo2-tooltip" onclick="sumo2.article.ShowPicture(\'../images/'.$user->domainName.'/article/'.$image['file'].'\')"></div>
+    <div title="'.$lang->MOD_49.'" style="margin-top:4px; margin-left:5px; background: url(images/css_sprite.png) -572px -1645px;" class="delete sumo2-tooltip" onclick="sumo2.dialog.NewDialog(\'d_article_image_rename\',\'id='.$crypt->encrypt($image['ID']).'\')"></div>
+                            	<div title="'.$lang->MOD_50.'" style="margin-top:4px; margin-left:5px; background: url(images/css_sprite.png) -636px -1629px;" class="delete sumo2-tooltip" onclick="sumo2.article.DeletePicture(\''.$crypt->encrypt($image['ID']).'\')"></div>
+                            </div>
+    						<div style="clear:both"></div>
+    						<div style="width:100%; text-align:center; font-weight:bold; margin-top:5px;">'.$image['name'].'</div>
+    </div>';
+    				}
+    			?>
+                <div style="clear:both;"></div>
+            </div>
         </td>
     </tr>
     </table>

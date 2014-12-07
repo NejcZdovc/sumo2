@@ -14,7 +14,7 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
  * AES Cipher function: encrypt 'input' with Rijndael algorithm
  *
  * @param input message as byte-array (16 bytes)
- * @param w     key schedule as 2D byte-array (Nr+1 x Nb bytes) - 
+ * @param w     key schedule as 2D byte-array (Nr+1 x Nb bytes) -
  *              generated from the cipher key by KeyExpansion()
  * @return      ciphertext as byte-array (16 bytes)
  */
@@ -65,7 +65,7 @@ function ShiftRows($s, $Nb) {    // shift row r of state S left by r bytes [§5.
     for ($c=0; $c<4; $c++) $t[$c] = $s[$r][($c+$r)%$Nb];  // shift into temp copy
     for ($c=0; $c<4; $c++) $s[$r][$c] = $t[$c];         // and copy back
   }          // note that this will work for Nb=4,5,6, but not 7,8 (always 4 for AES):
-  return $s;  // see fp.gladman.plus.com/cryptography_technology/rijndael/aes.spec.311.pdf 
+  return $s;  // see fp.gladman.plus.com/cryptography_technology/rijndael/aes.spec.311.pdf
 }
 
 function MixColumns($s, $Nb) {   // combine bytes of each col of state S [§5.1.3]
@@ -163,12 +163,12 @@ $Rcon = array( array(0x00, 0x00, 0x00, 0x00),
                array(0x40, 0x00, 0x00, 0x00),
                array(0x80, 0x00, 0x00, 0x00),
                array(0x1b, 0x00, 0x00, 0x00),
-               array(0x36, 0x00, 0x00, 0x00) ); 
+               array(0x36, 0x00, 0x00, 0x00) );
 
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
-/** 
+/**
  * Encrypt a text using AES encryption in Counter mode of operation
  *  - see http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf
  *
@@ -183,23 +183,23 @@ function AESEncryptCtr($plaintext, $password, $nBits) {
   $blockSize = 16;  // block size fixed at 16 bytes / 128 bits (Nb=4) for AES
   if (!($nBits==128 || $nBits==192 || $nBits==256)) return '';  // standard allows 128/192/256 bit keys
   // note PHP (5) gives us plaintext and password in UTF8 encoding!
-	
-  // use AES itself to encrypt password to get cipher key (using plain password as source for  
+
+  // use AES itself to encrypt password to get cipher key (using plain password as source for
   // key expansion) - gives us well encrypted key
   $nBytes = $nBits/8;  // no bytes in key
   $pwBytes = array();
   for ($i=0; $i<$nBytes; $i++) $pwBytes[$i] = ord(substr($password,$i,1)) & 0xff;
   $key = Cipher($pwBytes, KeyExpansion($pwBytes));
-  $key = array_merge($key, array_slice($key, 0, $nBytes-16));  // expand key to 16/24/32 bytes long 
+  $key = array_merge($key, array_slice($key, 0, $nBytes-16));  // expand key to 16/24/32 bytes long
 
-  // initialise counter block (NIST SP800-38A §B.2): millisecond time-stamp for nonce in 
+  // initialise counter block (NIST SP800-38A §B.2): millisecond time-stamp for nonce in
   // 1st 8 bytes, block counter in 2nd 8 bytes
   $counterBlock = array();
   $nonce = floor(microtime(true)*1000);   // timestamp: milliseconds since 1-Jan-1970
   $nonceSec = floor($nonce/1000);
   $nonceMs = $nonce%1000;
   // encode nonce with seconds in 1st 4 bytes, and (repeated) ms part filling 2nd 4 bytes
-  for ($i=0; $i<4; $i++) $counterBlock[$i] = urs($nonceSec, $i*8) & 0xff; 
+  for ($i=0; $i<4; $i++) $counterBlock[$i] = urs($nonceSec, $i*8) & 0xff;
   for ($i=0; $i<4; $i++) $counterBlock[$i+4] = $nonceMs & 0xff;
   // and convert it to a string to go on the front of the ciphertext
   $ctrTxt = '';
@@ -207,10 +207,10 @@ function AESEncryptCtr($plaintext, $password, $nBits) {
 
   // generate key schedule - an expansion of the key into distinct Key Rounds for each round
   $keySchedule = KeyExpansion($key);
-  
+
   $blockCount = ceil(strlen($plaintext)/$blockSize);
   $ciphertxt = array();  // ciphertext as array of strings
-  
+
   for ($b=0; $b<$blockCount; $b++) {
     // set counter (block #) in last 8 bytes of counter block (leaving nonce in 1st 8 bytes)
     // done in two stages for 32-bit ops: using two words allows us to go past 2^32 blocks (68GB)
@@ -222,7 +222,7 @@ function AESEncryptCtr($plaintext, $password, $nBits) {
     // block size is reduced on final block
     $blockLength = $b<$blockCount-1 ? $blockSize : (strlen($plaintext)-1)%$blockSize+1;
     $cipherByte = array();
-    
+
     for ($i=0; $i<$blockLength; $i++) {  // -- xor plaintext with ciphered counter byte-by-byte --
       $cipherByte[$i] = $cipherCntr[$i] ^ ord(substr($plaintext, $b*$blockSize+$i, 1));
       $cipherByte[$i] = chr($cipherByte[$i]);
@@ -237,7 +237,7 @@ function AESEncryptCtr($plaintext, $password, $nBits) {
 }
 
 
-/** 
+/**
  * Decrypt a text encrypted by AES in counter mode of operation
  *
  * @param ciphertext source text to be decrypted
@@ -256,12 +256,12 @@ function AESDecryptCtr($ciphertext, $password, $nBits) {
   for ($i=0; $i<$nBytes; $i++) $pwBytes[$i] = ord(substr($password,$i,1)) & 0xff;
   $key = Cipher($pwBytes, KeyExpansion($pwBytes));
   $key = array_merge($key, array_slice($key, 0, $nBytes-16));  // expand key to 16/24/32 bytes long
-  
+
   // recover nonce from 1st element of ciphertext
   $counterBlock = array();
   $ctrTxt = substr($ciphertext, 0, 8);
   for ($i=0; $i<8; $i++) $counterBlock[$i] = ord(substr($ctrTxt,$i,1));
-  
+
   // generate key schedule
   $keySchedule = KeyExpansion($key);
 
@@ -273,7 +273,7 @@ function AESDecryptCtr($ciphertext, $password, $nBits) {
 
   // plaintext will get generated block-by-block into array of block-length strings
   $plaintxt = array();
-  
+
   for ($b=0; $b<$nBlocks; $b++) {
     // set counter (block #) in last 8 bytes of counter block (leaving nonce in 1st 8 bytes)
     for ($c=0; $c<4; $c++) $counterBlock[15-$c] = urs($b, $c*8) & 0xff;
@@ -286,14 +286,14 @@ function AESDecryptCtr($ciphertext, $password, $nBits) {
       // -- xor plaintext with ciphered counter byte-by-byte --
       $plaintxtByte[$i] = $cipherCntr[$i] ^ ord(substr($ciphertext[$b],$i,1));
       $plaintxtByte[$i] = chr($plaintxtByte[$i]);
-	  
+
     }
-    $plaintxt[$b] = implode('', $plaintxtByte); 
+    $plaintxt[$b] = implode('', $plaintxtByte);
   }
 
   // join array of blocks into single plaintext string
   $plaintext = implode('',$plaintxt);
-  
+
   return $plaintext;
 }
 
@@ -312,8 +312,8 @@ function urs($a, $b) {
     $a = $a >> ($b-1);           //   remaining right-shifts
   } else {                       // otherwise
     $a = ($a>>$b);               //   use normal right-shift
-  } 
-  return $a; 
+  }
+  return $a;
 }
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */

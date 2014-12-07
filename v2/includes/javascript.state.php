@@ -1,7 +1,8 @@
-<?php  
+<?php
 $isNoUpdateFile=1;
 require_once('../initialize.php');
 $security->checkMin();
+
 if(ob_get_length()>0) {ob_end_clean();}
 
 if($db->is('get')) {

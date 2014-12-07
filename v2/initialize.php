@@ -38,29 +38,29 @@ $setLocaleLang['sr']='';
 $setLocaleLang['sh']='';
 $setLocaleLang['sl']='sl_SI';
 $setLocaleLang['es']='es-ES';
- 
+
 if(!isset($isLoginFile)) {
 	$login=false;
 	if(!$session->isLogedIn()) {
 		 $login=true;
-	} 
-	
+	}
+
 	if(!isset($user)) {
 		$login=true;
-	}else if(!isset($isNoUpdateFile) && !$session->updateLogin($user->id)) {
+	} else if(!isset($isNoUpdateFile) && !$session->updateLogin($user->id)) {
 		$login=true;
 	}
+
 	if($login && !isset($isNoUpdateFile)) {
 		echo '<div id="javascriptLoginBox">sumo2.dialog.NewDialog(\'d_relogin\', null, true);</div>';
 	}
-	
+
 	if(!$login) {
 		if(isset($setLocaleLang[$user->langShortBack($user->lang)])) {
 			setlocale(LC_ALL, $setLocaleLang[$user->langShortBack($user->lang)].'.UTF-8');
 		} else {
 			setlocale(LC_ALL, $setLocaleLang['en'].'.UTF-8');
 		}
-		
 	}
 }
 ?>

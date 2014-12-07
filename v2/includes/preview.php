@@ -17,6 +17,6 @@
 			$preview_url.='';
 	} else
 		$preview_url=' onclick="sumo2.dialog.NewDialog(\'d_preview\')"';
-		
+
 	echo '<a '.$preview_url.'>'.$lang->INDEX_PREW.'</a> | ';
 ?>

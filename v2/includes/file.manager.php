@@ -1,6 +1,7 @@
 <?php
 require_once('../configs/settings.php');
-$security->checkMin();
+$security->checkLogin();
+
 if(ob_get_length()>0) {	ob_end_clean(); }
 if($db->is('path') && strpos($db->filter('path'),'/storage/') !== false) {
 	if($db->is('rename')) {
@@ -12,7 +13,7 @@ if($db->is('path') && strpos($db->filter('path'),'/storage/') !== false) {
 		if(rename($old,$path.$newName.'.'.$extension)) {
 			echo 'done';
 		} else {
-			echo 'problem - '.$old.' - '.$path.$newName.'.'.$extension;	
+			echo 'problem - '.$old.' - '.$path.$newName.'.'.$extension;
 		}
 	}
 	else if($db->is('delete')) {
@@ -33,7 +34,7 @@ if($db->is('path') && strpos($db->filter('path'),'/storage/') !== false) {
 		if(rename($old,$new)) {
 			echo 'done';
 		} else {
-			echo 'problem - '.$old.' - '.$new;	
+			echo 'problem - '.$old.' - '.$new;
 		}
 	}
 	else if($db->is('newf')) {

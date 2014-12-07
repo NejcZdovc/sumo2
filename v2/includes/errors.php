@@ -1,7 +1,5 @@
 <?php
 
-//define('','');
-
 //Database class
 define('ERR_DB_CON','Database connection failed');
 define('ERR_DB_SEL','Database selection failed');

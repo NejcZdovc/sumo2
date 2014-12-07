@@ -1,4 +1,4 @@
-<?php 
+<?php
 if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	header( 'HTTP/1.0 404 Not Found');
 	header( 'Location: http://www.3zsistemi.si');
@@ -19,15 +19,15 @@ class Shield {
 			unset($_POST['shield']);
 		}
 	}
-	
+
 	private function removePlus($data) {
-		return str_replace("+","!PLUS!",$data);	
+		return str_replace("+","!PLUS!",$data);
 	}
-	
+
 	private function findPlus($data) {
-		return str_replace("!PLUS!","+",$data);	
+		return str_replace("!PLUS!","+",$data);
 	}
-	
+
 	public function protect($params) {
 		return "shield=".$this->removePlus(AESEncryptCtr($params, "h39oyMN9cXzKT7loxCzYIUgD4uyHt9Fvccigc39GXpTjlAfkAlPegh3lnAIqJRDnAmJwc91WtwPHSs", 256));
 	}

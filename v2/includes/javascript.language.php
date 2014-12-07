@@ -1,10 +1,12 @@
-<?php 
+<?php
 $isNoUpdateFile=1;
 require_once('../initialize.php');
 if(!$session->isLogedIn()) {
  exit;
 }
+
 if (ob_get_length() > 0) {ob_end_clean();}
+
 header('Content-Type: application/rss+xml;');
 $result = $db->get($db->query("SELECT short FROM cms_language WHERE ID='".$user->lang."'"));
 if($result) {

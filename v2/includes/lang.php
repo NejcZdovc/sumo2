@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require_once('../initialize.php');
 	$security->checkMin();
 	if($db->is('type')) {

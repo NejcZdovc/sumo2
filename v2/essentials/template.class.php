@@ -9,7 +9,7 @@ class Template {
 	public $tempID = 1;
 	public $langID = 1;
 	public $menuID = 1;
-	
+
 	public function head() {
 		global $xml, $user;
 		$xmlParse = $xml->getSpecialArray(SITE_ROOT.DS.'templates/'.$user->domainName.'/'.$this->tempName.'/settings.xml');

@@ -1,11 +1,11 @@
-<?php 
+<?php
 	require_once('../initialize.php');
 	$security->checkMin();
 	if(ob_get_length()>0) {ob_end_clean(); }
 	if(!$session->isLogedIn()) {
 		redirect_to('../login/');
 	} else {
-		$user = new User($session->getId()); 
+		$user = new User($session->getId());
 	}
 	if($valid->isNumber($db->filter('o1'))) {
 		$o1 = $db->filter('o1');

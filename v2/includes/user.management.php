@@ -1,7 +1,7 @@
-<?php 
+<?php
 	require_once('../initialize.php');
 	$security->checkMin();
-	
+
 if($db->is('type')) {
 	if(ob_get_length()>0) {ob_end_clean();}
 	if($db->filter('type') == 'add') {
@@ -41,7 +41,7 @@ if($db->is('type')) {
 		$last_insert=$db->getLastId();
 		$db->query("INSERT INTO cms_favorites (UserID,option1,option2,option3) VALUES ('".$last_insert."','3','8','11')");
 		$db->query("INSERT INTO cms_state (userID, state) VALUES ('".$last_insert."', 'empty')");
-		$db->query("INSERT INTO cms_user_settings (userID,lang) VALUES ('".$last_insert."','1')");		
+		$db->query("INSERT INTO cms_user_settings (userID,lang) VALUES ('".$last_insert."','1')");
 		$extraInfoValues = '';
 		$extraInfo = '';
 		$first = true;
@@ -59,7 +59,7 @@ if($db->is('type')) {
 		}
 		if(strlen($extraInfo) > 0) {
 			$db->query("INSERT INTO cms_user_aditional (userID,".$extraInfoValues.") VALUES ('".$last_insert."',".$extraInfo.")");
-		}		
+		}
 		echo 'ok';
 		exit;
 	} else if($db->filter('type') == 'addgroup') {
@@ -71,7 +71,7 @@ if($db->is('type')) {
 		$domains=$db->filter('domains');
 		$domains=explode('*/*', $domains);
 		foreach($domains as $domain) {
-			$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$id."','".$domain."','group')");			
+			$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$id."','".$domain."','group')");
 		}
 		echo 'ok';
 		exit;
@@ -120,7 +120,7 @@ if($db->is('type')) {
 		$dataLog = $db->filter('dataLog');
 		$backendLogin = $db->filter('backendLogin');
 		$db->query("UPDATE cms_user_groups SET title='".$name."', description='".$description."', cache='".$cache."', errorLog='".$errorLog."', dataLog='".$dataLog."', login='".$backendLogin."' WHERE ID='".$id."'");
-		
+
 		/*Access*/
 		$access=str_replace('\"', '"', $db->filter('access'));
 		$access = json_decode($access);
@@ -139,7 +139,7 @@ if($db->is('type')) {
 				$db->query('INSERT INTO cms_user_groups_permissions (groupID, objectID, permission, file, enabled) VALUES ("'.$id.'", "a_welcome", "5", "pages@welcome.php", "1")');
 			}
 		}
-		
+
 		foreach($modules->accordion->item as $element) {
 			$page=str_replace(array("\\", "/"), "@", $element->page);
 			if(isset($access->{$element->uniqueId})) {
@@ -148,7 +148,7 @@ if($db->is('type')) {
 				$db->query('INSERT INTO cms_user_groups_permissions (groupID, objectID, permission, file, enabled) VALUES ("'.$id.'", "'.$element->uniqueId.'", "0", "'.$page.'", "0")');
 			}
 		}
-		
+
 		foreach($system->dialog->item as $element) {
 			$page=str_replace(array("\\", "/"), "@", $element->page);
 			if($element->uniqueId!="d_relogin") {
@@ -161,24 +161,24 @@ if($db->is('type')) {
 				$db->query('INSERT INTO cms_user_groups_permissions (groupID, objectID, permission, file, enabled) VALUES ("'.$id.'", "d_relogin", "2", "pages@relogin.php", "1")');
 			}
 		}
-		
+
 		foreach($modules->dialog->item as $element) {
 			$page=str_replace(array("\\", "/"), "@", $element->page);
 			if(isset($access->{$element->uniqueId})) {
 				$db->query('INSERT INTO cms_user_groups_permissions (groupID, objectID, permission, file, enabled) VALUES ("'.$id.'", "'.$element->uniqueId.'", "'.$access->{$element->uniqueId}.'", "'.$page.'", "1")');
 			} else {
 				$db->query('INSERT INTO cms_user_groups_permissions (groupID, objectID, permission, file, enabled) VALUES ("'.$id.'", "'.$element->uniqueId.'", "0", "'.$page.'", "0")');
-			}			
+			}
 		}
-		
+
 		/*Domains*/
 		$db->query("DELETE FROM cms_domains_ids WHERE type='group' AND elementID='".$id."'");
 		$domains=$db->filter('domains');
 		$domains=explode('*/*', $domains);
 		foreach($domains as $domain) {
-			$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$id."','".$domain."','group')");			
+			$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$id."','".$domain."','group')");
 		}
-		
+
 		echo 'ok';
 		exit;
 	} else if($db->filter('type') == 'edit') {
@@ -186,7 +186,7 @@ if($db->is('type')) {
 			$newpassword = $db->filter('newpassword');
 			$id = $crypt->decrypt($db->filter('id'));
 			$result = $db->get($db->query("SELECT username,pass FROM cms_user WHERE ID='".$id."'"));
-			if($result) {				
+			if($result) {
 				if(!$valid->isLength($newpassword,6,20)) {
 					echo 'password';
 					exit;
@@ -214,13 +214,13 @@ if($db->is('type')) {
 				echo 'group';
 				exit;
 			}
-			
+
 			$filName = $db->filter('name');
 			$filEmail = $db->filter('email');
 			$db->query("UPDATE cms_user SET email='".$filEmail."',GroupID='".$group."',name='".$filName."' WHERE ID='".$id."'");
 		}
-		
-		$checkResult = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE userID='".$id."'"));			
+
+		$checkResult = $db->get($db->query("SELECT * FROM cms_user_aditional WHERE userID='".$id."'"));
 		if($checkResult) {
 			$extraInfo = '';
 			$first = true;
@@ -255,7 +255,7 @@ if($db->is('type')) {
 			}
 			if(strlen($extraInfo) > 0) {
 				$db->query("INSERT INTO cms_user_aditional (userID,".$extraInfoValues.") VALUES ('".$id."',".$extraInfo.")");
-			}			
+			}
 		}
 		echo 'ok';
 		exit;
