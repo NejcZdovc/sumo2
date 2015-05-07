@@ -1,8 +1,7 @@
-<?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 exit;
-	}
+<?php require_once('../initialize.php');
+	$security->checkMin();
 if(ob_get_length()>0) {ob_end_clean();}
+
 if($db->is('type')) {
 		if($db->filter('type') == 'sumo') {
 			$lang=$db->filter('lang');
@@ -106,7 +105,7 @@ if($db->is('type')) {
 		else if($db->filter('type') == 'addlf') {
 			$name= $db->filter('name');
 			$short= $db->filter('short');
-			$db->query("INSERT INTO cms_language_front (name,short) VALUES ('".$name."', '".$short."')");			
+			$db->query("INSERT INTO cms_language_front (name,short) VALUES ('".$name."', '".$short."')");
 			echo 'ok';
 			exit;
 		}
@@ -142,45 +141,45 @@ if($db->is('type')) {
 			$name=$db->get($db->query('SELECT prefix FROM cms_template_position WHERE ID="'.$id.'"'));
 			//delete position
 			$db->query("DELETE FROM cms_template_position WHERE ID='".$id."'");
-			
+
 			//delete edit table of module
 			$query=$db->query('SELECT editTable FROM cms_modules_def');
 			while($result=$db->fetch($query)) {
-				$query1=$db->query('SELECT edit.ID FROM '.$result['editTable'].' as edit LEFT JOIN cms_panel_'.$name['prefix'].' as pp ON edit.cms_panel_id=pp.ID WHERE edit.cms_layout="'.$name['prefix'].'" AND pp.domain="'.$user->domain.'"');				
+				$query1=$db->query('SELECT edit.ID FROM '.$result['editTable'].' as edit LEFT JOIN cms_panel_'.$name['prefix'].' as pp ON edit.cms_panel_id=pp.ID WHERE edit.cms_layout="'.$name['prefix'].'" AND pp.domain="'.$user->domain.'"');
 				while($result1=$db->fetch($query1)) {
 					$db->query("DELETE FROM ".$result['editTable']." WHERE ID='".$result1['ID']."'");
 				}
 			}
-			
+
 			//delete table of prefix
 			$check=$db->get($db->query('SELECT prefix FROM cms_template_position WHERE prefix="'.$name['prefix'].'"'));
 			if(!$check) {
 				$db->query("DROP TABLE `cms_panel_".$name['prefix']."`");
 			} else {
 				$db->query("DELETE FROM cms_panel_".$name['prefix']." WHERE domain='".$user->domain."'");
-			}			
+			}
 			echo 'ok';
 			exit;
 		}
 		else if($db->filter('type') == 'deleteP') {
 			$id = $crypt->decrypt($db->filter('id'));
 			$name=$db->get($db->query('SELECT prefix FROM cms_modul_prefix WHERE ID="'.$id.'"'));
-			
+
 			//delete prefix
 			$db->query("DELETE FROM cms_modul_prefix WHERE ID='".$id."'");
-			
+
 			//delete edit table of modules
 			$query=$db->query('SELECT editTable FROM cms_modules_def');
 			while($result=$db->fetch($query)) {
 				$prefix=$db->query('SELECT prefix FROM cms_template_position WHERE ID="'.$id.'"');
 				while($prefixR=$db->fetch($prefix)) {
-					$query1=$db->query('SELECT edit.ID FROM '.$result['editTable'].' as edit LEFT JOIN cms_panel_'.$prefixR['prefix'].' as pp ON edit.cms_panel_id=pp.ID WHERE pp.prefix="'.$name['prefix'].'" AND pp.domain="'.$user->domain.'"');				
+					$query1=$db->query('SELECT edit.ID FROM '.$result['editTable'].' as edit LEFT JOIN cms_panel_'.$prefixR['prefix'].' as pp ON edit.cms_panel_id=pp.ID WHERE pp.prefix="'.$name['prefix'].'" AND pp.domain="'.$user->domain.'"');
 					while($result1=$db->fetch($query1)) {
 						$db->query("DELETE FROM ".$result['editTable']." WHERE ID='".$result1['ID']."'");
 					}
-				}				
+				}
 			}
-			
+
 			//delete prefix in panels
 			$query=$db->query('SELECT prefix FROM cms_template_position');
 			while($result=$db->fetch($query)) {
@@ -266,7 +265,7 @@ if($db->is('type')) {
 		else if($db->filter('type') == "saveprefix") {
 			$name=$db->filter('name');
 			$array=explode('##', $name);
-			if(count($array)>1) {				
+			if(count($array)>1) {
 				for($i=0; $i<count($array); $i++) {
 					if($array[$i] != '' && $array[$i] != ' ') {
 						$prefix=strtolower(str_replace(' ', '_', $array[$i]));
@@ -313,7 +312,7 @@ if($db->is('type')) {
 					if($array[$i] != '') {
 						$prefix=strtolower(str_replace(' ', '_', $array[$i]));
 						$sql_name="cms_panel_sumo_".$prefix;
-						$sql = "CREATE TABLE IF NOT EXISTS ".$sql_name." 
+						$sql = "CREATE TABLE IF NOT EXISTS ".$sql_name."
 						(
 							ID int(11) NOT NULL AUTO_INCREMENT,
 							PRIMARY KEY(ID),
@@ -366,28 +365,28 @@ if($db->is('type')) {
 			$pass=$db->filter('password');
 			$url=$db->filter('url');
 			$port=$db->filter('port');
-			$ftpConn = ftp_connect($url, $port);			
+			$ftpConn = ftp_connect($url, $port);
 			if (!$ftpConn) {
 				echo $lang->MOD_128." ".$url;
 				exit;
 			}
-			
+
 			if (@ftp_login($ftpConn, $user, $pass)){
 				$db->query('UPDATE cms_sumo_settings SET FTP_user="'.$crypt->encrypt($user).'", FTP_pass="'.$crypt->encrypt($pass).'", FTP_url="'.$url.'", FTP_port="'.$port.'" WHERE ID="1"');
-				ftp_close($ftpConn);	
+				ftp_close($ftpConn);
 				echo "ok";
 				exit;
 			}
 			else {
 				ftp_close($ftpConn);
-				echo $lang->MOD_129." $user";					
+				echo $lang->MOD_129." $user";
 				exit;
 			}
 		}
 		else if($db->filter('type') == "changeChacheNumber") {
 			$number=$db->get($db->query('SELECT cacheNumber, ID FROM cms_global_settings WHERE domain="'.$user->domain.'"'));
 			$db->query('UPDATE cms_global_settings SET cacheNumber="'.($number['cacheNumber']+1).'" WHERE ID="'.$number['ID'].'"');
-			
+
 			echo "ok";
 			exit;
 		}

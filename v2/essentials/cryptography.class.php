@@ -18,7 +18,7 @@ class Cryptography {
 		if(strlen($string) == 0)
 			return '';
 		$enc_salt = md5($this->salt);
-		$xord = base64_encode($this->simple($string,$enc_salt));
+		$xord = $this->urlsafe_base64encode($this->simple($string,$enc_salt));
 		$encrypted = "";
 		$xor_len = strlen($xord);
 		$xord = str_split($xord);
@@ -37,9 +37,20 @@ class Cryptography {
 			return '';
 		$enc_salt = md5($this->salt);
 		$string = str_replace(substr($enc_salt,0,$this->length['MD']/2),"",$string);
-		$string = base64_decode($string);
+		$string = $this->urlsafe_base64decode($string);
 		$plain = $this->simple($string,$enc_salt);
 		return $plain;
+	}
+	
+	function urlsafe_base64encode($string) {
+		$data = base64_encode($string);
+		$data = str_replace(array('+','/','='),array('-','_','.'),$data);
+		return $data;
+	}
+	
+	function urlsafe_base64decode($string) {
+		$data = str_replace(array('-','_', '.'),array('+','/','='),$string);
+		return base64_decode($data);
 	}
 	
 	public function simple($string, $key)  {  
@@ -64,7 +75,7 @@ class Cryptography {
     
     public function encodeParams($params) {
     	
-    }    
+    }
 }
 $crypt = new Cryptography();
 ?>

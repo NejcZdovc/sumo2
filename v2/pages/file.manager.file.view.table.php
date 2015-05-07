@@ -2,9 +2,7 @@
 	require_once('../initialize.php');
     require_once('../configs/settings.php');
 	
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkMin();
 ?>
 
 <table cellpadding="0" cellspacing="1" border="0" class="table1 table2" id="a_ftp" width="99%">
@@ -16,7 +14,7 @@
 		<th><?php echo $lang->MOD_11?></th>
 		<th width="130"><?php echo $lang->MOD_52?></th>
         <th width="100"><?php echo $lang->MOD_53?></th>
-		<?php if($user->getAuth('FAV_SITE_2') == 2 || $user->getAuth('FAV_SITE_2') == 4 || $user->getAuth('FAV_SITE_2') == 5)
+		<?php if($user->getAuth('a_ftp') == 2 || $user->getAuth('a_ftp') == 4 || $user->getAuth('a_ftp') == 5)
 			echo '<th width="123">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>

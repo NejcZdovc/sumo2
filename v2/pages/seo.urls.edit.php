@@ -1,8 +1,6 @@
 <?php 
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+	$security->checkFull();
 	$result=$db->get($db->query('SELECT * FROM cms_seo_redirects WHERE ID="'.$crypt->decrypt($db->filter('id')).'"'));
 ?>
 <form action="" name="d_seo_redirect_edit" method="post" class="form2">

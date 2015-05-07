@@ -29,7 +29,7 @@ if (!empty($_FILES)) {
 	$tempFile = $_FILES['Filedata']['tmp_name'];
 	$targetPath = $_SERVER['DOCUMENT_ROOT'] . '/'.ADMIN_ADDR.'/temp/';
 	$targetFile =  str_replace('//','/',$targetPath) . $_REQUEST["randnum"].".zip";
-		
+
 	move_uploaded_file($tempFile,$targetFile);
 	chmod($targetFile, PER_FILE);
 	echo "1";

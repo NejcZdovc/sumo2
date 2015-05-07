@@ -1,7 +1,5 @@
-<?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+<?php require_once('../initialize.php');
+	$security->checkFull();
 	$id = $crypt->encrypt($user->id);
 ?>
 <div id="settings_container">
@@ -12,16 +10,16 @@
                     <li id="user1tab"><a href="#user1"><?php echo $lang->SETTINGS_46?></a></li>
                     <li id="use21tab" style="display:none;"><a href="#user2"><?php echo $lang->SETTINGS_47?></a></li>
                     <li id="sumotab"><a href="#sumo"><?php echo $lang->SETTINGS_48?></a></li>
-                    <?php if($user->getAuth('FAV_SITE_3') >= 3) {?>
+                    <?php if($user->getAuth('a_settings') >= 3) {?>
                         <li id="pagetab"><a href="#page"><?php echo $lang->SETTINGS_49?></a></li>
                     <?php } ?>
-                    <?php if($user->getAuth('FAV_SITE_3') == 5) {?>
+                    <?php if($user->getAuth('a_settings') == 5) {?>
                         <li id="globaltab"><a href="#global"><?php echo $lang->SETTINGS_50?></a></li>
                     <?php } ?>
                     <li id="errortab"><a href="#error"><?php echo $lang->SETTINGS_51?></a></li>
                     <li id="errorFronttab"><a href="#errorFront"><?php echo $lang->SETTINGS_62?></a></li>
 					<li id="datatab"><a href="#data"><?php echo $lang->SETTINGS_66?></a></li>
-                     <?php if($user->getAuth('FAV_SITE_3') == 5) {?>
+                     <?php if($user->getAuth('a_settings') == 5) {?>
                     	<li id="welcometab"><a href="#welcome"><?php echo $lang->SETTINGS_52?></a></li>
                     <?php } ?>
                 </ul>
@@ -38,12 +36,12 @@
                      <div id="sumo" class="tab_content" style="overflow:auto;">
                         <?php include("settings_sumo.php") ?>
                     </div>
-                    <?php if($user->getAuth('FAV_SITE_3') >= 3) {?>
+                    <?php if($user->getAuth('a_settings') >= 3) {?>
                         <div id="page" class="tab_content" style="overflow:auto;">
                             <?php include("settings_page.php") ?>
                         </div>
                     <?php } ?>
-                    <?php if($user->getAuth('FAV_SITE_3') == 5) {?>
+                    <?php if($user->getAuth('a_settings') == 5) {?>
                         <div id="global" class="tab_content" style="overflow:auto;">
                             <?php include("settings_global.php") ?>
                         </div>
@@ -57,7 +55,7 @@
 					<div id="data" class="tab_content" style="overflow:auto;">
                         <?php include("settings_dataLog.php") ?>
                     </div>
-                    <?php if($user->getAuth('FAV_SITE_3') == 5) {?>
+                    <?php if($user->getAuth('a_settings') == 5) {?>
                         <div id="welcome" class="tab_content" style="overflow:auto;">
                             <?php include("settings_welcome.php") ?>
                         </div>

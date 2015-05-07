@@ -1,8 +1,6 @@
 <?php 
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$id = $crypt->decrypt($db->filter('id'));
 	$result = $db->get($db->query("SELECT * FROM cms_user WHERE ID='".$id."'"));
 	if($result) {

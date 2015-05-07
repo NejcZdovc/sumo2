@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+	$security->checkFull();
 	$accordion_id='a_user_view_u';
 	$query="";
 	if($db->is('query') && strlen($db->filter('query'))>2) {
@@ -29,7 +27,7 @@
 		<th scope="col" abbr="<?php echo $lang->GROUP?>"><?php echo $lang->GROUP?></th>
 		<th scope="col" abbr="<?php echo $lang->LAST_VISIT?>"><?php echo $lang->LAST_VISIT?></th>
 		<th scope="col" abbr="<?php echo $lang->REGISTRATION?>"><?php echo $lang->REGISTRATION?></th>
-        <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5)
+        <?php if($user->getAuth('a_user_view_u') == 2 || $user->getAuth('a_user_view_u') == 4 || $user->getAuth('a_user_view_u') == 5)
 			echo '<th scope="col" abbr="'.$lang->CONTROL.'">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
@@ -55,7 +53,7 @@
 					<td><?php echo $new_result['title'];?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['visit']));?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['registration']));?></td>
-                    <?php if($user->getAuth('FAV_USER_2') == 2 || $user->getAuth('FAV_USER_2') == 4 || $user->getAuth('FAV_USER_2') == 5) {?>
+                    <?php if($user->getAuth('a_user_view_u') == 2 || $user->getAuth('a_user_view_u') == 4 || $user->getAuth('a_user_view_u') == 5) {?>
 					<td width="65px">
 						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatus('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
 						<div title="<?php echo $lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditUser('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>

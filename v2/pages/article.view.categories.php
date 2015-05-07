@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$accordion_id='a_article_view_c';
 	$selected_lang_cat=1;
 	if($db->is('lang_cat'))
@@ -24,7 +22,7 @@
 		<th><?php echo $lang->USER_ADD_D_1?></th>
 		<th><?php echo $lang->ARTICLE_1?></th>
 		<th><?php echo $lang->CREATE_DATE?></th>
-		<?php if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5)
+		<?php if($user->getAuth('a_article_view_c') == 2 || $user->getAuth('a_article_view_c') == 4 || $user->getAuth('a_article_view_c') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
          <?php if($user->translate_state=="ON")
@@ -73,7 +71,7 @@
 					<td><div class="sumo2-tooltip" title="<?php echo $result['description']; ?>"><?php echo $description;?></div></td>
 					<td><?php echo $rows;?></td>
 					<td><?php echo date($lang->DATE_1, strtotime($result['date']));?></td>
-                     <?php if($user->getAuth('FAV_ARTICLES_3') == 2 || $user->getAuth('FAV_ARTICLES_3') == 4 || $user->getAuth('FAV_ARTICLES_3') == 5) {?>
+                     <?php if($user->getAuth('a_article_view_c') == 2 || $user->getAuth('a_article_view_c') == 4 || $user->getAuth('a_article_view_c') == 5) {?>
 					<td width="85px">
 						<div title="<?php echo $lang->USER_TOOLTIP_ENABLE_1?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.article.ChangeStatusGroup('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
 						<div title="<?php echo $lang->USER_TOOLTIP_EDIT_1?>" class="edit sumo2-tooltip" onclick="sumo2.dialog.NewDialog('d_article_edit_c','id=<?php echo  $crypt->encrypt($result['ID']); ?>');"></div>

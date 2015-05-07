@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+$security->checkFull();
 ?>
 <table width="100%" cellpadding="0" cellspacing="0" style="height:inherit; background:#FFF;">
 <tr>

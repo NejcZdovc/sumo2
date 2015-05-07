@@ -1,16 +1,16 @@
-<?php 
+<?php
 if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	header( 'HTTP/1.0 404 Not Found');
 	header( 'Location: http://www.3zsistemi.si');
 	exit;
 }
 class Language {
-	public $_specialArray = null;	
-	private $_open = false;	
+	public $_specialArray = null;
+	private $_open = false;
 	private $_oldVariable = null;
-	
+
 	public function setLanguage($short) {
-		global $xml, $db;	
+		global $xml, $db;
 		$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language'.DS.$short.DS.'php.lang.xml';
 		if(!is_file($filename)) {
 			$filename = SITE_ROOT.SITE_FOLDER.DS.ADMIN_ADDR.DS.'language'.DS.'en'.DS.'php.lang.xml';
@@ -26,7 +26,7 @@ class Language {
 			} else if($element['tag'] == 'item' && $element['type'] == 'open') {
 				$this->_open = true;
 				if(isset($element['value']) && isset($element['attributes']['constant'])) {
-					$this->{$element['attributes']['constant']} = $element['value'];						
+					$this->{$element['attributes']['constant']} = $element['value'];
 				}
 				if(isset($element['attributes']['constant'])) {
 					$this->_oldVariable = $element['attributes']['constant'];
@@ -60,7 +60,7 @@ class Language {
 				} else if($element['tag'] == 'item' && $element['type'] == 'open') {
 					$this->_open = true;
 					if(isset($element['value']) && isset($element['attributes']['constant'])) {
-						$this->{$element['attributes']['constant']} = $element['value'];						
+						$this->{$element['attributes']['constant']} = $element['value'];
 					}
 					if(isset($element['attributes']['constant'])) {
 						$this->_oldVariable = $element['attributes']['constant'];
@@ -95,7 +95,7 @@ class Language {
 				} else if($element['tag'] == 'item' && $element['type'] == 'open') {
 					$this->_open = true;
 					if(isset($element['value']) && isset($element['attributes']['constant'])) {
-						$this->{$element['attributes']['constant']} = $element['value'];						
+						$this->{$element['attributes']['constant']} = $element['value'];
 					}
 					if(isset($element['attributes']['constant'])) {
 						$this->_oldVariable = $element['attributes']['constant'];
@@ -115,7 +115,7 @@ class Language {
 			}
 		}
 	}
-	
+
 	public function getLanguage() {
 		global $session;
 		if($session->isLogedIn()) {
@@ -128,9 +128,9 @@ class Language {
 			$this->setLanguage('en');
 		}
 	}
-	
+
 	function __construct() {
-		
+
 	}
 }
 $lang = new Language();

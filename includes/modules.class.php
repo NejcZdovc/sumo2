@@ -56,13 +56,14 @@ class Modules extends Shield {
 		require_once(SITE_ROOT.SITE_FOLDER.'/Smarty/Smarty.class.php');
 		$this->smarty = new Smarty;
 		$this->smarty->template_dir = '';
-		if($user->developer=="1") {
+		if($user->developer=="1" ||$layoutInfo['cache']=="0") {
 			$this->smarty->caching = 0;
 		} else {
 			$this->smarty->caching = 2;
 		}
-		if($layoutInfo['cache']!=-1)
+		if($layoutInfo['cache']!=-1) {
 			$this->smarty->cache_lifetime = $layoutInfo['cache']*60;
+		}
 		$this->smarty->config_dir = SITE_ROOT.SITE_FOLDER.'/Smarty/';
 		
 		if(!is_dir($cachePath.'templates_c/')) {

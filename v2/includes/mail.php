@@ -1,9 +1,7 @@
-<?php 
+<?php
 	$isNoUpdateFile=1;
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 exit;
-	} 
+	$security->checkMin();
 	if(ob_get_length()>0) {ob_end_clean(); }
 	if($db->is('type')) {
 		$id=$user->id;
@@ -17,13 +15,13 @@
 			$query = $db->query('INSERT INTO cms_mail_main (senderID, subject, content) VALUES ('.$id.', "'.$subject.'", "'.$content.'")');
 			$last_insert=$db->getLastId();
 			foreach($array as $value) {
-				if($valid->isNumber($value)) 
+				if($valid->isNumber($value))
 					$db->query('INSERT INTO cms_mail_sent (recipientID, mainID, status) VALUES ('.$value.', '.$last_insert.', "C")');
 			}
 			echo "Ok";
 			exit;
 		}
-		
+
 		if($db->filter('type') == 'remi') {
 			$idmail=$crypt->decrypt($db->filter('idmail'));
 			$db->query("UPDATE cms_mail_sent SET status='D' WHERE ID='".$idmail."'");

@@ -1,11 +1,9 @@
 <?php require_once('../initialize.php');
+	$security->checkFull();
 	$first=0;
 	$second=0;
 	$third=0;
 	$fourth=0;
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
 	if($db->is('sel')) {
 		if(strpos($db->filter('sel'),'#') === false) {
 			$sel = 	$db->filter('sel');

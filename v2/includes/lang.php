@@ -1,8 +1,6 @@
-<?php 
+<?php
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 exit;
-	}
+	$security->checkMin();
 	if($db->is('type')) {
 		if($db->filter('type')=='save'){
 			$id_lang = $crypt->decrypt($db->filter('id'));

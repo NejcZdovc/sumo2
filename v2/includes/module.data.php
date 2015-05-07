@@ -1,12 +1,10 @@
 <?php
-require_once('../initialize.php'); 
-if(!$session->isLogedIn() || !$security->checkURL()) {
- exit;
-}
+require_once('../initialize.php');
+$security->checkMin();
 if(ob_get_length()>0) { ob_end_clean(); }
 if($db->filter('type') == 'install') {
 	include('..'.DS.'essentials'.DS.'module.class.php');
-	if(($return = $module->checkSystem()) === true) { 
+	if(($return = $module->checkSystem()) === true) {
 		$module->number = $db->filter('number');
 		$zip = new ZipArchive();
 		if($zip->open('../temp/'.$module->number.'.zip') === TRUE) {
@@ -84,15 +82,15 @@ if($db->filter('type') == 'install') {
 							 	ob_end_clean();
 						     echo 'nofbf';
 						     exit;
-						 }						 
-						 if(is_dir('../temp/'.$module->number.'/files-f')) {							 
+						 }
+						 if(is_dir('../temp/'.$module->number.'/files-f')) {
 							 copyFiles('../temp/'.$module->number.'/files-f/','../../modules/default/'.$module->getUnique().'/');
 							 chmodAll('../../modules/default/'.$module->getUnique().'/');
 							 foreach($domains as $domain) {
 								 $nameD=$db->get($db->query('SELECT name FROM cms_domains WHERE ID="'.$domain.'"'));
-								 copyFiles('../temp/'.$module->number.'/files-f/','../../modules/'.$nameD['name'].'/'.$module->getUnique().'/');	
-								 chmodAll('../../modules/'.$nameD['name'].'/'.$module->getUnique().'/');		
-							 }						     
+								 copyFiles('../temp/'.$module->number.'/files-f/','../../modules/'.$nameD['name'].'/'.$module->getUnique().'/');
+								 chmodAll('../../modules/'.$nameD['name'].'/'.$module->getUnique().'/');
+							 }
 						 } else {
 						     recursive_remove_directory('../temp/'.$module->number);
 						     $module->reverseActions();
@@ -235,11 +233,11 @@ if($db->filter('type') == 'install') {
 	$db->query("UPDATE cms_components_def SET status='D' WHERE ID='".$id."'");
 	$query=$db->query('SELECT ID FROM cms_favorites_def WHERE comID="'.$id.'"');
 	while($result=$db->fetch($query)) {
-		$db->query("UPDATE cms_favorites_def SET statusID='D' WHERE ID='".$result['ID']."'");		
+		$db->query("UPDATE cms_favorites_def SET statusID='D' WHERE ID='".$result['ID']."'");
 	}
 	echo 'ok';
 	exit;
-} else if($db->filter('type') == 'cache') {	 
+} else if($db->filter('type') == 'cache') {
 	 if($db->is('folder')) {
 		Clear('cache/modules/'.$user->domainName.'/'.$db->filter('folder'));
 		Clear('cache/modules/'.$user->domainName.'/'.$db->filter('folder'), 'default');
@@ -254,7 +252,7 @@ if($db->filter('type') == 'install') {
 		while($result = $db->fetch($query)) {
 			$query1 = $db->query("SELECT cms_domains.name FROM cms_domains, cms_domains_ids WHERE cms_domains_ids.type='mod' AND cms_domains_ids.elementID='".$result['ID']."' AND cms_domains_ids.domainID=cms_domains.ID");
 			while($result1 = $db->fetch($query1)) {
-				Clear('cache/modules/'.$result1['name'].'/'.$result['moduleName']);				
+				Clear('cache/modules/'.$result1['name'].'/'.$result['moduleName']);
 			}
 			Clear('cache/modules/default/'.$result['moduleName']);
 		}
@@ -266,40 +264,40 @@ if($db->filter('type') == 'install') {
 	exit;
 } else if($db->filter('type') == 'changeDomain') {
 	$id=$crypt->decrypt($db->filter('id'));
-	$domains=explode('*/*', $db->filter('domain'));	
+	$domains=explode('*/*', $db->filter('domain'));
 	//delete existisng
 	$delete='';
 	foreach($domains as $domain) {
 		$delete.=' AND ids.domainID!="'.$domain.'"';
-	}	
+	}
 	$qD=$db->query('SELECT def.moduleName, domain.name, ids.ID FROM cms_modules_def as def LEFT JOIN cms_domains_ids as ids ON def.ID=ids.elementID LEFT JOIN cms_domains as domain ON ids.domainID=domain.ID WHERE def.ID="'.$id.'" AND ids.type="mod" '.$delete.'');
 	while($rD=$db->fetch($qD)) {
 		$db->query("DELETE FROM cms_domains_ids WHERE elementID='".$id."' AND type='mod'");
 		recursive_remove_directory('../../modules/'.$rD['name'].'/'.$rD['moduleName'].'/');
 	}
-	
+
 	//Add
 	$moduleData=$db->get($db->query('SELECT moduleName FROM cms_modules_def WHERE ID="'.$id.'"'));
 	foreach($domains as $domain) {
 		$qA=$db->rows($db->query('SELECT ID FROM cms_domains_ids WHERE domainID="'.$domain.'" AND elementID="'.$id.'" AND type="mod" '));
 		if($qA==0) {
 			$nameD=$db->get($db->query('SELECT name FROM cms_domains WHERE ID="'.$domain.'"'));
-			 if(!is_dir('../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'')) {							 
+			 if(!is_dir('../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'')) {
 				 copyFiles('../../modules/default/'.$moduleData['moduleName'].'/','../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'/');
-				 chmodAll('../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'/');				     
-			 }		
+				 chmodAll('../../modules/'.$nameD['name'].'/'.$moduleData['moduleName'].'/');
+			 }
 			$files = scandir('../../modules/default/images/');
 			foreach($files as $file) {
 				if(strlen($file)>2) {
 					if(!is_file('../../modules/'.$nameD['name'].'/images/'.$file)) {
 						 copy('../../modules/default/images/'.$file, '../../modules/'.$nameD['name'].'/images/'.$file);
 						 chmod('../../modules/'.$nameD['name'].'/images/'.$file,PER_FILE);
-					 } 
+					 }
 				}
 			}
-			$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$id."','".$domain."','".$db->filter('ver')."')");	
+			$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$id."','".$domain."','".$db->filter('ver')."')");
 		}
-	 }	
+	 }
 	echo 'ok';
 	exit;
 }

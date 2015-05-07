@@ -183,14 +183,17 @@
 .domain-item .itemb {display:block;height:16px;line-height:16px; width:86px; float:left; margin-right:3px; margin-left:5px; text-decoration:underline; font-weight:bold;}
 .domain-item .icon {display:block;height:16px;width:16px; margin-right:5px; float:left; margin-left:3px;}
 .domain-item .icon img {margin-top:1px;}
-ul.tabs, ul.tabs_trash, ul.tabsDomain {margin:0;padding:0;margin-top:20px;float:left;list-style:none;height:auto;border-bottom:1px solid #999;border-left:1px solid #999;width:100%;}
-ul.tabs li, ul.tabs_trash li, ul.tabsDomain li {margin:0;padding:0;height:31px; width:180px;line-height:31px;border:1px solid #999;border-left:none;background:#e0e0e0;overflow:hidden;}
-ul.tabs li a, ul.tabs_trash li a, ul.tabsDomain li a {text-decoration:none;color:#000;display:block;font-size:1.2em;padding:0 20px;border:1px solid #fff;outline:none;}
-ul.tabs li a:hover, ul.tabs_trash li a:hover, ul.tabsDomain li a:hover {background:#ccc;}	
-html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs_trash li.active, html ul.tabs_trash li.active a:hover, html ul.tabsDomain li.active, html ul.tabsDomain li.active a:hover  {background:#fff;border-bottom:1px solid #fff;}
-.tab_container, .t_tab_container, .domain_container {border:1px solid #999;background:#fff;-moz-border-radius-bottomright:5px;-khtml-border-radius-bottomright:5px;-webkit-border-bottom-right-radius:5px;-moz-border-radius-bottomleft:5px;-khtml-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px;-moz-border-radius-topleft:5px;-khtml-border-radius-topleft:5px;-webkit-border-top-left-radius:5px; -moz-border-radius-topright:5px;-khtml-border-radius-topright:5px;-webkit-border-top-right-radius:5px;}
-.tab_content, .t_tab_content, .domain_content  {padding:20px;font-size:1.2em; width:inherit-5;}
-#settings_container, #trash_container, #domains_container {display:block;margin:10px auto;margin-left:20px;margin-right:10px;margin-top:10px;}
+ul.tabs, ul.tabs_trash, ul.tabsDomain, ul.group_tab {margin:0;padding:0;margin-top:20px;float:left;list-style:none;height:auto;border-bottom:1px solid #999;border-left:1px solid #999;width:100%;}
+ul.tabs li, ul.tabs_trash li, ul.tabsDomain li, ul.group_tab li {margin:0;padding:0;height:31px; width:180px;line-height:31px;border:1px solid #999;border-left:none;background:#e0e0e0;overflow:hidden;}
+ul.tabs li a, ul.tabs_trash li a, ul.tabsDomain li a, ul.group_tab li a {text-decoration:none;color:#000;display:block;font-size:1.2em;padding:0 20px;border:1px solid #fff;outline:none;}
+ul.tabs li a:hover, ul.tabs_trash li a:hover, ul.tabsDomain li a:hover, ul.group_tab li a:hover {background:#ccc;}	
+html ul.tabs li.active, html ul.tabs li.active a:hover, html ul.tabs_trash li.active, html ul.tabs_trash li.active a:hover, html ul.tabsDomain li.active, html ul.tabsDomain li.active a:hover, ul.group_tab li.active, ul.group_tab li.active a:hover  {background:#fff;border-bottom:1px solid #fff;}
+.tab_container, .t_tab_container, .domain_container, .group_tab_container {border:1px solid #999;background:#fff;-moz-border-radius-bottomright:5px;-khtml-border-radius-bottomright:5px;-webkit-border-bottom-right-radius:5px;-moz-border-radius-bottomleft:5px;-khtml-border-radius-bottomleft:5px;-webkit-border-bottom-left-radius:5px;-moz-border-radius-topleft:5px;-khtml-border-radius-topleft:5px;-webkit-border-top-left-radius:5px; -moz-border-radius-topright:5px;-khtml-border-radius-topright:5px;-webkit-border-top-right-radius:5px;}
+.tab_content, .t_tab_content, .domain_content, group_tab_content  {padding:20px;font-size:1.2em; width:inherit-5;}
+#settings_container, #trash_container, #domains_container, #group_container {display:block;margin:10px auto;margin-left:20px;margin-right:10px;margin-top:10px;}
+#group_container { margin-top: 0px; }
+ul.group_tab { margin-left: 40px; width: auto; border-bottom: none; }
+ul.group_tab li { float: left;}
 .str-panel1 {height:100%;width:285px;background:white;overflow:auto;vertical-align:top;}
 .str-panel2 {height:100%;width:185px;background:white;overflow:hidden;vertical-align:top;}
 .str-button {height:100%;width:15px;background-image:url(../images/css_sprite.png);background-position:-2252px 0px;cursor:pointer;}

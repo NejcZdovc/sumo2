@@ -1,10 +1,10 @@
-<?php  
+<?php
 $isNoUpdateFile=1;
 require_once('../initialize.php');
-if(!$session->isLogedIn() || !$security->checkURL()) {
- exit;
-}
+$security->checkMin();
+
 if(ob_get_length()>0) {ob_end_clean();}
+
 if($db->is('get')) {
     $result = $db->get($db->query("SELECT state FROM cms_state WHERE userID='".$user->id."' LIMIT 1"));
 	if($result) {
@@ -34,9 +34,13 @@ if($db->is('get')) {
 } else if($db->is('update')) {
     $state = $db->filter('state');
 	$state = str_replace('##$##','+',$state);
-    $stateResult = $db->get($db->query("SELECT ID FROM cms_state WHERE userID='".$user->id."' LIMIT 1"));
+    $stateResult = $db->get($db->query("SELECT ID, state FROM cms_state WHERE userID='".$user->id."' LIMIT 1"));
 	if($stateResult) {
-	    $db->query("UPDATE cms_state SET state='".$state."' WHERE ID='".$stateResult['ID']."'");
+		if($stateResult['state']!="error") {
+			$db->query("UPDATE cms_state SET state='".$state."' WHERE ID='".$stateResult['ID']."'");
+		} else {
+			$db->query("UPDATE cms_state SET state='empty' WHERE ID='".$stateResult['ID']."'");
+		}
 	} else {
 	    $db->query("INSERT INTO cms_state (userID,state) VALUES ('".$user->id."','".$state."')");
 	}

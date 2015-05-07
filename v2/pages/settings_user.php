@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$result = $db->get($db->query("SELECT username,email,GroupID,name FROM cms_user WHERE ID='".$user->id."'"));
 	if($result) {
 ?>
