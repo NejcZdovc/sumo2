@@ -1,4 +1,6 @@
-<?php require_once('../initialize.php'); ?>
+<?php require_once('../initialize.php');
+$security->checkFull();
+?>
 <form action="" name="d_module_install" id="d_module_install" method="post" enctype="multipart/form-data" class="form2">
 	<input type="hidden" id="random_number" value="" />
    	<div class="">

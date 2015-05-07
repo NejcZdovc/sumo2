@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+	$security->checkFull();
 	$language= $crypt->decrypt($db->filter('lang'));
 	$cat= $crypt->decrypt($db->filter('cat'));
 	$short_old=lang_name_front($crypt->decrypt($db->filter('current')));
@@ -27,7 +25,6 @@
             <input name="name" id="name" value="" type="text" maxlength="50" style="width:260px;" class="input" />
             <input type="text" name="enterfix" style="display:none;" />
        	</div>
-        
         </td>
     </tr>
     <tr><td height="10px" width="100%"></td></tr>
@@ -45,7 +42,7 @@
         <div style="float:left; margin-right:10px;">
         	<b><?php echo lang_name_front($language)?> <?php echo $lang->ARTICLE_29?>:</b><br/><br/>
 			<textarea  id="content" class="input-area" name="content" rows="10" cols="28"></textarea>
-        </div>    
+        </div>
         </td>
     </tr>
     </table>

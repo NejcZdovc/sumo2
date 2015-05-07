@@ -11,7 +11,7 @@ class Xml
 	private $xmlFile = NULL;
 	private $indexArray = array();
 	private $valArray = array();
-	
+
 	private function getFile($filename)
 	{
 		if(file_exists($filename)) {
@@ -19,9 +19,9 @@ class Xml
 			$this->filename = $filename;
 		} else {
 			error_log("XML missing: ".$filename);
-		}		
+		}
 	}
-	
+
 	private function setParser()
 	{
 		$this->parser = xml_parser_create();
@@ -30,13 +30,13 @@ class Xml
     	xml_parser_set_option($this->parser, XML_OPTION_CASE_FOLDING, 0);
    		xml_parser_set_option($this->parser, XML_OPTION_SKIP_WHITE, 1);
 	}
-	
+
 	private function parseStruct()
 	{
 		xml_parse_into_struct($this->parser, str_replace(array("\n", "\r", "\t"), '', $this->xmlFile), $this->valArray, $this->indexArray);
-		xml_parser_free($this->parser);	
+		xml_parser_free($this->parser);
 	}
-	
+
 	public function getSpecialArray($filename)
 	{
 		$this->getFile($filename);

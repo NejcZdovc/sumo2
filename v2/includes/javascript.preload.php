@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require_once('../initialize.php');
 	if($db->is('images')) {
 		$dir = SITE_ROOT.SITE_FOLDER.'/sumoctrl/images/';

@@ -14,7 +14,7 @@ function redirect_to($location = NULL)
 }
 
 function getDomain() {
-	return $_SERVER['HTTP_HOST'];	
+	return $_SERVER['HTTP_HOST'];
 }
 
 function pagging ($number_acc, $pagging)
@@ -22,27 +22,30 @@ function pagging ($number_acc, $pagging)
 	$size=$pagging[0];
 	$current=$pagging[1];
 	$results=$pagging[2];
-	
+
 	$content='<div style="margin-top:10px;margin-left:10px;">';
 	$int=ceil($results/$size);
 	if($int>1) {
 		if($current>0) {
-			if($int>3 && $current!=1 && ($current-3)>0)
+			if($int>3 && $current!=1 && ($current-3)>0){
 				$content.='<div class="pagging-button" onclick="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id=0&size='.$size.'\')">&lt;&lt;</div>';
+            }
 			for($i=3; $i>0; $i--) {
-				if(($current-$i+1)>0) 
+				if(($current-$i+1)>0)
 					$content.='<div class="pagging-button" onclick="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id='.($current-$i).'&size='.$size.'\')">'.($current-$i+1).'</div>';
 			}
-		}
-		else $current=0;
-				
+		} else {
+            $current=0;
+        }
+
 		$content.='<div class="pagging-button sel-button" onclick="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id='.$current.'&size='.$size.'\')"><b>'.($current+1).'</b></div>';
 		for($i=1; $i<4; $i++) {
 			if(($current+$i)<$int)
 				$content.= '<div class="pagging-button" onclick="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id='.($current+$i).'&size='.$size.'\')">'.($current+$i+1)."</div>";
 		}
-		if($int>3 && $current!=$int)
+		if($int>3 && $current!=$int){
 			$content.='<div class="pagging-button" onclick="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id='.$int.'&size='.$size.'\')">&gt;&gt;</div>';
+        }
 	}
 	$content.='</div>';
 	return $content;
@@ -51,26 +54,30 @@ function pagging ($number_acc, $pagging)
 function check_pagging($sql, $page) {
 	global $db;
 	$int_rows =$db->rows($db->query($sql));
-	if($db->is('size'))
+	if($db->is('size')){
 		$page_size=$db->filter('size');
-	else
+    } else{
 		$page_size=$page;
-		
-	if($db->is('pag_id'))
+    }
+
+	if($db->is('pag_id')){
 		$pag_id=$db->filter('pag_id');
-	else
+    } else{
 		$pag_id=0;
-		
-	if($int_rows>$page_size) 
+    }
+
+	if($int_rows>$page_size) {
 		$limit=" LIMIT ".($pag_id*$page_size).", ".$page_size."";
-	else
+    } else {
 		$limit="";
+    }
+
 	$sql.=$limit;
 	return Array($page_size, $pag_id, $int_rows, $limit, $sql);
 }
 
 function dropdown_pagging($number_acc, $current) {
-	
+
 	$array = array(10, 20, 50, 100, 500, 1000);
 	$result='Display #<select name="displaySelection" class="input" onchange="sumo2.accordion.ReloadAccordion(\''.$number_acc.'\',\'pag_id=0$!$size=\'+this.value+\'\')">';
 	foreach ($array as $i => $value) {
@@ -81,39 +88,39 @@ function dropdown_pagging($number_acc, $current) {
 			$selected='selected="selected"';
 		}
 		$result.='<option value="'.$array[$i].'" '.$selected.'>'.$array[$i].'</option>';
-	}	
+	}
 	$result.='</select>';
-	
+
 	return $result;
 }
 
 function lang_name($int) {
 	global $db;
 	$query = $db->fetch($db->query("SELECT short FROM cms_language WHERE ID='".$int."'"));
-	return $query['short'];	
+	return $query['short'];
 }
 function lang_name_front($int) {
 	global $db;
 	$query = $db->fetch($db->query("SELECT short FROM cms_language_front WHERE ID='".$int."'"));
-	return $query['short'];	
+	return $query['short'];
 }
 
 function lang_dropdown($current,$number_acc, $id) {
 	global $db, $user;
 	$result='<select onchange="sumo2.languageSelection.ChangeLang(\''.$number_acc.'\',\''.$id.'\')" name="'.$number_acc.'-langselect" id="'.$number_acc.'-langselect" style="text-transform:capitalize;">';
-	
+
 	$query = $db->query("SELECT value FROM cms_domains_ids WHERE type='lang' AND domainID='".$user->domain."'");
 	while($rez=$db->fetch($query)) {
 		$resultL = $db->get($db->query("SELECT ID, short, name FROM cms_language_front WHERE short='".$rez['value']."'"));
-		if($current==$resultL['ID']) 
+		if($current==$resultL['ID'])
     		$result.='<option value="'.$resultL['ID'].'" style="background: url(images/icons/flags/'.$resultL['short'].'.png) top left no-repeat; padding-left:20px; text-transform:capitalize; font-weight:bold;" selected="selected">'.$resultL['name'].'</option>';
 		else
 		$result.='<option value="'.$resultL['ID'].'" style="background: url(images/icons/flags/'.$resultL['short'].'.png) top left no-repeat; padding-left:20px; text-transform:capitalize;">'.$resultL['name'].'</option>';
-	}	
+	}
 	$result.='</select>';
-	
+
 	return $result;
-	
+
 }
 
 function getBrowser()
@@ -126,49 +133,36 @@ function getBrowser()
     //First get the platform?
     if (preg_match('/linux/i', $u_agent)) {
         $platform = 'linux';
-    }
-    elseif (preg_match('/macintosh|mac os x/i', $u_agent)) {
+    } else if (preg_match('/macintosh|mac os x/i', $u_agent)) {
         $platform = 'mac';
-    }
-    elseif (preg_match('/windows|win32/i', $u_agent)) {
+    } else if (preg_match('/windows|win32/i', $u_agent)) {
         $platform = 'windows';
     }
-	
+
 	$bname="Unknown";
 	$ub="Unknown";
-   
+
     // Next get the name of the useragent yes seperately and for good reason
-    if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent))
-    {
+    if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)) {
         $bname = 'Internet Explorer';
         $ub = "MSIE";
-    }
-    elseif(preg_match('/Firefox/i',$u_agent))
-    {
+    } else if(preg_match('/Firefox/i',$u_agent)) {
         $bname = 'Mozilla Firefox';
         $ub = "Firefox";
-    }
-    elseif(preg_match('/Chrome/i',$u_agent))
-    {
+    } else if(preg_match('/Chrome/i',$u_agent)) {
         $bname = 'Google Chrome';
         $ub = "Chrome";
-    }
-    elseif(preg_match('/Safari/i',$u_agent))
-    {
+    } else if(preg_match('/Safari/i',$u_agent)) {
         $bname = 'Apple Safari';
         $ub = "Safari";
-    }
-    elseif(preg_match('/Opera/i',$u_agent))
-    {
+    } else if(preg_match('/Opera/i',$u_agent)) {
         $bname = 'Opera';
         $ub = "Opera";
-    }
-    elseif(preg_match('/Netscape/i',$u_agent))
-    {
+    } else if(preg_match('/Netscape/i',$u_agent)) {
         $bname = 'Netscape';
         $ub = "Netscape";
     }
-   
+
     // finally get the correct version number
     $known = array('Version', $ub, 'other');
     $pattern = '#(?<browser>' . join('|', $known) .
@@ -176,7 +170,7 @@ function getBrowser()
     if (!preg_match_all($pattern, $u_agent, $matches)) {
         // we have no matching number just continue
     }
-   
+
     // see how many we have
     $i = count($matches['browser']);
     if ($i != 1) {
@@ -184,16 +178,22 @@ function getBrowser()
             $version= $matches['version'][0];
         }
         else {
-            $version= $matches['version'][1];
+			if ($i > 1) {
+				$version= $matches['version'][1];
+			} else {
+				$version= $matches['version'][0];
+			}
         }
     }
     else {
         $version= $matches['version'][0];
     }
-   
+
     // check if we have a number
-    if ($version==null || $version=="") {$version="?";}
-   
+    if ($version==null || $version=="") {
+        $version="?";
+    }
+
     return array(
         'userAgent' => $u_agent,
         'name'      => $bname,
@@ -206,16 +206,18 @@ function getBrowser()
 function detectDevice() {
 	$detect = new Mobile_Detect();
 	$deviceType = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
-	
+
 	return $deviceType;
 }
 
 function checkTemplate($ID) {
 	global $db;
 	$template = $db->query("SELECT ID FROM cms_template WHERE status='N' AND enabled='1' AND ID='".$ID."'");
-	if($db->rows($template)!=1)
+	if($db->rows($template)!=1) {
 		$ID=-1;
-	return $ID;	
+    }
+
+	return $ID;
 }
 
 function getSize($size) {
@@ -223,7 +225,7 @@ function getSize($size) {
 	$end = ' KB';
 	if($endSize > 1000) {
 		$endSize = $endSize/1000;
-		$end = ' MB';	
+		$end = ' MB';
 	}
 	return round($endSize,2).$end;
 }
@@ -235,7 +237,7 @@ function getImageFav($data,$subtitle) {
 	} else {
 		if($data=="")
 			$data='background-image:url(images/css_sprite.png);background-position:-1741px -1631px;height:48px;width:48px;';
-		return '<div style="display:block;'.$data.'"></div>';	
+		return '<div style="display:block;'.$data.'"></div>';
 	}
 }
 function recursive_remove_directory($directory, $empty=FALSE) {
@@ -272,7 +274,7 @@ function recursive_remove_directory($directory, $empty=FALSE) {
 function addToName($name, $add) {
 	$dotArray = explode('.',$name);
 	$dotArray[count($dotArray)-2] .= $add;
-	return implode('.',$dotArray);	
+	return implode('.',$dotArray);
 }
 
 function setImages($path,$id) {
@@ -281,7 +283,7 @@ function setImages($path,$id) {
 	foreach($files as $file) {
 		if(is_dir($path.$file)) {
 			if($file != '.' && $file != '..') {
-				setImages($path.$file.'/',$id);	
+				setImages($path.$file.'/',$id);
 			}
 		} else {
 			if(is_file('../../templates/'.$user->domainName.'/images/'.$file)) {
@@ -299,13 +301,14 @@ function chmodAll($path, $filePerm=PER_FILE, $dirPerm=PER_FOLDER) {
 	if(!file_exists($path)) {
 		return false;
 	}
+
 	if(is_file($path)) {
 		chmod($path, $filePerm);
 	} else if(is_dir($path)) {
 		$foldersAndFiles = scandir($path);
 		$entries = array_slice($foldersAndFiles, 2);
 		foreach($entries as $entry) {
-					chmodAll($path."/".$entry, $filePerm, $dirPerm);
+            chmodAll($path."/".$entry, $filePerm, $dirPerm);
 		}
 		chmod($path, $dirPerm);
 	}
@@ -322,22 +325,22 @@ function copyFiles($src, $dst) {
 		if (( $file != '.' ) && ( $file != '..' )) {
 			if ( is_dir($src . '/' . $file) ) {
 				copyFiles($src . '/' . $file,$dst . '/' . $file);
-				chmodAll($dst . '/' . $file);					
+				chmodAll($dst . '/' . $file);
 			}
 			else {
 				copy($src . '/' . $file,$dst . '/' . $file);
-				chmodAll($dst . '/' . $file);					
+				chmodAll($dst . '/' . $file);
 			}
 		}
 	}
 	closedir($dir);
 }
-	
+
 function Clear ($folder) {
 	global $user;
 	$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/cache/';
 	if(is_dir($dir)) {
-		if($handler = opendir($dir)) { 
+		if($handler = opendir($dir)) {
 			while (($sub = readdir($handler)) !== FALSE) {
 				if ($sub != "." && $sub != "..") {
 					if(is_file($dir."/".$sub)) {
@@ -349,10 +352,10 @@ function Clear ($folder) {
 			closedir($handler);
 		}
 	}
-	
+
 	$dir=$_SERVER['DOCUMENT_ROOT'].'/'.$folder.'/templates_c/';
 	if(is_dir($dir)) {
-		if($handler = opendir($dir)) { 
+		if($handler = opendir($dir)) {
 			while (($sub = readdir($handler)) !== FALSE) {
 				if ($sub != "." && $sub != "..") {
 					if(is_file($dir."/".$sub)) {
@@ -370,34 +373,34 @@ function checkPrefixTitle($exist, $table, $colum, $id="") {
 	global $db;
 	$sqlQuery="";
 	if($id!="") {
-		$sqlQuery=' AND ID!="'.$id.'"';		
+		$sqlQuery=' AND ID!="'.$id.'"';
 	}
 	if($exist!="") {
 		$check=$db->query('SELECT ID FROM '.$table.' WHERE '.$colum.'="'.$exist.'" '.$sqlQuery.'');
-		if($db->rows($check)==0) {			
+		if($db->rows($check)==0) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-		
+
 	return false;
 }
 
 function getPrefixTitle($niz, $tableQuery, $colum, $id="", $exist="", $customSQl="") {
 	global $db;
-	
+
 	$sqlQuery="";
 	if($id!="") {
-		$sqlQuery=' AND ID!="'.$id.'"';		
+		$sqlQuery=' AND ID!="'.$id.'"';
 	}
-	
+
 	if($exist!="") {
 		$niz=strtolower($exist);
 	} else {
 		$niz=strtolower($niz);
 	}
-	
+
 	$table = array(
 		'š'=>'s', 'đ'=>'dj', 'ž'=>'z', 'č'=>'c', 'ć'=>'c','Þ'=>'B', 'ß'=>'Ss',
 		'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e',
@@ -415,7 +418,7 @@ function getPrefixTitle($niz, $tableQuery, $colum, $id="", $exist="", $customSQl
 			return $niz;
 		}
 	}
-	
+
 	$check=$db->query('SELECT ID FROM '.$tableQuery.' WHERE '.$colum.'="'.$niz.'" '.$sqlQuery.' '.$customSQl.'');
 	if($db->rows($check)>0) {
 		$number=1;
@@ -431,10 +434,10 @@ function getPrefixTitle($niz, $tableQuery, $colum, $id="", $exist="", $customSQl
 			if($number>5) {
 				$niz=$niz.time();
 				break;
-			}		
+			}
 		}
 	}
-	
+
 	return $niz;
 }
 

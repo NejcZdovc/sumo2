@@ -1,4 +1,4 @@
-<?php 
+<?php
 $isLoginFile=821662345037610915243762;
 require_once('../initialize.php');
 $time=base64_decode($db->filter('token'));
@@ -19,25 +19,25 @@ if((time()-$time)<600)
 	{
 		$id = User::authenticate($username,$password, $oldUserID);
 		if($id=="token") {
-			echo 'token';	
+			echo 'token';
 		} else if($id=="domain") {
-			echo 'domain';	
+			echo 'domain';
 		} else if($id=="refresh") {
-			echo 'refresh';	
+			echo 'refresh';
 		} else if($id != false) {
 			$session->login($id,$hold);
 			User::updateVisit($id);
-			echo 'ok';	
+			echo 'ok';
 		}
 		else {
-			echo 'match';	
+			echo 'match';
 		}
 	}
 	else {
-		echo 'format';	
+		echo 'format';
 	}
 }
 else {
-	echo 'token';	
+	echo 'token';
 }
 ?>

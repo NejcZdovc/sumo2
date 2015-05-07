@@ -1,124 +1,26 @@
 <?php 
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$id = $crypt->decrypt($db->filter('id'));
-	$result = $db->get($db->query("SELECT title,description,access FROM cms_user_groups WHERE ID='".$id."'"));
-	if($result) {
-	$access = unserialize(urldecode($result['access']));
+	$result = $db->get($db->query("SELECT * FROM cms_user_groups WHERE ID='".$id."'"));
+if($result) {
 ?>
-<form action="" name="d_user_edit_group" id="d_user_edit_group" method="post" class="form2">
-	<div class="">
-    <table cellpadding="0" cellspacing="4" border="0" width="99%" >
-    <input type="hidden" name="subject" id="verify" value="<?php echo $db->filter('id'); ?>" />
-    <tr>
-        <td class="left_td" valign="top">
-        <div class="title_form_big"><?php echo $lang->NAME?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_N_1?></div>
-        </td>
-        <td class="right_td">
-        <?php if($id==1 && $result['title']=='Super administrator') { ?>
-        	<input name="subject" id="name" disabled="disabled" value="<?php echo $result['title']; ?>" type="text" maxlength="50" class="input" />
-        <?php }else { ?>
-        	<input name="subject" id="name" value="<?php echo $result['title']; ?>" type="text" maxlength="50" class="input" />
-        <?php } ?>
-        <input type="text" name="enterfix" style="display:none;" />
-        </td>
-    </tr>
-    <tr><td height="10px" width="100%" colspan="2"></td></tr>
-    <tr>
-        <td colspan="2" class="left_td" valign="top">
-		<div class="title_form_big"><?php echo $lang->USER_ADD_D_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_D_2?></div>
-        </td>
-    </tr>
-    <tr>
-    	<td colspan="2" class="right_td" style="padding:5px;">
-			<textarea  id="description" class="input-area" name="content" rows="10" cols="50"><?php echo $result['description']; ?></textarea>
-        </td>
-    </tr>
-    <tr><td height="10px" width="100%" colspan="2"></td></tr>
-    <tr>
-        <td class="left_td"  style="width:100px;" valign="top">
-        <div class="title_form_big"><?php echo $lang->USER_ADD_A_1?>:</div><div class="title_form_small"><?php echo $lang->USER_ADD_A_2?></div>
-        </td>
-        <td class="right_td" style="padding:10px;">
-        <div style="float:left; margin-right:15px; cursor:pointer;"><a onclick="sumo2.user.SelectAll(1);"><?php echo $lang->SELECT_ALL?></a></div> <div style="float:left; cursor:pointer;"><a onclick="sumo2.user.SelectAll(2);"><?php echo $lang->MANUAL_SEL?></a></div><div style="clear:both; margin-bottom:10px;"></div>
-        <div class="group-permission-wrapper">
-                <table width="100%" cellspacing="0" id="sumo2-user-group-permission">
-                    <?php
-                        $query = $db->query("SELECT ID,title,subtitle FROM cms_favorites_def ORDER BY ID ASC");
-                        while($result = $db->fetch($query)) {
-							$opt1 = '';
-								$opt2 = '';
-								$opt3 = '';
-								$opt4 = '';
-								$opt5 = '';
-							if(array_key_exists($result['subtitle'],$access)) {
-								$set = ' checked="checked" ';
-								$class = ' class="sel" ';
-								switch($access[$result['subtitle']]) {
-									case 1:
-										$opt1 = ' selected="selected" ';
-										break;
-									case 2:
-										$opt2 = ' selected="selected" ';
-										break;
-									case 3:
-										$opt3 = ' selected="selected" ';
-										break;
-									case 4:
-										$opt4 = ' selected="selected" ';
-										break;
-									case 5:
-										$opt5 = ' selected="selected" ';
-										break;
-								}
-							} else {
-								$set = '';
-								$class = '';
-								$opt5 = ' selected="selected" ';
-							}
-                            ?>
-                            <tr<?php echo $class?>>
-                                <td><input onclick="sumo2.user.ToggleRow(this)" value="sumo2-user-group-sel-<?php echo $result['ID']?>" type="checkbox" name="select" <?php echo $set?>/></td>
-                                <td><?php echo $lang->$result['title']?> - <?php echo $lang->$result['subtitle']?></td>
-                                <td><select id="sumo2-user-group-sel-<?php echo $result['ID']?>"><option<?php echo $opt1?> value="1">1</option><option<?php echo $opt2?> value="2">2</option><option<?php echo $opt3?> value="3">3</option><option<?php echo $opt4?> value="4">4</option><option<?php echo $opt5?> value="5">5</option></select></td>
-                            </tr>
-                            <?php
-                        }
-                    ?>
-                </table>
-           </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="left_td" valign="top">
-        <div class="title_form_big"><?php echo $lang->MOD_225?>:</div><div class="title_form_small"><?php echo $lang->MOD_226?></div>
-        </td>
-        <td class="right_td">
-        	<?php
-				$domain=array();
-				$query=$db->query('SELECT domainID FROM cms_domains_ids WHERE type="group" AND elementID="'.$id.'"');
-				while($result=$db->fetch($query)) {
-					array_push($domain, $result['domainID']);
-				}
-			?>
-            <select id="domain" class="input" multiple="multiple" style="height:60px;">                
-				<?php
-                    $query=$db->query('SELECT * FROM cms_domains WHERE alias="0"');
-                    while($result=$db->fetch($query)) {
-						if(in_array($result['ID'], $domain))
-                        	echo '<option value="'.$result['ID'].'" selected="selected">'.$result['name'].'</option>';
-						else
-							echo '<option value="'.$result['ID'].'">'.$result['name'].'</option>';
-                    }
-                ?>            
-            </select>
-        </td>
-    </tr>
-    </table>
-    </div>
-</form>
-<?php 
-	}
-?>
+	<form action="" name="a_user_edit_group" id="a_user_edit_group" method="post" class="form2">
+		<div>
+			<ul class="group_tab" >
+				<li id="group1tab"><a href="#group1"><?=$lang->MOD_249?></a></li>
+				<li id="group2tab"><a href="#group2"><?=$lang->MOD_250?></a></li>
+			</ul>
+		</div>
+		<div style="clear:both;"></div>
+		<div id="group_container" class="group_tab_container">
+			<input id="group_current_tab" type="hidden" value="#group1" />
+			<div id="group1" class="group_tab_content" style="overflow:auto;">
+				<?php include("user.management.edit.group.basic.php") ?>
+			</div>
+			<div id="group2" class="group_tab_content" style="overflow:auto;">
+				<?php include("user.management.edit.group.permissions.php") ?>
+			</div>
+		</div>
+	</form>
+<?php } ?>

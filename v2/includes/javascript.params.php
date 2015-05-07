@@ -1,7 +1,5 @@
-<?php 
+<?php
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 exit;
-	}
+	$security->checkMin();
 	echo $user->name.$shield->protect('id='.$user->id.'&username='.$user->username.'&mail='.$user->mail.'&permission='.$user->permission.'$name='.$user->name);
 ?>

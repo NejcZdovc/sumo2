@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	$accordion_id='a_article_view_a';
 	$selected_lang_cat=1;
 	if($db->is('lang_art'))
@@ -72,7 +70,7 @@
         <th><?php echo $lang->ARTICLE_7?></th>
 		<th><?php echo $lang->CREATE_DATE?></th>
         <th width="65"><?php echo $lang->MOD_56?></th>
-		<?php if($user->getAuth('FAV_ARTICLES') == 2 || $user->getAuth('FAV_ARTICLES') == 4 || $user->getAuth('FAV_ARTICLES') == 5)
+		<?php if($user->getAuth('a_article_view_a') == 2 || $user->getAuth('a_article_view_a') == 4 || $user->getAuth('a_article_view_a') == 5)
 			echo '<th>'.$lang->CONTROL.'</th>';
 		?>
          <?php if($user->translate_state=="ON")
@@ -129,7 +127,7 @@
                     <td><?php if($result['dateEnd']==0) echo $lang->ARTICLE_12; else  echo date($lang->DATE_1, $result['dateEnd']);?></td>
                     <td><?php echo  date($lang->DATE_1, $result['date']);?></td>
                     <td><div class="counter_num"><?php echo $result['views'];?></div><div title="<?php echo $lang->MOD_35?>" class="counter sumo2-tooltip" onclick="sumo2.dialog.NewConfirmation('<?php echo $lang->MOD_33?>','<?php echo $lang->MOD_32?>',250,250,function() {sumo2.article.Counter('<?php echo $crypt->encrypt($result['ID']); ?>')});"></div></td>
-                    <?php if($user->getAuth('FAV_ARTICLES') == 2 || $user->getAuth('FAV_ARTICLES') == 4 || $user->getAuth('FAV_ARTICLES') == 5) { ?>
+                    <?php if($user->getAuth('a_article_view_a') == 2 || $user->getAuth('a_article_view_a') == 4 || $user->getAuth('a_article_view_a') == 5) { ?>
 					<td width="65px">
 						<div title="<?php echo $lang->ARTICLE_9?>" class="<?php echo $result['published']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.article.ChangeStatusArticle('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
 						<div title="<?php echo $lang->ARTICLE_8?>" class="edit sumo2-tooltip" onclick="sumo2.accordion.NewPanel('a_article_edit_a','id=<?php echo  $crypt->encrypt($result['ID']); ?>','a_article_edit_a<?php echo $result['ID']?>','<?php echo $lang->MOD_43?> - <?php echo  str_replace("'", "", $result['title']);?>')"></div>

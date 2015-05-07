@@ -7,6 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.enterMode = CKEDITOR.ENTER_BR;
     config.emailProtection = 'encode';
 	config.toolbarCanCollapse = false;
+	config.allowedContent= true;
 	
 	config.filebrowserBrowseUrl = 'ckeditor/ckfinder/ckfinder.html';
 	config.filebrowserImageBrowseUrl = 'ckeditor/ckfinder/ckfinder.html?type=Images';

@@ -122,7 +122,8 @@
 		<item constant="USER_ADD_D_1">Description</item>
 		<item constant="USER_ADD_D_2">Please describe the group, it's role and rules etc.</item>
 		<item constant="USER_ADD_A_1">Access</item>
-		<item constant="USER_ADD_A_2">Please choose what access will the group have.<br/>Hold Ctrl to select multiple pages.<br/><br/>1. Only view content<br/>2. View content + controls<br/>3. View content + button top<br/>4. View content + button top + controls<br/>5. Full access</item>
+		<item constant="USER_ADD_A_2">1. Only view content<br/>2. View content + controls<br/>3. View content + button top<br/>4. View content + button top + controls<br/>5. Full access</item>
+		<item constant="USER_ADD_A_3">1. Only view content<br/>2. Full access</item>
 		<item constant="USER_ADDU_N_1">Please enter your first and last name.</item>
 		<item constant="USER_ADDU_U_1">You will use this username to login to the administration area.</item>
 		<item constant="USER_ADDU_U_2">User group</item>
@@ -227,7 +228,8 @@
 		<item constant="SETTINGS_64">Update cache number for CSS and JS, which will force browser to update it.</item>
 		<item constant="SETTINGS_65">Update</item>
 		<item constant="SETTINGS_66">Data log</item>
-	</parent>	
+		<item constant="SETTINGS_67">Layout</item>
+	</parent>
 	<parent id="Menus">
 		<item constant="MENU_1">Please enter menu name to identify it</item>
 		<item constant="MENU_2">Version</item>
@@ -542,5 +544,19 @@
 		<item constant="MOD_246">Clear cache</item>
 		<item constant="MOD_247">Select which module is main for this page. All custom seo data will be displayed from this module.</item>
 		<item constant="MOD_248">None</item>
+		<item constant="MOD_249">Basic settings</item>
+		<item constant="MOD_250">Permissions</item>
+		<item constant="MOD_251">Can this group clear cache?</item>
+		<item constant="MOD_252">Can this group view and clear error logs?</item>
+		<item constant="MOD_253">Can this group view and clear data log?</item>
+		<item constant="MOD_254">Backend login</item>
+		<item constant="MOD_255">Can this group login into SUMO2 backend?</item>
+		<item constant="MOD_256">Accordions</item>
+		<item constant="MOD_257">Dialogs</item>
+		<item constant="MOD_258">System</item>
+		<item constant="MOD_259">Toggle checkbox</item>
+		<item constant="MOD_260">Toggle permissions</item>
+		<item constant="MOD_261">You don't have permission to execute this command!</item>
+        <item constant="MOD_262">Select template</item>
 	</parent>
 </language>

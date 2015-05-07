@@ -1,4 +1,4 @@
-<?php 
+<?php
 $isNoUpdateFile=1;
 include_once('initialize.php');
 if(!$session->isLogedIn()) {
@@ -43,35 +43,37 @@ $langDomainAuth = $user->checkLang();
         <div class="message" id="sumo2-main-message"></div>
         <div class="top-menu">
         	<div class="tpmnu-left flt-left"></div>
-            <div class="tpmnu-main flt-left">
-                 <div onmouseout="sumo2.cacheSelection.Hide()" onmouseover="sumo2.cacheSelection.Show()" id="tpmenuCache">
-                    <div class="cache-hover hide" id="sumo2-cache-wrapper">
-                        <div class="lang-top"></div>
-                        <div class="lang-middle" id="sumo2-cache-text">
-                        	<?php echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt('All').'\');" class="cache-item"><span class="icon"></span><span class="item">'.$lang->MOD_187.'</span></div>';
-                            $query = $db->query("SELECT def.moduleName, def.name FROM cms_modules_def as def, cms_domains_ids as di WHERE def.status='N' AND di.elementID=def.ID AND di.type='mod' AND di.domainID='".$user->domain."' ORDER BY def.name asc");
-                            while($result = $db->fetch($query)) {
-                                if(file_exists('modules/'.$result['moduleName'].'/small.png')) {
-                                    $img = 'modules/'.$result['moduleName'].'/small.png';
-                                } else {
-                                    $img = 'images/icons/flags/s2-S2.png';
-                                }
-                                if(strlen($result['name'])>14) {
-                                    $name=substr($result['name'], 0, 10).'...';
-                                } else {
-                                    $name=$result['name'];
-                                }
-                                    
-                                echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt($result['moduleName']).'\');" class="cache-item"><span class="icon"><img src="'.$img.'" alt="'.$result['name'].'" /></span><span class="item">'.$name.'</span></div>';
-                            }?>
-                        </div>
-                        <div class="lang-bottom"></div>
-                    </div>
-             	</div>&nbsp;| 
-             </div>
+			<?php if($user->cache=="1") { ?>
+				<div class="tpmnu-main flt-left">
+					 <div onmouseout="sumo2.cacheSelection.Hide()" onmouseover="sumo2.cacheSelection.Show()" id="tpmenuCache">
+						<div class="cache-hover hide" id="sumo2-cache-wrapper" <?php echo !$user->isAuth('a_mail_inbox') ? 'style="right:-50px;"':"" ?>>
+							<div class="lang-top"></div>
+							<div class="lang-middle" id="sumo2-cache-text">
+								<?php echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt('All').'\');" class="cache-item"><span class="icon"></span><span class="item">'.$lang->MOD_187.'</span></div>';
+								$query = $db->query("SELECT def.moduleName, def.name FROM cms_modules_def as def, cms_domains_ids as di WHERE def.status='N' AND di.elementID=def.ID AND di.type='mod' AND di.domainID='".$user->domain."' ORDER BY def.name asc");
+								while($result = $db->fetch($query)) {
+									if(file_exists('modules/'.$result['moduleName'].'/small.png')) {
+										$img = 'modules/'.$result['moduleName'].'/small.png';
+									} else {
+										$img = 'images/icons/flags/s2-S2.png';
+									}
+									if(strlen($result['name'])>14) {
+										$name=substr($result['name'], 0, 10).'...';
+									} else {
+										$name=$result['name'];
+									}
+
+									echo '<div onclick="sumo2.cacheSelection.Select(\''.$crypt->encrypt($result['moduleName']).'\');" class="cache-item"><span class="icon"><img src="'.$img.'" alt="'.$result['name'].'" /></span><span class="item">'.$name.'</span></div>';
+								}?>
+							</div>
+							<div class="lang-bottom"></div>
+						</div>
+					</div>&nbsp;|
+				</div>
+			<?php } ?>
              <div class="tpmnu-main flt-left">
              	<div onmouseout="sumo2.domains.Hide()" onmouseover="sumo2.domains.Show()" id="tpmenuDomain">
-                    <div class="domain-hover hide" id="sumo2-domain-wrapper">
+                    <div class="domain-hover hide" id="sumo2-domain-wrapper" <?php echo !$user->isAuth('a_mail_inbox') ? 'style="right:-50px;"':"" ?>>
                         <div class="lang-top"></div>
                         <div class="lang-middle" id="sumo2-domain-text">
                         	<?php $query = $db->query("SELECT domain.ID, domain.name FROM cms_domains as domain, cms_domains_ids as ids WHERE domain.alias='0' AND domain.ID=ids.domainID AND ids.type='group' AND ids.elementID='".$user->groupID."' ORDER BY domain.name ASC");
@@ -81,26 +83,33 @@ $langDomainAuth = $user->checkLang();
 									$name=substr($result['name'], 0, 11).'...';
 								} else {
 									$name=$result['name'];
-								}				
+								}
 								echo '<div onclick="sumo2.domains.Select(\''.$crypt->encrypt($result['ID']).'\');" class="domain-item"><span class="'.$temp.'">'.$name.'</span></div>';
 							}?>
-                        
+
                         </div>
                         <div class="lang-bottom"></div>
                     </div>
              	</div>&nbsp;|
-            </div>             
-            <div class="tpmnu-main flt-left"><?php if($user->isAuth('FAV_MAIL_2')) { ?><div style="float:left; cursor:pointer;" onclick="sumo2.accordion.NewPanel('a_mail_inbox');sumo2.accordion.ReloadAccordion('a_mail_inbox');"><div id="tpmenuMail"></div>(<span id="mail_number"> 0 </span>) |</div><?php } ?>
+            </div>
+            <div class="tpmnu-main flt-left"><?php if($user->isAuth('a_mail_inbox')) { ?><div style="float:left; cursor:pointer;" onclick="sumo2.accordion.NewPanel('a_mail_inbox');sumo2.accordion.ReloadAccordion('a_mail_inbox');"><div id="tpmenuMail"></div>(<span id="mail_number"> 0 </span>) |</div><?php } ?>
             <?php
 			if($user->preview != 2) {
 				$preview_url='';
 				if(isset($globals->offline)) {
+					$dd=$user->domainName;
+					if($user->domainName!=$_SERVER['HTTP_HOST']) {
+						$alias=$db->get($db->query('SELECT name FROM cms_domains WHERE name="'.$_SERVER['HTTP_HOST'].'" AND alias="1" AND parentID="'.$user->domain.'"'));
+						if($alias) {
+							$dd=$alias['name'];
+						}
+					}
 					if($globals->offline=="Y") {
 						$off=$shield->protect('offline=true&user='.$user->id.'&username='.$user->username.'&date='.time().'');
-						$preview_url='href="http://'.$user->domainName.'/index.php?'.$off.'"';
+						$preview_url='href="http://'.$dd.'/index.php?'.$off.'"';
 					}
 					else
-						$preview_url='href="http://'.$user->domainName.'/index.php"';
+						$preview_url='href="http://'.$dd.'/index.php"';
 					if($user->preview == 1)
 						$preview_url.=' target="_blank"';
 					if($user->preview == 3)
@@ -108,9 +117,10 @@ $langDomainAuth = $user->checkLang();
 					if($user->preview == 4)
 						$preview_url.='';
 				}
-			} else
+			} else {
 				$preview_url=' onclick="sumo2.dialog.NewDialog(\'d_preview\')"';
-			
+			}
+
 			if(is_file('images/icons/flags/'.$user->langshort($user->translate_lang).'.png')) {
 					$img = 'images/icons/flags/'.$user->langshort($user->translate_lang).'.png';
 				} else {
@@ -122,7 +132,7 @@ $langDomainAuth = $user->checkLang();
                 <div class="lang-hover hide" id="sumo2-lang-wrapper">
                     <div class="lang-top"></div>
                     <div class="lang-middle" id="sumo2-lang-text">
-                    <?php 
+                    <?php
 						$query = $db->query("SELECT value FROM cms_domains_ids WHERE type='lang' AND domainID='".$user->domain."'");
 						while($result=$db->fetch($query)) {
 							$langR = $db->get($db->query("SELECT ID, short, name FROM cms_language_front WHERE short='".$result['value']."'"));
@@ -134,17 +144,17 @@ $langDomainAuth = $user->checkLang();
 								$img = 'images/icons/flags/s2-S2.png';
 							}
 							echo '<div onclick="sumo2.languageSelection.Select(\''.$crypt->encrypt($langR['ID']).'\', \''.$langR['name'].'\');" class="lang-item"><span class="'.$temp.'">'.$langR['name'].'</span><span class="icon"><img src="'.$img.'" alt="'.$langR['name'].'" /></span></div>';
-						} ?>                    
+						} ?>
                     </div>
                     <div class="lang-bottom"></div>
                 </div>
             </div>
-            | <a href="http://dev.3zsistemi.si/thebuggenie/sumo2cms/issues/new" target="_blank"><?php echo $lang->MOD_2?></a> | <a href="#" onclick="sumo2.Logout()"><?php echo $lang->INDEX_LOGOUT?></a></div>
+            | <a href="mailto:support@3zsistemi.si?subject=Report for bug (<?php echo $user->domainName; ?>)"><?php echo $lang->MOD_2?></a> | <a href="#" onclick="sumo2.Logout()"><?php echo $lang->INDEX_LOGOUT?></a></div>
             <div class="tpmnu-right flt-left"></div>
             <div id="sumo2-main-version">
         		<?php echo $lang->MOD_39?> <?php echo $globals->version?> &copy; <a style="color:#e3e3e3;" href="http://www.3zsistemi.si" target="_blank" >3Z Sistemi</a>
        		</div>
-        </div>        
+        </div>
         <div class="float-right">
             <div class="update" id="sumo2-main-update">
                 <div id="bg">
@@ -170,9 +180,9 @@ $langDomainAuth = $user->checkLang();
 	                $class = ' class="sumo2-navigation-title"';
 	            }
                 $content .= '<li'.$class.'><span>'.$lang->$result1['title'].'</span><ul class="hide">';
-                    $query2 = $db->query("SELECT subtitle,click FROM cms_favorites_def WHERE title='".$result1['title']."' AND statusID='N' ORDER BY ID ASC");
+                    $query2 = $db->query("SELECT subtitle,click, itemID FROM cms_favorites_def WHERE title='".$result1['title']."' AND statusID='N' ORDER BY ID ASC");
                     while($result2 = $db->fetch($query2)) {
-						if($user->isAuth($result2['subtitle'])) {
+						if($user->isAuth($result2['itemID'])) {
 							$exists = true;
 							if($langDomainAuth=="ok") {
 								$alert = $result2['click'];
@@ -200,9 +210,9 @@ $langDomainAuth = $user->checkLang();
     	<ul>
            <?php
 		   if($firstTitle != NULL) {
-				$query3 = $db->query("SELECT subtitle,click FROM cms_favorites_def WHERE title='".$firstTitle."' ORDER BY ID ASC");
+				$query3 = $db->query("SELECT subtitle,click, itemID FROM cms_favorites_def WHERE title='".$firstTitle."' ORDER BY ID ASC");
 				while($result3 = $db->fetch($query3)) {
-					if($user->isAuth($result3['subtitle'])) {
+					if($user->isAuth($result3['itemID'])) {
 						if($langDomainAuth=="ok") {
 							$alert = $result3['click'];
 						} else if($langDomainAuth=="lang") {
@@ -238,7 +248,7 @@ $langDomainAuth = $user->checkLang();
 <?php } ?>
 <script type="text/javascript" src="includes/javascript.settings.php?<?php echo $globals->cacheNumber?>"></script>
 <script type="text/javascript">
-sumo2.AddLoadEvent(function() {	
+sumo2.AddLoadEvent(function() {
 	sumo2.image.GetSize();
 	sumo2.navigation.Init();
 	sumo2.client.Init();
@@ -249,13 +259,13 @@ sumo2.AddLoadEvent(function() {
 		if(sumo2.update.Checked===true) {
 			if($("#sumo2-main-update").length > 0){
 				setTimeout("sumo2.update.Init();", 3000);
-			}		
+			}
 			sumo2.update.Checked=false;
 		}
-	<?php } else { ?>		
+	<?php } else { ?>
 		sumo2.update.Checked=false;
 	<?php } ?>
-	sumo2.state.LoadState();		
+	sumo2.state.LoadState();
 });
 </script>
 <?php
@@ -273,7 +283,7 @@ else if(strtolower($ua['name']) == strtolower("Mozilla Firefox")) {
 			setTimeout('sumo2.dialog.NewDialog(\'d_out_of_date\')', 3000);
 			</script>";
 	}
-} 
+}
 else if(strtolower($ua['name']) == strtolower("Internet Explorer")) {
 	if($ua['version'] < 10.0) {
 		echo "<script type=\"text/javascript\">

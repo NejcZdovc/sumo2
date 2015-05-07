@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+	$security->checkFull();
 	$accordion_id='a_user_view_f';
 	$pagging=check_pagging("SELECT * FROM cms_user_fields WHERE status='N'", $user->items);
 	$dropdown=dropdown_pagging($accordion_id, $pagging[0]);
@@ -18,7 +16,7 @@
 		<th scope="col" abbr=""><?php echo $lang->MOD_63?></th>
 		<th scope="col" abbr=""><?php echo $lang->MOD_64?></th>
 		<th scope="col" abbr=""><?php echo $lang->MOD_65?></th>
-        <?php if($user->getAuth('FAV_USER_5') == 2 || $user->getAuth('FAV_USER_5') == 4 || $user->getAuth('FAV_USER_5') == 5)
+        <?php if($user->getAuth('a_user_view_f') == 2 || $user->getAuth('a_user_view_f') == 4 || $user->getAuth('a_user_view_f') == 5)
 			echo '<th scope="col" abbr="'.$lang->CONTROL.'">'.$lang->CONTROL.'</th>';
 		?>
 	</tr>
@@ -66,7 +64,7 @@
 					<td><?php echo $result['required']?('Yes'):('No');?></td>
 					<td><?php echo $result['min'];?></td>
 					<td><?php echo $result['max'];?></td>
-                    <?php if($user->getAuth('FAV_USER_5') == 2 || $user->getAuth('FAV_USER_5') == 4 || $user->getAuth('FAV_USER_5') == 5) {?>
+                    <?php if($user->getAuth('a_user_view_f') == 2 || $user->getAuth('a_user_view_f') == 4 || $user->getAuth('a_user_view_f') == 5) {?>
 					<td width="65px">
 						<div title="<?php echo $lang->MOD_4?>" class="<?php echo $result['enabled']?"enable":"disable"; ?> sumo2-tooltip" onclick="sumo2.user.ChangeStatusField('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>
 						<div title="<?php echo $lang->MOD_5?>" class="edit sumo2-tooltip" onclick="sumo2.user.EditFieldShow('<?php echo $crypt->encrypt($result['ID']); ?>')"></div>

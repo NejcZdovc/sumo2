@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 
 	echo '<ul id="tree-menu">';
 	$main=$db->query('SELECT ID, title FROM cms_menus WHERE status="N" AND lang="'.$user->translate_lang.'"');

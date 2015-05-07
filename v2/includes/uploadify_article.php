@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('../initialize.php');
 /*
 Uploadify v2.1.0
@@ -29,13 +29,13 @@ if (!empty($_FILES)) {
 	$targetPath = $_SERVER['DOCUMENT_ROOT'] .'/images/'.$db->filter('domain').'/article/';
 	$targetFile =  str_replace('//','/',$targetPath) . $_FILES['Filedata']["name"];
 	$i=0;
-		
+
 	$name = explode('.',$_FILES['Filedata']["name"]);
 	$ending = $name[count($name)-1];
 	$name=str_replace(".".$ending,"", $_FILES['Filedata']["name"]);
-	
+
 	$filename=$targetPath.$name.".".$ending;
-	
+
 	while (file_exists($filename)) {
 		$i++;
 		$filename=$targetPath.$name."_".$i.".".$ending;
@@ -49,7 +49,7 @@ if (!empty($_FILES)) {
 		$newname=$name;
 		$newfile=$name.".".$ending;
 	}
-	
+
 	move_uploaded_file($tempFile,$targetFile);
 	chmod($targetFile, PER_FILE);
 	//vpis v bazo

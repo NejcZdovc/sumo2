@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
  ?>
 <form action="" name="d_settings_add_lf" class="form2" onsubmit="return false;">
    	<div class="">

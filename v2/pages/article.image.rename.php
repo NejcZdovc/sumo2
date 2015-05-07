@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php'); 
-if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+$security->checkFull();
 	$id=$crypt->decrypt($db->filter('id'));
 	$results_basic=$db->fetch($db->query('SELECT name FROM cms_article_images WHERE ID="'.$id.'"'));
 ?>

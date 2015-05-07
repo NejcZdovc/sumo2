@@ -1,4 +1,4 @@
-<?php 
+<?php
 if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	header( 'HTTP/1.0 404 Not Found');
 	header( 'Location: http://www.3zsistemi.si');
@@ -6,7 +6,7 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 }
 class Firewall {
 	function __construct() {}
-	
+
 	public function addBlockedIp($ip) {
 		$fileHandle = @fopen(SITE_ROOT.DS.ADMIN_ADDR.DS."logs/ip.log","a");
 		if($fileHandle) {
@@ -17,7 +17,7 @@ class Firewall {
 			error_log('ip.log file not found.');
 		}
 	}
-	
+
 	public function getIP() {
 		if(!empty($_SERVER['HTTP_CLIENT_IP'])) {
 			return $_SERVER['HTTP_CLIENT_IP'];

@@ -12,6 +12,7 @@
 		<item constant="SUCCESS">Success</item>
 		<item constant="DELETE">Delete</item>
 		<item constant="BROWSE">Browse</item>
+		<item constant="EDIT">Edit</item>		
 		<item constant="DESCRIPTION">Description</item>
 		<item constant="DATE_1">H:i:s d. m. Y</item>
 	</parent>
@@ -72,6 +73,7 @@
 		<item constant="SET_USER_M_5">Add group</item>
 		<item constant="SET_USER_M_6">Edit user</item>
 		<item constant="SET_USER_M_7">Edit group</item>
+		<item constant="SET_USER_M_8">Groups detailed</item>
 		<item constant="SET_MAIL">Mail</item>
 		<item constant="SET_MAIL_1">New Mail</item>
 		<item constant="SET_MAIL_2">Send mail</item>
@@ -100,18 +102,17 @@
 		<item constant="SETTINGS_11">Upload logo</item>
 		<item constant="SETTINGS_12">Upload</item>
 		<item constant="SETTINGS_13">Preview of your page</item>
-		<item constant="SETTINGS_14">Install module</item>
 		<item constant="SETTINGS_15">Install</item>
-		<item constant="SETTINGS_16">Translate article category</item>
+		<item constant="SETTINGS_16">Translate category</item>
 		<item constant="SETTINGS_17">Are you sure you want to delete this folder?</item>
 		<item constant="SETTINGS_18">File manager</item>
-		<item constant="SETTINGS_19">View groups - detailed</item>
+		<item constant="SETTINGS_19">Category detailed</item>
 		<item constant="SETTINGS_20">Menus</item>
 		<item constant="SETTINGS_21">View articles</item>
 		<item constant="SETTINGS_22">Edit article</item>
 		<item constant="SETTINGS_23">Site tree</item>
 		<item constant="SETTINGS_24">Trash</item>
-		<item constant="SETTINGS_25">Modules - View</item>
+		<item constant="SETTINGS_25">Module manager</item>
 		<item constant="SETTINGS_26">Articles - Translate</item>
 		<item constant="SETTINGS_27">Advanced file manager</item>
 	</parent>
@@ -136,6 +137,7 @@
 		<item constant="MENU_10">Add translation</item>
 		<item constant="MENU_11">Site tree translation</item>
 		<item constant="MENU_12">Are you sure you want to delete this page?</item>
+		<item constant="MENU_13">New special page</item>
 	</parent>
 	<parent id="Modul">
 		<item constant="MOD_1">Are you sure you want to delete this article?</item>
@@ -316,9 +318,9 @@
 		<item constant="MOD_176">Password or username is incorrect.</item>
 		<item constant="MOD_177">Select module settings</item>
 		<item constant="MOD_178">Edit module (Basic)</item>
-		<item constant="MOD_179">Add new field</item>
+		<item constant="MOD_179">Add field</item>
 		<item constant="MOD_180">Edit field</item>
-		<item constant="MOD_181">Update browser brskalnik</item>
+		<item constant="MOD_181">Update browser</item>
 		<item constant="MOD_182">Relogin</item>
 		<item constant="MOD_183">Login</item>
 		<item constant="MOD_184">Exit</item>
@@ -355,6 +357,11 @@
 		<item constant="MOD_215">All modules in group</item>
 		<item constant="MOD_216">Only this module</item>
 		<item constant="MOD_217">Domain don't match. Please add domain for this user.</item>
+		<item constant="MOD_218">Edit category</item>
+		<item constant="MOD_219">Select category</item>
+		<item constant="MOD_220">Add category</item>
+		<item constant="MOD_221">Update warning</item>
+		<item constant="MOD_222">Homepage</item>
 	</parent>	
 	<parent id="Language">
 		<item constant="LANG_WAR">Are you sure you want to change the language into </item>

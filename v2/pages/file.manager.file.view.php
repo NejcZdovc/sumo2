@@ -1,8 +1,6 @@
 <?php
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 	
 	if($db->is('path') && (strpos($db->filter('path'),'/storage/') !== false || strpos($db->filter('path'),'/images/') !== false)) {
 		$dir=opendir($db->filter('path'));

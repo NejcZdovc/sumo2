@@ -29,7 +29,7 @@
                         while($result=$db->fetch($query)) {
                             echo '<option value="'.$result['ID'].'">'.$result['name'].'</option>';
                         }
-                    ?>            
+                    ?>
                 </select>
             </td>
         </tr>
@@ -43,8 +43,8 @@
                         $query=$db->query('SELECT * FROM cms_language_front');
                         while($result=$db->fetch($query)) {
                             echo '<option value="'.$result['short'].'">'.$result['name'].'</option>';
-                        }	
-                    ?>            
+                        }
+                    ?>
                 </select>
             </td>
         </tr>
@@ -74,7 +74,7 @@
                 <select name="iplocator" class="input">
                     <option value="-1">-- <?php echo $lang->MOD_58?> --</option>
                     <option value="1"><?php echo $lang->ARTICLE_19?></option>
-                    <option value="0"><?php echo $lang->ARTICLE_20?></option>        
+                    <option value="0"><?php echo $lang->ARTICLE_20?></option>
                 </select>
             </td>
         </tr>
@@ -85,6 +85,6 @@
             <td class="right_td">
             	<ul class="domain_countries"></ul>
             </td>
-        </tr>  
-    </table>  
+        </tr>
+    </table>
 </form>

@@ -1,8 +1,6 @@
 <?php 
 require_once('../initialize.php'); 
-if(!$session->isLogedIn() && !$security->checkURL()) {
-	exit;
-}
+$security->checkFull();
 
 $id = $user->id;
 $result = $db->get($db->query("SELECT option1, option2, option3, option4, option5, option6, option7, option8, option9, option10 FROM cms_favorites WHERE UserID='".$id."' LIMIT 1"));
@@ -17,9 +15,9 @@ $result = $db->get($db->query("SELECT option1, option2, option3, option4, option
 </tr>
 <?php 
 	$i=0;
-	$query1 = $db->query("SELECT ID, title, subtitle, img FROM cms_favorites_def ORDER BY ID asc");
+	$query1 = $db->query("SELECT ID, title, subtitle, img, itemID FROM cms_favorites_def ORDER BY ID asc");
 	while($result1 = $db->fetch($query1)) {
-		if($user->isAuth($result1['subtitle'])) {?>
+		if($user->isAuth($result1['itemID'])) {?>
 			<tr valign="top">
 				<td class="fav-img">
 					<?php echo getImageFav($result1['img'],$lang->$result1['subtitle'])?>

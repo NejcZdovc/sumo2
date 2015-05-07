@@ -1,8 +1,6 @@
 <?php 
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}
+	$security->checkFull();
 ?>
 <form action="" name="d_layoutmodule" method="post" class="form2">
 <table cellpadding="0" cellspacing="4" border="0" width="99%" >

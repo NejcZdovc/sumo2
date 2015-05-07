@@ -1,8 +1,6 @@
 <?php 
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+	$security->checkFull();
 	$id = $crypt->decrypt($db->filter('id'));
 	$result = $db->get($db->query("SELECT title,description FROM cms_article_categories WHERE ID='".$id."'"));
 	if($result) {

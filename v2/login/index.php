@@ -1,4 +1,4 @@
-<?php  
+<?php
 $isLoginFile=821662345037610915243762;
 include_once('../initialize.php');
 if($session->isLogedIn()) {

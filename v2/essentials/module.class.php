@@ -5,31 +5,31 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	exit;
 }
 class Module {
-    public $number = 0;    
-    public $moduleID = '';    
-    public $moduleName = '';    
-    public $moduleEdit = '';    
-    public $parentComponent = 0;    
-    public $moduleInsertID = 0;    
-    public $componentInsertID = 0;    
-    public $componentID = '';    
-    public $componentName = '';	
-	public $domains= '';    
-    private $success = true;    
-    private $insertTable = array();    
-    private $tableTable = array();    
-    private $component = false;    
+    public $number = 0;
+    public $moduleID = '';
+    public $moduleName = '';
+    public $moduleEdit = '';
+    public $parentComponent = 0;
+    public $moduleInsertID = 0;
+    public $componentInsertID = 0;
+    public $componentID = '';
+    public $componentName = '';
+	public $domains= '';
+    private $success = true;
+    private $insertTable = array();
+    private $tableTable = array();
+    private $component = false;
     public $error = array();
-    
+
     public function __construct() {
-        
+
     }
-    
+
     public function getFilename($path) {
         $pathArray = explode('/',$path);
         return $pathArray[count($pathArray)-1];
     }
-    
+
     public function getFilePerms($file) {
         $permission =  substr(decoct( fileperms($file) ), 2);
         $permission *= 1.0;
@@ -38,7 +38,7 @@ class Module {
         }
         return false;
     }
-    
+
     public function checkSystem() {
         $return = array();
         if(!$this->getFilePerms(SITE_ROOT.SITE_FOLDER.DS.'modules')) {
@@ -80,7 +80,7 @@ class Module {
             return true;
         }
     }
-    
+
     public function registerModule($name, $id, $edit = true, $componentId = null, $version=null) {
         global $db, $lang;
         if($this->success === true) {
@@ -138,10 +138,10 @@ class Module {
 			if($this->moduleInsertID != 0) {
 				if($db->filterVar($edit)==false)
 					$this->addEditTableWithOut($db->filterVar($id));
-            }		
+            }
         }
     }
-    
+
     public function registerComponent($id, $name, $version=null) {
         global $db, $lang;
         if($this->success === true) {
@@ -167,7 +167,7 @@ class Module {
 			}
         }
     }
-    
+
     public function addSpecialPage($title, $id, $keyword = null, $description = null) {
     	global $db, $lang;
     	if($this->success === true) {
@@ -208,7 +208,7 @@ class Module {
     		}
     	}
     }
-    
+
 	public function addSubFavorites($main, $sub, $image, $link) {
 		global $db, $lang;
 		if($this->success === true) {
@@ -222,19 +222,13 @@ class Module {
 					$this->success = false;
 					$this->error[] = $lang->MOD_151.': '.$fSub;
 				} else {
-					$result = $db->query("INSERT INTO cms_favorites_def (title,subtitle,img,click,comID) VALUES ('".$fMain."','".$fSub."','".$fImage."','".$fLink."', '".$this->componentInsertID."')");
+                    $id=str_replace(array("')", "sumo2.accordion.NewPanel('", "sumo2.dialog.NewDialog('"), "", $fLink);
+					$result = $db->query("INSERT INTO cms_favorites_def (title,subtitle,img,click,comID,itemID) VALUES ('".$fMain."','".$fSub."','".$fImage."','".$fLink."', '".$this->componentInsertID."', '".$id."')");
 					if(!$result) {
 						$this->success = false;
 						$this->error[] = $lang->MOD_152.': '.$fSub;
 					} else {
 						$this->insertTable[] = array('cms_favorites_def',$db->getLastId());
-						$admin=$db->get($db->query('SELECT access FROM cms_user_groups WHERE ID="1" AND title="Super administrator"'));
-						$access = unserialize(urldecode($admin['access']));
-						if(!array_key_exists($fSub,$access)) {
-							$access[$fSub] = 5;
-							$ser_array = urlencode(serialize($access));
-							$db->query('UPDATE cms_user_groups SET access="'.$ser_array.'" WHERE ID="1" AND title="Super administrator"');
-						}
 					}
 				}
 			} else {
@@ -243,7 +237,7 @@ class Module {
             }
 		}
 	}
-    
+
     public function addIncludes($link,$type) {
         global $db, $lang;
         if($this->success === true) {
@@ -269,7 +263,7 @@ class Module {
             }
         }
     }
-    
+
     public function addGroupInclude($link, $type) {
 	global $db, $lang;
         if($this->success === true) {
@@ -305,7 +299,7 @@ class Module {
             }
         }
     }
-    
+
     public function addTable($tableName, $tableStructure) {
         global $db,$lang;
         if($this->success === true) {
@@ -327,8 +321,8 @@ class Module {
             }
         }
     }
-	
-	
+
+
 	public function addTableInsert($tableName, $query) {
 		global $db, $lang;
 		if($this->success === true) {
@@ -338,7 +332,7 @@ class Module {
 				$this->success = false;
 				$this->error[] = $lang->MOD_231.': '.$fName;
 				return;
-			}		
+			}
 			$db->query($query);
 			if ($db->isError()) {
 				$this->success = false;
@@ -346,7 +340,7 @@ class Module {
 			}
 		}
 	}
-    
+
     public function addEditTable($tableName, $tableStructure) {
         global $db, $lang;
         if($this->success === true) {
@@ -380,7 +374,7 @@ class Module {
             }
         }
     }
-	
+
 	public function addEditTableWithOut($tableName) {
         global $db, $lang;
         if($this->success === true) {
@@ -402,7 +396,7 @@ class Module {
             }
         }
     }
-    
+
     private function addToTables($tableName) {
         global $db;
         if($this->component == true) {
@@ -425,7 +419,7 @@ class Module {
             $db->query("UPDATE cms_modules_def SET tables='".$newTablesString."' WHERE ID='".$this->moduleInsertID."'");
         }
     }
-    
+
     public function reverseActions() {
         global $db;
         foreach($this->tableTable as $table) {
@@ -435,11 +429,11 @@ class Module {
             $db->query("DELETE FROM ".$set[0]." WHERE ID='".$set[1]."'");
         }
     }
-    
+
     public function getFileString($path) {
         return md5_file($path);
     }
-    
+
     public function getUnique() {
         if($this->component == true) {
             return $this->componentID;
@@ -447,7 +441,7 @@ class Module {
             return $this->moduleID;
         }
     }
-    
+
     public function getID() {
         if($this->component == true) {
             return $this->componentInsertID;
@@ -455,7 +449,7 @@ class Module {
             return $this->moduleInsertID;
         }
     }
-    
+
     public function reverseFiles() {
         $javascript = new DOMDocument();
         $javascript->load('../modules/javascript.xml');
@@ -472,7 +466,7 @@ class Module {
             }
         }
 	foreach($delItems as $item) {
-	    $item->parentNode->removeChild($item); 
+	    $item->parentNode->removeChild($item);
 	}
         $javascript->save('../modules/javascript.xml');
         $css = new DOMDocument();
@@ -490,7 +484,7 @@ class Module {
             }
         }
 		foreach($delItems as $item) {
-			$item->parentNode->removeChild($item); 
+			$item->parentNode->removeChild($item);
 		}
         $css->save('../modules/css.xml');
         if(is_dir('../modules/'.$this->getUnique())) {
@@ -500,7 +494,7 @@ class Module {
             recursive_remove_directory('../../modules/'.$this->getUnique().'/');
         }
     }
-    
+
     private function deleteChildren(&$node) {
 		while ($node->firstChild) {
 			while ($node->firstChild->firstChild) {
@@ -509,7 +503,7 @@ class Module {
 			$node->removeChild($node->firstChild);
 		}
     }
-    
+
     public function reverseSystem() {
         $system = new DOMDocument();
         $system->load('../modules/system.xml');
@@ -545,24 +539,24 @@ class Module {
 		}
         $system->save('../modules/system.xml');
     }
-    
+
     public function isSuccess() {
 		return $this->success;
     }
-	
-	
+
+
 	public function insertDomain($string) {
 		global $db;
-		$domains=explode('*/*', $string);							 
+		$domains=explode('*/*', $string);
 		if($this->component == true) {
 			foreach($domains as $domain) {
-				$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$this->componentInsertID."','".$domain."','com')");			
+				$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$this->componentInsertID."','".$domain."','com')");
 			 }
         } else {
 			foreach($domains as $domain) {
-				$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$this->moduleInsertID."','".$domain."','mod')");			
+				$db->query("INSERT INTO cms_domains_ids (elementID,domainID,type) VALUES ('".$this->moduleInsertID."','".$domain."','mod')");
 			}
-        }	
+        }
 	}
 }
 

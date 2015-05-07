@@ -1,9 +1,7 @@
 <?php
 	$isNoUpdateFile=1;
 	require_once('../initialize.php');
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 exit;
-	}
+	$security->checkMin();
 	if($user->preview != 2) {
 		if($globals->offline=="Y") {
 			$off=$shield->protect('offline=true&user='.$user->id.'&username='.$user->username.'&date='.time().'');
@@ -19,6 +17,6 @@
 			$preview_url.='';
 	} else
 		$preview_url=' onclick="sumo2.dialog.NewDialog(\'d_preview\')"';
-		
+
 	echo '<a '.$preview_url.'>'.$lang->INDEX_PREW.'</a> | ';
 ?>

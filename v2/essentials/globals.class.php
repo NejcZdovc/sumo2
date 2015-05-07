@@ -5,7 +5,7 @@ if( !defined( '_JEXEC' ) && !defined( '_VALID_MOS' ) ) {
 	exit;
 }
 class Globals
-{	
+{
 	function __construct() {
 		global $db, $user;
 		if(isset($user->domain)) {

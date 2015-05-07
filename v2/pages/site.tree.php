@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	}	
+	$security->checkFull();	
 	$accordion_id='a_sitetree';
 	if($db->is('lang_menus'))
 		$selected_lang_menus=$db->filter('lang_menus');
@@ -249,7 +247,7 @@
 					if(($firstNum==NULL || $firstTmp==NULL) && !$specialSite) {
 						$drag = '1';
 					} else {
-						if($user->getAuth('FAV_SITE_6') == 5)
+						if($user->getAuth('a_sitetree') == 5)
 							$drag = 'onmousedown="sumo2.siteTree.SetDrag(event);"';
 						else
 							$drag = '2';

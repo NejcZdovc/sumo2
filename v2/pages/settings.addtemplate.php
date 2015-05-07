@@ -1,4 +1,6 @@
-<?php require_once('../initialize.php'); ?>
+<?php require_once('../initialize.php');
+$security->checkFull();
+?>
 <form action="" name="a_settings_add_t" class="form2">
 	<input type="hidden" id="random_number" value="" />
    	<div class="">

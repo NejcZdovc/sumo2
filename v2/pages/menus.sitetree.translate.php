@@ -1,7 +1,5 @@
 <?php require_once('../initialize.php');
-	if(!$session->isLogedIn() && !$security->checkURL()) {
-		exit;
-	} 
+	$security->checkFull();
 	$id_main=$crypt->decrypt($db->filter('id'));
 	$current=$crypt->decrypt($db->filter('current'));
 	$items=$crypt->decrypt($db->filter('items'));

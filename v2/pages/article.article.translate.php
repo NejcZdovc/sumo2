@@ -1,7 +1,5 @@
-<?php require_once('../initialize.php'); 
-	if(!$session->isLogedIn() || !$security->checkURL()) {
-	 	exit;
-	}
+<?php require_once('../initialize.php');
+	$security->checkFull();
 	$id=$crypt->decrypt($db->filter('article'));
 	$language=$crypt->decrypt($db->filter('lang'));
 	$short_old=lang_name_front($crypt->decrypt($db->filter('current')));
@@ -34,7 +32,7 @@
    	<tr>
     	<td class="left_td" colspan="2">
         <div style="float:left; margin-right:5px;"><span class="title_form_big"><?php echo $lang->ARTICLE_17?></span></div> <div style="clear:both;"></div>
-        <div id="add_options_1"> 
+        <div id="add_options_1">
         	<div style="float:left; margin-right:10px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_6?>:</span><input type="text" readonly="readonly" id="date_start_t" style="margin-left:5px; cursor:pointer;" class="input" size="16" value=""/></div>
             <div style="float:left; margin-right:10px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_7?>:</span> <input type="text" readonly="readonly" id="date_end_t" style="margin-left:5px; cursor:pointer;" size="16" class="input" value=""/></div>
             <div style="float:left; margin-right:10px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_5?>:</span> <input type="text" id="author" class="input" style="margin-left:5px;" size="25" value="<?php echo $user->name?>"/></div>
@@ -42,7 +40,7 @@
         <div style="float:left; margin-right:10px; margin-top:17px;"><span style="font-size:13px;"><?php echo $lang->ARTICLE_18?>:</span> <input type="radio" name="published" checked="checked" id="yes" value="1"><label for="yes"><?php echo $lang->ARTICLE_19?></label><input type="radio" name="published" id="no" value="0"><label for="no"><?php echo $lang->ARTICLE_20?></label></div>
         	<div style="clear:both;"></div>
         </div>
-    
+
    	</tr>
    	<tr>
         <td colspan="2" class="left_td" valign="top">
@@ -75,7 +73,7 @@
     		        <div style="width:90%; margin-left:5%; margin-bottom:10px; margin-right:5%;"><span onclick="CKEDITOR.instances.editor6.insertHtml( $('#old_html').html() );" style="cursor:pointer;font-weight:bold;"><?php echo $lang->MOD_189?>  <?php echo $short_old?> <?php echo $lang->ARTICLE_29?></span>&nbsp;&nbsp;<br/></div><div style="width:90%; margin-left:5%; margin-right:5%;"><b><?php echo lang_name_front($language)?> <?php echo $lang->ARTICLE_29?>:</b><br/>
 			<textarea class="ckeditor" id="editor6" name="content" rows="10"></textarea></div>
         </td>
-    
+
     </tr>
     </table>
     </div>
