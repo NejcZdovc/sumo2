@@ -1,5 +1,5 @@
 # SUMO2 CMS
 Ajax based CMS
 
-#Licence
+#License
 GPL 3.0 © Nejc Zdovc
